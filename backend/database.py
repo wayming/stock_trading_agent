@@ -1,0 +1,236 @@
+"""SQLite database initialization and CRUD helpers."""
+
+import sqlite3
+import os
+import uuid
+from datetime import datetime, timezone
+from typing import Optional
+
+from config import DB_PATH
+
+
+class Database:
+    def __init__(self):
+        self._db_conn: Optional[sqlite3.Connection] = None
+
+
+    def get_db(self) -> sqlite3.Connection:
+        """Return the module-level DB connection (call init_db first)."""
+        if self._db_conn is None:
+            raise RuntimeError("Database not initialized — call init_db() first")
+        return self._db_conn
+
+
+    def open(self):
+        """Create database directory and tables."""
+        os.makedirs(os.path.dirname(DB_PATH) if os.path.dirname(DB_PATH) else ".", exist_ok=True)
+        self._db_conn = sqlite3.connect(DB_PATH, check_same_thread=False)
+        self._db_conn.row_factory = sqlite3.Row
+        self._db_conn.execute("PRAGMA journal_mode=WAL")
+        self._db_conn.executescript("""
+            CREATE TABLE IF NOT EXISTS news (
+                id TEXT PRIMARY KEY,
+                content TEXT NOT NULL,
+                source TEXT DEFAULT '',
+                symbol TEXT DEFAULT '',
+                timestamp TEXT DEFAULT '',
+                raw_json TEXT DEFAULT ''
+            );
+            CREATE TABLE IF NOT EXISTS sentiment_results (
+                id TEXT PRIMARY KEY,
+                news_id TEXT NOT NULL,
+                sentiment TEXT NOT NULL,
+                confidence_score REAL DEFAULT 0.0,
+                reasoning TEXT DEFAULT '',
+                prompt TEXT DEFAULT '',
+                llm_response TEXT DEFAULT '',
+                trade_action TEXT DEFAULT 'NONE',
+                timestamp TEXT DEFAULT '',
+                FOREIGN KEY(news_id) REFERENCES news(id)
+            );
+            CREATE TABLE IF NOT EXISTS trades (
+                id TEXT PRIMARY KEY,
+                news_id TEXT NOT NULL,
+                sentiment_result_id TEXT NOT NULL,
+                action TEXT NOT NULL,
+                symbol TEXT DEFAULT '',
+                entry_price REAL DEFAULT 0.0,
+                status TEXT DEFAULT 'OPEN',
+                pnl REAL DEFAULT 0.0,
+                created_at TEXT DEFAULT '',
+                closed_at TEXT,
+                FOREIGN KEY(news_id) REFERENCES news(id)
+            );
+            CREATE TABLE IF NOT EXISTS config (
+                key TEXT PRIMARY KEY,
+                value TEXT NOT NULL
+            );
+        """)
+        self._db_conn.commit()
+
+
+    def close(self):
+        if self._db_conn:
+            self._db_conn.close()
+            self._db_conn = None
+
+
+    #
+    # News
+    #
+
+    def insert_news(self, item: dict) -> str:
+        """Insert a news item. Returns the id."""
+        news_id = item.get("id") or str(uuid.uuid4())
+        db = self.get_db()
+        db.execute(
+            """INSERT OR IGNORE INTO news (id, content, source, symbol, timestamp, raw_json)
+            VALUES (?, ?, ?, ?, ?, ?)""",
+            (
+                news_id,
+                item.get("content", ""),
+                item.get("source", ""),
+                item.get("symbol", ""),
+                item.get("timestamp", datetime.now(timezone.utc).isoformat()),
+                item.get("raw_json", ""),
+            ),
+        )
+        db.commit()
+        return news_id
+
+
+    def get_news(self, news_id: str) -> Optional[dict]:
+        db = self.get_db()
+        row = db.execute("SELECT * FROM news WHERE id = ?", (news_id,)).fetchone()
+        return dict(row) if row else None
+
+
+    def list_news(self, limit: int = 100, offset: int = 0) -> list[dict]:
+        db = self.get_db()
+        rows = db.execute(
+            "SELECT * FROM news ORDER BY timestamp DESC LIMIT ? OFFSET ?",
+            (limit, offset),
+        ).fetchall()
+        return [dict(r) for r in rows]
+
+
+    #
+    # Sentiment Results
+    #
+
+    def insert_sentiment_result(self, item: dict) -> str:
+        result_id = item.get("id") or str(uuid.uuid4())
+        db = self.get_db()
+        db.execute(
+            """INSERT OR IGNORE INTO sentiment_results
+            (id, news_id, sentiment, confidence_score, reasoning, prompt, llm_response, trade_action, timestamp)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            (
+                result_id,
+                item["news_id"],
+                item.get("sentiment", "neutral"),
+                item.get("confidence_score", 0.0),
+                item.get("reasoning", ""),
+                item.get("prompt", ""),
+                item.get("llm_response", ""),
+                item.get("trade_action", "NONE"),
+                item.get("timestamp", datetime.now(timezone.utc).isoformat()),
+            ),
+        )
+        db.commit()
+        return result_id
+
+
+    def get_sentiment_result(self, result_id: str) -> Optional[dict]:
+        db = self.get_db()
+        row = db.execute(
+            """SELECT sr.*, n.symbol, n.source
+            FROM sentiment_results sr
+            LEFT JOIN news n ON sr.news_id = n.id
+            WHERE sr.id = ?""",
+            (result_id,),
+        ).fetchone()
+        return dict(row) if row else None
+
+
+    def list_sentiment_results(self, limit: int = 100) -> list[dict]:
+        db = self.get_db()
+        rows = db.execute(
+            """SELECT sr.*, n.symbol, n.source
+            FROM sentiment_results sr
+            LEFT JOIN news n ON sr.news_id = n.id
+            ORDER BY sr.timestamp DESC LIMIT ?""",
+            (limit,),
+        ).fetchall()
+        return [dict(r) for r in rows]
+
+
+    def get_sentiment_by_news(self, news_id: str) -> Optional[dict]:
+        db = self.get_db()
+        row = db.execute(
+            "SELECT * FROM sentiment_results WHERE news_id = ? ORDER BY timestamp DESC LIMIT 1",
+            (news_id,),
+        ).fetchone()
+        return dict(row) if row else None
+
+
+    #
+    # Trades
+    #
+
+    def insert_trade(self, item: dict) -> str:
+        trade_id = item.get("id") or str(uuid.uuid4())
+        db = self.get_db()
+        db.execute(
+            """INSERT OR IGNORE INTO trades
+            (id, news_id, sentiment_result_id, action, symbol, entry_price, status, pnl, created_at, closed_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            (
+                trade_id,
+                item["news_id"],
+                item.get("sentiment_result_id", ""),
+                item.get("action", "NONE"),
+                item.get("symbol", ""),
+                item.get("entry_price", 0.0),
+                item.get("status", "OPEN"),
+                item.get("pnl", 0.0),
+                item.get("created_at", datetime.now(timezone.utc).isoformat()),
+                item.get("closed_at"),
+            ),
+        )
+        db.commit()
+        return trade_id
+
+
+    def get_positions(self) -> list[dict]:
+        db = self.get_db()
+        rows = db.execute(
+            "SELECT * FROM trades WHERE status = 'OPEN' ORDER BY created_at DESC"
+        ).fetchall()
+        return [dict(r) for r in rows]
+
+
+    def get_trade_history(self, limit: int = 50) -> list[dict]:
+        db = self.get_db()
+        rows = db.execute(
+            "SELECT * FROM trades ORDER BY created_at DESC LIMIT ?", (limit,)
+        ).fetchall()
+        return [dict(r) for r in rows]
+
+
+    #
+    # Config
+    #
+
+    def get_config(self, key: str) -> Optional[str]:
+        db = self.get_db()
+        row = db.execute("SELECT value FROM config WHERE key = ?", (key,)).fetchone()
+        return row["value"] if row else None
+
+
+    def set_config(self, key: str, value: str):
+        db = self.get_db()
+        db.execute(
+            "INSERT OR REPLACE INTO config (key, value) VALUES (?, ?)", (key, value)
+        )
+        db.commit()
