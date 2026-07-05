@@ -61,21 +61,21 @@ services:
   #
   # News stub — generate fake news every 10 s (disable with: docker compose up --scale news-stub=0)
   #
-  news-stub:
-    build: ./backend
-    command: python3 news_stub.py --interval 10
-    environment:
-      - RABBITMQ_HOST=rabbitmq
-      - RABBITMQ_PORT=5672
-      - RABBITMQ_QUEUE=stock_news
-      - LOG_DIR=/app/logs
-      - DEBUG
-    volumes:
-      - ./logs:/app/logs        # persist logs on host
-    depends_on:
-      rabbitmq:
-        condition: service_healthy
-    restart: unless-stopped
+  # news-stub:
+  #   build: ./backend
+  #   command: python3 news_stub.py --interval 10
+  #   environment:
+  #     - RABBITMQ_HOST=rabbitmq
+  #     - RABBITMQ_PORT=5672
+  #     - RABBITMQ_QUEUE=stock_news
+  #     - LOG_DIR=/app/logs
+  #     - DEBUG
+  #   volumes:
+  #     - ./logs:/app/logs        # persist logs on host
+  #   depends_on:
+  #     rabbitmq:
+  #       condition: service_healthy
+  #   restart: unless-stopped
 
 volumes:
   backend_data:

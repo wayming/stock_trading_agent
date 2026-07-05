@@ -7395,3 +7395,51 @@ Content:
 NVDA 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
 2026-07-05 11:45:55,926 [INFO] backend.main: Shutting down...
 2026-07-05 11:45:55,928 [INFO] backend.rabbitmq_consumer: RabbitMQ consumer stopped
+2026-07-05 12:45:00,842 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 12:45:00,852 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-05 12:45:00,852 [INFO] backend.main: Backend ready.
+2026-07-05 12:45:00,853 [INFO] backend.dispatcher: dispatcher started
+2026-07-05 13:02:02,823 [INFO] backend.main: Shutting down...
+2026-07-05 13:02:21,522 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 13:02:21,534 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-05 13:02:21,534 [INFO] backend.main: Backend ready.
+2026-07-05 13:02:21,534 [INFO] backend.dispatcher: dispatcher started
+2026-07-05 13:34:18,003 [INFO] backend.services: [News tag:reuters.com,2026:newsml_L6N437040:0] Stored: ...
+2026-07-05 13:34:18,011 [INFO] backend.langgraph_workflow: Loaded LLM config: url=https://api.deepseek.com, model=deepseek-v4-pro
+2026-07-05 13:34:18,011 [DEBUG] backend.langgraph_workflow: Built prompt: News Source: Reuters
+Stock Symbol: 
+
+Content:
+
+2026-07-05 13:34:18,195 [INFO] backend.services: [News newsbtc:0f373049e094b:0] Stored: ...
+2026-07-05 13:34:18,196 [INFO] backend.langgraph_workflow: Loaded LLM config: url=https://api.deepseek.com, model=deepseek-v4-pro
+2026-07-05 13:34:18,197 [DEBUG] backend.langgraph_workflow: Built prompt: News Source: NewsBTC
+Stock Symbol: 
+
+Content:
+
+2026-07-05 13:34:18,608 [INFO] backend.services: [News binance_news:4247550ae094b:0] Stored: ...
+2026-07-05 13:34:18,609 [INFO] backend.langgraph_workflow: Loaded LLM config: url=https://api.deepseek.com, model=deepseek-v4-pro
+2026-07-05 13:34:18,610 [DEBUG] backend.langgraph_workflow: Built prompt: News Source: Binance News
+Stock Symbol: 
+
+Content:
+
+2026-07-05 13:34:23,678 [DEBUG] backend.langgraph_workflow: LLM raw response: {"sentiment": "neutral", "confidence_score": 0.0, "reasoning": "No news content provided. Without any information, it is impossible to assess any directional impact on the stock. Thus, neutral sentiment with zero confidence."}
+2026-07-05 13:34:23,681 [INFO] backend.services: [News tag:reuters.com,2026:newsml_L6N437040:0] Analysis complete: sentiment=neutral, confidence=0.0, trade=NONE
+2026-07-05 13:34:23,698 [INFO] backend.services: [News tag:reuters.com,2026:newsml_L6N437040:0] Analysis complete
+2026-07-05 13:34:23,698 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 13:34:23,699 [DEBUG] backend.dispatcher: Dispatching result payload: news
+2026-07-05 13:34:23,699 [DEBUG] backend.dispatcher: Dispatching result payload: analysis
+2026-07-05 13:34:23,986 [DEBUG] backend.langgraph_workflow: LLM raw response: {"sentiment": "neutral", "confidence_score": 0.0, "reasoning": "No news content was provided for analysis, making it impossible to determine any sentiment. Hence, a neutral rating with zero confidence is assigned."}
+2026-07-05 13:34:23,988 [INFO] backend.services: [News newsbtc:0f373049e094b:0] Analysis complete: sentiment=neutral, confidence=0.0, trade=NONE
+2026-07-05 13:34:24,004 [INFO] backend.services: [News newsbtc:0f373049e094b:0] Analysis complete
+2026-07-05 13:34:24,004 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 13:34:24,004 [DEBUG] backend.dispatcher: Dispatching result payload: news
+2026-07-05 13:34:24,004 [DEBUG] backend.dispatcher: Dispatching result payload: analysis
+2026-07-05 13:34:27,570 [DEBUG] backend.langgraph_workflow: LLM raw response: {"sentiment": "neutral", "confidence_score": 0.0, "reasoning": "No news content was provided for analysis. Sentiment cannot be determined without information, so a neutral stance is assigned with zero confidence."}
+2026-07-05 13:34:27,574 [INFO] backend.services: [News binance_news:4247550ae094b:0] Analysis complete: sentiment=neutral, confidence=0.0, trade=NONE
+2026-07-05 13:34:27,590 [INFO] backend.services: [News binance_news:4247550ae094b:0] Analysis complete
+2026-07-05 13:34:27,590 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 13:34:27,590 [DEBUG] backend.dispatcher: Dispatching result payload: news
+2026-07-05 13:34:27,592 [DEBUG] backend.dispatcher: Dispatching result payload: analysis

@@ -22,6 +22,7 @@ class MQConsumer:
     def stop(self):
         """Stop the consumer gracefully."""
         self._running = False
+        self._connection.close()
         if self._consumer_thread:
             self._consumer_thread.join()
 
@@ -46,8 +47,7 @@ class MQConsumer:
                 channel.basic_qos(prefetch_count=1)
                 channel.basic_consume(queue=RABBITMQ_QUEUE, on_message_callback=self._on_message)
 
-                while self._running:
-                    channel.process_data_events(time_limit=1.0)
+                channel.start_consuming()
 
             except (AMQPConnectionError, AMQPChannelError, ConnectionError) as e:
                 if self._running:
