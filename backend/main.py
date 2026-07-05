@@ -1,4 +1,4 @@
-"""FastAPI application entry point for the Stock Trading Agent backend."""
+"""FastAPI application — defines the ASGI app.  Run with ``uvicorn main:app``."""
 
 import asyncio
 import logging
@@ -15,16 +15,10 @@ import services
 import api_routes
 import queue
 from database import Database
+from logging_config import setup_logging
 
-#
-# Logging
-#
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-)
-logger = logging.getLogger(__name__)
+setup_logging("backend")
+logger = logging.getLogger(f"backend.{__name__}")
 
 #
 # Globals
@@ -35,15 +29,10 @@ sse_manager = SSEManager()
 
 #
 # Closure functions
-#
 async def sse_queue_process():
     while True:
         event_type, data = await sse_message_queue.get()
         await sse_manager.broadcast(event_type, data)
-
-def sse_queue_put(event_type: str, data: dict):
-    asyncio.get_running_loop().call_soon_threadsafe(sse_message_queue.put_nowait, (event_type, data))
-
 
 #
 # Lifespan
@@ -57,6 +46,10 @@ async def lifespan(app: FastAPI):
     mq_consumer = rabbitmq_consumer.MQConsumer(in_message_queue)
     service_context = services.ServiceContext.create()
     service_provider = services.ServiceProvider(service_context)
+
+    main_evet_loop = asyncio.get_event_loop()
+    def sse_queue_put(event_type: str, data: dict):
+        main_evet_loop.call_soon_threadsafe(sse_message_queue.put_nowait, (event_type, data))
     dispatcher = Dispatcher(in_message_queue, service_provider, sse_queue_put)
 
     # Startup
@@ -66,8 +59,8 @@ async def lifespan(app: FastAPI):
     api_routes.init(sse_manager, trading_engine, mq_consumer, db)
 
     # Start daemon threads
-    mq_consumer_thread = asyncio.to_thread(mq_consumer.run)
-    dispatcher_thread = asyncio.to_thread(dispatcher.run)
+    mq_consumer_thread = asyncio.create_task(asyncio.to_thread(mq_consumer.run))
+    dispatcher_thread = asyncio.create_task(asyncio.to_thread(dispatcher.run))
 
     # Start SSE queue processor
     sse_task = asyncio.create_task(sse_queue_process())
@@ -119,12 +112,3 @@ app.include_router(api_routes.router)
 @app.get("/")
 def root():
     return {"service": "Stock Trading Agent", "version": "0.1.0"}
-
-
-#
-# Main
-#
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

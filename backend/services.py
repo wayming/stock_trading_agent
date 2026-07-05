@@ -12,7 +12,7 @@ from trading_engine import MockTradingEngine
 from sse_manager import SSEManager
 from dataclasses import dataclass
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(f"backend.{__name__}")
 
 # Shared instances (set by main.py on startup)
 sse_manager: SSEManager = None  # type: ignore
@@ -49,7 +49,7 @@ class ServiceContext:
 class ServiceProvider:
     def __init__(self, context: ServiceContext):
         self.context = context
-
+        langgraph_workflow.db = self.context.database
 
     def run(self, body: bytes):
         """
@@ -96,10 +96,10 @@ class ServiceProvider:
             "trade_action": state["trade_action"],
             "timestamp": datetime.now(timezone.utc).isoformat(),
         }
-        database.insert_sentiment_result(sentiment_result)
+        self.context.database.insert_sentiment_result(sentiment_result)
 
         # Step 4: Evaluate trade
-        trade = trading_engine.evaluate_signal(
+        trade = self.context.trading_engine.evaluate_signal(
             sentiment=state["sentiment"],
             symbol=news_dict.get("symbol", ""),
             news_id=news_id,
@@ -138,7 +138,7 @@ class ServiceProvider:
             "timestamp": sentiment_result["timestamp"],
         }
 
-        logger.info(f"[News {news_id}] Broadcast complete, clients={sse_manager.client_count}")
+        logger.info(f"[News {news_id}] Analysis complete")
 
         return [["signal", signal_payload], ["news", news_payload], ["analysis", analysis_payload]]
 

@@ -1,0 +1,1655 @@
+2026-07-05 06:09:50,893 [INFO] backend: Logging to /app/logs/backend.log  level=INFO
+2026-07-05 07:48:53,772 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 07:48:54,965 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 07:48:56,141 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 07:51:00,913 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 07:51:02,017 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 07:51:03,109 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 07:51:04,459 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 07:51:06,238 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 07:52:30,339 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 07:52:30,340 [DEBUG] asyncio: Using selector: EpollSelector
+2026-07-05 07:52:30,349 [INFO] main: Starting Stock Trading Agent backend...
+2026-07-05 07:52:30,349 [INFO] main: Backend ready.
+2026-07-05 09:14:10,795 [INFO] main: Shutting down...
+2026-07-05 09:14:10,796 [INFO] rabbitmq_consumer: [MQConsumer] RabbitMQ consumer started on queue 'stock_news'
+2026-07-05 09:14:10,796 [DEBUG] pika.adapters.select_connection: Using EPollPoller
+2026-07-05 09:14:10,797 [DEBUG] pika.adapters.base_connection: Created default connection workflow <pika.adapters.utils.connection_workflow.AMQPConnectionWorkflow object at 0x77b0b9363740>
+2026-07-05 09:14:10,797 [DEBUG] pika.adapters.utils.connection_workflow: Starting AMQP Connection workflow asynchronously.
+2026-07-05 09:14:10,797 [DEBUG] pika.adapters.select_connection: call_later: added timeout <pika.adapters.select_connection._Timeout object at 0x77b0b932c490> with deadline=35283.988043901 and callback=functools.partial(<bound method AMQPConnectionWorkflow._start_new_cycle_async of <pika.adapters.utils.connection_workflow.AMQPConnectionWorkflow object at 0x77b0b9363740>>, first=True); now=35283.988043901; delay=0
+2026-07-05 09:14:10,797 [DEBUG] pika.adapters.utils.connection_workflow: Beginning a new AMQP connection workflow cycle; attempts remaining after this: 2
+2026-07-05 09:14:10,797 [DEBUG] pika.adapters.select_connection: call_later: added timeout <pika.adapters.select_connection._Timeout object at 0x77b0b9362b90> with deadline=35283.988226675 and callback=<bound method AMQPConnectionWorkflow._try_next_config_async of <pika.adapters.utils.connection_workflow.AMQPConnectionWorkflow object at 0x77b0b9363740>>; now=35283.988226675; delay=0
+2026-07-05 09:14:10,797 [DEBUG] pika.adapters.utils.connection_workflow: _try_next_config_async: 'rabbitmq':5672
+2026-07-05 09:14:10,798 [DEBUG] pika.adapters.select_connection: add_callback_threadsafe: added callback=<bound method _AddressResolver._dispatch_result of <pika.adapters.utils.selector_ioloop_adapter._AddressResolver object at 0x77b0b9363d10>>
+2026-07-05 09:14:10,798 [DEBUG] pika.adapters.select_connection: process_timeouts: invoking callback=<bound method _AddressResolver._dispatch_result of <pika.adapters.utils.selector_ioloop_adapter._AddressResolver object at 0x77b0b9363d10>>
+2026-07-05 09:14:10,798 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: Invoking asynchronous getaddrinfo() completion callback; host='rabbitmq'
+2026-07-05 09:14:10,799 [DEBUG] pika.adapters.utils.connection_workflow: getaddrinfo returned 1 records
+2026-07-05 09:14:10,799 [DEBUG] pika.adapters.utils.connection_workflow: Attempting to connect using address record (<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('172.26.0.2', 5672))
+2026-07-05 09:14:10,799 [INFO] pika.adapters.utils.connection_workflow: Pika version 1.4.1 connecting to ('172.26.0.2', 5672)
+2026-07-05 09:14:10,799 [DEBUG] pika.adapters.select_connection: add_callback_threadsafe: added callback=<bound method _AsyncSocketConnector._start_async of <pika.adapters.utils.io_services_utils._AsyncSocketConnector object at 0x77b0b92b5010>>
+2026-07-05 09:14:10,799 [DEBUG] pika.adapters.select_connection: call_later: added timeout <pika.adapters.select_connection._Timeout object at 0x77b0b937f5b0> with deadline=35293.989991561 and callback=<bound method AMQPConnector._on_tcp_connection_timeout of <pika.adapters.utils.connection_workflow.AMQPConnector object at 0x77b0b930a060>>; now=35283.989991561; delay=10.0
+2026-07-05 09:14:10,799 [DEBUG] pika.adapters.select_connection: call_later: added timeout <pika.adapters.select_connection._Timeout object at 0x77b0b9363850> with deadline=35298.990084279 and callback=<bound method AMQPConnector._on_overall_timeout of <pika.adapters.utils.connection_workflow.AMQPConnector object at 0x77b0b930a060>>; now=35283.990084279; delay=15.0
+2026-07-05 09:14:10,799 [DEBUG] pika.adapters.select_connection: process_timeouts: invoking callback=<bound method _AsyncSocketConnector._start_async of <pika.adapters.utils.io_services_utils._AsyncSocketConnector object at 0x77b0b92b5010>>
+2026-07-05 09:14:10,799 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.set_writer(14, <bound method _AsyncSocketConnector._on_writable of <pika.adapters.utils.io_services_utils._AsyncSocketConnector object at 0x77b0b92b5010>>)
+2026-07-05 09:14:10,799 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: set_writer(14, _) added handler Wr
+2026-07-05 09:14:10,799 [DEBUG] pika.adapters.utils.io_services_utils: Connection-establishment is in progress for <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>.
+2026-07-05 09:14:10,800 [INFO] pika.adapters.utils.io_services_utils: Socket connected: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,800 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncSocketConnector._report_completion(None); <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,800 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.remove_writer(14)
+2026-07-05 09:14:10,800 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: remove_writer(14) removed handler
+2026-07-05 09:14:10,800 [DEBUG] pika.adapters.select_connection: remove_timeout: removing timeout <pika.adapters.select_connection._Timeout object at 0x77b0b937f5b0> with deadline=35293.989991561 and callback=<bound method AMQPConnector._on_tcp_connection_timeout of <pika.adapters.utils.connection_workflow.AMQPConnector object at 0x77b0b930a060>>
+2026-07-05 09:14:10,800 [DEBUG] pika.adapters.utils.connection_workflow: TCP connection to broker established: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>.
+2026-07-05 09:14:10,800 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncStreamConnector.start(); <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,800 [DEBUG] pika.adapters.select_connection: add_callback_threadsafe: added callback=<bound method _AsyncStreamConnector._start_async of <pika.adapters.utils.io_services_utils._AsyncStreamConnector object at 0x77b0b930a390>>
+2026-07-05 09:14:10,800 [DEBUG] pika.adapters.select_connection: process_timeouts: invoking callback=<bound method _AsyncStreamConnector._start_async of <pika.adapters.utils.io_services_utils._AsyncStreamConnector object at 0x77b0b930a390>>
+2026-07-05 09:14:10,800 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncStreamConnector._start_async(); <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,800 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncStreamConnector._linkup()
+2026-07-05 09:14:10,801 [DEBUG] pika.connection: New Connection state: CLOSED (prev=CLOSED)
+2026-07-05 09:14:10,801 [DEBUG] pika.callback: Added: {'callback': <bound method Connection._on_connection_start of <SelectConnection CLOSED transport=None params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+2026-07-05 09:14:10,801 [DEBUG] pika.callback: Added: {'callback': <bound method Connection._on_connection_close_from_broker of <SelectConnection CLOSED transport=None params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+2026-07-05 09:14:10,801 [DEBUG] pika.callback: Added: {'callback': <bound method Connection._default_on_connection_error of <SelectConnection CLOSED transport=None params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:14:10,801 [DEBUG] pika.connection: New Connection state: INIT (prev=CLOSED)
+2026-07-05 09:14:10,801 [DEBUG] pika.connection: Using external connection workflow.
+2026-07-05 09:14:10,801 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncTransportBase.__init__: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,801 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.set_reader(14, <bound method _AsyncPlaintextTransport._on_socket_readable of <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600>>)
+2026-07-05 09:14:10,801 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: set_reader(14, _) added handler Rd
+2026-07-05 09:14:10,801 [DEBUG] pika.adapters.utils.io_services_utils: _linkup(): created transport <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600>
+2026-07-05 09:14:10,801 [DEBUG] pika.connection: New Connection state: PROTOCOL (prev=INIT)
+2026-07-05 09:14:10,802 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.set_writer(14, <bound method _AsyncPlaintextTransport._on_socket_writable of <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600>>)
+2026-07-05 09:14:10,802 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: set_writer(14, _) updated handler RdWr
+2026-07-05 09:14:10,802 [DEBUG] pika.adapters.utils.io_services_utils: Turned on writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,802 [DEBUG] pika.adapters.utils.io_services_utils: _linkup(): introduced transport to protocol <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600>; _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2026-07-05 09:14:10,802 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncStreamConnector._report_completion((<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>)); <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,802 [INFO] pika.adapters.utils.connection_workflow: Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2026-07-05 09:14:10,802 [DEBUG] pika.callback: Removing callback #0: {'callback': <bound method Connection._default_on_connection_error of <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:14:10,802 [DEBUG] pika.callback: Added: {'callback': <bound method AMQPConnector._on_amqp_handshake_done of <pika.adapters.utils.connection_workflow.AMQPConnector object at 0x77b0b930a060>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:14:10,802 [DEBUG] pika.callback: Added: {'callback': <bound method AMQPConnector._on_amqp_handshake_done of <pika.adapters.utils.connection_workflow.AMQPConnector object at 0x77b0b930a060>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:14:10,802 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncStreamConnector._cleanup(False)
+2026-07-05 09:14:10,802 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.remove_writer(14)
+2026-07-05 09:14:10,802 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: remove_writer(14) updated handler Rd
+2026-07-05 09:14:10,803 [DEBUG] pika.adapters.utils.io_services_utils: Turned off writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,803 [DEBUG] pika.callback: Processing 0:Connection.Start
+2026-07-05 09:14:10,803 [DEBUG] pika.callback: Processing use of oneshot callback
+2026-07-05 09:14:10,803 [DEBUG] pika.callback: 0 registered uses left
+2026-07-05 09:14:10,803 [DEBUG] pika.callback: Removing callback #0: {'callback': <bound method Connection._on_connection_start of <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 0}
+2026-07-05 09:14:10,803 [DEBUG] pika.callback: Calling <bound method Connection._on_connection_start of <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>> for "0:Connection.Start"
+2026-07-05 09:14:10,803 [DEBUG] pika.connection: New Connection state: START (prev=PROTOCOL)
+2026-07-05 09:14:10,803 [DEBUG] pika.callback: Added: {'callback': <bound method Connection._on_connection_tune of <SelectConnection START transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+2026-07-05 09:14:10,803 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.set_writer(14, <bound method _AsyncPlaintextTransport._on_socket_writable of <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600>>)
+2026-07-05 09:14:10,803 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: set_writer(14, _) updated handler RdWr
+2026-07-05 09:14:10,803 [DEBUG] pika.adapters.utils.io_services_utils: Turned on writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,803 [DEBUG] pika.adapters.utils.io_services_utils: Recv would block on <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,804 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.remove_writer(14)
+2026-07-05 09:14:10,804 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: remove_writer(14) updated handler Rd
+2026-07-05 09:14:10,804 [DEBUG] pika.adapters.utils.io_services_utils: Turned off writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,804 [DEBUG] pika.callback: Processing 0:Connection.Tune
+2026-07-05 09:14:10,804 [DEBUG] pika.callback: Processing use of oneshot callback
+2026-07-05 09:14:10,804 [DEBUG] pika.callback: 0 registered uses left
+2026-07-05 09:14:10,804 [DEBUG] pika.callback: Removing callback #0: {'callback': <bound method Connection._on_connection_tune of <SelectConnection START transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 0}
+2026-07-05 09:14:10,804 [DEBUG] pika.callback: Calling <bound method Connection._on_connection_tune of <SelectConnection START transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>> for "0:Connection.Tune"
+2026-07-05 09:14:10,804 [DEBUG] pika.connection: New Connection state: TUNE (prev=START)
+2026-07-05 09:14:10,804 [DEBUG] pika.connection: Creating a HeartbeatChecker: 30
+2026-07-05 09:14:10,804 [DEBUG] pika.heartbeat: timeout: 30.000000 send_interval: 15.000000 check_interval: 35.000000
+2026-07-05 09:14:10,804 [DEBUG] pika.adapters.select_connection: call_later: added timeout <pika.adapters.select_connection._Timeout object at 0x77b0b932c1f0> with deadline=35298.995019081 and callback=<bound method HeartbeatChecker._send_heartbeat of <pika.heartbeat.HeartbeatChecker object at 0x77b0b930ab70>>; now=35283.995019081; delay=15.0
+2026-07-05 09:14:10,804 [DEBUG] pika.adapters.select_connection: call_later: added timeout <pika.adapters.select_connection._Timeout object at 0x77b0b94d9930> with deadline=35318.995060387 and callback=<bound method HeartbeatChecker._check_heartbeat of <pika.heartbeat.HeartbeatChecker object at 0x77b0b930ab70>>; now=35283.995060387; delay=35
+2026-07-05 09:14:10,804 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.set_writer(14, <bound method _AsyncPlaintextTransport._on_socket_writable of <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600>>)
+2026-07-05 09:14:10,804 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: set_writer(14, _) updated handler RdWr
+2026-07-05 09:14:10,804 [DEBUG] pika.adapters.utils.io_services_utils: Turned on writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,804 [DEBUG] pika.callback: Added: {'callback': <bound method Connection._on_connection_open_ok of <SelectConnection TUNE transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+2026-07-05 09:14:10,804 [DEBUG] pika.adapters.utils.io_services_utils: Recv would block on <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,804 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.remove_writer(14)
+2026-07-05 09:14:10,804 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: remove_writer(14) updated handler Rd
+2026-07-05 09:14:10,804 [DEBUG] pika.adapters.utils.io_services_utils: Turned off writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,804 [DEBUG] pika.callback: Processing 0:Connection.OpenOk
+2026-07-05 09:14:10,804 [DEBUG] pika.callback: Processing use of oneshot callback
+2026-07-05 09:14:10,804 [DEBUG] pika.callback: 0 registered uses left
+2026-07-05 09:14:10,804 [DEBUG] pika.callback: Removing callback #0: {'callback': <bound method Connection._on_connection_open_ok of <SelectConnection TUNE transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 0}
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Calling <bound method Connection._on_connection_open_ok of <SelectConnection TUNE transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>> for "0:Connection.OpenOk"
+2026-07-05 09:14:10,805 [DEBUG] pika.connection: New Connection state: OPEN (prev=TUNE)
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Processing 0:_on_connection_open_ok
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Calling <bound method AMQPConnector._on_amqp_handshake_done of <pika.adapters.utils.connection_workflow.AMQPConnector object at 0x77b0b930a060>> for "0:_on_connection_open_ok"
+2026-07-05 09:14:10,805 [DEBUG] pika.adapters.utils.connection_workflow: AMQPConnector: AMQP handshake attempt completed; state=3; error=None; 'rabbitmq'/(<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('172.26.0.2', 5672))
+2026-07-05 09:14:10,805 [DEBUG] pika.adapters.utils.connection_workflow: AMQPConnector: AMQP connection established for 'rabbitmq'/(<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('172.26.0.2', 5672)): <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2026-07-05 09:14:10,805 [INFO] pika.adapters.utils.connection_workflow: AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2026-07-05 09:14:10,805 [DEBUG] pika.adapters.select_connection: remove_timeout: removing timeout <pika.adapters.select_connection._Timeout object at 0x77b0b9363850> with deadline=35298.990084279 and callback=<bound method AMQPConnector._on_overall_timeout of <pika.adapters.utils.connection_workflow.AMQPConnector object at 0x77b0b930a060>>
+2026-07-05 09:14:10,805 [DEBUG] pika.adapters.utils.connection_workflow: Connection attempt completed with <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2026-07-05 09:14:10,805 [INFO] pika.adapters.utils.connection_workflow: AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2026-07-05 09:14:10,805 [DEBUG] pika.adapters.utils.io_services_utils: Recv would block on <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,805 [INFO] pika.adapters.blocking_connection: Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Added: {'callback': <bound method _CallbackResult.set_value_once of <pika.adapters.blocking_connection._CallbackResult object at 0x77b0b935efc0>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:14:10,805 [DEBUG] pika.connection: Creating channel 1
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Added: {'callback': <bound method Connection._on_channel_cleanup of <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': <Channel number=1 CLOSED conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'arguments': None, 'calls': 1}
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Added: {'callback': <bound method Channel._on_getempty of <Channel number=1 OPENING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Added: {'callback': <bound method Channel._on_cancel of <Channel number=1 OPENING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Added: {'callback': <bound method Channel._on_flow of <Channel number=1 OPENING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Added: {'callback': <bound method Channel._on_close_from_broker of <Channel number=1 OPENING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+2026-07-05 09:14:10,805 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.set_writer(14, <bound method _AsyncPlaintextTransport._on_socket_writable of <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600>>)
+2026-07-05 09:14:10,805 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: set_writer(14, _) updated handler RdWr
+2026-07-05 09:14:10,805 [DEBUG] pika.adapters.utils.io_services_utils: Turned on writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,805 [DEBUG] pika.channel: Entering blocking state on frame <Channel.Open(['out_of_band='])>; acceptable_replies=[<class 'pika.spec.Channel.OpenOk'>]
+2026-07-05 09:14:10,805 [DEBUG] pika.channel: Adding on_synchronous_complete callback
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Added: {'callback': <bound method Channel._on_synchronous_complete of <Channel number=1 OPENING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+2026-07-05 09:14:10,805 [DEBUG] pika.channel: Adding passed-in RPC response callback
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Added: {'callback': <bound method Channel._on_openok of <Channel number=1 OPENING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Added: {'callback': <bound method BlockingChannel._on_consumer_cancelled_by_broker of <BlockingChannel impl=<Channel number=1 OPENING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Added: {'callback': <bound method _CallbackResult.signal_once of <pika.adapters.blocking_connection._CallbackResult object at 0x77b0b89909c0>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Added: {'callback': <bound method BlockingChannel._on_channel_closed of <BlockingChannel impl=<Channel number=1 OPENING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>>, 'one_shot': False, 'only': <Channel number=1 OPENING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'arguments': None}
+2026-07-05 09:14:10,805 [DEBUG] pika.callback: Added: {'callback': <bound method _CallbackResult.set_value_once of <pika.adapters.blocking_connection._CallbackResult object at 0x77b0b8990b00>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:14:10,806 [INFO] pika.adapters.blocking_connection: Created channel=1
+2026-07-05 09:14:10,806 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.remove_writer(14)
+2026-07-05 09:14:10,806 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: remove_writer(14) updated handler Rd
+2026-07-05 09:14:10,806 [DEBUG] pika.adapters.utils.io_services_utils: Turned off writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,806 [DEBUG] pika.callback: Processing 1:Channel.OpenOk
+2026-07-05 09:14:10,806 [DEBUG] pika.callback: Processing use of oneshot callback
+2026-07-05 09:14:10,806 [DEBUG] pika.callback: 0 registered uses left
+2026-07-05 09:14:10,806 [DEBUG] pika.callback: Removing callback #0: {'callback': <bound method Channel._on_synchronous_complete of <Channel number=1 OPENING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 0}
+2026-07-05 09:14:10,806 [DEBUG] pika.callback: Processing use of oneshot callback
+2026-07-05 09:14:10,806 [DEBUG] pika.callback: 0 registered uses left
+2026-07-05 09:14:10,806 [DEBUG] pika.callback: Removing callback #0: {'callback': <bound method Channel._on_openok of <Channel number=1 OPENING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 0}
+2026-07-05 09:14:10,806 [DEBUG] pika.callback: Calling <bound method Channel._on_synchronous_complete of <Channel number=1 OPENING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>> for "1:Channel.OpenOk"
+2026-07-05 09:14:10,806 [DEBUG] pika.channel: 0 blocked frames
+2026-07-05 09:14:10,806 [DEBUG] pika.callback: Calling <bound method Channel._on_openok of <Channel number=1 OPENING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>> for "1:Channel.OpenOk"
+2026-07-05 09:14:10,806 [DEBUG] pika.adapters.utils.io_services_utils: Recv would block on <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,806 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.set_writer(14, <bound method _AsyncPlaintextTransport._on_socket_writable of <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600>>)
+2026-07-05 09:14:10,806 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: set_writer(14, _) updated handler RdWr
+2026-07-05 09:14:10,806 [DEBUG] pika.adapters.utils.io_services_utils: Turned on writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,806 [DEBUG] pika.channel: Entering blocking state on frame <Queue.Declare(['arguments={}', 'auto_delete=False', 'durable=True', 'exclusive=False', 'nowait=False', 'passive=False', 'queue=stock_news', 'ticket=0'])>; acceptable_replies=[(<class 'pika.spec.Queue.DeclareOk'>, {'queue': 'stock_news'})]
+2026-07-05 09:14:10,806 [DEBUG] pika.channel: Adding on_synchronous_complete callback
+2026-07-05 09:14:10,806 [DEBUG] pika.callback: Added: {'callback': <bound method Channel._on_synchronous_complete of <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': True, 'only': None, 'arguments': {'queue': 'stock_news'}, 'calls': 1}
+2026-07-05 09:14:10,806 [DEBUG] pika.channel: Adding passed-in RPC response callback
+2026-07-05 09:14:10,806 [DEBUG] pika.callback: Added: {'callback': <bound method _CallbackResult.set_value_once of <pika.adapters.blocking_connection._CallbackResult object at 0x77b0b936ec00>>, 'one_shot': True, 'only': None, 'arguments': {'queue': 'stock_news'}, 'calls': 1}
+2026-07-05 09:14:10,806 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.remove_writer(14)
+2026-07-05 09:14:10,806 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: remove_writer(14) updated handler Rd
+2026-07-05 09:14:10,806 [DEBUG] pika.adapters.utils.io_services_utils: Turned off writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Processing 1:Queue.DeclareOk
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Processing use of oneshot callback
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: 0 registered uses left
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Comparing {'queue': 'stock_news'} to {'queue': 'stock_news'}
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Removing callback #0: {'callback': <bound method Channel._on_synchronous_complete of <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': True, 'only': None, 'arguments': {'queue': 'stock_news'}, 'calls': 0}
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Processing use of oneshot callback
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: 0 registered uses left
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Comparing {'queue': 'stock_news'} to {'queue': 'stock_news'}
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Removing callback #0: {'callback': <bound method _CallbackResult.set_value_once of <pika.adapters.blocking_connection._CallbackResult object at 0x77b0b936ec00>>, 'one_shot': True, 'only': None, 'arguments': {'queue': 'stock_news'}, 'calls': 0}
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Calling <bound method Channel._on_synchronous_complete of <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>> for "1:Queue.DeclareOk"
+2026-07-05 09:14:10,807 [DEBUG] pika.channel: 0 blocked frames
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Calling <bound method _CallbackResult.set_value_once of <pika.adapters.blocking_connection._CallbackResult object at 0x77b0b936ec00>> for "1:Queue.DeclareOk"
+2026-07-05 09:14:10,807 [DEBUG] pika.adapters.utils.io_services_utils: Recv would block on <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,807 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.set_writer(14, <bound method _AsyncPlaintextTransport._on_socket_writable of <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600>>)
+2026-07-05 09:14:10,807 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: set_writer(14, _) updated handler RdWr
+2026-07-05 09:14:10,807 [DEBUG] pika.adapters.utils.io_services_utils: Turned on writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,807 [DEBUG] pika.channel: Entering blocking state on frame <Basic.Qos(['global_qos=False', 'prefetch_count=1', 'prefetch_size=0'])>; acceptable_replies=[<class 'pika.spec.Basic.QosOk'>]
+2026-07-05 09:14:10,807 [DEBUG] pika.channel: Adding on_synchronous_complete callback
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Added: {'callback': <bound method Channel._on_synchronous_complete of <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+2026-07-05 09:14:10,807 [DEBUG] pika.channel: Adding passed-in RPC response callback
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Added: {'callback': <bound method _CallbackResult.signal_once of <pika.adapters.blocking_connection._CallbackResult object at 0x77b0b928f280>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+2026-07-05 09:14:10,807 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.remove_writer(14)
+2026-07-05 09:14:10,807 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: remove_writer(14) updated handler Rd
+2026-07-05 09:14:10,807 [DEBUG] pika.adapters.utils.io_services_utils: Turned off writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Processing 1:Basic.QosOk
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Processing use of oneshot callback
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: 0 registered uses left
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Removing callback #0: {'callback': <bound method Channel._on_synchronous_complete of <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 0}
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Processing use of oneshot callback
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: 0 registered uses left
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Removing callback #0: {'callback': <bound method _CallbackResult.signal_once of <pika.adapters.blocking_connection._CallbackResult object at 0x77b0b928f280>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 0}
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Calling <bound method Channel._on_synchronous_complete of <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>> for "1:Basic.QosOk"
+2026-07-05 09:14:10,807 [DEBUG] pika.channel: 0 blocked frames
+2026-07-05 09:14:10,807 [DEBUG] pika.callback: Calling <bound method _CallbackResult.signal_once of <pika.adapters.blocking_connection._CallbackResult object at 0x77b0b928f280>> for "1:Basic.QosOk"
+2026-07-05 09:14:10,807 [DEBUG] pika.adapters.utils.io_services_utils: Recv would block on <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,808 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.set_writer(14, <bound method _AsyncPlaintextTransport._on_socket_writable of <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600>>)
+2026-07-05 09:14:10,808 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: set_writer(14, _) updated handler RdWr
+2026-07-05 09:14:10,808 [DEBUG] pika.adapters.utils.io_services_utils: Turned on writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,808 [DEBUG] pika.channel: Entering blocking state on frame <Basic.Consume(['arguments={}', 'consumer_tag=ctag1.cc87a294fbc14512952d978095320552', 'exclusive=False', 'no_ack=False', 'no_local=False', 'nowait=False', 'queue=stock_news', 'ticket=0'])>; acceptable_replies=[(<class 'pika.spec.Basic.ConsumeOk'>, {'consumer_tag': 'ctag1.cc87a294fbc14512952d978095320552'})]
+2026-07-05 09:14:10,808 [DEBUG] pika.channel: Adding on_synchronous_complete callback
+2026-07-05 09:14:10,808 [DEBUG] pika.callback: Added: {'callback': <bound method Channel._on_synchronous_complete of <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': True, 'only': None, 'arguments': {'consumer_tag': 'ctag1.cc87a294fbc14512952d978095320552'}, 'calls': 1}
+2026-07-05 09:14:10,808 [DEBUG] pika.channel: Adding passed-in RPC response callback
+2026-07-05 09:14:10,808 [DEBUG] pika.callback: Added: {'callback': <bound method Channel._on_eventok of <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': True, 'only': None, 'arguments': {'consumer_tag': 'ctag1.cc87a294fbc14512952d978095320552'}, 'calls': 1}
+2026-07-05 09:14:10,808 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.remove_writer(14)
+2026-07-05 09:14:10,808 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: remove_writer(14) updated handler Rd
+2026-07-05 09:14:10,808 [DEBUG] pika.adapters.utils.io_services_utils: Turned off writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,812 [DEBUG] pika.callback: Processing 1:Basic.ConsumeOk
+2026-07-05 09:14:10,812 [DEBUG] pika.callback: Processing use of oneshot callback
+2026-07-05 09:14:10,813 [DEBUG] pika.callback: 0 registered uses left
+2026-07-05 09:14:10,813 [DEBUG] pika.callback: Comparing {'consumer_tag': 'ctag1.cc87a294fbc14512952d978095320552'} to {'consumer_tag': 'ctag1.cc87a294fbc14512952d978095320552'}
+2026-07-05 09:14:10,813 [DEBUG] pika.callback: Removing callback #1: {'callback': <bound method Channel._on_synchronous_complete of <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': True, 'only': None, 'arguments': {'consumer_tag': 'ctag1.cc87a294fbc14512952d978095320552'}, 'calls': 0}
+2026-07-05 09:14:10,813 [DEBUG] pika.callback: Processing use of oneshot callback
+2026-07-05 09:14:10,813 [DEBUG] pika.callback: 0 registered uses left
+2026-07-05 09:14:10,813 [DEBUG] pika.callback: Comparing {'consumer_tag': 'ctag1.cc87a294fbc14512952d978095320552'} to {'consumer_tag': 'ctag1.cc87a294fbc14512952d978095320552'}
+2026-07-05 09:14:10,813 [DEBUG] pika.callback: Removing callback #1: {'callback': <bound method Channel._on_eventok of <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>>, 'one_shot': True, 'only': None, 'arguments': {'consumer_tag': 'ctag1.cc87a294fbc14512952d978095320552'}, 'calls': 0}
+2026-07-05 09:14:10,813 [DEBUG] pika.callback: Calling <bound method _CallbackResult.signal_once of <pika.adapters.blocking_connection._CallbackResult object at 0x77b0b89909c0>> for "1:Basic.ConsumeOk"
+2026-07-05 09:14:10,813 [DEBUG] pika.callback: Calling <bound method Channel._on_synchronous_complete of <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>> for "1:Basic.ConsumeOk"
+2026-07-05 09:14:10,813 [DEBUG] pika.channel: 0 blocked frames
+2026-07-05 09:14:10,813 [DEBUG] pika.callback: Calling <bound method Channel._on_eventok of <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77b0b9a8a600> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>> for "1:Basic.ConsumeOk"
+2026-07-05 09:14:10,813 [DEBUG] pika.channel: Discarding frame <METHOD(['channel_number=1', 'frame_type=1', "method=<Basic.ConsumeOk(['consumer_tag=ctag1.cc87a294fbc14512952d978095320552'])>"])>
+2026-07-05 09:14:10,814 [DEBUG] pika.adapters.utils.io_services_utils: Recv would block on <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.4', 45328), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:14:10,814 [ERROR] rabbitmq_consumer: Unexpected error in consumer loop
+Traceback (most recent call last):
+  File "/app/rabbitmq_consumer.py", line 50, in run
+    channel.process_data_events(time_limit=1.0)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'BlockingChannel' object has no attribute 'process_data_events'. Did you mean: '_process_data_events'?
+2026-07-05 09:14:28,805 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 09:14:28,806 [DEBUG] asyncio: Using selector: EpollSelector
+2026-07-05 09:14:28,814 [INFO] main: Starting Stock Trading Agent backend...
+2026-07-05 09:14:28,814 [INFO] main: Backend ready.
+2026-07-05 09:51:35,488 [INFO] main: Shutting down...
+2026-07-05 09:51:35,488 [INFO] rabbitmq_consumer: [MQConsumer] RabbitMQ consumer started on queue 'stock_news'
+2026-07-05 09:51:35,489 [DEBUG] pika.adapters.select_connection: Using EPollPoller
+2026-07-05 09:51:35,489 [DEBUG] pika.adapters.base_connection: Created default connection workflow <pika.adapters.utils.connection_workflow.AMQPConnectionWorkflow object at 0x7eea923e3500>
+2026-07-05 09:51:35,489 [DEBUG] pika.adapters.utils.connection_workflow: Starting AMQP Connection workflow asynchronously.
+2026-07-05 09:51:35,489 [DEBUG] pika.adapters.select_connection: call_later: added timeout <pika.adapters.select_connection._Timeout object at 0x7eea92788bb0> with deadline=37528.680347907 and callback=functools.partial(<bound method AMQPConnectionWorkflow._start_new_cycle_async of <pika.adapters.utils.connection_workflow.AMQPConnectionWorkflow object at 0x7eea923e3500>>, first=True); now=37528.680347907; delay=0
+2026-07-05 09:51:35,489 [DEBUG] pika.adapters.utils.connection_workflow: Beginning a new AMQP connection workflow cycle; attempts remaining after this: 2
+2026-07-05 09:51:35,489 [DEBUG] pika.adapters.select_connection: call_later: added timeout <pika.adapters.select_connection._Timeout object at 0x7eea925b0c40> with deadline=37528.680450602 and callback=<bound method AMQPConnectionWorkflow._try_next_config_async of <pika.adapters.utils.connection_workflow.AMQPConnectionWorkflow object at 0x7eea923e3500>>; now=37528.680450602; delay=0
+2026-07-05 09:51:35,489 [DEBUG] pika.adapters.utils.connection_workflow: _try_next_config_async: 'rabbitmq':5672
+2026-07-05 09:51:35,490 [DEBUG] pika.adapters.select_connection: process_timeouts: invoking callback=<bound method _AddressResolver._dispatch_result of <pika.adapters.utils.selector_ioloop_adapter._AddressResolver object at 0x7eea925b1010>>
+2026-07-05 09:51:35,491 [DEBUG] pika.adapters.select_connection: add_callback_threadsafe: added callback=<bound method _AddressResolver._dispatch_result of <pika.adapters.utils.selector_ioloop_adapter._AddressResolver object at 0x7eea925b1010>>
+2026-07-05 09:51:35,491 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: Invoking asynchronous getaddrinfo() completion callback; host='rabbitmq'
+2026-07-05 09:51:35,491 [DEBUG] pika.adapters.utils.connection_workflow: getaddrinfo returned 1 records
+2026-07-05 09:51:35,491 [DEBUG] pika.adapters.utils.connection_workflow: Attempting to connect using address record (<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('172.26.0.2', 5672))
+2026-07-05 09:51:35,491 [INFO] pika.adapters.utils.connection_workflow: Pika version 1.4.1 connecting to ('172.26.0.2', 5672)
+2026-07-05 09:51:35,491 [DEBUG] pika.adapters.select_connection: add_callback_threadsafe: added callback=<bound method _AsyncSocketConnector._start_async of <pika.adapters.utils.io_services_utils._AsyncSocketConnector object at 0x7eea925b0ec0>>
+2026-07-05 09:51:35,491 [DEBUG] pika.adapters.select_connection: call_later: added timeout <pika.adapters.select_connection._Timeout object at 0x7eea925b0250> with deadline=37538.68226217 and callback=<bound method AMQPConnector._on_tcp_connection_timeout of <pika.adapters.utils.connection_workflow.AMQPConnector object at 0x7eea923e2990>>; now=37528.68226217; delay=10.0
+2026-07-05 09:51:35,491 [DEBUG] pika.adapters.select_connection: call_later: added timeout <pika.adapters.select_connection._Timeout object at 0x7eea9258f8b0> with deadline=37543.682304669 and callback=<bound method AMQPConnector._on_overall_timeout of <pika.adapters.utils.connection_workflow.AMQPConnector object at 0x7eea923e2990>>; now=37528.682304669; delay=15.0
+2026-07-05 09:51:35,491 [DEBUG] pika.adapters.select_connection: process_timeouts: invoking callback=<bound method _AsyncSocketConnector._start_async of <pika.adapters.utils.io_services_utils._AsyncSocketConnector object at 0x7eea925b0ec0>>
+2026-07-05 09:51:35,492 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.set_writer(14, <bound method _AsyncSocketConnector._on_writable of <pika.adapters.utils.io_services_utils._AsyncSocketConnector object at 0x7eea925b0ec0>>)
+2026-07-05 09:51:35,492 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: set_writer(14, _) added handler Wr
+2026-07-05 09:51:35,492 [DEBUG] pika.adapters.utils.io_services_utils: Connection-establishment is in progress for <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.3', 37476), raddr=('172.26.0.2', 5672)>.
+2026-07-05 09:51:35,492 [INFO] pika.adapters.utils.io_services_utils: Socket connected: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.3', 37476), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:51:35,492 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncSocketConnector._report_completion(None); <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.3', 37476), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:51:35,492 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.remove_writer(14)
+2026-07-05 09:51:35,492 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: remove_writer(14) removed handler
+2026-07-05 09:51:35,492 [DEBUG] pika.adapters.select_connection: remove_timeout: removing timeout <pika.adapters.select_connection._Timeout object at 0x7eea925b0250> with deadline=37538.68226217 and callback=<bound method AMQPConnector._on_tcp_connection_timeout of <pika.adapters.utils.connection_workflow.AMQPConnector object at 0x7eea923e2990>>
+2026-07-05 09:51:35,492 [DEBUG] pika.adapters.utils.connection_workflow: TCP connection to broker established: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.3', 37476), raddr=('172.26.0.2', 5672)>.
+2026-07-05 09:51:35,492 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncStreamConnector.start(); <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.3', 37476), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:51:35,492 [DEBUG] pika.adapters.select_connection: add_callback_threadsafe: added callback=<bound method _AsyncStreamConnector._start_async of <pika.adapters.utils.io_services_utils._AsyncStreamConnector object at 0x7eea92af8380>>
+2026-07-05 09:51:35,492 [DEBUG] pika.adapters.select_connection: process_timeouts: invoking callback=<bound method _AsyncStreamConnector._start_async of <pika.adapters.utils.io_services_utils._AsyncStreamConnector object at 0x7eea92af8380>>
+2026-07-05 09:51:35,492 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncStreamConnector._start_async(); <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.3', 37476), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:51:35,492 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncStreamConnector._linkup()
+2026-07-05 09:51:35,493 [DEBUG] pika.connection: New Connection state: CLOSED (prev=CLOSED)
+2026-07-05 09:51:35,493 [DEBUG] pika.callback: Added: {'callback': <bound method Connection._on_connection_start of <SelectConnection CLOSED transport=None params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+2026-07-05 09:51:35,493 [DEBUG] pika.callback: Added: {'callback': <bound method Connection._on_connection_close_from_broker of <SelectConnection CLOSED transport=None params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+2026-07-05 09:51:35,493 [DEBUG] pika.callback: Added: {'callback': <bound method Connection._default_on_connection_error of <SelectConnection CLOSED transport=None params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:51:35,493 [DEBUG] pika.connection: New Connection state: INIT (prev=CLOSED)
+2026-07-05 09:51:35,493 [DEBUG] pika.connection: Using external connection workflow.
+2026-07-05 09:51:35,493 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncTransportBase.__init__: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.3', 37476), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:51:35,493 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.set_reader(14, <bound method _AsyncPlaintextTransport._on_socket_readable of <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7eea925b0140>>)
+2026-07-05 09:51:35,493 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: set_reader(14, _) added handler Rd
+2026-07-05 09:51:35,493 [DEBUG] pika.adapters.utils.io_services_utils: _linkup(): created transport <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7eea925b0140>
+2026-07-05 09:51:35,493 [DEBUG] pika.connection: New Connection state: PROTOCOL (prev=INIT)
+2026-07-05 09:51:35,493 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.set_writer(14, <bound method _AsyncPlaintextTransport._on_socket_writable of <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7eea925b0140>>)
+2026-07-05 09:51:35,493 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: set_writer(14, _) updated handler RdWr
+2026-07-05 09:51:35,493 [DEBUG] pika.adapters.utils.io_services_utils: Turned on writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.3', 37476), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:51:35,493 [DEBUG] pika.adapters.utils.io_services_utils: _linkup(): introduced transport to protocol <pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7eea925b0140>; _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7eea925b0140> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2026-07-05 09:51:35,493 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncStreamConnector._report_completion((<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7eea925b0140>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7eea925b0140> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>)); <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.3', 37476), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:51:35,493 [INFO] pika.adapters.utils.connection_workflow: Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7eea925b0140>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7eea925b0140> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2026-07-05 09:51:35,493 [DEBUG] pika.callback: Removing callback #0: {'callback': <bound method Connection._default_on_connection_error of <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7eea925b0140> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:51:35,493 [DEBUG] pika.callback: Added: {'callback': <bound method AMQPConnector._on_amqp_handshake_done of <pika.adapters.utils.connection_workflow.AMQPConnector object at 0x7eea923e2990>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:51:35,493 [DEBUG] pika.callback: Added: {'callback': <bound method AMQPConnector._on_amqp_handshake_done of <pika.adapters.utils.connection_workflow.AMQPConnector object at 0x7eea923e2990>>, 'one_shot': False, 'only': None, 'arguments': None}
+2026-07-05 09:51:35,493 [DEBUG] pika.adapters.utils.io_services_utils: _AsyncStreamConnector._cleanup(False)
+2026-07-05 09:51:35,494 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: SelectorIOServicesAdapter.remove_writer(14)
+2026-07-05 09:51:35,494 [DEBUG] pika.adapters.utils.selector_ioloop_adapter: remove_writer(14) updated handler Rd
+2026-07-05 09:51:35,494 [DEBUG] pika.adapters.utils.io_services_utils: Turned off writability watcher: <socket.socket fd=14, family=2, type=1, proto=6, laddr=('172.26.0.3', 37476), raddr=('172.26.0.2', 5672)>
+2026-07-05 09:51:52,535 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 09:51:52,545 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-05 09:51:52,545 [INFO] backend.main: Backend ready.
+2026-07-05 10:01:53,383 [INFO] backend.main: Shutting down...
+2026-07-05 10:01:53,384 [INFO] backend.rabbitmq_consumer: [MQConsumer] RabbitMQ consumer started on queue 'stock_news'
+2026-07-05 10:01:53,389 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,390 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,390 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,390 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,390 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,391 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,391 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,391 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,391 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,391 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,391 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,392 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,392 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,392 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,392 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,392 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,392 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,393 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,393 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,393 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,393 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,393 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,393 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,394 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,394 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,394 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,394 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,394 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,394 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,395 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,395 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,395 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,395 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,395 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,395 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,395 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,396 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,396 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,396 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,396 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,396 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,397 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,397 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,397 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,397 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,397 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,397 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,398 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,398 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,398 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,398 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,398 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,399 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,399 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,399 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,399 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,399 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,399 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,399 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,399 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:01:53,400 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:02:55,284 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 10:02:55,295 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-05 10:02:55,295 [INFO] backend.main: Backend ready.
+2026-07-05 10:02:55,295 [INFO] backend.rabbitmq_consumer: [MQConsumer] RabbitMQ consumer started on queue 'stock_news'
+2026-07-05 10:02:55,295 [INFO] backend.dispatcher: dispatcher started
+2026-07-05 10:02:55,301 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:02:55,343 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '0966c6e0-df64-499a-53a9-15e83626f3b6'
+2026-07-05 10:03:04,613 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:03:04,637 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '5cd06258-3814-2620-ad20-4db170f94da4'
+2026-07-05 10:03:14,613 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:03:14,631 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '38a25534-bec3-ff51-49fb-c368ee0d26da'
+2026-07-05 10:03:24,615 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:03:24,635 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '3a42b244-548c-7838-4c84-99cc7f34b46d'
+2026-07-05 10:03:34,615 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:03:34,635 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '3c8b8f18-09d2-e7e5-a259-296f70b7dede'
+2026-07-05 10:03:44,616 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:03:44,636 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id 'b9246368-defe-3ae3-91d6-3bc2a4db4c6f'
+2026-07-05 10:03:54,617 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:03:54,635 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id 'c193db26-1fa1-eeab-27bb-fcbb42a3580e'
+2026-07-05 10:04:04,619 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:04:04,639 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '5373e351-0d50-05fe-69cd-775b5ce697a1'
+2026-07-05 10:04:14,620 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:04:14,640 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '06ba83ec-c811-5816-87d5-7ea03efcc0b5'
+2026-07-05 10:04:24,621 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:04:24,630 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '740c3b2d-7e34-4d4c-25ff-654cc243bef5'
+2026-07-05 10:04:34,621 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:04:34,641 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '7af13d14-0c9e-bb24-6e57-fed9b5e5223c'
+2026-07-05 10:04:44,623 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:04:44,643 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '7e74a43b-6352-d7db-2633-23d060b0e767'
+2026-07-05 10:04:54,623 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:04:54,643 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id 'ad1fd14d-b964-0574-209b-a4eae21434a3'
+2026-07-05 10:05:04,625 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:05:04,648 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '681151f4-d619-8e72-a667-ac1723fc5f6a'
+2026-07-05 10:05:14,626 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:05:14,646 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '966957ec-4008-3209-b9b5-0ad4fbfd8a50'
+2026-07-05 10:05:24,627 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:05:24,651 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id 'c01ca9f5-afa0-5410-3f4a-f188b1e89c84'
+2026-07-05 10:05:34,629 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:05:34,649 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '1e4f5458-835d-3510-d419-9216afd94fa0'
+2026-07-05 10:05:44,629 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:05:44,647 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id 'c9c1ba3b-27dd-6e6e-eca9-033393149e5e'
+2026-07-05 10:05:54,630 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:05:54,649 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 80, in run
+    state = langgraph_workflow.run_analysis(news_dict)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 304, in run_analysis
+    result = workflow.invoke(initial_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3928, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2982, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/usr/local/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 684, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 426, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/langgraph_workflow.py", line 71, in receive_news
+    url = database.get_config("llm_api_url") or ""
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'get_config'
+During task with name 'receive_news' and id '0f852284-1930-1587-96b4-3fb6041fb394'
+2026-07-05 10:12:46,280 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 10:12:46,290 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-05 10:12:46,290 [INFO] backend.main: Backend ready.
+2026-07-05 10:12:46,290 [INFO] backend.rabbitmq_consumer: [MQConsumer] RabbitMQ consumer started on queue 'stock_news'
+2026-07-05 10:12:46,291 [INFO] backend.dispatcher: dispatcher started
+2026-07-05 10:12:46,296 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:12:46,304 [INFO] backend.services: [News b187dad9-4580-4978-903a-9419952763ef] Stored: GOOGL major product recall after safety flaw discovered, estimated multi-billion...
+2026-07-05 10:12:46,315 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:12:46,317 [INFO] backend.services: [News b187dad9-4580-4978-903a-9419952763ef] Analysis complete: sentiment=普通利空, confidence=0.6, trade=NONE
+2026-07-05 10:12:46,317 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 99, in run
+    database.insert_sentiment_result(sentiment_result)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'insert_sentiment_result'
+2026-07-05 10:12:55,592 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:12:55,609 [INFO] backend.services: [News 7ebaee5b-e0cb-4333-863d-e7d525c615a9] Stored: AMZN announces strategic partnership with industry leader for global expansion...
+2026-07-05 10:12:55,612 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:12:55,615 [INFO] backend.services: [News 7ebaee5b-e0cb-4333-863d-e7d525c615a9] Analysis complete: sentiment=neutral, confidence=0.4, trade=NONE
+2026-07-05 10:12:55,615 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 99, in run
+    database.insert_sentiment_result(sentiment_result)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'insert_sentiment_result'
+2026-07-05 10:13:05,591 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:13:05,608 [INFO] backend.services: [News 0a5b8b53-c310-4f31-9504-ecb45a97bf61] Stored: TSLA 新产品线获得用户好评，预购订单超出预期30%...
+2026-07-05 10:13:05,610 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:13:05,612 [INFO] backend.services: [News 0a5b8b53-c310-4f31-9504-ecb45a97bf61] Analysis complete: sentiment=普通利好, confidence=0.6, trade=NONE
+2026-07-05 10:13:05,612 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 99, in run
+    database.insert_sentiment_result(sentiment_result)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'insert_sentiment_result'
+2026-07-05 10:13:15,593 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:13:15,609 [INFO] backend.services: [News e7ce391f-4762-4327-9b07-8d91938a23c2] Stored: TSLA faces EU antitrust probe, European expansion at risk...
+2026-07-05 10:13:15,611 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:13:15,614 [INFO] backend.services: [News e7ce391f-4762-4327-9b07-8d91938a23c2] Analysis complete: sentiment=neutral, confidence=0.4, trade=NONE
+2026-07-05 10:13:15,614 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 99, in run
+    database.insert_sentiment_result(sentiment_result)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'insert_sentiment_result'
+2026-07-05 10:13:25,593 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:13:25,611 [INFO] backend.services: [News b6beac6b-f720-4a41-a8f6-9b54eac3d3b8] Stored: NVDA major product recall after safety flaw discovered, estimated multi-billion ...
+2026-07-05 10:13:25,613 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:13:25,615 [INFO] backend.services: [News b6beac6b-f720-4a41-a8f6-9b54eac3d3b8] Analysis complete: sentiment=普通利空, confidence=0.6, trade=NONE
+2026-07-05 10:13:25,616 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 99, in run
+    database.insert_sentiment_result(sentiment_result)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'database' has no attribute 'insert_sentiment_result'
+2026-07-05 10:14:05,912 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 10:14:05,922 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-05 10:14:05,922 [INFO] backend.main: Backend ready.
+2026-07-05 10:14:05,922 [INFO] backend.rabbitmq_consumer: [MQConsumer] RabbitMQ consumer started on queue 'stock_news'
+2026-07-05 10:14:05,923 [INFO] backend.dispatcher: dispatcher started
+2026-07-05 10:14:05,928 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:14:05,944 [INFO] backend.services: [News 42288acc-c2f0-4ed4-ba86-b3446a0a9b08] Stored: NVDA Q3 revenue up 200% YoY, crushes estimates, announces 10-for-1 stock split...
+2026-07-05 10:14:05,958 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:14:05,961 [INFO] backend.services: [News 42288acc-c2f0-4ed4-ba86-b3446a0a9b08] Analysis complete: sentiment=neutral, confidence=0.4, trade=NONE
+2026-07-05 10:14:05,967 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 102, in run
+    trade = trading_engine.evaluate_signal(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'evaluate_signal'
+2026-07-05 10:14:15,304 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:14:15,322 [INFO] backend.services: [News 0713b805-366d-4fac-8f03-1fe7ca20020c] Stored: AAPL 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%...
+2026-07-05 10:14:15,324 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:14:15,327 [INFO] backend.services: [News 0713b805-366d-4fac-8f03-1fe7ca20020c] Analysis complete: sentiment=超级利空, confidence=0.9, trade=SHORT
+2026-07-05 10:14:15,336 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 102, in run
+    trade = trading_engine.evaluate_signal(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'evaluate_signal'
+2026-07-05 10:14:25,304 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:14:25,322 [INFO] backend.services: [News dd687338-9518-458d-93ec-892ed454430e] Stored: NVDA new product line drives 30% pre-order beat, positive user reviews...
+2026-07-05 10:14:25,325 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:14:25,330 [INFO] backend.services: [News dd687338-9518-458d-93ec-892ed454430e] Analysis complete: sentiment=普通利好, confidence=0.6, trade=NONE
+2026-07-05 10:14:25,338 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 102, in run
+    trade = trading_engine.evaluate_signal(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'evaluate_signal'
+2026-07-05 10:14:35,306 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:14:35,324 [INFO] backend.services: [News 3686965c-ff0d-4914-839c-9a6dfa873f02] Stored: JPM new product line drives 30% pre-order beat, positive user reviews...
+2026-07-05 10:14:35,326 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:14:35,331 [INFO] backend.services: [News 3686965c-ff0d-4914-839c-9a6dfa873f02] Analysis complete: sentiment=普通利好, confidence=0.6, trade=NONE
+2026-07-05 10:14:35,339 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 102, in run
+    trade = trading_engine.evaluate_signal(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'evaluate_signal'
+2026-07-05 10:14:56,157 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 10:14:56,167 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-05 10:14:56,167 [INFO] backend.main: Backend ready.
+2026-07-05 10:14:56,168 [INFO] backend.rabbitmq_consumer: [MQConsumer] RabbitMQ consumer started on queue 'stock_news'
+2026-07-05 10:14:56,168 [INFO] backend.dispatcher: dispatcher started
+2026-07-05 10:14:56,173 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:14:56,190 [INFO] backend.services: [News 04e5fb50-52ba-4563-802d-905fa242ce0b] Stored: META 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%...
+2026-07-05 10:14:56,203 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:14:56,207 [INFO] backend.services: [News 04e5fb50-52ba-4563-802d-905fa242ce0b] Analysis complete: sentiment=超级利空, confidence=0.9, trade=SHORT
+2026-07-05 10:14:56,220 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 141, in run
+    logger.info(f"[News {news_id}] Broadcast complete, clients={sse_manager.client_count}")
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'client_count'
+2026-07-05 10:15:05,554 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:15:05,569 [INFO] backend.services: [News 1836fd8d-d32d-4584-825b-729285fe03d3] Stored: BABA institutional investor reduces stake below 5% threshold...
+2026-07-05 10:15:05,571 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:15:05,575 [INFO] backend.services: [News 1836fd8d-d32d-4584-825b-729285fe03d3] Analysis complete: sentiment=neutral, confidence=0.4, trade=NONE
+2026-07-05 10:15:05,582 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 141, in run
+    logger.info(f"[News {news_id}] Broadcast complete, clients={sse_manager.client_count}")
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'client_count'
+2026-07-05 10:15:29,988 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 10:15:29,997 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-05 10:15:29,998 [INFO] backend.main: Backend ready.
+2026-07-05 10:15:29,998 [INFO] backend.rabbitmq_consumer: [MQConsumer] RabbitMQ consumer started on queue 'stock_news'
+2026-07-05 10:15:29,998 [INFO] backend.dispatcher: dispatcher started
+2026-07-05 10:15:30,002 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:15:30,009 [INFO] backend.services: [News 42166d1b-6171-45b5-944a-12c416acc331] Stored: BABA appoints new CTO in executive reshuffle, market unmoved...
+2026-07-05 10:15:30,016 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:15:30,018 [INFO] backend.services: [News 42166d1b-6171-45b5-944a-12c416acc331] Analysis complete: sentiment=neutral, confidence=0.4, trade=NONE
+2026-07-05 10:15:30,024 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 141, in run
+    logger.info(f"[News {news_id}] Broadcast complete, clients={self.context.sse_manager.client_count}")
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ServiceContext' object has no attribute 'sse_manager'
+2026-07-05 10:15:39,342 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:15:39,359 [INFO] backend.services: [News 12fac35c-3fab-4364-ba57-52a9066cceea] Stored: AMZN lands multi-billion government contract, analysts raise price target to all...
+2026-07-05 10:15:39,362 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:15:39,366 [INFO] backend.services: [News 12fac35c-3fab-4364-ba57-52a9066cceea] Analysis complete: sentiment=neutral, confidence=0.4, trade=NONE
+2026-07-05 10:15:39,373 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 141, in run
+    logger.info(f"[News {news_id}] Broadcast complete, clients={self.context.sse_manager.client_count}")
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ServiceContext' object has no attribute 'sse_manager'
+2026-07-05 10:15:49,343 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:15:49,359 [INFO] backend.services: [News f008f331-9109-4da9-a2fa-88ed59c94978] Stored: GOOGL 新产品线获得用户好评，预购订单超出预期30%...
+2026-07-05 10:15:49,362 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:15:49,367 [INFO] backend.services: [News f008f331-9109-4da9-a2fa-88ed59c94978] Analysis complete: sentiment=普通利好, confidence=0.6, trade=NONE
+2026-07-05 10:15:49,375 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 60, in _done_callback
+    payloads = future.result()
+               ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/services.py", line 141, in run
+    logger.info(f"[News {news_id}] Broadcast complete, clients={self.context.sse_manager.client_count}")
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ServiceContext' object has no attribute 'sse_manager'
+2026-07-05 10:15:52,581 [INFO] backend.main: Shutting down...
+2026-07-05 10:15:52,583 [INFO] backend.rabbitmq_consumer: RabbitMQ consumer stopped
+2026-07-05 10:16:44,662 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 10:16:44,671 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-05 10:16:44,672 [INFO] backend.main: Backend ready.
+2026-07-05 10:16:44,672 [INFO] backend.rabbitmq_consumer: [MQConsumer] RabbitMQ consumer started on queue 'stock_news'
+2026-07-05 10:16:44,672 [INFO] backend.dispatcher: dispatcher started
+2026-07-05 10:16:44,677 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:16:44,690 [INFO] backend.services: [News fa74cee7-69c4-4c82-93db-866d5282203d] Stored: META 遭机构投资者减持，大股东持股比例降至5%以下...
+2026-07-05 10:16:44,698 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:16:44,699 [INFO] backend.services: [News fa74cee7-69c4-4c82-93db-866d5282203d] Analysis complete: sentiment=普通利空, confidence=0.6, trade=NONE
+2026-07-05 10:16:44,706 [INFO] backend.services: [News fa74cee7-69c4-4c82-93db-866d5282203d] Analysis complete
+2026-07-05 10:16:44,706 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:16:44,706 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 63, in _done_callback
+    self._sse_queue_put_callback(payload_type, payload)
+  File "/app/main.py", line 39, in sse_queue_put
+    asyncio.get_running_loop().call_soon_threadsafe(sse_message_queue.put_nowait, (event_type, data))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2026-07-05 10:16:54,050 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:16:54,067 [INFO] backend.services: [News 9b87c684-ad4e-4d52-879a-db6c47ecaf59] Stored: AMZN 获得百亿美元级政府合同，分析师上调目标价至历史新高...
+2026-07-05 10:16:54,068 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:16:54,070 [INFO] backend.services: [News 9b87c684-ad4e-4d52-879a-db6c47ecaf59] Analysis complete: sentiment=超级利好, confidence=0.8, trade=BUY
+2026-07-05 10:16:54,083 [INFO] backend.services: [News 9b87c684-ad4e-4d52-879a-db6c47ecaf59] Analysis complete
+2026-07-05 10:16:54,083 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:16:54,083 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 63, in _done_callback
+    self._sse_queue_put_callback(payload_type, payload)
+  File "/app/main.py", line 39, in sse_queue_put
+    asyncio.get_running_loop().call_soon_threadsafe(sse_message_queue.put_nowait, (event_type, data))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2026-07-05 10:17:04,052 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:17:04,069 [INFO] backend.services: [News abb92282-3771-4ccc-abbc-8c84e2294804] Stored: AMZN annual shareholder meeting reaffirms guidance, strategy unchanged...
+2026-07-05 10:17:04,071 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:17:04,075 [INFO] backend.services: [News abb92282-3771-4ccc-abbc-8c84e2294804] Analysis complete: sentiment=neutral, confidence=0.4, trade=NONE
+2026-07-05 10:17:04,082 [INFO] backend.services: [News abb92282-3771-4ccc-abbc-8c84e2294804] Analysis complete
+2026-07-05 10:17:04,082 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:17:04,082 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 63, in _done_callback
+    self._sse_queue_put_callback(payload_type, payload)
+  File "/app/main.py", line 39, in sse_queue_put
+    asyncio.get_running_loop().call_soon_threadsafe(sse_message_queue.put_nowait, (event_type, data))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2026-07-05 10:19:19,375 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 10:19:19,387 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-05 10:19:19,387 [INFO] backend.main: Backend ready.
+2026-07-05 10:19:19,387 [INFO] backend.rabbitmq_consumer: [MQConsumer] RabbitMQ consumer started on queue 'stock_news'
+2026-07-05 10:19:19,388 [INFO] backend.dispatcher: dispatcher started
+2026-07-05 10:19:19,403 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:19:19,422 [INFO] backend.services: [News f4628e72-25c3-42fc-b1de-ffffa441b846] Stored: TSLA Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期...
+2026-07-05 10:19:19,430 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:19:19,432 [INFO] backend.services: [News f4628e72-25c3-42fc-b1de-ffffa441b846] Analysis complete: sentiment=普通利好, confidence=0.6, trade=NONE
+2026-07-05 10:19:19,438 [INFO] backend.services: [News f4628e72-25c3-42fc-b1de-ffffa441b846] Analysis complete
+2026-07-05 10:19:19,438 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:19:19,438 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 63, in _done_callback
+    self._sse_queue_put_callback(payload_type, payload)
+  File "/app/main.py", line 51, in sse_queue_put
+    asyncio.get_event_loop().call_soon_threadsafe(sse_message_queue.put_nowait, (event_type, data))
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/events.py", line 702, in get_event_loop
+    raise RuntimeError('There is no current event loop in thread %r.'
+RuntimeError: There is no current event loop in thread 'dispatcher_0'.
+2026-07-05 10:19:28,712 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:19:28,728 [INFO] backend.services: [News a5c441ea-e2c5-4d66-aaab-83bb46beb51d] Stored: NVDA 获得百亿美元级政府合同，分析师上调目标价至历史新高...
+2026-07-05 10:19:28,729 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:19:28,731 [INFO] backend.services: [News a5c441ea-e2c5-4d66-aaab-83bb46beb51d] Analysis complete: sentiment=超级利好, confidence=0.8, trade=BUY
+2026-07-05 10:19:28,744 [INFO] backend.services: [News a5c441ea-e2c5-4d66-aaab-83bb46beb51d] Analysis complete
+2026-07-05 10:19:28,744 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:19:28,744 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 63, in _done_callback
+    self._sse_queue_put_callback(payload_type, payload)
+  File "/app/main.py", line 51, in sse_queue_put
+    asyncio.get_event_loop().call_soon_threadsafe(sse_message_queue.put_nowait, (event_type, data))
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/events.py", line 702, in get_event_loop
+    raise RuntimeError('There is no current event loop in thread %r.'
+RuntimeError: There is no current event loop in thread 'dispatcher_0'.
+2026-07-05 10:19:38,712 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:19:38,729 [INFO] backend.services: [News 4149bcdd-20ee-4f8f-b38c-f99490a9b900] Stored: TSLA 宣布与行业龙头达成战略合作，拓展海外市场...
+2026-07-05 10:19:38,730 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:19:38,731 [INFO] backend.services: [News 4149bcdd-20ee-4f8f-b38c-f99490a9b900] Analysis complete: sentiment=neutral, confidence=0.4, trade=NONE
+2026-07-05 10:19:38,738 [INFO] backend.services: [News 4149bcdd-20ee-4f8f-b38c-f99490a9b900] Analysis complete
+2026-07-05 10:19:38,738 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:19:38,738 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 63, in _done_callback
+    self._sse_queue_put_callback(payload_type, payload)
+  File "/app/main.py", line 51, in sse_queue_put
+    asyncio.get_event_loop().call_soon_threadsafe(sse_message_queue.put_nowait, (event_type, data))
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/events.py", line 702, in get_event_loop
+    raise RuntimeError('There is no current event loop in thread %r.'
+RuntimeError: There is no current event loop in thread 'dispatcher_0'.
+2026-07-05 10:19:48,713 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:19:48,729 [INFO] backend.services: [News 18d06d10-ee9a-43b3-8736-d7e25caac76d] Stored: AMZN 遭机构投资者减持，大股东持股比例降至5%以下...
+2026-07-05 10:19:48,730 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:19:48,731 [INFO] backend.services: [News 18d06d10-ee9a-43b3-8736-d7e25caac76d] Analysis complete: sentiment=普通利空, confidence=0.6, trade=NONE
+2026-07-05 10:19:48,737 [INFO] backend.services: [News 18d06d10-ee9a-43b3-8736-d7e25caac76d] Analysis complete
+2026-07-05 10:19:48,737 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:19:48,737 [ERROR] backend.dispatcher: worker failed
+Traceback (most recent call last):
+  File "/app/dispatcher.py", line 63, in _done_callback
+    self._sse_queue_put_callback(payload_type, payload)
+  File "/app/main.py", line 51, in sse_queue_put
+    asyncio.get_event_loop().call_soon_threadsafe(sse_message_queue.put_nowait, (event_type, data))
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/events.py", line 702, in get_event_loop
+    raise RuntimeError('There is no current event loop in thread %r.'
+RuntimeError: There is no current event loop in thread 'dispatcher_0'.
+2026-07-05 10:19:53,491 [INFO] backend.main: Shutting down...
+2026-07-05 10:19:53,492 [INFO] backend.rabbitmq_consumer: RabbitMQ consumer stopped
+2026-07-05 10:20:11,140 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-05 10:20:11,151 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-05 10:20:11,151 [INFO] backend.main: Backend ready.
+2026-07-05 10:20:11,151 [INFO] backend.rabbitmq_consumer: [MQConsumer] RabbitMQ consumer started on queue 'stock_news'
+2026-07-05 10:20:11,151 [INFO] backend.dispatcher: dispatcher started
+2026-07-05 10:20:11,157 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:20:11,174 [INFO] backend.services: [News 9a1ea75d-c646-4005-aff1-aeae9ac20e45] Stored: AAPL 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元...
+2026-07-05 10:20:11,193 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:20:11,196 [INFO] backend.services: [News 9a1ea75d-c646-4005-aff1-aeae9ac20e45] Analysis complete: sentiment=普通利空, confidence=0.6, trade=NONE
+2026-07-05 10:20:11,202 [INFO] backend.services: [News 9a1ea75d-c646-4005-aff1-aeae9ac20e45] Analysis complete
+2026-07-05 10:20:11,202 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:20:11,202 [DEBUG] backend.dispatcher: Dispatching result payload: news
+2026-07-05 10:20:11,203 [DEBUG] backend.dispatcher: Dispatching result payload: analysis
+2026-07-05 10:20:20,501 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:20:20,518 [INFO] backend.services: [News 84952c00-4d1a-40df-bee8-425f37ae1a76] Stored: MSFT Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期...
+2026-07-05 10:20:20,519 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:20:20,521 [INFO] backend.services: [News 84952c00-4d1a-40df-bee8-425f37ae1a76] Analysis complete: sentiment=普通利好, confidence=0.6, trade=NONE
+2026-07-05 10:20:20,527 [INFO] backend.services: [News 84952c00-4d1a-40df-bee8-425f37ae1a76] Analysis complete
+2026-07-05 10:20:20,527 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:20:20,527 [DEBUG] backend.dispatcher: Dispatching result payload: news
+2026-07-05 10:20:20,528 [DEBUG] backend.dispatcher: Dispatching result payload: analysis
+2026-07-05 10:20:30,502 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:20:30,519 [INFO] backend.services: [News 672ba1f3-2590-4958-bbf0-090eefe66faa] Stored: TSLA faces EU antitrust probe, European expansion at risk...
+2026-07-05 10:20:30,519 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:20:30,521 [INFO] backend.services: [News 672ba1f3-2590-4958-bbf0-090eefe66faa] Analysis complete: sentiment=neutral, confidence=0.4, trade=NONE
+2026-07-05 10:20:30,527 [INFO] backend.services: [News 672ba1f3-2590-4958-bbf0-090eefe66faa] Analysis complete
+2026-07-05 10:20:30,527 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:20:30,528 [DEBUG] backend.dispatcher: Dispatching result payload: news
+2026-07-05 10:20:30,528 [DEBUG] backend.dispatcher: Dispatching result payload: analysis
+2026-07-05 10:20:40,503 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:20:40,512 [INFO] backend.services: [News 1f7b8c06-7b06-4316-8d92-946ad49fb2d1] Stored: TSM faces EU antitrust probe, European expansion at risk...
+2026-07-05 10:20:40,515 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:20:40,519 [INFO] backend.services: [News 1f7b8c06-7b06-4316-8d92-946ad49fb2d1] Analysis complete: sentiment=neutral, confidence=0.4, trade=NONE
+2026-07-05 10:20:40,526 [INFO] backend.services: [News 1f7b8c06-7b06-4316-8d92-946ad49fb2d1] Analysis complete
+2026-07-05 10:20:40,526 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:20:40,526 [DEBUG] backend.dispatcher: Dispatching result payload: news
+2026-07-05 10:20:40,526 [DEBUG] backend.dispatcher: Dispatching result payload: analysis
+2026-07-05 10:20:50,505 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:20:50,522 [INFO] backend.services: [News b8d376b6-0bb3-4601-bf09-0b9ba6dd41c5] Stored: AMZN 高管变动：任命新任CTO，市场反应平淡...
+2026-07-05 10:20:50,525 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:20:50,530 [INFO] backend.services: [News b8d376b6-0bb3-4601-bf09-0b9ba6dd41c5] Analysis complete: sentiment=neutral, confidence=0.4, trade=NONE
+2026-07-05 10:20:50,537 [INFO] backend.services: [News b8d376b6-0bb3-4601-bf09-0b9ba6dd41c5] Analysis complete
+2026-07-05 10:20:50,537 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:20:50,537 [DEBUG] backend.dispatcher: Dispatching result payload: news
+2026-07-05 10:20:50,538 [DEBUG] backend.dispatcher: Dispatching result payload: analysis
+2026-07-05 10:21:00,506 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:21:00,523 [INFO] backend.services: [News ff1cc75c-edf3-4905-a647-58fe175845b6] Stored: JPM 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%...
+2026-07-05 10:21:00,526 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:21:00,530 [INFO] backend.services: [News ff1cc75c-edf3-4905-a647-58fe175845b6] Analysis complete: sentiment=超级利好, confidence=0.8, trade=BUY
+2026-07-05 10:21:00,544 [INFO] backend.services: [News ff1cc75c-edf3-4905-a647-58fe175845b6] Analysis complete
+2026-07-05 10:21:00,544 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:21:00,544 [DEBUG] backend.dispatcher: Dispatching result payload: news
+2026-07-05 10:21:00,545 [DEBUG] backend.dispatcher: Dispatching result payload: analysis
+2026-07-05 10:21:10,507 [DEBUG] backend.rabbitmq_consumer: New message received
+2026-07-05 10:21:10,524 [INFO] backend.services: [News b3916728-1c0c-4b91-87c1-e19985352e94] Stored: AMZN unveils breakthrough AI chip, 3× industry benchmark, shares surge 15% after...
+2026-07-05 10:21:10,527 [INFO] backend.langgraph_workflow: Loaded LLM config: url=, model=gpt-4o
+2026-07-05 10:21:10,531 [INFO] backend.services: [News b3916728-1c0c-4b91-87c1-e19985352e94] Analysis complete: sentiment=超级利好, confidence=0.8, trade=BUY
+2026-07-05 10:21:10,545 [INFO] backend.services: [News b3916728-1c0c-4b91-87c1-e19985352e94] Analysis complete
+2026-07-05 10:21:10,546 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-05 10:21:10,546 [DEBUG] backend.dispatcher: Dispatching result payload: news
+2026-07-05 10:21:10,546 [DEBUG] backend.dispatcher: Dispatching result payload: analysis

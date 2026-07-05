@@ -16,7 +16,8 @@ import httpx
 from langgraph.graph import StateGraph, END
 
 from models import SentimentLevel, TradeAction
-import database
+from database import Database
+import logging
 
 #
 # State
@@ -61,16 +62,21 @@ Rules:
 
 Output ONLY the JSON object, no other text."""
 
-
+db: Database = None
+logger = logging.getLogger(f"backend.{__name__}")
 #
 # Node functions
 #
 
 def receive_news(state: AnalysisState) -> AnalysisState:
     """Load LLM config from the database and pass through news fields."""
-    url = database.get_config("llm_api_url") or ""
-    key = database.get_config("llm_api_key") or ""
-    model = database.get_config("llm_model") or "gpt-4o"
+    if db is None:
+        logger.error("Database not initialized")
+        raise ValueError("Database not initialized")
+    url = db.get_config("llm_api_url") or ""
+    key = db.get_config("llm_api_key") or ""
+    model = db.get_config("llm_model") or "gpt-4o"
+    logger.info(f"Loaded LLM config: url={url}, model={model}")
     state["llm_api_url"] = url
     state["llm_api_key"] = key
     state["llm_model"] = model

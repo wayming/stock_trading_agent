@@ -3,7 +3,7 @@ import logging
 import threading
 from concurrent.futures import ThreadPoolExecutor
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(f"backend.{__name__}")
 
 class Dispatcher:
     def __init__(
@@ -32,6 +32,7 @@ class Dispatcher:
         self._stop.set()
 
     def run(self):
+        logger.info("dispatcher started")
         while not self._stop.is_set():
             try:
                 item = self._in_queue.get(timeout=1)
@@ -58,6 +59,7 @@ class Dispatcher:
         try:
             payloads = future.result()
             for payload_type, payload in payloads:
+                logger.debug(f"Dispatching result payload: {payload_type}")
                 self._sse_queue_put_callback(payload_type, payload)
 
         except Exception:

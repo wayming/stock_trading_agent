@@ -26,13 +26,9 @@ RABBITMQ_PORT = int(os.getenv("RABBITMQ_PORT", "5672"))
 RABBITMQ_QUEUE = os.getenv("RABBITMQ_QUEUE", "stock_news")
 
 #
-# Logging
+# Logging (configured in main() below)
 #
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-)
 logger = logging.getLogger("news_stub")
 
 #
@@ -172,6 +168,10 @@ def main():
         help="Print generated news to stdout instead of publishing to RabbitMQ.",
     )
     args = parser.parse_args()
+
+    # DEBUG=1 env var controls level; setup once here
+    from logging_config import setup_logging
+    setup_logging("news_stub")
 
     # Validate
     if args.count == 0 and args.interval == 0:

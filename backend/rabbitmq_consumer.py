@@ -10,7 +10,7 @@ from pika.exceptions import AMQPConnectionError, AMQPChannelError
 
 from config import RABBITMQ_HOST, RABBITMQ_PORT, RABBITMQ_QUEUE
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(f"backend.{__name__}")
 
 class MQConsumer:
     def __init__(self, message_queue: queue.Queue):
@@ -22,6 +22,8 @@ class MQConsumer:
     def stop(self):
         """Stop the consumer gracefully."""
         self._running = False
+        if self._connection:
+            self._connection.channel().stop_consuming()
         if self._consumer_thread:
             self._consumer_thread.join()
 
@@ -33,12 +35,10 @@ class MQConsumer:
         except Exception:
             return False
 
-
-
     def run(self):
         """Main loop for the consumer thread — connects, declares queue, and starts consuming."""
         
-        logger.info(f"RabbitMQ consumer started on queue '{RABBITMQ_QUEUE}'")
+        logger.info(f"[MQConsumer] RabbitMQ consumer started on queue '{RABBITMQ_QUEUE}'")
         self._running = True
         while self._running:
             try:
@@ -48,8 +48,7 @@ class MQConsumer:
                 channel.basic_qos(prefetch_count=1)
                 channel.basic_consume(queue=RABBITMQ_QUEUE, on_message_callback=self._on_message)
 
-                while self._running:
-                    channel.process_data_events(time_limit=1.0)
+                channel.start_consuming()
 
             except (AMQPConnectionError, AMQPChannelError, ConnectionError) as e:
                 if self._running:
@@ -67,16 +66,15 @@ class MQConsumer:
                     pass
         logger.info("RabbitMQ consumer stopped")
 
-    
     def _on_message(self, ch, method, _properties, body):
         """Callback invoked when a message is received from the queue."""
         try:
+            logger.debug("New message received")
             self._message_queue.put_nowait(body)
             ch.basic_ack(delivery_tag=method.delivery_tag)
         except Exception:
             logger.exception("Error processing message — nacking without requeue")
             ch.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
-
 
     def _connect(self) -> pika.BlockingConnection:
         """Establish a connection to RabbitMQ with retry."""

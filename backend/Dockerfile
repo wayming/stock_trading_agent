@@ -14,8 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy source
 COPY *.py .
 
-# Create data dir for SQLite
-RUN mkdir -p /app/data
+# Create data + log dirs
+RUN mkdir -p /app/data /app/logs
 
 EXPOSE 8000
 
