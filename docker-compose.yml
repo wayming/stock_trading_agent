@@ -1,11 +1,74 @@
 services:
+  #
+  # RabbitMQ — message broker
+  #
   rabbitmq:
     image: rabbitmq:3-management
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - "5672:5672"    # AMQP
+      - "15672:15672"  # management UI
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
+
+  #
+  # Backend — FastAPI + LangGraph pipeline
+  #
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_QUEUE=stock_news
+      - DB_PATH=/app/data/trading_agent.db
+      - LLM_API_URL=${LLM_API_URL:-}
+      - LLM_API_KEY=${LLM_API_KEY:-}
+      - LLM_MODEL=${LLM_MODEL:-gpt-4o}
+    volumes:
+      - ./backend:/app          # hot-reload source
+      - backend_data:/app/data  # persist SQLite
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    restart: unless-stopped
+
+  #
+  # Web — React + Vite dev server
+  #
+  web:
+    build: ./web
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_BACKEND_URL=http://backend:8000
+    volumes:
+      - ./web/src:/app/src        # hot-reload source
+      - ./web/public:/app/public
+      - ./web/index.html:/app/index.html
+      - ./web/vite.config.ts:/app/vite.config.ts
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  #
+  # News stub — generate fake news every 10 s (disable with: docker compose up --scale news-stub=0)
+  #
+  news-stub:
+    build: ./backend
+    command: python3 news_stub.py --interval 10
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_QUEUE=stock_news
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  backend_data:

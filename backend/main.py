@@ -14,6 +14,7 @@ from trading_engine import MockTradingEngine
 import services
 import api_routes
 import queue
+from database import Database
 
 #
 # Logging
@@ -50,17 +51,19 @@ def sse_queue_put(event_type: str, data: dict):
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Startup and shutdown lifecycle."""
-    trading_engine = MockTradingEngine()
+    db = Database()
+    db.create_schema()
+    trading_engine = MockTradingEngine(db)
     mq_consumer = rabbitmq_consumer.MQConsumer(in_message_queue)
     service_context = services.ServiceContext.create()
     service_provider = services.ServiceProvider(service_context)
-    dispatcher = dispatcher.Dispatcher(in_message_queue, service_provider, sse_queue_put)
+    dispatcher = Dispatcher(in_message_queue, service_provider, sse_queue_put)
 
     # Startup
     logger.info("Starting Stock Trading Agent backend...")
 
     # Inject dependencies
-    api_routes.init(sse_manager, trading_engine)
+    api_routes.init(sse_manager, trading_engine, mq_consumer, db)
 
     # Start daemon threads
     mq_consumer_thread = asyncio.to_thread(mq_consumer.run)
@@ -83,7 +86,7 @@ async def lifespan(app: FastAPI):
     
     sse_task.cancel()
     await sse_task
-        
+    db.close()
     logger.info("Shutdown complete.")
 
 

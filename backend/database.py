@@ -11,20 +11,12 @@ from config import DB_PATH
 
 class Database:
     def __init__(self):
-        self._db_conn: Optional[sqlite3.Connection] = None
-
-
-    def get_db(self) -> sqlite3.Connection:
-        """Return the module-level DB connection (call init_db first)."""
-        if self._db_conn is None:
-            raise RuntimeError("Database not initialized — call init_db() first")
-        return self._db_conn
-
-
-    def open(self):
-        """Create database directory and tables."""
         os.makedirs(os.path.dirname(DB_PATH) if os.path.dirname(DB_PATH) else ".", exist_ok=True)
         self._db_conn = sqlite3.connect(DB_PATH, check_same_thread=False)
+
+    def create_schema(self):
+        """Create database directory and tables."""
+
         self._db_conn.row_factory = sqlite3.Row
         self._db_conn.execute("PRAGMA journal_mode=WAL")
         self._db_conn.executescript("""
@@ -82,8 +74,7 @@ class Database:
     def insert_news(self, item: dict) -> str:
         """Insert a news item. Returns the id."""
         news_id = item.get("id") or str(uuid.uuid4())
-        db = self.get_db()
-        db.execute(
+        self._db_conn.execute(
             """INSERT OR IGNORE INTO news (id, content, source, symbol, timestamp, raw_json)
             VALUES (?, ?, ?, ?, ?, ?)""",
             (
@@ -95,19 +86,17 @@ class Database:
                 item.get("raw_json", ""),
             ),
         )
-        db.commit()
+        self._db_conn.commit()
         return news_id
 
 
     def get_news(self, news_id: str) -> Optional[dict]:
-        db = self.get_db()
-        row = db.execute("SELECT * FROM news WHERE id = ?", (news_id,)).fetchone()
+        row = self._db_conn.execute("SELECT * FROM news WHERE id = ?", (news_id,)).fetchone()
         return dict(row) if row else None
 
 
     def list_news(self, limit: int = 100, offset: int = 0) -> list[dict]:
-        db = self.get_db()
-        rows = db.execute(
+        rows = self._db_conn.execute(
             "SELECT * FROM news ORDER BY timestamp DESC LIMIT ? OFFSET ?",
             (limit, offset),
         ).fetchall()
@@ -120,8 +109,7 @@ class Database:
 
     def insert_sentiment_result(self, item: dict) -> str:
         result_id = item.get("id") or str(uuid.uuid4())
-        db = self.get_db()
-        db.execute(
+        self._db_conn.execute(
             """INSERT OR IGNORE INTO sentiment_results
             (id, news_id, sentiment, confidence_score, reasoning, prompt, llm_response, trade_action, timestamp)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
@@ -137,13 +125,12 @@ class Database:
                 item.get("timestamp", datetime.now(timezone.utc).isoformat()),
             ),
         )
-        db.commit()
+        self._db_conn.commit()
         return result_id
 
 
     def get_sentiment_result(self, result_id: str) -> Optional[dict]:
-        db = self.get_db()
-        row = db.execute(
+        row = self._db_conn.execute(
             """SELECT sr.*, n.symbol, n.source
             FROM sentiment_results sr
             LEFT JOIN news n ON sr.news_id = n.id
@@ -154,8 +141,7 @@ class Database:
 
 
     def list_sentiment_results(self, limit: int = 100) -> list[dict]:
-        db = self.get_db()
-        rows = db.execute(
+        rows = self._db_conn.execute(
             """SELECT sr.*, n.symbol, n.source
             FROM sentiment_results sr
             LEFT JOIN news n ON sr.news_id = n.id
@@ -166,8 +152,7 @@ class Database:
 
 
     def get_sentiment_by_news(self, news_id: str) -> Optional[dict]:
-        db = self.get_db()
-        row = db.execute(
+        row = self._db_conn.execute(
             "SELECT * FROM sentiment_results WHERE news_id = ? ORDER BY timestamp DESC LIMIT 1",
             (news_id,),
         ).fetchone()
@@ -180,8 +165,7 @@ class Database:
 
     def insert_trade(self, item: dict) -> str:
         trade_id = item.get("id") or str(uuid.uuid4())
-        db = self.get_db()
-        db.execute(
+        self._db_conn.execute(
             """INSERT OR IGNORE INTO trades
             (id, news_id, sentiment_result_id, action, symbol, entry_price, status, pnl, created_at, closed_at)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
@@ -198,21 +182,19 @@ class Database:
                 item.get("closed_at"),
             ),
         )
-        db.commit()
+        self._db_conn.commit()
         return trade_id
 
 
     def get_positions(self) -> list[dict]:
-        db = self.get_db()
-        rows = db.execute(
+        rows = self._db_conn.execute(
             "SELECT * FROM trades WHERE status = 'OPEN' ORDER BY created_at DESC"
         ).fetchall()
         return [dict(r) for r in rows]
 
 
     def get_trade_history(self, limit: int = 50) -> list[dict]:
-        db = self.get_db()
-        rows = db.execute(
+        rows = self._db_conn.execute(
             "SELECT * FROM trades ORDER BY created_at DESC LIMIT ?", (limit,)
         ).fetchall()
         return [dict(r) for r in rows]
@@ -223,14 +205,12 @@ class Database:
     #
 
     def get_config(self, key: str) -> Optional[str]:
-        db = self.get_db()
-        row = db.execute("SELECT value FROM config WHERE key = ?", (key,)).fetchone()
+        row = self._db_conn.execute("SELECT value FROM config WHERE key = ?", (key,)).fetchone()
         return row["value"] if row else None
 
 
     def set_config(self, key: str, value: str):
-        db = self.get_db()
-        db.execute(
+        self._db_conn.execute(
             "INSERT OR REPLACE INTO config (key, value) VALUES (?, ?)", (key, value)
         )
-        db.commit()
+        self._db_conn.commit()

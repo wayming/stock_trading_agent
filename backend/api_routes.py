@@ -15,11 +15,11 @@ from models import (
     ConfigResponse,
     HealthStatus,
 )
-import database
-import rabbitmq_consumer
-import services
+from database import Database
+from rabbitmq_consumer import MQConsumer
 from trading_engine import MockTradingEngine
 from sse_manager import SSEManager
+import services
 
 logger = logging.getLogger(__name__)
 
@@ -28,12 +28,14 @@ router = APIRouter(prefix="/api")
 # These are injected by main.py on startup
 sse_manager: SSEManager
 trading_engine: MockTradingEngine
-
-
-def init(sse: SSEManager, te: MockTradingEngine):
-    global sse_manager, trading_engine
+mq_consumer: MQConsumer
+db: Database
+def init(sse: SSEManager, trader: MockTradingEngine, mq: MQConsumer, db_instance: Database):
+    global sse_manager, trading_engine, mq_consumer, db
     sse_manager = sse
-    trading_engine = te
+    trading_engine = trader
+    mq_consumer = mq
+    db = db_instance
 
 
 #
@@ -42,11 +44,11 @@ def init(sse: SSEManager, te: MockTradingEngine):
 
 @router.get("/health")
 def get_health() -> HealthStatus:
-    rmq = rabbitmq_consumer.is_connected()
-    llm_configured = bool(database.get_config("llm_api_url"))
+    rmq = mq_consumer.is_connected()
+    llm_configured = bool(db.get_config("llm_api_url"))
     db_ok = True
     try:
-        database.get_db().execute("SELECT 1")
+        db.get_db().execute("SELECT 1")
     except Exception:
         db_ok = False
     return HealthStatus(
@@ -62,9 +64,9 @@ def get_health() -> HealthStatus:
 
 @router.get("/config")
 def get_config() -> ConfigResponse:
-    url = database.get_config("llm_api_url") or ""
-    key = database.get_config("llm_api_key") or ""
-    model = database.get_config("llm_model") or "gpt-4o"
+    url = db.get_config("llm_api_url") or ""
+    key = db.get_config("llm_api_key") or ""
+    model = db.get_config("llm_model") or "gpt-4o"
     masked = key[:4] + "****" + key[-4:] if len(key) > 8 else "****"
     return ConfigResponse(
         llm_api_url=url,
@@ -75,9 +77,9 @@ def get_config() -> ConfigResponse:
 
 @router.put("/config")
 def update_config(body: ConfigUpdate) -> ConfigResponse:
-    database.set_config("llm_api_url", body.llm_api_url)
-    database.set_config("llm_api_key", body.llm_api_key)
-    database.set_config("llm_model", body.llm_model)
+    db.set_config("llm_api_url", body.llm_api_url)
+    db.set_config("llm_api_key", body.llm_api_key)
+    db.set_config("llm_model", body.llm_model)
     key = body.llm_api_key
     masked = key[:4] + "****" + key[-4:] if len(key) > 8 else "****"
     return ConfigResponse(
@@ -93,7 +95,7 @@ def update_config(body: ConfigUpdate) -> ConfigResponse:
 
 @router.get("/news")
 def list_news(limit: int = Query(100, ge=1, le=500), offset: int = Query(0, ge=0)):
-    return {"news": database.list_news(limit, offset)}
+    return {"news": db.list_news(limit, offset)}
 
 
 @router.post("/news")
@@ -108,7 +110,7 @@ def push_news(body: dict):
 
 @router.get("/news/{news_id}")
 def get_news_item(news_id: str):
-    item = database.get_news(news_id)
+    item = db.get_news(news_id)
     if not item:
         raise HTTPException(404, "News not found")
     return item
@@ -120,12 +122,12 @@ def get_news_item(news_id: str):
 
 @router.get("/signals")
 def list_signals(limit: int = Query(100, ge=1, le=500)):
-    return {"signals": database.list_sentiment_results(limit)}
+    return {"signals": db.list_sentiment_results(limit)}
 
 
 @router.get("/signals/{signal_id}")
 def get_signal(signal_id: str):
-    result = database.get_sentiment_result(signal_id)
+    result = db.get_sentiment_result(signal_id)
     if not result:
         raise HTTPException(404, "Signal not found")
     return result

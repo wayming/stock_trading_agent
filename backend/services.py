@@ -10,6 +10,7 @@ import database
 import langgraph_workflow
 from trading_engine import MockTradingEngine
 from sse_manager import SSEManager
+from dataclasses import dataclass
 
 logger = logging.getLogger(__name__)
 
@@ -32,10 +33,9 @@ class ServiceContext:
     @classmethod
     def create(cls):
         db = database.Database()
-        db.open()
         return cls(
             database=db,
-            trading_engine=MockTradingEngine(),
+            trading_engine=MockTradingEngine(db),
         )
 
     @classmethod

@@ -10,7 +10,9 @@ import database
 
 class MockTradingEngine:
     """Simulates buy/short trades based on sentiment signals."""
-
+    def __init__(self, database: database.Database):
+        self.database = database
+    
     def evaluate_signal(
         self, sentiment: str, symbol: str, news_id: str, sentiment_result_id: str
     ) -> Optional[dict]:
@@ -40,21 +42,21 @@ class MockTradingEngine:
             "created_at": datetime.now(timezone.utc).isoformat(),
             "closed_at": None,
         }
-        database.insert_trade(trade)
+        self.database.insert_trade(trade)
         return trade
 
     def get_positions(self) -> list[dict]:
         """Return all currently open positions."""
-        return database.get_positions()
+        return self.database.get_positions()
 
     def get_trade_history(self, limit: int = 50) -> list[dict]:
         """Return recent trade history."""
-        return database.get_trade_history(limit)
+        return self.database.get_trade_history(limit)
 
     def get_pnl_summary(self) -> dict:
         """Return a simple P&L summary."""
-        positions = database.get_positions()
-        history = database.get_trade_history(1000)
+        positions = self.database.get_positions()
+        history = self.database.get_trade_history(1000)
         unrealized = sum(p.get("pnl", 0.0) for p in positions)
         realized = sum(t.get("pnl", 0.0) for t in history if t.get("status") == "CLOSED")
         return {
