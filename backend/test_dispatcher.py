@@ -133,6 +133,7 @@ class TestRunProcessing:
         """If executor.submit raises, release the semaphore + task_done."""
         body = b"item"
         in_queue.put(body)
+        in_queue.put(body)
 
         with patch.object(dispatcher._executor, "submit", side_effect=RuntimeError("boom")):
             original_get = dispatcher._in_queue.get
@@ -144,7 +145,6 @@ class TestRunProcessing:
                 call_count[0] += 1
                 if call_count[0] == 2:
                     dispatcher.stop()
-                print(f"get called {call_count[0]} times, timeout={timeout}")
                 return original_get(1)
 
             with patch.object(dispatcher._in_queue, "get", side_effect=_side_effect_get):
@@ -171,7 +171,14 @@ class TestDoneCallback:
             ("analysis", {"c": 3}),
         ])
 
-        dispatcher._done_callback(future)
+        with (
+            patch.object(dispatcher._in_queue, "task_done") as mock_task_done,
+            patch.object(dispatcher._sem, "release") as mock_release,
+        ):
+            dispatcher._done_callback(future)
+
+        mock_task_done.assert_called_once()
+        mock_release.assert_called_once()
 
         assert sse_queue_put.call_count == 3
         sse_queue_put.assert_has_calls([
@@ -180,6 +187,7 @@ class TestDoneCallback:
             call("analysis", {"c": 3}),
         ])
 
+        
     def test_calls_task_done_and_releases_semaphore(self, dispatcher):
         """On success, task_done() and sem.release() are both called."""
         future = Future()
