@@ -90,6 +90,7 @@ def build_prompt(state: AnalysisState) -> AnalysisState:
     user_msg += f"Content:\n{state.get('news_content', '')}"
 
     state["prompt"] = user_msg
+    logger.debug(f"Built prompt: {user_msg}")
     return state
 
 
@@ -195,6 +196,7 @@ def call_llm(state: AnalysisState) -> AnalysisState:
         resp.raise_for_status()
         data = resp.json()
         state["llm_response_raw"] = data["choices"][0]["message"]["content"]
+        logger.debug(f"LLM raw response: {state['llm_response_raw']}")
     except Exception as e:
         state["llm_response_raw"] = json.dumps({
             "sentiment": "neutral",
@@ -202,7 +204,6 @@ def call_llm(state: AnalysisState) -> AnalysisState:
             "reasoning": f"LLM API call failed: {str(e)}"
         })
     return state
-
 
 def parse_response(state: AnalysisState) -> AnalysisState:
     """Extract the JSON result from the LLM response."""

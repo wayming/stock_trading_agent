@@ -1462,3 +1462,513 @@
 2026-07-05 10:20:50,504 [INFO] news_stub: Published  id=b8d376b6-0bb3-4601-bf09-0b9ba6dd41c5  symbol=AMZN    content=AMZN 高管变动：任命新任CTO，市场反应平淡
 2026-07-05 10:21:00,505 [INFO] news_stub: Published  id=ff1cc75c-edf3-4905-a647-58fe175845b6  symbol=JPM     content=JPM 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
 2026-07-05 10:21:10,506 [INFO] news_stub: Published  id=b3916728-1c0c-4b91-87c1-e19985352e94  symbol=AMZN    content=AMZN unveils breakthrough AI chip, 3× industry benchmark, sh
+2026-07-05 10:21:20,508 [INFO] news_stub: Published  id=295db56d-06a1-499c-ac3e-52cd9de5d9c1  symbol=META    content=META expands market share with steady 12% revenue growth, be
+2026-07-05 10:21:30,509 [INFO] news_stub: Published  id=29709eac-f837-482c-9b5e-16702502db2f  symbol=GOOGL   content=GOOGL Q3 revenue up 200% YoY, crushes estimates, announces 1
+2026-07-05 10:21:40,510 [INFO] news_stub: Published  id=b2c3af9d-0336-4bd7-9d9c-10cb40a2e255  symbol=META    content=META Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:21:50,512 [INFO] news_stub: Published  id=5bb0f565-85cd-4b63-9f18-a97aa121a625  symbol=NVDA    content=NVDA lands multi-billion government contract, analysts raise
+2026-07-05 10:22:00,513 [INFO] news_stub: Published  id=c5c77a78-22d3-46f5-9a95-1a71bf9d33c4  symbol=JPM     content=JPM unveils breakthrough AI chip, 3× industry benchmark, sha
+2026-07-05 10:22:10,515 [INFO] news_stub: Published  id=953be061-2119-49a6-82dc-8029d24c89f2  symbol=NVDA    content=NVDA 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 10:22:20,516 [INFO] news_stub: Published  id=3fa3fd2e-960c-4029-8313-328771b95bf7  symbol=JPM     content=JPM 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 10:22:30,517 [INFO] news_stub: Published  id=904545e4-7b75-4ef7-bcbe-f24d632acef1  symbol=META    content=META 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 10:22:40,519 [INFO] news_stub: Published  id=2d956b1e-5b42-4e06-bf5b-072b3acc5857  symbol=TSLA    content=TSLA faces EU antitrust probe, European expansion at risk
+2026-07-05 10:22:50,520 [INFO] news_stub: Published  id=344361fa-a734-48f3-8950-0a2a00d76cb4  symbol=TSM     content=TSM expands market share with steady 12% revenue growth, bea
+2026-07-05 10:23:00,521 [INFO] news_stub: Published  id=67b9c517-7b08-463c-ae86-48a84e849ba1  symbol=MSFT    content=MSFT CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 10:23:10,523 [INFO] news_stub: Published  id=c7913d9c-27d4-4806-b150-9cad958f40fc  symbol=META    content=META 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 10:23:20,524 [INFO] news_stub: Published  id=621a5e49-ec19-4143-9192-3dc90cd6e9c1  symbol=JPM     content=JPM faces EU antitrust probe, European expansion at risk
+2026-07-05 10:23:30,525 [INFO] news_stub: Published  id=eef53f73-a2eb-47d4-97ae-cb0cc6d8b8a0  symbol=JPM     content=JPM 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 10:23:40,526 [INFO] news_stub: Published  id=6501bc71-a964-4f72-a02e-5c5c05074047  symbol=MSFT    content=MSFT initiates $5B share buyback program
+2026-07-05 10:23:50,528 [INFO] news_stub: Published  id=ad765400-6e08-4d09-9d60-fcedb9e15fb5  symbol=JPM     content=JPM 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 10:24:00,530 [INFO] news_stub: Published  id=e3e2b0a3-ada6-4376-b902-3bed02ca7498  symbol=JPM     content=JPM 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 10:24:10,531 [INFO] news_stub: Published  id=4f46ac27-2824-4274-8e67-81b0baba00c6  symbol=AMZN    content=AMZN initiates $5B share buyback program
+2026-07-05 10:24:20,532 [INFO] news_stub: Published  id=345085af-9470-4a10-abe6-f253e707ffb7  symbol=META    content=META 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 10:24:30,533 [INFO] news_stub: Published  id=c906f998-f485-49c4-9543-cb542530d9d6  symbol=AMZN    content=AMZN 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 10:24:40,535 [INFO] news_stub: Published  id=30cf49b8-b4f8-45f7-9cba-501580613d46  symbol=TSM     content=TSM 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 10:24:50,536 [INFO] news_stub: Published  id=81750a83-66bb-4833-9663-75d6e172189d  symbol=BABA    content=BABA major product recall after safety flaw discovered, esti
+2026-07-05 10:25:00,537 [INFO] news_stub: Published  id=11b00197-33d2-4047-bdde-83e0704d1d26  symbol=MSFT    content=MSFT 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 10:25:10,538 [INFO] news_stub: Published  id=385d0abc-9425-440d-b69a-a824cb17eebb  symbol=AAPL    content=AAPL faces EU antitrust probe, European expansion at risk
+2026-07-05 10:25:20,540 [INFO] news_stub: Published  id=108db6a7-49ab-4a57-abc9-a7511366da6f  symbol=MSFT    content=MSFT 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 10:25:30,541 [INFO] news_stub: Published  id=f91f276c-b2a4-4a05-9f84-a49e4b0b8b58  symbol=AAPL    content=AAPL 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 10:25:40,543 [INFO] news_stub: Published  id=0e2f847a-e17f-4560-a686-46567b50fe62  symbol=TSLA    content=TSLA lands multi-billion government contract, analysts raise
+2026-07-05 10:25:50,544 [INFO] news_stub: Published  id=3b9b08a7-3c31-4e4a-86bc-f0541a0854dc  symbol=GOOGL   content=GOOGL 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 10:26:00,545 [INFO] news_stub: Published  id=355e53e5-82de-441a-8f61-6db728f217c5  symbol=AMZN    content=AMZN Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:26:10,547 [INFO] news_stub: Published  id=854cbe38-94d5-4808-96ee-e183505a8760  symbol=AMZN    content=AMZN 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 10:26:20,548 [INFO] news_stub: Published  id=93aae787-5988-4071-b761-432f804d15f7  symbol=BABA    content=BABA 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 10:26:30,549 [INFO] news_stub: Published  id=f3ae9e1e-31f9-4c48-9810-c72169b2991d  symbol=AMZN    content=AMZN faces EU antitrust probe, European expansion at risk
+2026-07-05 10:26:40,550 [INFO] news_stub: Published  id=bdeb2790-135e-457f-8362-d8553a9b812b  symbol=TSM     content=TSM expands market share with steady 12% revenue growth, bea
+2026-07-05 10:26:50,552 [INFO] news_stub: Published  id=3e1ee4de-14d0-47d4-b33c-b0f2e6b72108  symbol=BABA    content=BABA 新产品线获得用户好评，预购订单超出预期30%
+2026-07-05 10:27:00,553 [INFO] news_stub: Published  id=039423df-1c31-4bb7-b7e2-79ed23397f45  symbol=MSFT    content=MSFT Q3 revenue up 200% YoY, crushes estimates, announces 10
+2026-07-05 10:27:10,555 [INFO] news_stub: Published  id=b3016756-1e19-48e4-9ea4-d9906b068e3e  symbol=MSFT    content=MSFT Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:27:20,556 [INFO] news_stub: Published  id=4c8c8540-8791-4ae9-bf33-b32d80a3cea6  symbol=TSLA    content=TSLA 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 10:27:30,558 [INFO] news_stub: Published  id=ea529832-eba1-407b-acf0-0237d12f9599  symbol=TSLA    content=TSLA 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 10:27:40,560 [INFO] news_stub: Published  id=b8d5d64a-74ce-44cf-b902-ec4556095b58  symbol=MSFT    content=MSFT CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 10:27:50,561 [INFO] news_stub: Published  id=a0910481-8baf-4a97-8f64-4bff53e3e6d2  symbol=MSFT    content=MSFT expands market share with steady 12% revenue growth, be
+2026-07-05 10:28:00,563 [INFO] news_stub: Published  id=bf78f9f4-844f-40d6-812d-b88098773915  symbol=BABA    content=BABA institutional investor reduces stake below 5% threshold
+2026-07-05 10:28:10,564 [INFO] news_stub: Published  id=03f86af6-1299-4580-8dbf-660b792489a9  symbol=JPM     content=JPM 面临欧盟反垄断调查，可能影响欧洲市场业务扩展
+2026-07-05 10:28:20,565 [INFO] news_stub: Published  id=c61fc91e-3d7b-4c11-bfe0-7237c26a1bec  symbol=META    content=META major product recall after safety flaw discovered, esti
+2026-07-05 10:28:30,567 [INFO] news_stub: Published  id=f73059e0-4a9f-418f-a8c6-b615ea250366  symbol=MSFT    content=MSFT 面临欧盟反垄断调查，可能影响欧洲市场业务扩展
+2026-07-05 10:28:40,568 [INFO] news_stub: Published  id=dc81b5e2-9b8c-4e04-8078-938f45f8a991  symbol=GOOGL   content=GOOGL 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 10:28:50,569 [INFO] news_stub: Published  id=6e923af0-dd53-41e5-b855-31170d5ed570  symbol=TSLA    content=TSLA expands market share with steady 12% revenue growth, be
+2026-07-05 10:29:00,571 [INFO] news_stub: Published  id=781b3cc6-4b16-454b-89f6-19cf02023ac7  symbol=META    content=META Q3 revenue up 200% YoY, crushes estimates, announces 10
+2026-07-05 10:29:10,572 [INFO] news_stub: Published  id=1b7eb80d-8f3c-4a10-abdb-d70e93ece32a  symbol=NVDA    content=NVDA 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 10:29:20,573 [INFO] news_stub: Published  id=220ba1da-5138-43e7-8017-bd99159f3d2c  symbol=TSLA    content=TSLA faces EU antitrust probe, European expansion at risk
+2026-07-05 10:29:30,575 [INFO] news_stub: Published  id=4ffa21a3-b20e-4ae2-96b8-3cbe05287592  symbol=META    content=META 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 10:29:40,576 [INFO] news_stub: Published  id=826a4a7b-ed43-4282-9328-d2da9a565d26  symbol=NVDA    content=NVDA 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 10:29:50,577 [INFO] news_stub: Published  id=8fd2dc70-dc73-4a83-ae3f-86d9cba2765c  symbol=AMZN    content=AMZN 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 10:30:00,578 [INFO] news_stub: Published  id=60c754ec-e615-491b-80c6-8003c247fd9b  symbol=GOOGL   content=GOOGL CEO resigns abruptly, sells entire stake, panic sellin
+2026-07-05 10:30:10,579 [INFO] news_stub: Published  id=2d06d8b8-22ce-4916-bf64-db65320d7ea2  symbol=BABA    content=BABA Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:30:20,580 [INFO] news_stub: Published  id=d95a2c32-f376-4d22-acf0-c59c6c5f49b9  symbol=BABA    content=BABA 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 10:30:30,581 [INFO] news_stub: Published  id=a7d3a3b3-6dd8-49b6-99bd-e46510f5a192  symbol=GOOGL   content=GOOGL new product line drives 30% pre-order beat, positive u
+2026-07-05 10:30:40,583 [INFO] news_stub: Published  id=8f803124-24b9-4138-8d3e-610adc3993f6  symbol=JPM     content=JPM unveils breakthrough AI chip, 3× industry benchmark, sha
+2026-07-05 10:30:50,584 [INFO] news_stub: Published  id=6b59dcbb-62c3-4d08-9d59-bdbe57a63110  symbol=TSM     content=TSM major product recall after safety flaw discovered, estim
+2026-07-05 10:31:00,584 [INFO] news_stub: Published  id=0060a6da-29a8-4229-9175-cfe91052fcd7  symbol=META    content=META 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 10:31:10,586 [INFO] news_stub: Published  id=f1477f69-ab4a-4a2c-8981-e45c2003fb1a  symbol=AAPL    content=AAPL 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 10:31:20,587 [INFO] news_stub: Published  id=e85c0fab-1350-497d-b6b7-85cd1c65b4eb  symbol=GOOGL   content=GOOGL 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 10:31:30,588 [INFO] news_stub: Published  id=b6ef5a5f-2c91-4796-b3e0-5c134ead4d0a  symbol=JPM     content=JPM 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 10:31:40,590 [INFO] news_stub: Published  id=2c81b604-b97e-4d44-bb75-ac0c8b6ec748  symbol=TSM     content=TSM initiates $5B share buyback program
+2026-07-05 10:31:50,591 [INFO] news_stub: Published  id=6855bd29-7558-4657-8f72-0597f78c541a  symbol=TSM     content=TSM CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 10:32:00,592 [INFO] news_stub: Published  id=4b23c7df-3e17-48cc-8c96-4058048902f0  symbol=TSM     content=TSM 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 10:32:10,594 [INFO] news_stub: Published  id=3955e779-d88a-4275-8a63-7454e7ad51f0  symbol=GOOGL   content=GOOGL 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 10:32:20,596 [INFO] news_stub: Published  id=2542855d-f557-45a1-9033-295b592443c6  symbol=GOOGL   content=GOOGL Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:32:30,598 [INFO] news_stub: Published  id=b37b8e4f-4ab5-4686-a6c6-3382a42710a4  symbol=TSLA    content=TSLA expands market share with steady 12% revenue growth, be
+2026-07-05 10:32:40,599 [INFO] news_stub: Published  id=72d6351a-5d44-4fcc-af76-d2e91d9d8b70  symbol=JPM     content=JPM 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 10:32:50,601 [INFO] news_stub: Published  id=0229f9d1-fb06-4b8d-95f6-80b0b858061a  symbol=GOOGL   content=GOOGL 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 10:33:00,603 [INFO] news_stub: Published  id=ce6c0318-20ff-44ec-8e62-d06bb8b78605  symbol=TSM     content=TSM 新产品线获得用户好评，预购订单超出预期30%
+2026-07-05 10:33:10,604 [INFO] news_stub: Published  id=7c3ad5d4-c056-4053-a8bb-6bdc24e32f98  symbol=MSFT    content=MSFT appoints new CTO in executive reshuffle, market unmoved
+2026-07-05 10:33:20,605 [INFO] news_stub: Published  id=ca7c2eac-c655-4817-8931-95e64741fcb0  symbol=GOOGL   content=GOOGL Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:33:30,607 [INFO] news_stub: Published  id=4bff7a90-318a-4829-b36e-edb1e8383106  symbol=AMZN    content=AMZN 新产品线获得用户好评，预购订单超出预期30%
+2026-07-05 10:33:40,608 [INFO] news_stub: Published  id=e7c40390-dcab-4007-b26b-bded95376f88  symbol=META    content=META 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 10:33:50,610 [INFO] news_stub: Published  id=ccd87900-bedf-4f66-b8cd-9f697ba2c3a1  symbol=AAPL    content=AAPL announces strategic partnership with industry leader fo
+2026-07-05 10:34:00,611 [INFO] news_stub: Published  id=415b5251-bdd5-4d2f-b84f-7529abdb76f2  symbol=TSM     content=TSM annual shareholder meeting reaffirms guidance, strategy 
+2026-07-05 10:34:10,612 [INFO] news_stub: Published  id=7cb1c39a-a534-47b8-8d85-1a660c4446b9  symbol=BABA    content=BABA 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 10:34:20,612 [INFO] news_stub: Published  id=a167efa7-907a-486a-92c9-805d9b4fc74a  symbol=META    content=META CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 10:34:30,614 [INFO] news_stub: Published  id=da4c33a2-beb7-4d46-880a-b081bae9e269  symbol=MSFT    content=MSFT 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 10:34:40,615 [INFO] news_stub: Published  id=9a865c85-d025-4b54-bcd8-806b6a7e6f08  symbol=AMZN    content=AMZN major product recall after safety flaw discovered, esti
+2026-07-05 10:34:50,617 [INFO] news_stub: Published  id=c83a7446-7653-43db-9d16-8ec45588a43f  symbol=TSLA    content=TSLA Q3 profit drops 8% on rising material costs, lowers gro
+2026-07-05 10:35:00,619 [INFO] news_stub: Published  id=f93e013e-c918-465c-8efa-9789ed7a2259  symbol=TSLA    content=TSLA Q3 revenue up 200% YoY, crushes estimates, announces 10
+2026-07-05 10:35:10,620 [INFO] news_stub: Published  id=c294f8df-a9ae-4189-8679-2b2e89606a7a  symbol=JPM     content=JPM CEO resigns abruptly, sells entire stake, panic selling 
+2026-07-05 10:35:20,622 [INFO] news_stub: Published  id=2380b0ba-4c53-4746-bb94-930ff1a7de98  symbol=BABA    content=BABA lands multi-billion government contract, analysts raise
+2026-07-05 10:35:30,624 [INFO] news_stub: Published  id=815fb304-8819-4237-be7b-937453ae3068  symbol=META    content=META 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 10:35:40,625 [INFO] news_stub: Published  id=6ccc8d9b-7692-49d4-95de-6d4886b6067d  symbol=AAPL    content=AAPL announces strategic partnership with industry leader fo
+2026-07-05 10:35:50,627 [INFO] news_stub: Published  id=cea422cd-9c9a-43af-89e4-c919918496a3  symbol=AMZN    content=AMZN 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 10:36:00,628 [INFO] news_stub: Published  id=c4742c13-dd02-4eb1-97ff-6efd4154d81b  symbol=AMZN    content=AMZN 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 10:36:10,629 [INFO] news_stub: Published  id=08281085-c240-43ca-96e2-9b5ba453c0db  symbol=BABA    content=BABA CEO resigns abruptly, sells entire stake, panic selling
+2026-07-05 10:36:20,631 [INFO] news_stub: Published  id=145aeb24-7217-4909-8762-e4a2fb9adb5a  symbol=JPM     content=JPM institutional investor reduces stake below 5% threshold
+2026-07-05 10:36:30,632 [INFO] news_stub: Published  id=77648198-05ac-4f45-8f8e-096df1aabaae  symbol=NVDA    content=NVDA lands multi-billion government contract, analysts raise
+2026-07-05 10:36:40,633 [INFO] news_stub: Published  id=71c09dfc-f255-4d59-8796-806bc4a3130b  symbol=AMZN    content=AMZN 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 10:36:50,635 [INFO] news_stub: Published  id=7e32a530-d202-4df3-86d6-24abe7ef1878  symbol=JPM     content=JPM 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 10:37:00,636 [INFO] news_stub: Published  id=0bfacbc8-6efc-41e0-b9a3-9ec6cd9d5d6f  symbol=NVDA    content=NVDA Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:37:10,637 [INFO] news_stub: Published  id=148ef731-612a-4315-817f-e9bb7675d444  symbol=JPM     content=JPM new product line drives 30% pre-order beat, positive use
+2026-07-05 10:37:20,639 [INFO] news_stub: Published  id=24131a34-3820-46a9-8f13-3f7e36b25caa  symbol=TSM     content=TSM CEO resigns abruptly, sells entire stake, panic selling 
+2026-07-05 10:37:30,640 [INFO] news_stub: Published  id=4ef3769f-b201-4446-874c-f144bb7748f4  symbol=TSLA    content=TSLA 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 10:37:40,641 [INFO] news_stub: Published  id=80dee605-37ee-42b9-a217-8d0354b39120  symbol=GOOGL   content=GOOGL Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:37:50,643 [INFO] news_stub: Published  id=b7a3d8b7-ec4d-4241-8237-0699699b9325  symbol=JPM     content=JPM 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 10:38:00,644 [INFO] news_stub: Published  id=03c18782-b717-41bc-849d-70f2b8ad397d  symbol=NVDA    content=NVDA Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:38:10,645 [INFO] news_stub: Published  id=e322ad6f-d4a6-45d1-b930-4c3ca2233960  symbol=TSM     content=TSM new product line drives 30% pre-order beat, positive use
+2026-07-05 10:38:20,647 [INFO] news_stub: Published  id=57e0cdfc-934c-4106-947e-f00dbfaea3f2  symbol=NVDA    content=NVDA new product line drives 30% pre-order beat, positive us
+2026-07-05 10:38:30,648 [INFO] news_stub: Published  id=a324d652-7277-43cc-b2a2-22dc18a29ddf  symbol=NVDA    content=NVDA 面临欧盟反垄断调查，可能影响欧洲市场业务扩展
+2026-07-05 10:38:40,650 [INFO] news_stub: Published  id=c6a88dc6-4a05-44ce-9e0b-ac3a006f036f  symbol=GOOGL   content=GOOGL 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 10:38:50,651 [INFO] news_stub: Published  id=fc3acbd1-078c-46c0-a2c0-c7308bd5c011  symbol=MSFT    content=MSFT lands multi-billion government contract, analysts raise
+2026-07-05 10:39:00,653 [INFO] news_stub: Published  id=d59a8770-8e3e-41c1-9d4e-a3cdb7ca4f43  symbol=JPM     content=JPM 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 10:39:10,653 [INFO] news_stub: Published  id=52ef8c78-4715-441a-bbd4-4fda2ced3ae7  symbol=GOOGL   content=GOOGL faces EU antitrust probe, European expansion at risk
+2026-07-05 10:39:20,654 [INFO] news_stub: Published  id=fc4995df-6ccc-4b24-b679-40ed8d5b364a  symbol=BABA    content=BABA expands market share with steady 12% revenue growth, be
+2026-07-05 10:39:30,656 [INFO] news_stub: Published  id=f6b6fbdd-dbbc-44f6-a491-208243310b1d  symbol=TSM     content=TSM accounting fraud allegations trigger SEC investigation, 
+2026-07-05 10:39:40,658 [INFO] news_stub: Published  id=3f70e568-d0fa-46a5-9c70-e11d281a518e  symbol=TSM     content=TSM CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 10:39:50,659 [INFO] news_stub: Published  id=b54f8276-e4f2-48df-8b45-ebcdd14ef814  symbol=BABA    content=BABA accounting fraud allegations trigger SEC investigation,
+2026-07-05 10:40:00,661 [INFO] news_stub: Published  id=ad225925-fa63-45d7-8275-c809accc33ea  symbol=TSM     content=TSM faces EU antitrust probe, European expansion at risk
+2026-07-05 10:40:10,662 [INFO] news_stub: Published  id=d3d38640-8d40-4624-849a-c7fbe9ff76c5  symbol=META    content=META 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 10:40:20,663 [INFO] news_stub: Published  id=b12c73ec-0154-4e29-ab67-a2815dc0de7f  symbol=GOOGL   content=GOOGL appoints new CTO in executive reshuffle, market unmove
+2026-07-05 10:40:30,664 [INFO] news_stub: Published  id=c26da1c3-ffbb-4c18-9f20-d72549ca5679  symbol=GOOGL   content=GOOGL 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 10:40:40,665 [INFO] news_stub: Published  id=62f82e04-5e36-47f5-b130-521a92d41448  symbol=MSFT    content=MSFT new product line drives 30% pre-order beat, positive us
+2026-07-05 10:40:50,667 [INFO] news_stub: Published  id=c425722e-3306-42eb-aaf7-26d0cef88f24  symbol=TSLA    content=TSLA 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 10:41:00,668 [INFO] news_stub: Published  id=5775c73b-8212-4b8a-8e01-5fea85ab4eca  symbol=BABA    content=BABA Q3 revenue up 200% YoY, crushes estimates, announces 10
+2026-07-05 10:41:10,669 [INFO] news_stub: Published  id=8ed3dab8-239d-47a9-9acd-860531d2142e  symbol=META    content=META 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 10:41:20,670 [INFO] news_stub: Published  id=c8b2f655-4362-4807-b335-b679189b650f  symbol=TSLA    content=TSLA 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 10:41:30,672 [INFO] news_stub: Published  id=6b77d19f-5daa-4dc1-9d28-b40991836eee  symbol=JPM     content=JPM CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 10:41:40,673 [INFO] news_stub: Published  id=050172bc-cb83-4f84-8012-ae0204a504b9  symbol=AMZN    content=AMZN appoints new CTO in executive reshuffle, market unmoved
+2026-07-05 10:41:50,675 [INFO] news_stub: Published  id=a41e42e9-d399-45a3-a96e-8a6c52d5cd13  symbol=BABA    content=BABA Q3 profit drops 8% on rising material costs, lowers gro
+2026-07-05 10:42:00,676 [INFO] news_stub: Published  id=adaab6b5-3140-439c-894f-84dd6c3e82da  symbol=META    content=META 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 10:42:10,677 [INFO] news_stub: Published  id=cb5fc6df-5ec9-4a51-ae27-7f3cbb6f6e9e  symbol=BABA    content=BABA 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 10:42:20,678 [INFO] news_stub: Published  id=bf86da2a-b567-4ff3-9dab-92c21046740f  symbol=MSFT    content=MSFT 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 10:42:30,680 [INFO] news_stub: Published  id=438364d7-5ca4-46ce-9396-22f58cc4c0ee  symbol=JPM     content=JPM institutional investor reduces stake below 5% threshold
+2026-07-05 10:42:40,681 [INFO] news_stub: Published  id=e47b2334-2eb0-47f4-b8ef-cef3c3ea1af8  symbol=AAPL    content=AAPL 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 10:42:50,682 [INFO] news_stub: Published  id=d80cb771-4a6b-4ee8-a5ec-908487836f89  symbol=NVDA    content=NVDA 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 10:43:00,684 [INFO] news_stub: Published  id=798dc5cb-175c-4f1a-946c-49c9528b72f5  symbol=TSLA    content=TSLA expands market share with steady 12% revenue growth, be
+2026-07-05 10:43:10,685 [INFO] news_stub: Published  id=002c73d6-0e86-43d1-98de-e2c51c93268e  symbol=MSFT    content=MSFT institutional investor reduces stake below 5% threshold
+2026-07-05 10:43:20,686 [INFO] news_stub: Published  id=77ca7f41-541a-4ff8-98d5-c6c7ac27c816  symbol=TSLA    content=TSLA Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:43:30,687 [INFO] news_stub: Published  id=7f7233bf-98af-4dc4-b360-81dbf2c5bdd2  symbol=NVDA    content=NVDA institutional investor reduces stake below 5% threshold
+2026-07-05 10:43:40,689 [INFO] news_stub: Published  id=6e319285-4118-4a0b-b872-847dbf905306  symbol=TSM     content=TSM lands multi-billion government contract, analysts raise 
+2026-07-05 10:43:50,690 [INFO] news_stub: Published  id=388efa67-afe2-4597-bdac-503594b79268  symbol=MSFT    content=MSFT annual shareholder meeting reaffirms guidance, strategy
+2026-07-05 10:44:00,692 [INFO] news_stub: Published  id=564e0d7b-82c7-43d3-8c4e-4f506f2ef6b4  symbol=TSM     content=TSM 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 10:44:10,693 [INFO] news_stub: Published  id=1de402f2-cc30-46ac-9f6a-ea913fce9651  symbol=TSM     content=TSM expands market share with steady 12% revenue growth, bea
+2026-07-05 10:44:20,694 [INFO] news_stub: Published  id=34d992c5-8941-484f-9cca-67da2059dd17  symbol=GOOGL   content=GOOGL lands multi-billion government contract, analysts rais
+2026-07-05 10:44:30,697 [INFO] news_stub: Published  id=18a768c5-411e-40b3-8393-5c65361de7d2  symbol=JPM     content=JPM Q3 revenue up 200% YoY, crushes estimates, announces 10-
+2026-07-05 10:44:40,698 [INFO] news_stub: Published  id=cb545f7c-5936-4f12-9f5d-0fa5747af366  symbol=AAPL    content=AAPL 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 10:44:50,700 [INFO] news_stub: Published  id=e825338b-72f5-40f4-9234-0f0f844c0d86  symbol=JPM     content=JPM 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 10:45:00,701 [INFO] news_stub: Published  id=1ee67ac8-9237-45cf-9d5d-c156411ffb97  symbol=TSM     content=TSM 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 10:45:10,702 [INFO] news_stub: Published  id=96c739d4-2239-490b-804a-8cd3774c17d4  symbol=MSFT    content=MSFT Q3 revenue up 200% YoY, crushes estimates, announces 10
+2026-07-05 10:45:20,703 [INFO] news_stub: Published  id=6fa1f8a5-5f83-4476-b12e-69d459cd8da2  symbol=AMZN    content=AMZN Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:45:30,705 [INFO] news_stub: Published  id=37c405af-7122-45bd-a2a8-c63818ade039  symbol=GOOGL   content=GOOGL 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 10:45:40,706 [INFO] news_stub: Published  id=8b7b7fd7-18e0-40a9-80ac-6b4af4e68c2f  symbol=JPM     content=JPM announces strategic partnership with industry leader for
+2026-07-05 10:45:50,707 [INFO] news_stub: Published  id=d93cdabb-1645-49e3-a96f-b4dd5295fa05  symbol=BABA    content=BABA 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 10:46:00,709 [INFO] news_stub: Published  id=5febe9da-ccd6-444d-804a-fb459d96fdad  symbol=META    content=META Q3 profit drops 8% on rising material costs, lowers gro
+2026-07-05 10:46:10,710 [INFO] news_stub: Published  id=e0a7d3b4-1276-451f-858e-e78ff203112a  symbol=BABA    content=BABA 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 10:46:20,712 [INFO] news_stub: Published  id=4bc16245-75b1-418d-8d58-0e8da99f2c0d  symbol=META    content=META lands multi-billion government contract, analysts raise
+2026-07-05 10:46:30,713 [INFO] news_stub: Published  id=afb92996-e5dc-4a29-b0c2-b0f1ce5ea897  symbol=NVDA    content=NVDA 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 10:46:40,714 [INFO] news_stub: Published  id=f7872921-f138-4a7d-9b23-ba8ae8a71d66  symbol=NVDA    content=NVDA 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 10:46:50,716 [INFO] news_stub: Published  id=d1613dab-4c2f-4803-bdfa-d12de9c5cdff  symbol=GOOGL   content=GOOGL initiates $5B share buyback program
+2026-07-05 10:47:00,717 [INFO] news_stub: Published  id=9c739423-f30b-4710-8f89-ae950db25dc8  symbol=BABA    content=BABA 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 10:47:10,718 [INFO] news_stub: Published  id=ed631860-66a0-415e-9843-99c7cc12e82e  symbol=JPM     content=JPM Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:47:20,720 [INFO] news_stub: Published  id=7118ffe8-f3b8-4c14-87b3-9db74aceeda2  symbol=NVDA    content=NVDA 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 10:47:30,722 [INFO] news_stub: Published  id=a44cde63-4c8a-4d88-b1e7-01c359508079  symbol=GOOGL   content=GOOGL CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 10:47:40,723 [INFO] news_stub: Published  id=16a61dbc-9617-4ffb-a3fb-03c8a8709c22  symbol=AAPL    content=AAPL 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 10:47:50,724 [INFO] news_stub: Published  id=e90427b6-af56-41fb-9195-8ad9713412bd  symbol=TSLA    content=TSLA appoints new CTO in executive reshuffle, market unmoved
+2026-07-05 10:48:00,725 [INFO] news_stub: Published  id=5c4bd289-50ba-45a9-90e9-a74c936e184d  symbol=NVDA    content=NVDA 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 10:48:10,727 [INFO] news_stub: Published  id=845811d7-571e-413f-82ad-9d49dde12935  symbol=BABA    content=BABA institutional investor reduces stake below 5% threshold
+2026-07-05 10:48:20,729 [INFO] news_stub: Published  id=21af5d0b-d5bb-461e-90f8-aab14631da8e  symbol=TSLA    content=TSLA 面临欧盟反垄断调查，可能影响欧洲市场业务扩展
+2026-07-05 10:48:30,731 [INFO] news_stub: Published  id=e1c0556f-fe9e-4d85-ad2c-7130b18ae1ce  symbol=AAPL    content=AAPL Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:48:40,732 [INFO] news_stub: Published  id=3fb27e7a-a269-4b0c-bec2-16c2cd32b1df  symbol=META    content=META 新产品线获得用户好评，预购订单超出预期30%
+2026-07-05 10:48:50,733 [INFO] news_stub: Published  id=e12ec877-fd4c-46c9-b76b-aa4a486e30e9  symbol=NVDA    content=NVDA 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 10:49:00,734 [INFO] news_stub: Published  id=8ae4177e-6fb1-42a2-9c02-e8cf9847191c  symbol=AMZN    content=AMZN Q3 revenue up 200% YoY, crushes estimates, announces 10
+2026-07-05 10:49:10,736 [INFO] news_stub: Published  id=e03b6cc2-c0d4-4a4a-b23f-9c768bed551a  symbol=NVDA    content=NVDA 面临欧盟反垄断调查，可能影响欧洲市场业务扩展
+2026-07-05 10:49:20,737 [INFO] news_stub: Published  id=db24eb7e-681e-4419-bd11-3dc2d75aa92b  symbol=NVDA    content=NVDA 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 10:49:30,739 [INFO] news_stub: Published  id=e18d044a-a63d-4ccc-8cf5-5af04dcf9c24  symbol=AMZN    content=AMZN 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 10:49:40,740 [INFO] news_stub: Published  id=e168c0e0-bafd-49f3-abed-0e1fb62bafaa  symbol=TSLA    content=TSLA major product recall after safety flaw discovered, esti
+2026-07-05 10:49:50,742 [INFO] news_stub: Published  id=05ab51c7-86ec-4428-9749-1f901ee9b740  symbol=TSM     content=TSM 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 10:50:00,743 [INFO] news_stub: Published  id=76c64d7e-b058-4e21-970f-5572bc3f094d  symbol=MSFT    content=MSFT faces EU antitrust probe, European expansion at risk
+2026-07-05 10:50:10,745 [INFO] news_stub: Published  id=92b5fb70-e04a-4aa8-9ffc-f9927ebde823  symbol=TSLA    content=TSLA 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 10:50:20,746 [INFO] news_stub: Published  id=2335647c-0c6f-4878-8af3-24f4b9cc9704  symbol=MSFT    content=MSFT 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 10:50:30,747 [INFO] news_stub: Published  id=10c94c71-a55d-4c19-acf6-e0edf385f6c7  symbol=META    content=META initiates $5B share buyback program
+2026-07-05 10:50:40,748 [INFO] news_stub: Published  id=247faa6f-59fc-4b50-b03f-7350eff85c40  symbol=META    content=META 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 10:50:50,750 [INFO] news_stub: Published  id=964c264e-7cc9-4178-b30d-2122bd24ef2b  symbol=BABA    content=BABA Q3 profit drops 8% on rising material costs, lowers gro
+2026-07-05 10:51:00,751 [INFO] news_stub: Published  id=3a751d4b-58c0-41ad-bcbe-1b4fc67f1306  symbol=AMZN    content=AMZN faces EU antitrust probe, European expansion at risk
+2026-07-05 10:51:10,752 [INFO] news_stub: Published  id=5422fa54-873a-4894-9d8b-daea9946bace  symbol=TSM     content=TSM 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 10:51:20,753 [INFO] news_stub: Published  id=0982ef30-c1ca-402a-8d0b-6ff7019aae41  symbol=NVDA    content=NVDA 面临欧盟反垄断调查，可能影响欧洲市场业务扩展
+2026-07-05 10:51:30,754 [INFO] news_stub: Published  id=2c1cb6c3-41e3-4724-9b0d-866648bb893d  symbol=JPM     content=JPM Q3 revenue up 200% YoY, crushes estimates, announces 10-
+2026-07-05 10:51:40,755 [INFO] news_stub: Published  id=8985e0f2-f49d-4da4-af3e-a0f5891105f0  symbol=AMZN    content=AMZN 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 10:51:50,756 [INFO] news_stub: Published  id=a96d8577-238b-4946-941f-d2efae72b9d8  symbol=TSLA    content=TSLA announces strategic partnership with industry leader fo
+2026-07-05 10:52:00,757 [INFO] news_stub: Published  id=8d633bee-19ef-4a79-ae47-e1b8f6f112d7  symbol=AMZN    content=AMZN 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 10:52:10,758 [INFO] news_stub: Published  id=32a522ef-6169-48b8-9e95-dee055d01964  symbol=AMZN    content=AMZN Q3 revenue up 200% YoY, crushes estimates, announces 10
+2026-07-05 10:52:20,759 [INFO] news_stub: Published  id=46bf05bb-fca9-4d60-902c-e0fb8ff74029  symbol=JPM     content=JPM accounting fraud allegations trigger SEC investigation, 
+2026-07-05 10:52:30,760 [INFO] news_stub: Published  id=6e1c3471-e3a3-48c0-ba4e-e31bfe326ba0  symbol=GOOGL   content=GOOGL 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 10:52:40,761 [INFO] news_stub: Published  id=13512cf9-457f-4da5-91b7-54a87e4bc977  symbol=JPM     content=JPM 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 10:52:50,763 [INFO] news_stub: Published  id=6196e3bd-e646-4425-bf74-abd13fc9fe3e  symbol=TSLA    content=TSLA expands market share with steady 12% revenue growth, be
+2026-07-05 10:53:00,765 [INFO] news_stub: Published  id=c682c1d1-3233-4bb6-bd4c-941d889c05f0  symbol=MSFT    content=MSFT CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 10:53:10,766 [INFO] news_stub: Published  id=ef76873d-0c32-4e1e-991b-010a897082f1  symbol=BABA    content=BABA 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 10:53:20,768 [INFO] news_stub: Published  id=f45a3bf5-e58c-47b4-9988-5ff54e97108a  symbol=NVDA    content=NVDA unveils breakthrough AI chip, 3× industry benchmark, sh
+2026-07-05 10:53:30,769 [INFO] news_stub: Published  id=bc16c956-0be8-4909-bd76-fbe578f4ee06  symbol=AAPL    content=AAPL 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 10:53:40,770 [INFO] news_stub: Published  id=3a831b29-2862-4c63-b322-d972c473c6f6  symbol=JPM     content=JPM new product line drives 30% pre-order beat, positive use
+2026-07-05 10:53:50,772 [INFO] news_stub: Published  id=0ec27dc7-12fb-4550-8423-c0e6b1458e5e  symbol=BABA    content=BABA 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 10:54:00,773 [INFO] news_stub: Published  id=a2096608-68d0-488e-a59b-c85be2c74469  symbol=AMZN    content=AMZN 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 10:54:10,774 [INFO] news_stub: Published  id=3b00d4cb-82f9-4d8c-a868-2c72d6e8e81f  symbol=AMZN    content=AMZN Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:54:20,775 [INFO] news_stub: Published  id=e52e5ddc-b7b6-41b1-836b-a0f865775973  symbol=GOOGL   content=GOOGL appoints new CTO in executive reshuffle, market unmove
+2026-07-05 10:54:30,776 [INFO] news_stub: Published  id=ecdd02b6-603d-4647-ae5c-17a4fe5ee410  symbol=TSLA    content=TSLA initiates $5B share buyback program
+2026-07-05 10:54:40,777 [INFO] news_stub: Published  id=48e7a9a0-f66a-4690-a9cb-935d7ca9b749  symbol=JPM     content=JPM 面临欧盟反垄断调查，可能影响欧洲市场业务扩展
+2026-07-05 10:54:50,778 [INFO] news_stub: Published  id=f2f1296e-020a-4f70-a77b-124ae4d1e4da  symbol=JPM     content=JPM CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 10:55:00,778 [INFO] news_stub: Published  id=bdf67526-7768-4608-b6fa-bdd500a5f8f7  symbol=META    content=META 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 10:55:10,780 [INFO] news_stub: Published  id=214a74b8-7070-4893-a7e2-fc6636c5021f  symbol=AAPL    content=AAPL major product recall after safety flaw discovered, esti
+2026-07-05 10:55:20,781 [INFO] news_stub: Published  id=0c1c18a3-2b21-4024-aa07-fa6552e24bfa  symbol=NVDA    content=NVDA 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 10:55:30,782 [INFO] news_stub: Published  id=8621d0dd-8f86-4869-8272-691d932d294c  symbol=GOOGL   content=GOOGL 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 10:55:40,784 [INFO] news_stub: Published  id=1a47eb55-6d00-42f3-83b4-f654b9ed6424  symbol=MSFT    content=MSFT faces EU antitrust probe, European expansion at risk
+2026-07-05 10:55:50,785 [INFO] news_stub: Published  id=0084c5f2-b7d5-4991-9036-f89602b5f747  symbol=META    content=META 新产品线获得用户好评，预购订单超出预期30%
+2026-07-05 10:56:00,786 [INFO] news_stub: Published  id=0b6d6343-5721-40b4-93d8-7f838b21e425  symbol=TSM     content=TSM announces strategic partnership with industry leader for
+2026-07-05 10:56:10,788 [INFO] news_stub: Published  id=7e7b74aa-ea67-4a50-8882-940bb224170a  symbol=AAPL    content=AAPL 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 10:56:20,789 [INFO] news_stub: Published  id=afa05a1c-0a01-4e85-83c3-60bc9147c0c0  symbol=NVDA    content=NVDA 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 10:56:30,791 [INFO] news_stub: Published  id=da79dc3c-d103-4220-aee0-74cc39645b8c  symbol=JPM     content=JPM CEO resigns abruptly, sells entire stake, panic selling 
+2026-07-05 10:56:40,792 [INFO] news_stub: Published  id=e56e57b3-0ea0-4181-b4fe-276e2cb0e81a  symbol=NVDA    content=NVDA 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 10:56:50,794 [INFO] news_stub: Published  id=d73f6993-1b92-4525-8544-02a4963204cb  symbol=GOOGL   content=GOOGL CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 10:57:00,795 [INFO] news_stub: Published  id=20d000f4-9dd9-4c5b-8d3e-6daa4f5c8a04  symbol=MSFT    content=MSFT 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 10:57:10,797 [INFO] news_stub: Published  id=acb7c68c-66f6-45ef-a4d7-56546c6456b7  symbol=BABA    content=BABA 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 10:57:20,798 [INFO] news_stub: Published  id=688e4640-fb9a-43bc-9889-1adcaf132d03  symbol=TSM     content=TSM lands multi-billion government contract, analysts raise 
+2026-07-05 10:57:30,800 [INFO] news_stub: Published  id=7e6cd3a9-5f51-42e5-8034-a9d0ef16cf32  symbol=AMZN    content=AMZN 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 10:57:40,801 [INFO] news_stub: Published  id=0cbeed5f-506b-4e78-9083-8d86667d7345  symbol=JPM     content=JPM 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 10:57:50,802 [INFO] news_stub: Published  id=54b9e2af-c1fd-4646-be5b-9f738b87b6ce  symbol=AMZN    content=AMZN lands multi-billion government contract, analysts raise
+2026-07-05 10:58:00,804 [INFO] news_stub: Published  id=96b862ac-b3fc-4e04-808c-8b15ddf44c4a  symbol=TSLA    content=TSLA faces EU antitrust probe, European expansion at risk
+2026-07-05 10:58:10,806 [INFO] news_stub: Published  id=ccbb6e25-2161-4946-bbed-9748e7d61b1e  symbol=MSFT    content=MSFT 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 10:58:20,806 [INFO] news_stub: Published  id=d9809884-b7e4-4d51-85fc-5b33f22303bf  symbol=BABA    content=BABA institutional investor reduces stake below 5% threshold
+2026-07-05 10:58:30,808 [INFO] news_stub: Published  id=a992a4c9-64e3-4928-820a-185a9cd44cf4  symbol=META    content=META Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 10:58:40,809 [INFO] news_stub: Published  id=265a82e7-aa04-45b6-b05d-50f44b2870de  symbol=TSLA    content=TSLA appoints new CTO in executive reshuffle, market unmoved
+2026-07-05 10:58:50,811 [INFO] news_stub: Published  id=7df92943-d8f1-4e7b-88b0-be234d6736e6  symbol=META    content=META Q3 profit drops 8% on rising material costs, lowers gro
+2026-07-05 10:59:00,812 [INFO] news_stub: Published  id=fb2f7365-df4c-4c51-96da-a98a5607b31e  symbol=TSM     content=TSM 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 10:59:10,813 [INFO] news_stub: Published  id=f5c1f699-9f7b-43a7-b8a1-a7d98fd06d98  symbol=NVDA    content=NVDA 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 10:59:20,814 [INFO] news_stub: Published  id=3fc6e1ef-07cc-409c-b930-407f233a21bd  symbol=MSFT    content=MSFT CEO resigns abruptly, sells entire stake, panic selling
+2026-07-05 10:59:30,816 [INFO] news_stub: Published  id=0240faa5-9878-4bb9-87ed-dfc226676385  symbol=TSM     content=TSM 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 10:59:40,817 [INFO] news_stub: Published  id=62224a7d-405c-45af-a748-3a8bcd86a0ef  symbol=GOOGL   content=GOOGL new product line drives 30% pre-order beat, positive u
+2026-07-05 10:59:50,819 [INFO] news_stub: Published  id=1596b482-d2ba-4295-aea1-2c0cbb712161  symbol=TSLA    content=TSLA 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 11:00:00,820 [INFO] news_stub: Published  id=dfb29309-0103-45ab-b34b-544f1dcdda02  symbol=AAPL    content=AAPL 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:00:10,822 [INFO] news_stub: Published  id=db97ff70-406f-474b-8748-3a3546874478  symbol=JPM     content=JPM announces strategic partnership with industry leader for
+2026-07-05 11:00:20,823 [INFO] news_stub: Published  id=a6c44281-3810-44a2-8c30-3274e3cb456e  symbol=BABA    content=BABA CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 11:00:30,824 [INFO] news_stub: Published  id=6f5b6f4d-821c-4aea-b7c3-2f59efd86a1a  symbol=GOOGL   content=GOOGL 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 11:00:40,826 [INFO] news_stub: Published  id=c893471d-1eba-418d-9e7a-cce07a536e2c  symbol=META    content=META institutional investor reduces stake below 5% threshold
+2026-07-05 11:00:50,827 [INFO] news_stub: Published  id=d6657626-74c4-46cf-987f-6533409927fd  symbol=NVDA    content=NVDA 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 11:01:00,829 [INFO] news_stub: Published  id=fe8083f7-5eb7-4ac5-8e30-269eca472ef6  symbol=GOOGL   content=GOOGL 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 11:01:10,831 [INFO] news_stub: Published  id=d8f22149-6b35-4c5b-b027-0a4828c8bf0c  symbol=TSLA    content=TSLA 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:01:20,832 [INFO] news_stub: Published  id=83051a5c-b3ec-4bf7-84ca-ec551639dd20  symbol=AAPL    content=AAPL 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 11:01:30,834 [INFO] news_stub: Published  id=55ef9ffb-5ab7-4d29-bab9-f46fbbfaacd5  symbol=TSLA    content=TSLA appoints new CTO in executive reshuffle, market unmoved
+2026-07-05 11:01:40,835 [INFO] news_stub: Published  id=41b46ad3-b2a7-48bc-8a18-4eb3d88976c6  symbol=TSLA    content=TSLA 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 11:01:50,837 [INFO] news_stub: Published  id=bc2116e0-3709-4399-9e0a-528d70615110  symbol=MSFT    content=MSFT 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 11:02:00,838 [INFO] news_stub: Published  id=6a2d8829-c95a-4eef-b153-5540a83ac5bd  symbol=TSM     content=TSM appoints new CTO in executive reshuffle, market unmoved
+2026-07-05 11:02:10,839 [INFO] news_stub: Published  id=872c32b1-b538-4fc8-9e72-b5a86840c32a  symbol=META    content=META initiates $5B share buyback program
+2026-07-05 11:02:20,840 [INFO] news_stub: Published  id=2db2de4f-ad75-4d52-a225-5e5606eda629  symbol=GOOGL   content=GOOGL Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 11:02:30,842 [INFO] news_stub: Published  id=ecc3f08f-2679-4feb-b5df-118709f08d9f  symbol=JPM     content=JPM annual shareholder meeting reaffirms guidance, strategy 
+2026-07-05 11:02:40,843 [INFO] news_stub: Published  id=da56c658-0c9d-4557-9088-9ce7e5d1a3b3  symbol=TSLA    content=TSLA 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 11:02:50,845 [INFO] news_stub: Published  id=5ff64332-4fac-4291-93ce-81ce557ad5ee  symbol=BABA    content=BABA accounting fraud allegations trigger SEC investigation,
+2026-07-05 11:03:00,846 [INFO] news_stub: Published  id=7eaef2c3-196b-4f4a-a2af-17c8afdb585a  symbol=AAPL    content=AAPL 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 11:03:10,848 [INFO] news_stub: Published  id=3a1a0f24-1404-455f-86a1-13929e353a18  symbol=AMZN    content=AMZN announces strategic partnership with industry leader fo
+2026-07-05 11:03:20,849 [INFO] news_stub: Published  id=6c49f632-352f-4ebe-9bbf-cf0d6ce3c070  symbol=AMZN    content=AMZN 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:03:30,851 [INFO] news_stub: Published  id=264c0803-6740-4c1c-884c-fe491865b3d5  symbol=AAPL    content=AAPL CEO resigns abruptly, sells entire stake, panic selling
+2026-07-05 11:03:40,852 [INFO] news_stub: Published  id=9516bbef-e35b-40f9-9536-5461908a956e  symbol=GOOGL   content=GOOGL appoints new CTO in executive reshuffle, market unmove
+2026-07-05 11:03:50,853 [INFO] news_stub: Published  id=2f58752e-4876-4f5f-9b98-449fdb34b5ca  symbol=JPM     content=JPM 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 11:04:00,855 [INFO] news_stub: Published  id=934cbac2-52c6-4997-839d-b668795667c1  symbol=BABA    content=BABA faces EU antitrust probe, European expansion at risk
+2026-07-05 11:04:10,856 [INFO] news_stub: Published  id=8e25f1b7-145a-468c-8a6d-bc53560922f2  symbol=AAPL    content=AAPL major product recall after safety flaw discovered, esti
+2026-07-05 11:04:20,857 [INFO] news_stub: Published  id=284acae4-6ce6-4578-b398-1832ae745b3a  symbol=AAPL    content=AAPL 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 11:04:30,858 [INFO] news_stub: Published  id=251b9f59-0ee2-4db1-abb8-9829836f4d25  symbol=TSLA    content=TSLA 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 11:04:40,859 [INFO] news_stub: Published  id=deab9361-08a5-4a32-8320-5d34c5d7ac42  symbol=NVDA    content=NVDA CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 11:04:50,861 [INFO] news_stub: Published  id=5892e8ff-b2c7-4563-821d-93192af8296c  symbol=MSFT    content=MSFT 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 11:05:00,862 [INFO] news_stub: Published  id=99f243c4-f127-4709-b942-27c1bb54c498  symbol=AMZN    content=AMZN CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 11:05:10,863 [INFO] news_stub: Published  id=12d1d622-d729-4368-82c2-ea898085ff59  symbol=META    content=META institutional investor reduces stake below 5% threshold
+2026-07-05 11:05:20,865 [INFO] news_stub: Published  id=423bb8cf-cf19-4a7c-aec6-c3215549039a  symbol=MSFT    content=MSFT unveils breakthrough AI chip, 3× industry benchmark, sh
+2026-07-05 11:05:30,866 [INFO] news_stub: Published  id=3108fd1e-bd27-4bf8-ad36-e3316420d607  symbol=TSM     content=TSM Q3 revenue up 200% YoY, crushes estimates, announces 10-
+2026-07-05 11:05:40,867 [INFO] news_stub: Published  id=13afdcef-983e-4aed-9d08-14c7faa9f95a  symbol=TSLA    content=TSLA 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 11:05:50,868 [INFO] news_stub: Published  id=43fe1385-7620-4fd5-8f57-622102b4bac2  symbol=NVDA    content=NVDA 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 11:06:00,869 [INFO] news_stub: Published  id=53d15217-3b2a-4686-8145-7ab54746d9b1  symbol=AAPL    content=AAPL 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 11:06:10,870 [INFO] news_stub: Published  id=a78884d8-a6d4-4847-8f79-4a71f63cee86  symbol=TSM     content=TSM 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 11:06:20,872 [INFO] news_stub: Published  id=8b33656a-272c-4ee4-8445-95d722e7eba8  symbol=JPM     content=JPM expands market share with steady 12% revenue growth, bea
+2026-07-05 11:06:30,873 [INFO] news_stub: Published  id=1f4cf4f6-fe85-4b1b-a23c-f00d5c091b77  symbol=JPM     content=JPM 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 11:06:40,875 [INFO] news_stub: Published  id=28197ae7-8120-4bb5-a64b-9b555cde4e06  symbol=GOOGL   content=GOOGL initiates $5B share buyback program
+2026-07-05 11:06:50,876 [INFO] news_stub: Published  id=a3e80467-7e1e-49db-8280-3d3681f8759a  symbol=MSFT    content=MSFT 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 11:07:00,877 [INFO] news_stub: Published  id=cbdf666a-6310-4f46-b670-6746f91ac942  symbol=MSFT    content=MSFT 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 11:07:10,878 [INFO] news_stub: Published  id=8ac7f1f7-5671-48c3-98f3-1ede07dbdc76  symbol=TSM     content=TSM 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 11:07:20,880 [INFO] news_stub: Published  id=77fef29e-bbcf-413f-bdc1-82c7049865ce  symbol=AMZN    content=AMZN new product line drives 30% pre-order beat, positive us
+2026-07-05 11:07:30,881 [INFO] news_stub: Published  id=a47b93c5-b594-4ee7-b0fd-6be81c1bdd00  symbol=AMZN    content=AMZN Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 11:07:40,882 [INFO] news_stub: Published  id=5e2df8ec-55ea-48a0-b81c-134af8c48382  symbol=JPM     content=JPM expands market share with steady 12% revenue growth, bea
+2026-07-05 11:07:50,883 [INFO] news_stub: Published  id=ce33f479-9b31-4927-a027-cb40cc41a1bd  symbol=AMZN    content=AMZN 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 11:08:00,884 [INFO] news_stub: Published  id=c39c365d-4a58-4fa7-984a-ff57446d8a63  symbol=BABA    content=BABA 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 11:08:10,886 [INFO] news_stub: Published  id=d57e26a3-63bd-4e17-8c21-4b71a196432a  symbol=NVDA    content=NVDA 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:08:20,887 [INFO] news_stub: Published  id=e3713a4f-9c54-4b07-8993-35f75ec8aa13  symbol=BABA    content=BABA new product line drives 30% pre-order beat, positive us
+2026-07-05 11:08:30,889 [INFO] news_stub: Published  id=d06faeab-98d6-4190-bd36-c4c8eb744871  symbol=TSLA    content=TSLA Q3 revenue up 200% YoY, crushes estimates, announces 10
+2026-07-05 11:08:40,890 [INFO] news_stub: Published  id=84309b86-9a87-45f9-be44-e9dd0d2897c5  symbol=AAPL    content=AAPL faces EU antitrust probe, European expansion at risk
+2026-07-05 11:08:50,892 [INFO] news_stub: Published  id=3a90a529-05b0-4ded-8ac7-e83fdd619287  symbol=META    content=META 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 11:09:00,893 [INFO] news_stub: Published  id=e21b67cf-2e1a-4d00-82cc-670d72fd4f5d  symbol=NVDA    content=NVDA 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 11:09:10,894 [INFO] news_stub: Published  id=efc72e3d-14ee-4bff-a76a-070e884cd51b  symbol=BABA    content=BABA 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 11:09:20,895 [INFO] news_stub: Published  id=25ce72c2-d38f-4946-973a-65f90053f454  symbol=BABA    content=BABA Q3 revenue up 200% YoY, crushes estimates, announces 10
+2026-07-05 11:09:30,896 [INFO] news_stub: Published  id=1015e733-ef33-457d-9f41-8c16a6c389db  symbol=TSLA    content=TSLA appoints new CTO in executive reshuffle, market unmoved
+2026-07-05 11:09:40,898 [INFO] news_stub: Published  id=f66b5001-d299-44e5-883e-7e823dae9afb  symbol=JPM     content=JPM 面临欧盟反垄断调查，可能影响欧洲市场业务扩展
+2026-07-05 11:09:50,900 [INFO] news_stub: Published  id=96b56142-a9d4-4993-ab29-356803b96f88  symbol=META    content=META initiates $5B share buyback program
+2026-07-05 11:10:00,901 [INFO] news_stub: Published  id=4a2b8309-ff75-48fe-93cf-e95e10d25161  symbol=NVDA    content=NVDA accounting fraud allegations trigger SEC investigation,
+2026-07-05 11:10:10,902 [INFO] news_stub: Published  id=26012ffa-30c2-477c-ae24-fa27d9086cd4  symbol=BABA    content=BABA 新产品线获得用户好评，预购订单超出预期30%
+2026-07-05 11:10:20,904 [INFO] news_stub: Published  id=47b254f9-33e6-4a8b-a591-a1dfea5d97ee  symbol=TSM     content=TSM expands market share with steady 12% revenue growth, bea
+2026-07-05 11:10:30,905 [INFO] news_stub: Published  id=ccee6183-d293-4dae-a1b4-b5f59b4a45a1  symbol=MSFT    content=MSFT 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:10:40,906 [INFO] news_stub: Published  id=d6a1aed3-a01d-42a3-b5aa-fbd0e1f65dd8  symbol=AAPL    content=AAPL expands market share with steady 12% revenue growth, be
+2026-07-05 11:10:50,907 [INFO] news_stub: Published  id=84905e0c-54a8-4b6c-bd90-eef5fc612c45  symbol=GOOGL   content=GOOGL announces strategic partnership with industry leader f
+2026-07-05 11:11:00,908 [INFO] news_stub: Published  id=4320f8b9-9177-4c0a-8734-20e070b8a9bb  symbol=META    content=META 面临欧盟反垄断调查，可能影响欧洲市场业务扩展
+2026-07-05 11:11:10,909 [INFO] news_stub: Published  id=bdfea0c6-435c-4d31-b864-4c44f25a96e9  symbol=MSFT    content=MSFT 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 11:11:20,910 [INFO] news_stub: Published  id=d653d271-3055-47f9-a94f-1f9dff81bfb9  symbol=TSM     content=TSM 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 11:11:30,911 [INFO] news_stub: Published  id=d5d49a17-64f4-40f5-8cf5-3e020150785f  symbol=AMZN    content=AMZN 面临欧盟反垄断调查，可能影响欧洲市场业务扩展
+2026-07-05 11:11:40,912 [INFO] news_stub: Published  id=16ca439a-41e2-48bf-b558-47a857f54c16  symbol=TSLA    content=TSLA 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:11:50,913 [INFO] news_stub: Published  id=8c8833a7-844f-4990-b0d4-706db3afae7f  symbol=TSLA    content=TSLA Q3 revenue up 200% YoY, crushes estimates, announces 10
+2026-07-05 11:12:00,915 [INFO] news_stub: Published  id=6a176bda-1a01-401c-8bf5-6a83f06fe527  symbol=AAPL    content=AAPL 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 11:12:10,916 [INFO] news_stub: Published  id=5c06cdd3-93c1-48d2-97be-4bb4e424cd34  symbol=TSLA    content=TSLA 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 11:12:20,917 [INFO] news_stub: Published  id=1fe2bda0-95fd-449d-8311-69e525dd8f07  symbol=GOOGL   content=GOOGL expands market share with steady 12% revenue growth, b
+2026-07-05 11:12:30,919 [INFO] news_stub: Published  id=2d4015b2-db3b-4aa9-9753-5e6ac12b61d0  symbol=NVDA    content=NVDA 新产品线获得用户好评，预购订单超出预期30%
+2026-07-05 11:12:40,920 [INFO] news_stub: Published  id=56b4436c-9798-4790-bccd-1c67028beb1d  symbol=TSM     content=TSM announces strategic partnership with industry leader for
+2026-07-05 11:12:50,921 [INFO] news_stub: Published  id=e7daf14d-04ef-4291-88d0-aeddf6c9a635  symbol=JPM     content=JPM expands market share with steady 12% revenue growth, bea
+2026-07-05 11:13:00,922 [INFO] news_stub: Published  id=eed53ff2-2bcf-4f8d-9b7c-53b28b35c858  symbol=META    content=META 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:13:10,923 [INFO] news_stub: Published  id=5207defe-812e-4f69-b86c-a74d6a7a1960  symbol=META    content=META major product recall after safety flaw discovered, esti
+2026-07-05 11:13:20,924 [INFO] news_stub: Published  id=2d7d1f6e-bbe7-45fd-9cf5-77c5948d2ebc  symbol=JPM     content=JPM Q3 revenue up 200% YoY, crushes estimates, announces 10-
+2026-07-05 11:13:30,926 [INFO] news_stub: Published  id=d250b589-4160-4bd8-b965-94955798427f  symbol=TSLA    content=TSLA Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 11:13:40,927 [INFO] news_stub: Published  id=56f8fb60-b1ad-462d-b05f-3ef563c045d9  symbol=TSM     content=TSM Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 11:13:50,928 [INFO] news_stub: Published  id=abb0ace3-5be6-425b-8055-2414a9d307f3  symbol=AMZN    content=AMZN CEO resigns abruptly, sells entire stake, panic selling
+2026-07-05 11:14:00,930 [INFO] news_stub: Published  id=1afeddff-3a7d-4a41-97a0-0e8904b960ef  symbol=META    content=META 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 11:14:10,931 [INFO] news_stub: Published  id=49dc18b3-b8b0-456f-87e5-fcb1a846c711  symbol=TSM     content=TSM 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 11:14:20,933 [INFO] news_stub: Published  id=079a80a5-35b1-48aa-b510-667f4fb08c19  symbol=AMZN    content=AMZN expands market share with steady 12% revenue growth, be
+2026-07-05 11:14:30,934 [INFO] news_stub: Published  id=5efa36e4-6f8d-4050-a53f-87b95b279e3e  symbol=TSM     content=TSM Q3 profit drops 8% on rising material costs, lowers gros
+2026-07-05 11:14:40,935 [INFO] news_stub: Published  id=eacceb5d-516b-4de9-8c19-8aa7de8a9e0c  symbol=NVDA    content=NVDA 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 11:14:50,936 [INFO] news_stub: Published  id=2874062e-46d0-4f05-9bd4-835a84c6f5ae  symbol=GOOGL   content=GOOGL initiates $5B share buyback program
+2026-07-05 11:15:00,938 [INFO] news_stub: Published  id=6972cfb8-389b-4605-825a-ec261834a290  symbol=JPM     content=JPM CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 11:15:10,939 [INFO] news_stub: Published  id=fd18dbf0-b999-464b-9cc1-74ae83641a33  symbol=MSFT    content=MSFT 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 11:15:20,940 [INFO] news_stub: Published  id=7bc3cfa7-0330-40f6-8fde-c301f21a0aa1  symbol=NVDA    content=NVDA expands market share with steady 12% revenue growth, be
+2026-07-05 11:15:30,942 [INFO] news_stub: Published  id=f1a01a38-83e4-4b6e-ae27-ca0516e07438  symbol=MSFT    content=MSFT Q3 revenue up 200% YoY, crushes estimates, announces 10
+2026-07-05 11:15:40,943 [INFO] news_stub: Published  id=acb90e78-af79-49aa-b0a2-5da288964e96  symbol=BABA    content=BABA new product line drives 30% pre-order beat, positive us
+2026-07-05 11:15:50,944 [INFO] news_stub: Published  id=8f441ce1-5c98-4c68-856c-57cf24fa7d30  symbol=MSFT    content=MSFT unveils breakthrough AI chip, 3× industry benchmark, sh
+2026-07-05 11:16:00,945 [INFO] news_stub: Published  id=afa534fd-039a-415f-b8a9-424627b09d70  symbol=JPM     content=JPM 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 11:16:10,946 [INFO] news_stub: Published  id=1d7acd4c-5452-41d6-9a41-67d993d841be  symbol=AMZN    content=AMZN 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 11:16:20,947 [INFO] news_stub: Published  id=d5f0c800-c23a-4933-a2b6-b43222b95b98  symbol=TSLA    content=TSLA Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 11:16:30,949 [INFO] news_stub: Published  id=59ea5754-edcd-4c02-bb66-e1ee6c464073  symbol=AAPL    content=AAPL Q3 profit drops 8% on rising material costs, lowers gro
+2026-07-05 11:16:40,951 [INFO] news_stub: Published  id=1449685d-7c8f-4dfc-affd-4127d8fb66fe  symbol=AMZN    content=AMZN 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 11:16:50,952 [INFO] news_stub: Published  id=f7341a30-e466-4535-9dcc-ee1c4f1904e9  symbol=MSFT    content=MSFT CEO resigns abruptly, sells entire stake, panic selling
+2026-07-05 11:17:00,954 [INFO] news_stub: Published  id=2ec652a0-f2a3-4ce8-a4ee-b3819bf9eeb7  symbol=NVDA    content=NVDA major product recall after safety flaw discovered, esti
+2026-07-05 11:17:10,955 [INFO] news_stub: Published  id=0248748f-8942-4386-826d-202f04d49592  symbol=TSM     content=TSM Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 11:17:20,956 [INFO] news_stub: Published  id=fdb46d21-a63d-4a5a-9917-7379fa3e5804  symbol=TSM     content=TSM 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 11:17:30,958 [INFO] news_stub: Published  id=76579f27-e039-4fe6-a930-70c32f7132e9  symbol=JPM     content=JPM 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 11:17:40,959 [INFO] news_stub: Published  id=68ce2a9f-9374-4da2-ae8b-29e8ae785187  symbol=JPM     content=JPM 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 11:17:50,961 [INFO] news_stub: Published  id=6e0d90b3-5569-4375-85cc-6d9d014bf653  symbol=BABA    content=BABA expands market share with steady 12% revenue growth, be
+2026-07-05 11:18:00,962 [INFO] news_stub: Published  id=743eb28a-186f-4bc8-b7f0-e648b8314467  symbol=MSFT    content=MSFT accounting fraud allegations trigger SEC investigation,
+2026-07-05 11:18:10,963 [INFO] news_stub: Published  id=369ea0eb-037e-4140-9a8c-37bce6e0703b  symbol=TSLA    content=TSLA CEO resigns abruptly, sells entire stake, panic selling
+2026-07-05 11:18:20,964 [INFO] news_stub: Published  id=8d954412-e250-40cb-84c1-b8954949d6b8  symbol=AAPL    content=AAPL 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 11:18:30,965 [INFO] news_stub: Published  id=83b32060-3077-4237-ab30-4503ab1f7b76  symbol=JPM     content=JPM appoints new CTO in executive reshuffle, market unmoved
+2026-07-05 11:18:40,966 [INFO] news_stub: Published  id=d0b432ea-ac83-408e-a783-e9ecf9309c7d  symbol=JPM     content=JPM lands multi-billion government contract, analysts raise 
+2026-07-05 11:18:50,968 [INFO] news_stub: Published  id=cc09c729-a499-4042-aa44-f4c2f151c2f2  symbol=GOOGL   content=GOOGL 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 11:19:00,969 [INFO] news_stub: Published  id=3acfc2ca-cc47-408e-9ae1-7aedf3e1af1b  symbol=BABA    content=BABA 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 11:19:10,971 [INFO] news_stub: Published  id=8b6681d8-c49d-4b89-80c7-a7a4d79c7788  symbol=BABA    content=BABA 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 11:19:20,971 [INFO] news_stub: Published  id=f3a6c3aa-6b3d-420f-b6dc-41b7922d1a7e  symbol=AAPL    content=AAPL accounting fraud allegations trigger SEC investigation,
+2026-07-05 11:19:30,973 [INFO] news_stub: Published  id=ed526c35-4fe4-46b2-a733-feb34e661739  symbol=AMZN    content=AMZN unveils breakthrough AI chip, 3× industry benchmark, sh
+2026-07-05 11:19:40,974 [INFO] news_stub: Published  id=81f03ee4-ff03-4698-bb2b-fd0313e2639c  symbol=JPM     content=JPM expands market share with steady 12% revenue growth, bea
+2026-07-05 11:19:50,974 [INFO] news_stub: Published  id=df415a83-eea0-4350-8db7-c64a23155ddf  symbol=MSFT    content=MSFT CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 11:20:00,976 [INFO] news_stub: Published  id=82653443-6e7f-4f61-aa95-0c200c4f6466  symbol=JPM     content=JPM unveils breakthrough AI chip, 3× industry benchmark, sha
+2026-07-05 11:20:10,977 [INFO] news_stub: Published  id=73dc4253-e1d4-44cc-9935-c23cd05db4e3  symbol=AAPL    content=AAPL appoints new CTO in executive reshuffle, market unmoved
+2026-07-05 11:20:20,978 [INFO] news_stub: Published  id=d6a9817e-8bfd-4a61-8929-7ebc9cb3fbcb  symbol=AMZN    content=AMZN 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 11:20:30,980 [INFO] news_stub: Published  id=093b8caa-595c-43e7-b983-cb9d9738eea9  symbol=GOOGL   content=GOOGL 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 11:20:40,981 [INFO] news_stub: Published  id=c76044cf-5890-4c10-b2f9-efbaae435a17  symbol=JPM     content=JPM Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 11:20:50,983 [INFO] news_stub: Published  id=3481e9c7-b124-47a2-bf1f-70e2b091b7a1  symbol=AAPL    content=AAPL 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 11:21:00,984 [INFO] news_stub: Published  id=c8e44692-0ffb-42a3-aa42-7b319d497cc1  symbol=TSLA    content=TSLA 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 11:21:10,985 [INFO] news_stub: Published  id=2f01bae8-ecdf-447e-b4da-71f361a3c595  symbol=MSFT    content=MSFT initiates $5B share buyback program
+2026-07-05 11:21:20,986 [INFO] news_stub: Published  id=a1fa18cb-9930-4115-a6e6-0e31bbd7dab3  symbol=GOOGL   content=GOOGL 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 11:21:30,988 [INFO] news_stub: Published  id=019fc8f7-560e-453f-8d97-a486e727fe3f  symbol=AMZN    content=AMZN CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 11:21:40,989 [INFO] news_stub: Published  id=0baa85e4-4400-4534-bd30-cd05263b575b  symbol=META    content=META new product line drives 30% pre-order beat, positive us
+2026-07-05 11:21:50,991 [INFO] news_stub: Published  id=b62ce55c-eb80-4fbf-b97b-94ec08501391  symbol=MSFT    content=MSFT major product recall after safety flaw discovered, esti
+2026-07-05 11:22:00,992 [INFO] news_stub: Published  id=286e76f3-1f48-48d8-ad24-0572b125da79  symbol=MSFT    content=MSFT expands market share with steady 12% revenue growth, be
+2026-07-05 11:22:10,994 [INFO] news_stub: Published  id=ab524c13-da80-4754-bef5-dd10ac245272  symbol=TSLA    content=TSLA 面临欧盟反垄断调查，可能影响欧洲市场业务扩展
+2026-07-05 11:22:20,995 [INFO] news_stub: Published  id=f127d9f1-b381-4ad5-b3e3-2e898887b719  symbol=AMZN    content=AMZN 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 11:22:30,996 [INFO] news_stub: Published  id=5cbf0ef3-cb53-4aec-9ecc-109e989d648b  symbol=AAPL    content=AAPL Q3 profit drops 8% on rising material costs, lowers gro
+2026-07-05 11:22:40,998 [INFO] news_stub: Published  id=cc1efd6b-cda3-4569-a792-433973532725  symbol=JPM     content=JPM 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 11:22:50,999 [INFO] news_stub: Published  id=1c9ba8c1-bd45-4880-803b-7307b1c48e10  symbol=AAPL    content=AAPL annual shareholder meeting reaffirms guidance, strategy
+2026-07-05 11:23:01,001 [INFO] news_stub: Published  id=493e7c3e-bfb3-46f8-82cf-cd80bfd437a5  symbol=AAPL    content=AAPL 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 11:23:11,002 [INFO] news_stub: Published  id=2adefb1c-da30-42fa-bcad-d4211ae592a8  symbol=JPM     content=JPM 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:23:21,003 [INFO] news_stub: Published  id=60538ce7-46f3-4257-95f0-e12eb924e7e9  symbol=NVDA    content=NVDA 新产品线获得用户好评，预购订单超出预期30%
+2026-07-05 11:23:31,005 [INFO] news_stub: Published  id=24e381df-db42-4069-b9d8-e21b0f4b8a94  symbol=AMZN    content=AMZN lands multi-billion government contract, analysts raise
+2026-07-05 11:23:41,006 [INFO] news_stub: Published  id=010a5117-3d8a-4d12-8768-222c0e8451c0  symbol=AAPL    content=AAPL CEO resigns abruptly, sells entire stake, panic selling
+2026-07-05 11:23:51,008 [INFO] news_stub: Published  id=bcfe0af7-91da-41a4-91ab-cb990017468f  symbol=JPM     content=JPM appoints new CTO in executive reshuffle, market unmoved
+2026-07-05 11:24:01,009 [INFO] news_stub: Published  id=be7d69ef-f31c-405e-a3a1-883a2cdd80b9  symbol=AMZN    content=AMZN major product recall after safety flaw discovered, esti
+2026-07-05 11:24:11,010 [INFO] news_stub: Published  id=e9063bbc-e75c-4a8c-8f4f-2764f8184cb0  symbol=META    content=META initiates $5B share buyback program
+2026-07-05 11:24:21,011 [INFO] news_stub: Published  id=37b48b79-f857-4fbd-b8fb-7f23838dec7b  symbol=META    content=META initiates $5B share buyback program
+2026-07-05 11:24:31,013 [INFO] news_stub: Published  id=daa72b15-965b-46e5-9757-ad4db6d92346  symbol=GOOGL   content=GOOGL expands market share with steady 12% revenue growth, b
+2026-07-05 11:24:41,014 [INFO] news_stub: Published  id=4667e265-9c21-4282-a1c0-ee7654c235f0  symbol=MSFT    content=MSFT 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 11:24:51,015 [INFO] news_stub: Published  id=037f228e-041e-4a23-a2e0-9d7db64aac57  symbol=NVDA    content=NVDA appoints new CTO in executive reshuffle, market unmoved
+2026-07-05 11:25:01,017 [INFO] news_stub: Published  id=ad3bff6a-1ea5-451f-abae-31a40b1664eb  symbol=AMZN    content=AMZN annual shareholder meeting reaffirms guidance, strategy
+2026-07-05 11:25:11,019 [INFO] news_stub: Published  id=d10b2f6d-154a-4a92-b060-5b09447dca2a  symbol=TSM     content=TSM CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 11:25:21,020 [INFO] news_stub: Published  id=f97d2947-4574-4863-ba4c-53ef412103ef  symbol=META    content=META annual shareholder meeting reaffirms guidance, strategy
+2026-07-05 11:25:31,022 [INFO] news_stub: Published  id=14d7272b-de01-4b88-bc6d-b5260d4259e8  symbol=GOOGL   content=GOOGL new product line drives 30% pre-order beat, positive u
+2026-07-05 11:25:41,023 [INFO] news_stub: Published  id=0f80e78a-f13a-4672-947e-7bfb9b4be78e  symbol=AMZN    content=AMZN 面临欧盟反垄断调查，可能影响欧洲市场业务扩展
+2026-07-05 11:25:51,024 [INFO] news_stub: Published  id=df55ca80-3081-4817-9b0c-a3da002f3a17  symbol=TSLA    content=TSLA Q3 profit drops 8% on rising material costs, lowers gro
+2026-07-05 11:26:01,026 [INFO] news_stub: Published  id=98f5a68d-9255-4c53-8673-2036ae926eac  symbol=NVDA    content=NVDA faces EU antitrust probe, European expansion at risk
+2026-07-05 11:26:11,027 [INFO] news_stub: Published  id=a20b349c-69cb-4ea8-95a7-16980aec931e  symbol=TSLA    content=TSLA initiates $5B share buyback program
+2026-07-05 11:26:21,028 [INFO] news_stub: Published  id=1fffb8b2-0b01-485e-9005-21f4cc0131ce  symbol=JPM     content=JPM CEO resigns abruptly, sells entire stake, panic selling 
+2026-07-05 11:26:31,030 [INFO] news_stub: Published  id=27fcdf45-6c0a-4784-add8-b00942e1ce10  symbol=NVDA    content=NVDA 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 11:26:41,032 [INFO] news_stub: Published  id=a2013ef1-ce9a-4efc-ab8b-90498c221494  symbol=TSM     content=TSM 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 11:26:51,033 [INFO] news_stub: Published  id=83f97d40-9563-49c8-9802-3ee609b90f4a  symbol=META    content=META new product line drives 30% pre-order beat, positive us
+2026-07-05 11:27:01,034 [INFO] news_stub: Published  id=e157ffe9-d938-44e0-b164-15de0e4c6061  symbol=BABA    content=BABA institutional investor reduces stake below 5% threshold
+2026-07-05 11:27:11,035 [INFO] news_stub: Published  id=04e11ee8-d0aa-4f01-bae0-6c995c4085ad  symbol=NVDA    content=NVDA lands multi-billion government contract, analysts raise
+2026-07-05 11:27:21,035 [INFO] news_stub: Published  id=1d822af6-b004-4cc5-842f-2c0d7612ad82  symbol=GOOGL   content=GOOGL CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 11:27:31,037 [INFO] news_stub: Published  id=fbfdd1b6-ed71-49b7-bf97-1d9ecf525b2a  symbol=NVDA    content=NVDA lands multi-billion government contract, analysts raise
+2026-07-05 11:27:41,038 [INFO] news_stub: Published  id=9087b146-73d9-4fc1-8c99-59411a6d5b86  symbol=META    content=META 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 11:27:51,039 [INFO] news_stub: Published  id=03fbc2e3-e109-4cb9-bead-4d8dce2407d3  symbol=GOOGL   content=GOOGL Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 11:28:01,040 [INFO] news_stub: Published  id=93b04821-aa87-4551-b14e-02e12f054335  symbol=JPM     content=JPM CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 11:28:11,041 [INFO] news_stub: Published  id=ac0c8c06-1a14-455e-8f9f-7463fa72c618  symbol=GOOGL   content=GOOGL 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 11:28:21,042 [INFO] news_stub: Published  id=107d3e14-0b2a-4a6b-8c77-1f0f015da2f1  symbol=TSM     content=TSM 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 11:28:31,043 [INFO] news_stub: Published  id=1bcefba3-1727-4f36-a3ba-b279194ce014  symbol=NVDA    content=NVDA lands multi-billion government contract, analysts raise
+2026-07-05 11:28:41,044 [INFO] news_stub: Published  id=496f378c-7296-4da5-aa90-c924b4b0b07e  symbol=JPM     content=JPM unveils breakthrough AI chip, 3× industry benchmark, sha
+2026-07-05 11:28:51,045 [INFO] news_stub: Published  id=7263bccc-ee0d-4679-a2c9-d8ee79401b8a  symbol=META    content=META 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 11:29:01,046 [INFO] news_stub: Published  id=2fc866f3-c630-44a5-b7ca-bfe7f826d268  symbol=NVDA    content=NVDA accounting fraud allegations trigger SEC investigation,
+2026-07-05 11:29:11,047 [INFO] news_stub: Published  id=df3b849c-e529-480c-9472-360e2ec236c3  symbol=TSM     content=TSM 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 11:29:21,049 [INFO] news_stub: Published  id=0c9cb7c6-dc50-4520-83db-d758242498a7  symbol=TSLA    content=TSLA 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:29:31,050 [INFO] news_stub: Published  id=fee2d4a7-e1d7-4fb1-8454-d240ca6b1800  symbol=NVDA    content=NVDA 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 11:29:41,051 [INFO] news_stub: Published  id=86e42b21-d5d7-4a97-9052-ba3010a9608a  symbol=AAPL    content=AAPL initiates $5B share buyback program
+2026-07-05 11:29:51,052 [INFO] news_stub: Published  id=70b5969f-64e8-4adf-abcd-26ce41ccd9f9  symbol=AAPL    content=AAPL 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 11:30:01,053 [INFO] news_stub: Published  id=1c0d090e-2195-4f69-93d0-902b97f5b8d7  symbol=TSLA    content=TSLA Q3 profit drops 8% on rising material costs, lowers gro
+2026-07-05 11:30:11,054 [INFO] news_stub: Published  id=fe93a209-aa04-4f38-a0de-76eabc79d2e4  symbol=TSLA    content=TSLA CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 11:30:21,055 [INFO] news_stub: Published  id=d85eb5c3-e558-4c99-927d-43fc92a1517d  symbol=AAPL    content=AAPL 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 11:30:31,056 [INFO] news_stub: Published  id=41ef6859-676c-48e4-9732-1034f481c454  symbol=NVDA    content=NVDA expands market share with steady 12% revenue growth, be
+2026-07-05 11:30:41,057 [INFO] news_stub: Published  id=abd05918-34af-4fb4-b350-e1fed70a78f2  symbol=MSFT    content=MSFT Q3 profit drops 8% on rising material costs, lowers gro
+2026-07-05 11:30:51,058 [INFO] news_stub: Published  id=31d29de9-db1b-4a72-bf7b-c5809ec9c318  symbol=AMZN    content=AMZN institutional investor reduces stake below 5% threshold
+2026-07-05 11:31:01,059 [INFO] news_stub: Published  id=368cf1fe-3fb9-48e8-851a-5911e3550c69  symbol=TSM     content=TSM Q3 revenue up 200% YoY, crushes estimates, announces 10-
+2026-07-05 11:31:11,060 [INFO] news_stub: Published  id=68c5b39c-bcbe-417e-a64f-65a7f2ddbee4  symbol=JPM     content=JPM 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:31:21,061 [INFO] news_stub: Published  id=19132a33-a56a-4e23-a06c-0b9ee3aa8345  symbol=JPM     content=JPM 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 11:31:31,062 [INFO] news_stub: Published  id=0fbc2569-c82c-42de-aa30-ea77e27cfff6  symbol=TSLA    content=TSLA announces strategic partnership with industry leader fo
+2026-07-05 11:31:41,064 [INFO] news_stub: Published  id=8d3ed826-80cf-46e5-a32b-45fc3cd361c7  symbol=AAPL    content=AAPL accounting fraud allegations trigger SEC investigation,
+2026-07-05 11:31:51,065 [INFO] news_stub: Published  id=33483b93-de1d-42ad-b6c6-5e2a8c9dc98b  symbol=NVDA    content=NVDA 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 11:32:01,066 [INFO] news_stub: Published  id=13a72d50-5700-4db6-af23-560fc7ebfdb2  symbol=NVDA    content=NVDA 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 11:32:11,068 [INFO] news_stub: Published  id=145cd4b7-fadb-4601-8e27-94aef9cd03e5  symbol=META    content=META 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 11:32:21,068 [INFO] news_stub: Published  id=7958597f-b346-41a4-92af-3de7ec4a2945  symbol=GOOGL   content=GOOGL expands market share with steady 12% revenue growth, b
+2026-07-05 11:32:31,069 [INFO] news_stub: Published  id=ec6e5b12-3651-4c00-860f-63807bb7ec1f  symbol=META    content=META 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 11:32:41,070 [INFO] news_stub: Published  id=b64a78db-9c47-4f61-b108-b06f73d079a2  symbol=META    content=META accounting fraud allegations trigger SEC investigation,
+2026-07-05 11:32:51,071 [INFO] news_stub: Published  id=6698af72-7211-46d0-906e-d7407750bc83  symbol=GOOGL   content=GOOGL new product line drives 30% pre-order beat, positive u
+2026-07-05 11:33:01,072 [INFO] news_stub: Published  id=e20d8659-9461-4f08-ab37-9447ba3aba8a  symbol=BABA    content=BABA Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 11:33:11,074 [INFO] news_stub: Published  id=a5fbd28e-84b4-42d3-a44e-779c0b445ad6  symbol=MSFT    content=MSFT institutional investor reduces stake below 5% threshold
+2026-07-05 11:33:21,075 [INFO] news_stub: Published  id=8df2c1af-b588-4f0e-946b-cc690074e479  symbol=NVDA    content=NVDA 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:33:31,076 [INFO] news_stub: Published  id=acc82d79-cb70-4857-b025-ac81bf3b14c3  symbol=AAPL    content=AAPL 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 11:33:41,077 [INFO] news_stub: Published  id=c56b47d4-e0af-4c23-8017-b15f6284d620  symbol=NVDA    content=NVDA 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 11:33:51,079 [INFO] news_stub: Published  id=cb55f1d7-5f1a-45f0-bf52-d4cf1b1f5aa1  symbol=MSFT    content=MSFT 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 11:34:01,080 [INFO] news_stub: Published  id=afb66c3c-9f56-4ba7-a364-0fcdf5d33f91  symbol=AMZN    content=AMZN annual shareholder meeting reaffirms guidance, strategy
+2026-07-05 11:34:11,081 [INFO] news_stub: Published  id=20317957-9737-402f-a1cb-e70f21bdc6a2  symbol=AMZN    content=AMZN major product recall after safety flaw discovered, esti
+2026-07-05 11:34:21,082 [INFO] news_stub: Published  id=6912bd35-a45b-4f0d-8ce1-21eb530b39c0  symbol=AMZN    content=AMZN appoints new CTO in executive reshuffle, market unmoved
+2026-07-05 11:34:31,083 [INFO] news_stub: Published  id=c7c2b968-b656-4b21-82c4-3f2ed4831946  symbol=NVDA    content=NVDA faces EU antitrust probe, European expansion at risk
+2026-07-05 11:34:41,084 [INFO] news_stub: Published  id=12e82152-8eba-4fe5-b17d-8c34b3a00aff  symbol=GOOGL   content=GOOGL 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 11:34:51,085 [INFO] news_stub: Published  id=ccc7d810-a47c-484a-85a5-2f3d5465e5ad  symbol=AMZN    content=AMZN lands multi-billion government contract, analysts raise
+2026-07-05 11:35:01,086 [INFO] news_stub: Published  id=767f80cf-2712-4edd-87ec-ae68748d2ef0  symbol=MSFT    content=MSFT faces EU antitrust probe, European expansion at risk
+2026-07-05 11:35:11,087 [INFO] news_stub: Published  id=67ac8278-91fb-4a1a-b998-cb1299af4c73  symbol=JPM     content=JPM 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 11:35:21,088 [INFO] news_stub: Published  id=f62be76d-b809-4ef9-9eb4-b4d2a7cbfaae  symbol=TSM     content=TSM 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 11:35:31,090 [INFO] news_stub: Published  id=896d6934-ddad-4cd7-87e5-2fa42765a6e9  symbol=TSM     content=TSM unveils breakthrough AI chip, 3× industry benchmark, sha
+2026-07-05 11:35:41,091 [INFO] news_stub: Published  id=095dd55b-8962-4ce1-909d-1dbb84747276  symbol=AAPL    content=AAPL 高管变动：任命新任CTO，市场反应平淡
+2026-07-05 11:35:51,092 [INFO] news_stub: Published  id=b0e3fb93-45fe-4914-b8c6-3d81cf4a3fb9  symbol=TSLA    content=TSLA 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:36:01,093 [INFO] news_stub: Published  id=3e64f1ce-8a32-490e-9d8e-626c7423f0ce  symbol=MSFT    content=MSFT 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 11:36:11,094 [INFO] news_stub: Published  id=b08d53fd-5121-4daf-80fc-3ad897c08eb0  symbol=AAPL    content=AAPL Q3 revenue up 200% YoY, crushes estimates, announces 10
+2026-07-05 11:36:21,094 [INFO] news_stub: Published  id=fe77dc2e-4c22-4081-88ca-c4ffb0b348bf  symbol=GOOGL   content=GOOGL Q3 profit drops 8% on rising material costs, lowers gr
+2026-07-05 11:36:31,096 [INFO] news_stub: Published  id=cee1731b-9afc-42f0-9a2b-f19c9bb53c35  symbol=MSFT    content=MSFT 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:36:41,096 [INFO] news_stub: Published  id=7c4e4078-f2d4-4d5f-a75d-637ae3942e0a  symbol=BABA    content=BABA 举行年度股东大会，重申全年业绩指引，维持现有战略不变
+2026-07-05 11:36:59,790 [INFO] news_stub: Logging to /app/logs/news_stub.log  level=INFO
+2026-07-05 11:36:59,790 [INFO] news_stub: News stub starting  host=rabbitmq:5672  queue=stock_news  count=∞  interval=10.0s  lang=mixed
+2026-07-05 11:37:00,000 [INFO] news_stub: Published  id=b4902bf0-b0b9-4d22-904b-3e5704b4a8fa  symbol=NVDA    content=NVDA annual shareholder meeting reaffirms guidance, strategy
+2026-07-05 11:37:10,001 [INFO] news_stub: Published  id=9cb8ae09-7b43-4e6b-b993-8590f7535103  symbol=META    content=META major product recall after safety flaw discovered, esti
+2026-07-05 11:37:20,002 [INFO] news_stub: Published  id=d25d50ea-ccbd-46cd-990d-27ebcc0851f8  symbol=JPM     content=JPM Q3利润下滑8%，受原材料成本上升影响，下调全年毛利率预期
+2026-07-05 11:37:30,003 [INFO] news_stub: Published  id=cc246694-f7cd-4ba1-a18a-4c6b8ed61120  symbol=JPM     content=JPM annual shareholder meeting reaffirms guidance, strategy 
+2026-07-05 11:37:40,005 [INFO] news_stub: Published  id=10a23db7-f8a1-4ffc-9cc9-ef5d4aee7a52  symbol=JPM     content=JPM institutional investor reduces stake below 5% threshold
+2026-07-05 11:37:50,007 [INFO] news_stub: Published  id=86fe7fc3-c5ff-4fb4-855d-04c927f806d0  symbol=TSLA    content=TSLA 新产品线获得用户好评，预购订单超出预期30%
+2026-07-05 11:38:00,008 [INFO] news_stub: Published  id=827e49ef-6a62-40b3-afc3-d8a1d1d67c7c  symbol=MSFT    content=MSFT 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 11:38:10,009 [INFO] news_stub: Published  id=8d93bb8b-a048-4ce0-90df-230e18baef49  symbol=MSFT    content=MSFT major product recall after safety flaw discovered, esti
+2026-07-05 11:38:20,010 [INFO] news_stub: Published  id=dd8bd727-0b59-4cfd-aa7e-6cdfaae39c3a  symbol=TSLA    content=TSLA Q3 revenue up 200% YoY, crushes estimates, announces 10
+2026-07-05 11:38:30,011 [INFO] news_stub: Published  id=c630893b-ba12-4650-916f-3600f157da35  symbol=MSFT    content=MSFT initiates $5B share buyback program
+2026-07-05 11:38:40,013 [INFO] news_stub: Published  id=47180de6-2293-4349-9ff9-d57edd44f83f  symbol=AMZN    content=AMZN initiates $5B share buyback program
+2026-07-05 11:38:50,013 [INFO] news_stub: Published  id=b0d82b85-4202-42c9-9642-d33275f37df0  symbol=TSM     content=TSM 核心产品出现重大安全漏洞，大规模召回导致预计亏损数十亿美元
+2026-07-05 11:39:00,015 [INFO] news_stub: Published  id=a37302d6-3ebd-4592-9b11-5968efb282f9  symbol=AAPL    content=AAPL faces EU antitrust probe, European expansion at risk
+2026-07-05 11:39:10,015 [INFO] news_stub: Published  id=004db8ee-f21e-440e-9f00-a3500e60dd42  symbol=JPM     content=JPM 面临欧盟反垄断调查，可能影响欧洲市场业务扩展
+2026-07-05 11:39:20,016 [INFO] news_stub: Published  id=3d9a1e74-efd1-4863-8562-2d6f5013cc5f  symbol=GOOGL   content=GOOGL 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 11:39:30,018 [INFO] news_stub: Published  id=a172820f-aefb-4f56-925c-78dae1f2895f  symbol=AMZN    content=AMZN 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割
+2026-07-05 11:39:40,019 [INFO] news_stub: Published  id=9720b67f-b376-4f8d-b334-7a6da440f16c  symbol=GOOGL   content=GOOGL institutional investor reduces stake below 5% threshol
+2026-07-05 11:39:50,020 [INFO] news_stub: Published  id=f97ec824-5947-49c0-a3fc-8567dd672a5b  symbol=NVDA    content=NVDA expands market share with steady 12% revenue growth, be
+2026-07-05 11:40:00,021 [INFO] news_stub: Published  id=e01a287f-f732-4025-bb39-7b25bb403301  symbol=META    content=META lands multi-billion government contract, analysts raise
+2026-07-05 11:40:10,022 [INFO] news_stub: Published  id=124bae93-1ce3-4d0e-ac9a-7fe91d8c5017  symbol=JPM     content=JPM 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 11:40:20,023 [INFO] news_stub: Published  id=bb71da0c-63d7-4bf6-9c5c-1aa8d2baf4d3  symbol=AMZN    content=AMZN 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 11:40:30,024 [INFO] news_stub: Published  id=0472c9fb-f132-4b2c-a0e6-8b60fad39c94  symbol=AMZN    content=AMZN new product line drives 30% pre-order beat, positive us
+2026-07-05 11:40:40,025 [INFO] news_stub: Published  id=f226ddea-f792-4b72-a82d-445da18beedb  symbol=MSFT    content=MSFT new product line drives 30% pre-order beat, positive us
+2026-07-05 11:40:50,027 [INFO] news_stub: Published  id=55457cd1-4383-4cbc-bd9b-8d3a691421a4  symbol=MSFT    content=MSFT faces EU antitrust probe, European expansion at risk
+2026-07-05 11:41:00,029 [INFO] news_stub: Published  id=7f4aecc4-b1a0-491c-9b57-e1ba31bb7861  symbol=TSLA    content=TSLA 发布突破性AI芯片，性能超越行业标准3倍，股价盘后暴涨15%
+2026-07-05 11:41:10,030 [INFO] news_stub: Published  id=73984f93-44a9-4195-82e5-a188b04ec274  symbol=META    content=META expands market share with steady 12% revenue growth, be
+2026-07-05 11:41:20,031 [INFO] news_stub: Published  id=d70fd156-623f-495c-8d07-a08198df65f6  symbol=NVDA    content=NVDA initiates $5B share buyback program
+2026-07-05 11:41:30,033 [INFO] news_stub: Published  id=e4ca204b-d4f2-4636-adf7-6eb8233fa4e5  symbol=AMZN    content=AMZN lands multi-billion government contract, analysts raise
+2026-07-05 11:41:40,035 [INFO] news_stub: Published  id=f7c9ecd3-0820-4e39-b38a-3e406530b831  symbol=AMZN    content=AMZN major product recall after safety flaw discovered, esti
+2026-07-05 11:41:50,036 [INFO] news_stub: Published  id=70fdc0eb-23ce-4634-b8cf-20334eb24743  symbol=GOOGL   content=GOOGL 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 11:42:00,037 [INFO] news_stub: Published  id=2e2044b8-4048-4a07-95e8-0194dabd1c71  symbol=GOOGL   content=GOOGL unveils breakthrough AI chip, 3× industry benchmark, s
+2026-07-05 11:42:10,039 [INFO] news_stub: Published  id=301f00bf-3df4-4368-9ce9-c788136a1958  symbol=AAPL    content=AAPL 遭机构投资者减持，大股东持股比例降至5%以下
+2026-07-05 11:42:20,040 [INFO] news_stub: Published  id=047cff87-3ff7-44e7-91c6-594b11fa1029  symbol=JPM     content=JPM CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 11:42:30,041 [INFO] news_stub: Published  id=281e3896-8ead-4a20-8acb-839ae6544a96  symbol=BABA    content=BABA new product line drives 30% pre-order beat, positive us
+2026-07-05 11:42:40,043 [INFO] news_stub: Published  id=e45af5b9-5abd-4fe1-8671-ad1828ccdddd  symbol=NVDA    content=NVDA Q3 profit drops 8% on rising material costs, lowers gro
+2026-07-05 11:42:50,044 [INFO] news_stub: Published  id=33866ce6-c4e0-4db7-8420-d1039cabfc6d  symbol=NVDA    content=NVDA initiates $5B share buyback program
+2026-07-05 11:43:00,045 [INFO] news_stub: Published  id=e97808f0-3b57-48fc-a304-6af1ff43bbba  symbol=AAPL    content=AAPL 新产品线获得用户好评，预购订单超出预期30%
+2026-07-05 11:43:10,046 [INFO] news_stub: Published  id=ae7fb975-0163-45f5-a312-460b7fedbd41  symbol=TSLA    content=TSLA 宣布大规模股票回购计划，总金额达50亿美元
+2026-07-05 11:43:20,047 [INFO] news_stub: Published  id=240fcf41-d09c-407d-9d20-589891288794  symbol=JPM     content=JPM 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 11:43:30,048 [INFO] news_stub: Published  id=a0ef8af4-5025-4a6e-9e80-6702dacd6699  symbol=BABA    content=BABA 宣布与行业龙头达成战略合作，拓展海外市场
+2026-07-05 11:43:40,049 [INFO] news_stub: Published  id=bd07bb9c-3ff0-4265-8975-2cb405777ae6  symbol=MSFT    content=MSFT 扩大市场份额，Q3财报显示营收稳步增长12%，超出分析师预期
+2026-07-05 11:43:50,050 [INFO] news_stub: Published  id=b04bb885-d5e0-4c03-8fce-58b5734ac2f9  symbol=TSM     content=TSM expands market share with steady 12% revenue growth, bea
+2026-07-05 11:44:00,051 [INFO] news_stub: Published  id=207ad5b3-7ac8-42ae-a6b7-5d8a61ce1a0e  symbol=BABA    content=BABA faces EU antitrust probe, European expansion at risk
+2026-07-05 11:44:23,340 [INFO] news_stub: Logging to /app/logs/news_stub.log  level=INFO
+2026-07-05 11:44:23,340 [INFO] news_stub: News stub starting  host=rabbitmq:5672  queue=stock_news  count=∞  interval=10.0s  lang=mixed
+2026-07-05 11:44:23,536 [INFO] news_stub: Published  id=339f5e0c-2413-48f6-9ec0-964c3dffe0ec  symbol=AMZN    content=AMZN 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 11:44:33,537 [INFO] news_stub: Published  id=ba7476d2-8108-40b2-b83c-36b068d75a40  symbol=AMZN    content=AMZN 获得百亿美元级政府合同，分析师上调目标价至历史新高
+2026-07-05 11:44:43,538 [INFO] news_stub: Published  id=70bbe8ee-0e44-4c3b-aafb-872c4f7a35d5  symbol=META    content=META 被曝财务造假，SEC启动正式调查，股价盘后暴跌20%
+2026-07-05 11:44:53,539 [INFO] news_stub: Published  id=75efb288-6c7d-4081-9595-070812fb9134  symbol=MSFT    content=MSFT CEO resigns abruptly, sells entire stake, panic selling
+2026-07-05 11:45:03,541 [INFO] news_stub: Published  id=7aee1198-3e11-4028-ae51-5b8268cc0df8  symbol=BABA    content=BABA CEO突然辞职并抛售全部持股，引发市场恐慌性抛售
+2026-07-05 11:45:13,542 [INFO] news_stub: Published  id=f3e9e8e5-b45f-4a88-bb4e-f9a242b4c48e  symbol=JPM     content=JPM new product line drives 30% pre-order beat, positive use
+2026-07-05 11:45:23,543 [INFO] news_stub: Published  id=e4e0f1f6-e13d-4851-a828-1a043fc3447a  symbol=BABA    content=BABA accounting fraud allegations trigger SEC investigation,
+2026-07-05 11:45:33,543 [INFO] news_stub: Published  id=d95a99d2-e897-452d-b6d9-9059b4fb18e7  symbol=NVDA    content=NVDA appoints new CTO in executive reshuffle, market unmoved
+2026-07-05 11:45:43,545 [INFO] news_stub: Published  id=b2b94c08-0eb3-42ef-9c12-6c6a2a4e1fa7  symbol=GOOGL   content=GOOGL annual shareholder meeting reaffirms guidance, strateg
+2026-07-05 11:45:53,546 [INFO] news_stub: Published  id=8b0eeff7-1cb2-4d6a-9c07-02754855ef32  symbol=NVDA    content=NVDA 季度营收同比增长200%，远超华尔街预期，宣布1拆10股票分割

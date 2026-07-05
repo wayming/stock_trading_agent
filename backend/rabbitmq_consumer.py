@@ -10,7 +10,7 @@ from pika.exceptions import AMQPConnectionError, AMQPChannelError
 
 from config import RABBITMQ_HOST, RABBITMQ_PORT, RABBITMQ_QUEUE
 
-logger = logging.getLogger(f"backend.{__name__}")
+logger = logging.getLogger(__name__)
 
 class MQConsumer:
     def __init__(self, message_queue: queue.Queue):
@@ -22,8 +22,6 @@ class MQConsumer:
     def stop(self):
         """Stop the consumer gracefully."""
         self._running = False
-        if self._connection:
-            self._connection.channel().stop_consuming()
         if self._consumer_thread:
             self._consumer_thread.join()
 
@@ -38,7 +36,7 @@ class MQConsumer:
     def run(self):
         """Main loop for the consumer thread — connects, declares queue, and starts consuming."""
         
-        logger.info(f"[MQConsumer] RabbitMQ consumer started on queue '{RABBITMQ_QUEUE}'")
+        logger.info(f"RabbitMQ consumer started on queue '{RABBITMQ_QUEUE}'")
         self._running = True
         while self._running:
             try:
@@ -48,7 +46,8 @@ class MQConsumer:
                 channel.basic_qos(prefetch_count=1)
                 channel.basic_consume(queue=RABBITMQ_QUEUE, on_message_callback=self._on_message)
 
-                channel.start_consuming()
+                while self._running:
+                    channel.process_data_events(time_limit=1.0)
 
             except (AMQPConnectionError, AMQPChannelError, ConnectionError) as e:
                 if self._running:

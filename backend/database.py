@@ -13,7 +13,8 @@ class Database:
     def __init__(self):
         os.makedirs(os.path.dirname(DB_PATH) if os.path.dirname(DB_PATH) else ".", exist_ok=True)
         self._db_conn = sqlite3.connect(DB_PATH, check_same_thread=False)
-
+        self._db_conn.row_factory = sqlite3.Row
+        
     def create_schema(self):
         """Create database directory and tables."""
 
