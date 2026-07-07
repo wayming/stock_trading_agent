@@ -46,6 +46,8 @@ def init(sse: SSEManager, trader: MockTradingEngine, mq: MQConsumer, db_instance
 def get_health() -> HealthStatus:
     rmq = mq_consumer.is_connected()
     llm_configured = bool(db.get_config("llm_api_url"))
+    enabled = db.get_config("llm_enabled")
+    llm_enabled = enabled != "false" if enabled is not None else True
     db_ok = True
     try:
         db.get_db().execute("SELECT 1")
@@ -55,6 +57,7 @@ def get_health() -> HealthStatus:
         rabbitmq=rmq,
         database=db_ok,
         llm_configured=llm_configured,
+        llm_enabled=llm_enabled,
     )
 
 
@@ -67,11 +70,14 @@ def get_config() -> ConfigResponse:
     url = db.get_config("llm_api_url") or ""
     key = db.get_config("llm_api_key") or ""
     model = db.get_config("llm_model") or "gpt-4o"
+    enabled = db.get_config("llm_enabled")
+    llm_enabled = enabled != "false" if enabled is not None else True
     masked = key[:4] + "****" + key[-4:] if len(key) > 8 else "****"
     return ConfigResponse(
         llm_api_url=url,
         llm_api_key_masked=masked,
         llm_model=model,
+        llm_enabled=llm_enabled,
     )
 
 
@@ -80,13 +86,27 @@ def update_config(body: ConfigUpdate) -> ConfigResponse:
     db.set_config("llm_api_url", body.llm_api_url)
     db.set_config("llm_api_key", body.llm_api_key)
     db.set_config("llm_model", body.llm_model)
+    db.set_config("llm_enabled", "true" if body.llm_enabled else "false")
     key = body.llm_api_key
     masked = key[:4] + "****" + key[-4:] if len(key) > 8 else "****"
     return ConfigResponse(
         llm_api_url=body.llm_api_url,
         llm_api_key_masked=masked,
         llm_model=body.llm_model,
+        llm_enabled=body.llm_enabled,
     )
+
+
+@router.post("/config/toggle-llm")
+def toggle_llm() -> dict:
+    """Toggle LLM on/off.  When off the pipeline uses keyword-based
+    fallback analysis instead of calling the configured LLM API."""
+    current = db.get_config("llm_enabled")
+    enabled = current != "false" if current is not None else True
+    new_enabled = not enabled
+    db.set_config("llm_enabled", "true" if new_enabled else "false")
+    logger.info(f"LLM toggled {'ON' if new_enabled else 'OFF'}")
+    return {"llm_enabled": new_enabled}
 
 
 #

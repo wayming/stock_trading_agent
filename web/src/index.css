@@ -49,21 +49,31 @@ header .dot.err { background: var(--danger); }
 
 .layout {
   display: grid;
-  grid-template-columns: 300px 350px 1fr;
+  grid-template-columns: 1fr 1fr 2fr;
   gap: 16px;
   padding: 16px 16px;
   height: calc(100vh - 48px);
+  transition: grid-template-columns 0.3s ease;
+}
+
+/* When analysis column is not rendered: two equal columns */
+.layout.two-col {
+  grid-template-columns: 1fr 1fr;
 }
 
 .col { display: flex; flex-direction: column; overflow: hidden; min-height: 0; }
 .col-scroll { flex: 1; overflow-y: auto; }
 
 @media (max-width: 1200px) {
-  .layout { grid-template-columns: 320px 1fr; }
+  .layout { grid-template-columns: 1fr 2fr; }
   .layout .col:nth-child(2) { display: none; }
+  .layout.two-col { grid-template-columns: 1fr; }
 }
 @media (max-width: 900px) {
   .layout { grid-template-columns: 1fr; }
+  .layout .col:nth-child(2),
+  .layout .col:nth-child(3) { display: none; }
+  .layout.two-col { grid-template-columns: 1fr; }
 }
 
 /* ── Card ────────────────────────────────────── */
@@ -242,6 +252,115 @@ select { background: #fff; cursor: pointer; }
   gap: 12px;
   align-items: center;
   flex-wrap: wrap;
+}
+
+/* ── LLM Response styled display ─────────────── */
+
+.llm-response-card {
+  background: #fafbfc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.llm-field {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.llm-field:last-child {
+  border-bottom: none;
+}
+
+.llm-field-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.llm-sentiment-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.llm-sentiment-badge.super-bullish {
+  background: #fef2f2; color: #dc2626; border: 1px solid #fecaca;
+}
+.llm-sentiment-badge.bullish {
+  background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa;
+}
+.llm-sentiment-badge.neutral {
+  background: #f3f4f6; color: #4b5563; border: 1px solid #e5e7eb;
+}
+.llm-sentiment-badge.bearish {
+  background: #ecfeff; color: #0891b2; border: 1px solid #a5f3fc;
+}
+.llm-sentiment-badge.super-bearish {
+  background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0;
+}
+
+.llm-confidence-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.llm-confidence-bar {
+  flex: 1;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.llm-confidence-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.5s ease;
+}
+
+.llm-confidence-fill.high { background: var(--accent); }
+.llm-confidence-fill.mid  { background: var(--warning); }
+.llm-confidence-fill.low { background: var(--danger); }
+
+.llm-confidence-val {
+  font-size: 14px;
+  font-weight: 700;
+  min-width: 42px;
+  text-align: right;
+}
+
+.llm-reasoning-text {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #444;
+  background: #fff;
+  padding: 10px 14px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+}
+
+/* Raw fallback (when JSON parse fails) */
+
+.llm-raw-fallback {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 12px;
+  border-radius: var(--radius);
+  font-size: 12px;
+  line-height: 1.6;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 400px;
+  overflow: auto;
 }
 
 pre {

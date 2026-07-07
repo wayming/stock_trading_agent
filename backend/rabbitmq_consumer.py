@@ -1,6 +1,7 @@
 """RabbitMQ consumer — listens for news messages in a background thread."""
 
 import threading
+import json
 import logging
 import time
 import queue
@@ -66,10 +67,38 @@ class MQConsumer:
         logger.info("RabbitMQ consumer stopped")
 
     def _on_message(self, ch, method, _properties, body):
-        """Callback invoked when a message is received from the queue."""
+        """Callback invoked when a message is received from the queue.
+
+        Parses the raw JSON, normalises field names so downstream consumers
+        receive a consistent schema regardless of the originating provider.
+        """
         try:
             logger.debug("New message received")
-            self._message_queue.put_nowait(body)
+            raw = body.decode("utf-8")
+            msg = json.loads(raw)
+
+            # -- field normalisation ------------------------------------
+            # body (article text)  →  content
+            if "body" in msg and "content" not in msg:
+                msg["content"] = msg.pop("body")
+
+            # time  →  timestamp
+            if "time" in msg and "timestamp" not in msg:
+                msg["timestamp"] = msg.pop("time")
+
+            # relatedSymbols (list of {symbol, …})  →  symbol (first match)
+            if "relatedSymbols" in msg and "symbol" not in msg:
+                symbols = msg.pop("relatedSymbols")
+                if isinstance(symbols, list) and symbols:
+                    msg["symbol"] = symbols[0].get("symbol", "")
+                elif isinstance(symbols, str):
+                    msg["symbol"] = symbols
+                else:
+                    msg["symbol"] = ""
+
+            # -----------------------------------------------------------
+            normalised = json.dumps(msg, ensure_ascii=False).encode("utf-8")
+            self._message_queue.put_nowait(normalised)
             ch.basic_ack(delivery_tag=method.delivery_tag)
         except Exception:
             logger.exception("Error processing message — nacking without requeue")

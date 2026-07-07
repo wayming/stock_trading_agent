@@ -6,6 +6,7 @@ export interface HealthStatus {
   rabbitmq: boolean;
   database: boolean;
   llm_configured: boolean;
+  llm_enabled: boolean;
 }
 
 export interface NewsItem {
@@ -64,12 +65,14 @@ export interface Config {
   llm_api_url: string;
   llm_api_key_masked: string;
   llm_model: string;
+  llm_enabled: boolean;
 }
 
 export interface ConfigUpdate {
   llm_api_url: string;
   llm_api_key: string;
   llm_model: string;
+  llm_enabled: boolean;
 }
 
 // ── API functions ─────────────────────────────────────
@@ -122,5 +125,10 @@ export async function updateConfig(cfg: ConfigUpdate): Promise<Config> {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(cfg),
   });
+  return res.json();
+}
+
+export async function toggleLlm(): Promise<{ llm_enabled: boolean }> {
+  const res = await fetch(`${BASE}/config/toggle-llm`, { method: 'POST' });
   return res.json();
 }

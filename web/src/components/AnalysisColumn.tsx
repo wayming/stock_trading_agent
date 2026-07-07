@@ -1,4 +1,7 @@
+import { useMemo } from 'react';
 import type { AnalysisResult } from '../api';
+
+// ── helpers ──────────────────────────────────────────
 
 function sentimentClass(sentiment: string): string {
   const map: Record<string, string> = {
@@ -11,19 +14,47 @@ function sentimentClass(sentiment: string): string {
   return map[sentiment] || '';
 }
 
+/** Extract a single optional field from the LLM JSON response. */
+function extractField(llmResponse: string, field: string): string | null {
+  try {
+    const obj = JSON.parse(llmResponse);
+    if (obj && typeof obj === 'object' && obj[field]) {
+      return String(obj[field]);
+    }
+  } catch {
+    const match = llmResponse.match(/\{[\s\S]*\}/);
+    if (match) {
+      try {
+        const obj = JSON.parse(match[0]);
+        if (obj && typeof obj === 'object' && obj[field]) {
+          return String(obj[field]);
+        }
+      } catch { /* ignore */ }
+    }
+  }
+  return null;
+}
+
+// ── main component ──────────────────────────────────
+
 interface Props {
   analysis: AnalysisResult | null;
 }
 
 export default function AnalysisColumn({ analysis }: Props) {
+  const translate = useMemo(
+    () => (analysis ? extractField(analysis.llm_response, 'translate') : null),
+    [analysis],
+  );
+
   if (!analysis) {
     return (
       <div className="col">
         <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
           <h3>Analysis Results</h3>
           <div className="empty">
-            <p style={{ fontSize: 14 }}>Select a signal to view analysis</p>
-            <p style={{ fontSize: 12, marginTop: 8 }}>Click a trading signal in the first column</p>
+            <p style={{ fontSize: 14 }}>Analysis pending…</p>
+            <p style={{ fontSize: 12, marginTop: 8 }}>Waiting for LLM response via SSE stream</p>
           </div>
         </div>
       </div>
@@ -35,6 +66,7 @@ export default function AnalysisColumn({ analysis }: Props) {
       <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
         <h3>Analysis Result</h3>
 
+        {/* ── Summary header ── */}
         <div className="analysis-result-header">
           <span className={sentimentClass(analysis.sentiment)} style={{ fontSize: 14, fontWeight: 700 }}>
             {analysis.sentiment}
@@ -50,14 +82,18 @@ export default function AnalysisColumn({ analysis }: Props) {
         </div>
 
         <div className="col-scroll" style={{ flex: 1 }}>
+          {/* ── Translate ── */}
+          {translate && (
+            <div className="analysis-section">
+              <h4>Translate</h4>
+              <pre>{translate}</pre>
+            </div>
+          )}
+
+          {/* ── Prompt ── */}
           <div className="analysis-section">
             <h4>Prompt Sent</h4>
             <pre>{analysis.prompt}</pre>
-          </div>
-
-          <div className="analysis-section">
-            <h4>LLM Response</h4>
-            <pre>{analysis.llm_response}</pre>
           </div>
         </div>
       </div>

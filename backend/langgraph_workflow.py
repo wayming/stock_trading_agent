@@ -51,7 +51,8 @@ SYSTEM_PROMPT = """You are a professional stock market analyst. Analyze the sent
 Output MUST be a valid JSON object with these exact fields:
 - "sentiment": one of ["超级利好", "普通利好", "neutral", "普通利空", "超级利空"]
 - "confidence_score": a float between 0.0 and 1.0 indicating confidence
-- "reasoning": a brief explanation (2-4 sentences) of why this sentiment was assigned
+- "reasoning": a brief explanation (2-4 sentences) of why this sentiment was assigned in Chinese
+- "translate": Chinese translation of the given news
 
 Rules:
 - 超级利好 (super bullish): News strongly suggests significant stock price increase (major earnings beat, breakthrough product, huge contract win, favorable macro policy changes)
@@ -60,7 +61,8 @@ Rules:
 - 普通利空 (bearish): News moderately negative (minor earnings misses, regulatory headwinds)
 - 超级利空 (super bearish): News strongly suggests significant price drop (major fraud, bankruptcy risk, catastrophic events)
 
-Output ONLY the JSON object, no other text."""
+Output ONLY the JSON object, no other text.
+"""
 
 db: Database = None
 logger = logging.getLogger(f"backend.{__name__}")
@@ -69,14 +71,27 @@ logger = logging.getLogger(f"backend.{__name__}")
 #
 
 def receive_news(state: AnalysisState) -> AnalysisState:
-    """Load LLM config from the database and pass through news fields."""
+    """Load LLM config from the database and pass through news fields.
+
+    When ``llm_enabled`` is ``false`` the URL is forced to empty so
+    ``call_llm`` falls back to keyword-based sentiment analysis.
+    """
     if db is None:
         logger.error("Database not initialized")
         raise ValueError("Database not initialized")
+
+    enabled = db.get_config("llm_enabled")
+    llm_enabled = enabled != "false" if enabled is not None else True
+
     url = db.get_config("llm_api_url") or ""
     key = db.get_config("llm_api_key") or ""
     model = db.get_config("llm_model") or "gpt-4o"
-    logger.info(f"Loaded LLM config: url={url}, model={model}")
+
+    if not llm_enabled:
+        logger.info("LLM is disabled — using keyword fallback")
+        url = ""
+
+    logger.info(f"Loaded LLM config: url={url}, model={model}, enabled={llm_enabled}")
     state["llm_api_url"] = url
     state["llm_api_key"] = key
     state["llm_model"] = model

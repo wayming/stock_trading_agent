@@ -20,12 +20,12 @@ export default function App() {
   const [config, setConfig] = useState<Config | null>(null);
   const [positionsOpen, setPositionsOpen] = useState(0);
   const [totalPnl, setTotalPnl] = useState(0);
-  const [health, setHealth] = useState({ rabbitmq: false, llm_configured: false });
+  const [health, setHealth] = useState({ rabbitmq: false, llm_configured: false, llm_enabled: true });
 
   // Initial data load
   useEffect(() => {
-    fetchHealth().then(h => setHealth({ rabbitmq: h.rabbitmq, llm_configured: h.llm_configured }));
-    fetchConfig().then(c => setConfig(c));
+    fetchHealth().then(h => setHealth({ rabbitmq: h.rabbitmq, llm_configured: h.llm_configured, llm_enabled: h.llm_enabled }));
+    fetchConfig().then(c => { setConfig(c); setHealth(prev => ({ ...prev, llm_enabled: c.llm_enabled })); });
     fetchSignals(100).then(s => setSignals(s.slice(0, MAX_ITEMS)));
     fetchNews(100, 0).then(n => setNews(n.slice(0, MAX_ITEMS)));
     fetchPositions().then(p => {
@@ -64,7 +64,7 @@ export default function App() {
       setTimeout(() => {
         // EventSource will auto-reconnect, but we help by polling health
         fetchHealth().then(h =>
-          setHealth({ rabbitmq: h.rabbitmq, llm_configured: h.llm_configured })
+          setHealth({ rabbitmq: h.rabbitmq, llm_configured: h.llm_configured, llm_enabled: h.llm_enabled })
         );
       }, 3000);
     };
@@ -76,7 +76,7 @@ export default function App() {
   useEffect(() => {
     const t = setInterval(() => {
       fetchHealth().then(h =>
-        setHealth({ rabbitmq: h.rabbitmq, llm_configured: h.llm_configured })
+        setHealth({ rabbitmq: h.rabbitmq, llm_configured: h.llm_configured, llm_enabled: h.llm_enabled })
       );
       fetchPositions().then(p => {
         setPositionsOpen(p.pnl.open_positions);
@@ -92,7 +92,7 @@ export default function App() {
 
   const handleConfigSaved = useCallback((cfg: Config) => {
     setConfig(cfg);
-    setHealth(prev => ({ ...prev, llm_configured: true }));
+    setHealth(prev => ({ ...prev, llm_configured: true, llm_enabled: cfg.llm_enabled }));
   }, []);
 
   // Derive highlighted news ID and selected analysis from selectedSignalId
@@ -101,17 +101,21 @@ export default function App() {
   const selectedAnalysis = selectedSignal
     ? analyses.find(a => a.news_id === selectedSignal.news_id) || null
     : null;
+  // Show the analysis column whenever a signal is selected (even while
+  // the SSE-delivered analysis is still in-flight — a placeholder is shown).
+  const showAnalysis = selectedSignalId !== null;
 
   return (
     <>
       <Header
         rabbitmqOk={health.rabbitmq}
         llmConfigured={health.llm_configured}
+        llmEnabled={health.llm_enabled}
         configOpen={configOpen}
         onToggleConfig={() => setConfigOpen(prev => !prev)}
       />
 
-      <div className="layout">
+      <div className={`layout${!showAnalysis ? ' two-col' : ''}`}>
         {/* Column 1: Trading Signals */}
         <SignalColumn
           signals={signals}
@@ -127,12 +131,12 @@ export default function App() {
           highlightedNewsId={highlightedNewsId}
         />
 
-        {/* Column 3: Analysis Results */}
-        <AnalysisColumn
-          analysis={selectedSignal
-            ? analyses.find(a => a.news_id === selectedSignal.news_id) || null
-            : null}
-        />
+        {/* Column 3: Analysis Results — only rendered when a signal is selected */}
+        {showAnalysis && (
+          <AnalysisColumn
+            analysis={selectedAnalysis}
+          />
+        )}
       </div>
 
       <ConfigPanel

@@ -65,15 +65,18 @@ class ConfigUpdate(BaseModel):
     llm_api_url: str
     llm_api_key: str
     llm_model: str = "gpt-4o"
+    llm_enabled: bool = True
 
 
 class ConfigResponse(BaseModel):
     llm_api_url: str
     llm_api_key_masked: str
     llm_model: str
+    llm_enabled: bool
 
 
 class HealthStatus(BaseModel):
     rabbitmq: bool
     database: bool
     llm_configured: bool
+    llm_enabled: bool
