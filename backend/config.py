@@ -13,3 +13,6 @@ DEFAULT_LLM_API_URL = os.getenv("LLM_API_URL", "")
 DEFAULT_LLM_API_KEY = os.getenv("LLM_API_KEY", "")
 DEFAULT_LLM_MODEL = os.getenv("LLM_MODEL", "gpt-4o")
 DEFAULT_LLM_ENABLED = os.getenv("LLM_ENABLED", "true").lower() in ("1", "true", "yes")
+
+# MCP server for stock financial data
+MCP_SERVER_URL = os.getenv("MCP_SERVER_URL", "http://localhost:8081")

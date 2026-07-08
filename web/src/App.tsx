@@ -101,8 +101,9 @@ export default function App() {
   const selectedAnalysis = selectedSignal
     ? analyses.find(a => a.news_id === selectedSignal.news_id) || null
     : null;
-  // Show the analysis column whenever a signal is selected (even while
-  // the SSE-delivered analysis is still in-flight — a placeholder is shown).
+  const selectedNews = selectedSignal
+    ? news.find(n => n.id === selectedSignal.news_id) || null
+    : null;
   const showAnalysis = selectedSignalId !== null;
 
   return (
@@ -135,6 +136,7 @@ export default function App() {
         {showAnalysis && (
           <AnalysisColumn
             analysis={selectedAnalysis}
+            newsItem={selectedNews}
           />
         )}
       </div>

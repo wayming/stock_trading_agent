@@ -53,17 +53,29 @@ def get_health() -> HealthStatus:
         db.get_db().execute("SELECT 1")
     except Exception:
         db_ok = False
+    # Check MCP client status
+    mcp_ok = False
+    try:
+        import mcp_client
+        mcp_ok = mcp_client.get_mcp_client() is not None
+    except Exception:
+        pass
     return HealthStatus(
         rabbitmq=rmq,
         database=db_ok,
         llm_configured=llm_configured,
         llm_enabled=llm_enabled,
+        mcp_connected=mcp_ok,
     )
 
 
 #
 # Config
 #
+
+def _mask_key(key: str) -> str:
+    return key[:4] + "****" + key[-4:] if len(key) > 8 else "****"
+
 
 @router.get("/config")
 def get_config() -> ConfigResponse:
@@ -72,12 +84,13 @@ def get_config() -> ConfigResponse:
     model = db.get_config("llm_model") or "gpt-4o"
     enabled = db.get_config("llm_enabled")
     llm_enabled = enabled != "false" if enabled is not None else True
-    masked = key[:4] + "****" + key[-4:] if len(key) > 8 else "****"
+    mcp_url = db.get_config("mcp_server_url") or ""
     return ConfigResponse(
         llm_api_url=url,
-        llm_api_key_masked=masked,
+        llm_api_key_masked=_mask_key(key),
         llm_model=model,
         llm_enabled=llm_enabled,
+        mcp_server_url=mcp_url,
     )
 
 
@@ -87,14 +100,31 @@ def update_config(body: ConfigUpdate) -> ConfigResponse:
     db.set_config("llm_api_key", body.llm_api_key)
     db.set_config("llm_model", body.llm_model)
     db.set_config("llm_enabled", "true" if body.llm_enabled else "false")
+    if body.mcp_server_url:
+        db.set_config("mcp_server_url", body.mcp_server_url)
+    # Re-initialize MCP client if URL changed
+    _reinit_mcp(body.mcp_server_url)
     key = body.llm_api_key
-    masked = key[:4] + "****" + key[-4:] if len(key) > 8 else "****"
     return ConfigResponse(
         llm_api_url=body.llm_api_url,
-        llm_api_key_masked=masked,
+        llm_api_key_masked=_mask_key(key),
         llm_model=body.llm_model,
         llm_enabled=body.llm_enabled,
+        mcp_server_url=body.mcp_server_url or (db.get_config("mcp_server_url") or ""),
     )
+
+
+def _reinit_mcp(url: str):
+    """Re-initialize the MCP client with a new URL."""
+    if not url:
+        return
+    try:
+        import mcp_client
+        mcp_client.shutdown_mcp_client()
+        ok = mcp_client.init_mcp_client(url)
+        logger.info(f"MCP re-initialized: {url} — {'OK' if ok else 'FAILED'}")
+    except Exception as e:
+        logger.warning(f"MCP re-init failed: {e}")
 
 
 @router.post("/config/toggle-llm")

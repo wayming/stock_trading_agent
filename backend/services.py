@@ -85,6 +85,7 @@ class ServiceProvider:
 
         # Step 3: Store sentiment result
         result_id = str(uuid.uuid4())
+        conversation = langgraph_workflow.extract_conversation(state)
         sentiment_result = {
             "id": result_id,
             "news_id": news_id,
@@ -93,6 +94,7 @@ class ServiceProvider:
             "reasoning": state["reasoning"],
             "prompt": state["prompt"],
             "llm_response": state["llm_response_raw"],
+            "conversation": json.dumps(conversation, ensure_ascii=False),
             "trade_action": state["trade_action"],
             "timestamp": datetime.now(timezone.utc).isoformat(),
         }
@@ -132,6 +134,7 @@ class ServiceProvider:
             "news_id": news_id,
             "prompt": state["prompt"],
             "llm_response": state["llm_response_raw"],
+            "conversation": json.loads(sentiment_result["conversation"]),
             "sentiment": state["sentiment"],
             "confidence_score": state["confidence_score"],
             "reasoning": state["reasoning"],

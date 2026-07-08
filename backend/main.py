@@ -14,6 +14,8 @@ from trading_engine import MockTradingEngine
 import services
 import api_routes
 import queue
+import mcp_client
+import config
 from database import Database
 from logging_config import setup_logging
 
@@ -55,6 +57,10 @@ async def lifespan(app: FastAPI):
     # Startup
     logger.info("Starting Stock Trading Agent backend...")
 
+    # Initialize MCP client for financial data enrichment
+    mcp_ok = mcp_client.init_mcp_client(config.MCP_SERVER_URL)
+    logger.info(f"MCP client: {'connected' if mcp_ok else 'unavailable (financial enrichment disabled)'}")
+
     # Inject dependencies
     api_routes.init(sse_manager, trading_engine, mq_consumer, db)
 
@@ -79,6 +85,7 @@ async def lifespan(app: FastAPI):
     
     sse_task.cancel()
     await sse_task
+    mcp_client.shutdown_mcp_client()
     db.close()
     logger.info("Shutdown complete.")
 

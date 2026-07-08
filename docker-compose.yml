@@ -30,6 +30,7 @@ services:
       - LLM_API_URL=${LLM_API_URL:-}
       - LLM_API_KEY=${LLM_API_KEY:-}
       - LLM_MODEL=${LLM_MODEL:-gpt-4o}
+      - MCP_SERVER_URL=${MCP_SERVER_URL:-http://mcp-server:8081}
       - DEBUG
     volumes:
       - ./backend:/app          # hot-reload source

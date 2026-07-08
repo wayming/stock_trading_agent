@@ -29,11 +29,19 @@ export interface Signal {
   trade_id: string | null;
 }
 
+export interface ConversationRound {
+  round: number;
+  prompt: string;
+  response: string;
+  type: 'tool_call' | 'final';
+}
+
 export interface AnalysisResult {
   id: string;
   news_id: string;
   prompt: string;
   llm_response: string;
+  conversation: ConversationRound[];
   sentiment: string;
   confidence_score: number;
   reasoning: string;
@@ -66,6 +74,7 @@ export interface Config {
   llm_api_key_masked: string;
   llm_model: string;
   llm_enabled: boolean;
+  mcp_server_url: string;
 }
 
 export interface ConfigUpdate {
@@ -73,6 +82,7 @@ export interface ConfigUpdate {
   llm_api_key: string;
   llm_model: string;
   llm_enabled: boolean;
+  mcp_server_url: string;
 }
 
 // ── API functions ─────────────────────────────────────

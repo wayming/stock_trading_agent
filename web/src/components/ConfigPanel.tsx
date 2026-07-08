@@ -14,6 +14,7 @@ export default function ConfigPanel({ config, open, onClose, onSaved }: Props) {
   const [key, setKey] = useState('');
   const [model, setModel] = useState(config?.llm_model || 'gpt-4o');
   const [llmEnabled, setLlmEnabled] = useState(config?.llm_enabled ?? true);
+  const [mcpUrl, setMcpUrl] = useState(config?.mcp_server_url || '');
   const [toggling, setToggling] = useState(false);
   const [saving, setSaving] = useState(false);
 
@@ -23,6 +24,7 @@ export default function ConfigPanel({ config, open, onClose, onSaved }: Props) {
       setUrl(config.llm_api_url || '');
       setModel(config.llm_model || 'gpt-4o');
       setLlmEnabled(config.llm_enabled ?? true);
+      setMcpUrl(config.mcp_server_url || '');
       setKey('');
     }
   }, [open, config]);
@@ -53,6 +55,7 @@ export default function ConfigPanel({ config, open, onClose, onSaved }: Props) {
         llm_api_key: key || '',
         llm_model: model,
         llm_enabled: llmEnabled,
+        mcp_server_url: mcpUrl,
       };
       // If key is empty, don't overwrite the stored one
       if (!key && config?.llm_api_key_masked) {
@@ -168,6 +171,23 @@ export default function ConfigPanel({ config, open, onClose, onSaved }: Props) {
             placeholder="gpt-4o"
             style={{ width: '100%' }}
           />
+        </div>
+
+        <hr style={{ border: 'none', borderTop: '1px solid var(--border)', margin: '16px 0' }} />
+        <h3 style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 12 }}>MCP Financial Data</h3>
+
+        <div className="form-group">
+          <label>MCP Server URL</label>
+          <input
+            type="text"
+            value={mcpUrl}
+            onChange={e => setMcpUrl(e.target.value)}
+            placeholder="http://sacollector-mcp:8081"
+            style={{ width: '100%' }}
+          />
+          <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
+            sacollector MCP server — provides stock financial data for enrichment
+          </div>
         </div>
 
         <div className="btn-row">

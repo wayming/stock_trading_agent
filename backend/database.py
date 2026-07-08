@@ -16,7 +16,7 @@ class Database:
         self._db_conn.row_factory = sqlite3.Row
         
     def create_schema(self):
-        """Create database directory and tables."""
+        """Create database directory and tables, including migrations."""
 
         self._db_conn.row_factory = sqlite3.Row
         self._db_conn.execute("PRAGMA journal_mode=WAL")
@@ -38,6 +38,7 @@ class Database:
                 prompt TEXT DEFAULT '',
                 llm_response TEXT DEFAULT '',
                 trade_action TEXT DEFAULT 'NONE',
+                conversation TEXT DEFAULT '',
                 timestamp TEXT DEFAULT '',
                 FOREIGN KEY(news_id) REFERENCES news(id)
             );
@@ -59,7 +60,20 @@ class Database:
                 value TEXT NOT NULL
             );
         """)
+        # Migrations: add columns that may not exist in older databases
+        self._migrate()
         self._db_conn.commit()
+
+    def _migrate(self):
+        """Add missing columns to existing tables."""
+        migrations = [
+            "ALTER TABLE sentiment_results ADD COLUMN conversation TEXT DEFAULT ''",
+        ]
+        for sql in migrations:
+            try:
+                self._db_conn.execute(sql)
+            except sqlite3.OperationalError:
+                pass  # column already exists
 
 
     def close(self):
@@ -112,8 +126,8 @@ class Database:
         result_id = item.get("id") or str(uuid.uuid4())
         self._db_conn.execute(
             """INSERT OR IGNORE INTO sentiment_results
-            (id, news_id, sentiment, confidence_score, reasoning, prompt, llm_response, trade_action, timestamp)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            (id, news_id, sentiment, confidence_score, reasoning, prompt, llm_response, trade_action, conversation, timestamp)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
             (
                 result_id,
                 item["news_id"],
@@ -123,6 +137,7 @@ class Database:
                 item.get("prompt", ""),
                 item.get("llm_response", ""),
                 item.get("trade_action", "NONE"),
+                item.get("conversation", ""),
                 item.get("timestamp", datetime.now(timezone.utc).isoformat()),
             ),
         )
