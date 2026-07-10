@@ -180,6 +180,15 @@ def agent_node(state: AnalysisState) -> AnalysisState:
     if not api_url.endswith("/chat/completions"):
         api_url += "/v1/chat/completions"
 
+    # Log what we are sending (summary)
+    msg_count = len(state["messages"])
+    tool_results = [m for m in state["messages"] if m.get("role") == "tool"]
+    if tool_results:
+        logger.info(
+            f"Agent round {state['round_count']+1}: "
+            f"sending {msg_count} messages ({len(tool_results)} tool results) to LLM"
+        )
+
     payload: dict = {
         "model": model,
         "messages": state["messages"],
@@ -295,15 +304,27 @@ def _get_tool_definitions() -> list[dict]:
 
 
 def _execute_mcp_tool(name: str, arguments: dict) -> dict | str:
-    """Execute an MCP tool by name. Returns result dict or error string."""
+    """Execute an MCP tool by name. Returns result dict or error string.
+
+    Tries to auto-reconnect if the MCP client is unavailable.
+    """
     try:
-        from mcp_client import get_mcp_client
+        from mcp_client import get_mcp_client, init_mcp_client
         mcp = get_mcp_client()
         if mcp is None:
-            return {"error": "MCP client not connected — is the MCP server running?"}
+            # Try to initialize from DB config
+            mcp_url = db.get_config("mcp_server_url") or "" if db else ""
+            if mcp_url:
+                logger.info(f"Attempting lazy MCP connect to {mcp_url}")
+                if init_mcp_client(mcp_url):
+                    mcp = get_mcp_client()
+            if mcp is None:
+                return {"error": "MCP client not connected — is the MCP server running?"}
+
         result = mcp.call_tool(name, arguments)
         if result is None:
-            return {"error": f"Tool {name} returned no data"}
+            # call_tool already tried reconnect — give up
+            return {"error": f"Tool {name} returned no data — MCP server may be unreachable"}
         return result
     except Exception as e:
         logger.error(f"MCP tool {name} failed: {e}")
@@ -483,75 +504,65 @@ def get_workflow():
 
 
 def extract_conversation(state: AnalysisState) -> list[dict]:
-    """Extract LLM conversation rounds from messages for frontend display.
+    """Extract ALL LLM conversation messages as a flat chat log.
 
-    Returns a list of rounds, each containing the prompt sent to LLM
-    and the response received (which may include tool_calls).
-
-    Falls back to a single round from prompt/llm_response_raw if no
-    message history is available (e.g. keyword fallback mode).
+    Returns a list of messages, each with role, label and content.
+    No grouping — every message is shown individually.
     """
     messages = state.get("messages", [])
-    rounds: list[dict] = []
-    pending_prompt: list[dict] = []
+    result: list[dict] = []
 
     if not messages:
-        # No message history — build a single round from prompt + response
+        # Fallback: single prompt/response pair
         prompt = state.get("prompt", "")
         response = state.get("llm_response_raw", "")
-        if prompt or response:
-            rounds.append({
-                "round": 1,
-                "prompt": prompt,
-                "response": response,
-                "type": "final",
-            })
-        return rounds
+        if prompt:
+            result.append({"role": "user", "label": "User Message (News)", "content": prompt})
+        if response:
+            result.append({"role": "assistant", "label": "LLM Final Response", "content": response})
+        return result
 
-    for i, msg in enumerate(messages):
+    for msg in messages:
         role = msg.get("role", "")
 
-        if role in ("system", "user"):
-            pending_prompt.append(msg)
+        if role == "system":
+            result.append({
+                "role": "system",
+                "label": "System Prompt",
+                "content": msg.get("content", ""),
+            })
 
-        elif role == "tool":
-            # tool results are sent as the next prompt to the LLM
-            pending_prompt.append(msg)
+        elif role == "user":
+            result.append({
+                "role": "user",
+                "label": "User Message (News)",
+                "content": msg.get("content", ""),
+            })
 
         elif role == "assistant":
             tool_calls = msg.get("tool_calls")
             if tool_calls:
-                # LLM requested tools — record this round
-                rounds.append({
-                    "round": len(rounds) + 1,
-                    "prompt": _msg_to_text(pending_prompt),
-                    "response": _format_tool_calls(tool_calls),
-                    "type": "tool_call",
+                result.append({
+                    "role": "assistant",
+                    "label": f"LLM → Tool Call ({len(tool_calls)} tool{'s' if len(tool_calls)>1 else ''})",
+                    "content": _format_tool_calls(tool_calls),
                 })
-                pending_prompt = []  # reset for next round
             else:
-                # LLM gave final text response
-                rounds.append({
-                    "round": len(rounds) + 1,
-                    "prompt": _msg_to_text(pending_prompt),
-                    "response": msg.get("content", ""),
-                    "type": "final",
+                result.append({
+                    "role": "assistant",
+                    "label": "LLM Final Response",
+                    "content": msg.get("content", ""),
                 })
-                pending_prompt = []
 
-    if not rounds:
-        # No rounds extracted — fall back to prompt / response pair
-        prompt = state.get("prompt", "")
-        response = state.get("llm_response_raw", "")
-        if prompt or response:
-            rounds.append({
-                "round": 1,
-                "prompt": prompt,
-                "response": response,
-                "type": "final",
+        elif role == "tool":
+            tool_id = msg.get("tool_call_id", "?")[:12]
+            result.append({
+                "role": "tool",
+                "label": f"Tool Result [{tool_id}]",
+                "content": msg.get("content", ""),
             })
 
-    return rounds
+    return result
 
 
 def _msg_to_text(msgs: list[dict]) -> str:

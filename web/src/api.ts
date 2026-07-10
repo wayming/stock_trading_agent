@@ -29,11 +29,10 @@ export interface Signal {
   trade_id: string | null;
 }
 
-export interface ConversationRound {
-  round: number;
-  prompt: string;
-  response: string;
-  type: 'tool_call' | 'final';
+export interface ConversationMessage {
+  role: 'system' | 'user' | 'assistant' | 'tool';
+  label: string;
+  content: string;
 }
 
 export interface AnalysisResult {
@@ -41,7 +40,7 @@ export interface AnalysisResult {
   news_id: string;
   prompt: string;
   llm_response: string;
-  conversation: ConversationRound[];
+  conversation: ConversationMessage[];
   sentiment: string;
   confidence_score: number;
   reasoning: string;

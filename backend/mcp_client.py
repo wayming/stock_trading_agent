@@ -76,15 +76,26 @@ class McpClient:
         self._client.close()
         self.session_id = None
 
+    def reconnect(self) -> bool:
+        """Re-establish the MCP session."""
+        self.disconnect()
+        self._client = httpx.Client(timeout=30.0)
+        self._request_id = 0
+        return self.connect()
+
     # ------------------------------------------------------------------
     # Tool calling
     # ------------------------------------------------------------------
 
     def call_tool(self, name: str, arguments: dict) -> dict | None:
-        """Call an MCP tool and return the structuredContent."""
+        """Call an MCP tool and return the structuredContent.
+
+        Auto-reconnects once if the session appears dead.
+        """
         if not self.session_id:
-            logger.error("MCP not connected — call connect() first")
-            return None
+            logger.warning(f"MCP session lost — attempting reconnect for {name}")
+            if not self.reconnect():
+                return None
 
         try:
             resp = self._client.post(

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import type { AnalysisResult, ConversationRound, NewsItem } from '../api';
+import type { AnalysisResult, ConversationMessage, NewsItem } from '../api';
 
 // ── helpers ──────────────────────────────────────────
 
@@ -34,93 +34,65 @@ function extractField(llmResponse: string, field: string): string | null {
   return null;
 }
 
-// ── conversation round display ───────────────────────
+// ── styling per role ─────────────────────────────────
 
-function ConversationRounds({ rounds }: { rounds: ConversationRound[] }) {
-  if (!rounds || rounds.length === 0) return null;
+const ROLE_STYLE: Record<string, { bg: string; border: string; labelColor: string; contentBg: string }> = {
+  system:  { bg: '#f0f4ff', border: '#c4d7f7', labelColor: '#3b5998', contentBg: '#f8faff' },
+  user:    { bg: '#f0fff4', border: '#b7e4c7', labelColor: '#1e7e34', contentBg: '#f8fff8' },
+  assistant: { bg: '#fffbe6', border: '#e6d87e', labelColor: '#8a6d00', contentBg: '#fffef5' },
+  tool:    { bg: '#fff0f5', border: '#f0c4d8', labelColor: '#9b1d5a', contentBg: '#fffafc' },
+};
+
+// ── conversation chat log ────────────────────────────
+
+function ConversationLog({ messages }: { messages: ConversationMessage[] }) {
+  if (!messages || messages.length === 0) return null;
 
   return (
     <>
       <h4 style={{ marginTop: 16, marginBottom: 8, color: '#333', fontWeight: 700, fontSize: 13 }}>
-        LLM Conversation ({rounds.length} round{rounds.length > 1 ? 's' : ''})
+        LLM Conversation ({messages.length} message{messages.length > 1 ? 's' : ''})
       </h4>
-      {rounds.map((r) => (
-        <div key={r.round} style={{
-          marginBottom: 12,
-          border: '1px solid #ccc',
-          borderRadius: 6,
-          overflow: 'hidden',
-        }}>
-          {/* Round header */}
-          <div style={{
-            padding: '8px 12px',
-            background: r.type === 'tool_call' ? '#fff3cd' : '#d4edda',
-            fontSize: 12,
-            fontWeight: 700,
-            color: '#333',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
+      {messages.map((msg, idx) => {
+        const style = ROLE_STYLE[msg.role] || ROLE_STYLE.system;
+        return (
+          <div key={idx} style={{
+            marginBottom: 8,
+            border: `1px solid ${style.border}`,
+            borderRadius: 6,
+            overflow: 'hidden',
           }}>
-            <span>Round {r.round}</span>
-            <span style={{
-              padding: '2px 10px',
-              borderRadius: 8,
+            {/* Label bar */}
+            <div style={{
+              padding: '6px 12px',
+              background: style.bg,
               fontSize: 11,
               fontWeight: 700,
-              background: r.type === 'tool_call' ? '#e6a700' : '#1e7e34',
-              color: '#fff',
+              color: style.labelColor,
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
             }}>
-              {r.type === 'tool_call' ? 'Tool Call' : 'Final'}
-            </span>
-          </div>
-
-          {/* Prompt sent to LLM */}
-          <div style={{ padding: '8px 12px' }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#555', marginBottom: 4, textTransform: 'uppercase', letterSpacing: 0.5 }}>
-              Prompt Sent
+              <span>{msg.label}</span>
+              <span style={{ fontSize: 9, opacity: 0.5 }}>#{idx + 1}</span>
             </div>
+            {/* Content */}
             <pre style={{
-              background: '#f5f5f5',
+              background: style.contentBg,
               padding: 10,
-              borderRadius: 4,
+              borderRadius: 0,
               fontSize: 12,
               lineHeight: 1.6,
               color: '#222',
-              maxHeight: 250,
+              maxHeight: 300,
               overflow: 'auto',
               whiteSpace: 'pre-wrap',
               wordBreak: 'break-word',
               margin: 0,
-              border: '1px solid #e0e0e0',
-            }}>{r.prompt}</pre>
+            }}>{msg.content}</pre>
           </div>
-
-          {/* Response from LLM */}
-          <div style={{
-            padding: '8px 12px',
-            borderTop: '1px solid #ddd',
-          }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#555', marginBottom: 4, textTransform: 'uppercase', letterSpacing: 0.5 }}>
-              Response
-            </div>
-            <pre style={{
-              background: r.type === 'tool_call' ? '#fffbe6' : '#f0fdf4',
-              padding: 10,
-              borderRadius: 4,
-              fontSize: 12,
-              lineHeight: 1.6,
-              color: '#222',
-              maxHeight: 250,
-              overflow: 'auto',
-              whiteSpace: 'pre-wrap',
-              wordBreak: 'break-word',
-              margin: 0,
-              border: '1px solid #e0e0e0',
-            }}>{r.response}</pre>
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </>
   );
 }
@@ -221,9 +193,9 @@ export default function AnalysisColumn({ analysis, newsItem }: Props) {
             </div>
           )}
 
-          {/* ── Conversation Rounds (MCP tool-calling) ── */}
+          {/* ── Conversation (chat log) ── */}
           {hasConversation ? (
-            <ConversationRounds rounds={analysis.conversation} />
+            <ConversationLog messages={analysis.conversation} />
           ) : (
             <div className="analysis-section">
               <h4>Prompt Sent</h4>
