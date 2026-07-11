@@ -67,6 +67,9 @@ class ConfigUpdate(BaseModel):
     llm_model: str = "gpt-4o"
     llm_enabled: bool = True
     mcp_server_url: str = ""
+    context_llm_url: str = ""
+    context_llm_key: str = ""
+    context_llm_model: str = ""
 
 
 class ConfigResponse(BaseModel):
@@ -75,6 +78,9 @@ class ConfigResponse(BaseModel):
     llm_model: str
     llm_enabled: bool
     mcp_server_url: str
+    context_llm_url: str
+    context_llm_key_masked: str
+    context_llm_model: str
 
 
 class HealthStatus(BaseModel):

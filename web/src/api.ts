@@ -74,6 +74,9 @@ export interface Config {
   llm_model: string;
   llm_enabled: boolean;
   mcp_server_url: string;
+  context_llm_url: string;
+  context_llm_key_masked: string;
+  context_llm_model: string;
 }
 
 export interface ConfigUpdate {
@@ -82,6 +85,9 @@ export interface ConfigUpdate {
   llm_model: string;
   llm_enabled: boolean;
   mcp_server_url: string;
+  context_llm_url: string;
+  context_llm_key: string;
+  context_llm_model: string;
 }
 
 // ── API functions ─────────────────────────────────────

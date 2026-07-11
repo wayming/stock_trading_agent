@@ -15,6 +15,9 @@ export default function ConfigPanel({ config, open, onClose, onSaved }: Props) {
   const [model, setModel] = useState(config?.llm_model || 'gpt-4o');
   const [llmEnabled, setLlmEnabled] = useState(config?.llm_enabled ?? true);
   const [mcpUrl, setMcpUrl] = useState(config?.mcp_server_url || '');
+  const [ctxUrl, setCtxUrl] = useState(config?.context_llm_url || '');
+  const [ctxKey, setCtxKey] = useState('');
+  const [ctxModel, setCtxModel] = useState(config?.context_llm_model || '');
   const [toggling, setToggling] = useState(false);
   const [saving, setSaving] = useState(false);
 
@@ -25,7 +28,10 @@ export default function ConfigPanel({ config, open, onClose, onSaved }: Props) {
       setModel(config.llm_model || 'gpt-4o');
       setLlmEnabled(config.llm_enabled ?? true);
       setMcpUrl(config.mcp_server_url || '');
+      setCtxUrl(config.context_llm_url || '');
+      setCtxModel(config.context_llm_model || '');
       setKey('');
+      setCtxKey('');
     }
   }, [open, config]);
 
@@ -56,6 +62,9 @@ export default function ConfigPanel({ config, open, onClose, onSaved }: Props) {
         llm_model: model,
         llm_enabled: llmEnabled,
         mcp_server_url: mcpUrl,
+        context_llm_url: ctxUrl,
+        context_llm_key: ctxKey || '',
+        context_llm_model: ctxModel,
       };
       // If key is empty, don't overwrite the stored one
       if (!key && config?.llm_api_key_masked) {
@@ -188,6 +197,45 @@ export default function ConfigPanel({ config, open, onClose, onSaved }: Props) {
           <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
             sacollector MCP server — provides stock financial data for enrichment
           </div>
+        </div>
+
+        <hr style={{ border: 'none', borderTop: '1px solid var(--border)', margin: '16px 0' }} />
+        <h3 style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 12 }}>Context LLM (News Search)</h3>
+        <p style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 12 }}>
+          Used to search recent positive/negative news about the stock. Falls back to main LLM if not configured.
+        </p>
+
+        <div className="form-group">
+          <label>Context LLM URL</label>
+          <input
+            type="text"
+            value={ctxUrl}
+            onChange={e => setCtxUrl(e.target.value)}
+            placeholder="https://api.deepseek.com (leave empty to use main LLM)"
+            style={{ width: '100%' }}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Context LLM Key</label>
+          <input
+            type="password"
+            value={ctxKey}
+            onChange={e => setCtxKey(e.target.value)}
+            placeholder={config?.context_llm_key_masked || 'sk-...'}
+            style={{ width: '100%' }}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Context LLM Model</label>
+          <input
+            type="text"
+            value={ctxModel}
+            onChange={e => setCtxModel(e.target.value)}
+            placeholder="deepseek-v4-pro"
+            style={{ width: '100%' }}
+          />
         </div>
 
         <div className="btn-row">

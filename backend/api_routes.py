@@ -85,12 +85,18 @@ def get_config() -> ConfigResponse:
     enabled = db.get_config("llm_enabled")
     llm_enabled = enabled != "false" if enabled is not None else True
     mcp_url = db.get_config("mcp_server_url") or ""
+    ctx_url = db.get_config("context_llm_url") or ""
+    ctx_key = db.get_config("context_llm_key") or ""
+    ctx_model = db.get_config("context_llm_model") or ""
     return ConfigResponse(
         llm_api_url=url,
         llm_api_key_masked=_mask_key(key),
         llm_model=model,
         llm_enabled=llm_enabled,
         mcp_server_url=mcp_url,
+        context_llm_url=ctx_url,
+        context_llm_key_masked=_mask_key(ctx_key),
+        context_llm_model=ctx_model,
     )
 
 
@@ -102,15 +108,25 @@ def update_config(body: ConfigUpdate) -> ConfigResponse:
     db.set_config("llm_enabled", "true" if body.llm_enabled else "false")
     if body.mcp_server_url:
         db.set_config("mcp_server_url", body.mcp_server_url)
+    if body.context_llm_url:
+        db.set_config("context_llm_url", body.context_llm_url)
+    if body.context_llm_key:
+        db.set_config("context_llm_key", body.context_llm_key)
+    if body.context_llm_model:
+        db.set_config("context_llm_model", body.context_llm_model)
     # Re-initialize MCP client if URL changed
     _reinit_mcp(body.mcp_server_url)
     key = body.llm_api_key
+    ctx_key = body.context_llm_key
     return ConfigResponse(
         llm_api_url=body.llm_api_url,
         llm_api_key_masked=_mask_key(key),
         llm_model=body.llm_model,
         llm_enabled=body.llm_enabled,
         mcp_server_url=body.mcp_server_url or (db.get_config("mcp_server_url") or ""),
+        context_llm_url=body.context_llm_url or (db.get_config("context_llm_url") or ""),
+        context_llm_key_masked=_mask_key(ctx_key),
+        context_llm_model=body.context_llm_model or (db.get_config("context_llm_model") or ""),
     )
 
 

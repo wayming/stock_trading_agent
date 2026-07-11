@@ -16,7 +16,6 @@ import json
 import re
 from typing import TypedDict, Literal
 
-import httpx
 from langgraph.graph import StateGraph, END
 
 from models import SentimentLevel, TradeAction
@@ -55,6 +54,13 @@ class AnalysisState(TypedDict):
     sentiment: str
     confidence_score: float
     reasoning: str
+    # Context LLM config (for news searching)
+    context_llm_url: str
+    context_llm_key: str
+    context_llm_model: str
+    # News context (populated by fetch_news_context)
+    positive_news_context: str
+    negative_news_context: str
     # Trade
     trade_action: str
 
@@ -125,13 +131,22 @@ def receive_news(state: AnalysisState) -> AnalysisState:
         url = ""
 
     mcp_url = db.get_config("mcp_server_url") or ""
+    ctx_url = db.get_config("context_llm_url") or ""
+    ctx_key = db.get_config("context_llm_key") or ""
+    ctx_model = db.get_config("context_llm_model") or ""
     logger.info(
         f"Loaded config: llm_url={url}, model={model}, "
-        f"llm_enabled={llm_enabled}, mcp_url={mcp_url}"
+        f"llm_enabled={llm_enabled}, mcp_url={mcp_url}, "
+        f"ctx_llm={'configured' if ctx_url else 'not set'}"
     )
     state["llm_api_url"] = url
     state["llm_api_key"] = key
     state["llm_model"] = model
+    state["context_llm_url"] = ctx_url
+    state["context_llm_key"] = ctx_key
+    state["context_llm_model"] = ctx_model
+    state["positive_news_context"] = ""
+    state["negative_news_context"] = ""
     return state
 
 
@@ -142,13 +157,134 @@ def build_prompt(state: AnalysisState) -> AnalysisState:
     user_msg += f"Content:\n{state.get('news_content', '')}"
 
     state["prompt"] = user_msg
-    state["messages"] = [ 
+    state["messages"] = [
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": user_msg},
     ]
     state["round_count"] = 0
     logger.debug(f"Built prompt: {user_msg}")
     return state
+
+
+#
+# Fetch news context node — calls context LLM for positive/negative news
+#
+
+CONTEXT_PROMPT_POSITIVE = """You are a financial news researcher. List up to 5 significant POSITIVE events or news items about the stock {symbol} from the last 6 months (since {six_months_ago}).
+
+Rules:
+- Only include real, verifiable events (earnings beats, product launches, analyst upgrades, contract wins, etc.)
+- If you are uncertain or don't know, return fewer items or say "no specific positive events found"
+- Return ONLY a JSON array of objects with fields: "date" (YYYY-MM-DD), "event" (one sentence), "impact" (one sentence)
+
+Example format:
+[
+  {{"date": "2026-03-15", "event": "Q4 earnings beat estimates by 12%", "impact": "Stock rose 5% on earnings day"}}
+]
+
+If no positive events are known, return: []"""
+
+CONTEXT_PROMPT_NEGATIVE = """You are a financial news researcher. List up to 5 significant NEGATIVE events or news items about the stock {symbol} from the last 6 months (since {six_months_ago}).
+
+Rules:
+- Only include real, verifiable events (earnings misses, regulatory issues, product recalls, analyst downgrades, etc.)
+- If you are uncertain or don't know, return fewer items or say "no specific negative events found"
+- Return ONLY a JSON array of objects with fields: "date" (YYYY-MM-DD), "event" (one sentence), "impact" (one sentence)
+
+Example format:
+[
+  {{"date": "2026-02-10", "event": "Regulatory fine of $2B imposed by EU", "impact": "Stock dropped 8% on announcement"}}
+]
+
+If no negative events are known, return: []"""
+
+
+def fetch_news_context(state: AnalysisState) -> AnalysisState:
+    """Call the context LLM to search for recent positive and negative news.
+
+    Uses a separately configurable LLM.  Falls back to main LLM if not configured.
+    """
+    symbol = state.get("news_symbol", "").strip()
+    if not symbol:
+        logger.info("No stock symbol — skipping news context fetch")
+        return state
+
+    # Determine which LLM to use for context search
+    ctx_url = state.get("context_llm_url", "") or state.get("llm_api_url", "")
+    ctx_key = state.get("context_llm_key", "") or state.get("llm_api_key", "")
+    ctx_model = state.get("context_llm_model", "") or state.get("llm_model", "gpt-4o")
+
+    if not ctx_url:
+        logger.info("No context LLM configured — skipping news context fetch")
+        return state
+
+    from datetime import datetime, timedelta
+    from llm import invoke_llm_simple
+    six_months_ago = (datetime.now() - timedelta(days=180)).strftime("%Y-%m-%d")
+
+    # Fetch positive news
+    pos_prompt = CONTEXT_PROMPT_POSITIVE.format(symbol=symbol, six_months_ago=six_months_ago)
+    try:
+        pos_raw = invoke_llm_simple(
+            api_url=ctx_url, api_key=ctx_key, model=ctx_model,
+            system_prompt=pos_prompt,
+            user_prompt=f"Search recent news for {symbol}",
+            temperature=0.2, max_tokens=600, timeout=30.0,
+        )
+    except Exception as e:
+        logger.warning(f"Context LLM positive news call failed: {e}")
+        pos_raw = "[]"
+    state["positive_news_context"] = pos_raw
+    logger.info(f"Positive news context for {symbol}: {len(pos_raw)} chars")
+
+    # Fetch negative news
+    neg_prompt = CONTEXT_PROMPT_NEGATIVE.format(symbol=symbol, six_months_ago=six_months_ago)
+    try:
+        neg_raw = invoke_llm_simple(
+            api_url=ctx_url, api_key=ctx_key, model=ctx_model,
+            system_prompt=neg_prompt,
+            user_prompt=f"Search recent news for {symbol}",
+            temperature=0.2, max_tokens=600, timeout=30.0,
+        )
+    except Exception as e:
+        logger.warning(f"Context LLM negative news call failed: {e}")
+        neg_raw = "[]"
+    state["negative_news_context"] = neg_raw
+    logger.info(f"Negative news context for {symbol}: {len(neg_raw)} chars")
+
+    # Append news context to the user message in the conversation
+    _append_news_context_to_messages(state, symbol)
+
+    return state
+
+
+def _append_news_context_to_messages(state: AnalysisState, symbol: str):
+    """Insert news context into the messages array before the agent loop."""
+    pos_ctx = state.get("positive_news_context", "")
+    neg_ctx = state.get("negative_news_context", "")
+
+    if not pos_ctx.strip() and not neg_ctx.strip():
+        return
+
+    parts = [f"[Recent News Context for {symbol} — last 6 months]\n"]
+    if pos_ctx.strip() and pos_ctx.strip() != "[]":
+        parts.append(f"Positive events:\n{pos_ctx}\n")
+    if neg_ctx.strip() and neg_ctx.strip() != "[]":
+        parts.append(f"Negative events:\n{neg_ctx}\n")
+
+    context_msg = "\n".join(parts)
+
+    # Append as an additional user message (before any tool calls)
+    messages = state["messages"]
+    # Find the last user message and append to it, or insert after system
+    for i, m in enumerate(messages):
+        if m.get("role") == "user":
+            messages[i]["content"] = m["content"] + "\n\n" + context_msg
+            break
+    else:
+        messages.insert(1, {"role": "user", "content": context_msg})
+
+    logger.info(f"Appended news context ({len(context_msg)} chars) to user message")
 
 
 #
@@ -172,14 +308,6 @@ def agent_node(state: AnalysisState) -> AnalysisState:
 
     tools = _get_tool_definitions()
 
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {key}",
-    }
-    api_url = url.rstrip("/")
-    if not api_url.endswith("/chat/completions"):
-        api_url += "/v1/chat/completions"
-
     # Log what we are sending (summary)
     msg_count = len(state["messages"])
     tool_results = [m for m in state["messages"] if m.get("role") == "tool"]
@@ -189,20 +317,18 @@ def agent_node(state: AnalysisState) -> AnalysisState:
             f"sending {msg_count} messages ({len(tool_results)} tool results) to LLM"
         )
 
-    payload: dict = {
-        "model": model,
-        "messages": state["messages"],
-        "temperature": 0.3,
-        "max_tokens": 800,
-    }
-    if tools:
-        payload["tools"] = tools
-        payload["tool_choice"] = "auto"
-
     try:
-        resp = httpx.post(api_url, json=payload, headers=headers, timeout=60.0)
-        resp.raise_for_status()
-        data = resp.json()
+        from llm import invoke_llm
+        response = invoke_llm(
+            api_url=url,
+            api_key=key,
+            model=model,
+            messages=state["messages"],
+            tools=tools if tools else None,
+            temperature=0.3,
+            max_tokens=800,
+            timeout=60.0,
+        )
     except Exception as e:
         logger.error(f"LLM API call failed: {e}")
         state["llm_response_raw"] = json.dumps({
@@ -212,16 +338,25 @@ def agent_node(state: AnalysisState) -> AnalysisState:
         }, ensure_ascii=False)
         return state
 
-    choice = data["choices"][0]
-    msg = choice["message"]
-    tool_calls = msg.get("tool_calls")
+    tool_calls = getattr(response, "tool_calls", None)
 
     if tool_calls:
-        # LLM wants tools — append assistant message (with tool_calls), don't finalise yet
+        # LLM wants tools — convert to OpenAI dict format and append
+        openai_tool_calls = [
+            {
+                "id": tc.get("id", tc.get("name", "")),
+                "type": "function",
+                "function": {
+                    "name": tc["name"],
+                    "arguments": tc["args"] if isinstance(tc["args"], str) else json.dumps(tc["args"]),
+                },
+            }
+            for tc in tool_calls
+        ]
         state["messages"].append({
             "role": "assistant",
-            "content": msg.get("content"),
-            "tool_calls": tool_calls,
+            "content": getattr(response, "content", None),
+            "tool_calls": openai_tool_calls,
         })
         logger.info(
             f"Agent round {state['round_count']+1}: "
@@ -229,7 +364,7 @@ def agent_node(state: AnalysisState) -> AnalysisState:
         )
     else:
         # Plain text response — analysis complete
-        state["llm_response_raw"] = msg.get("content", "")
+        state["llm_response_raw"] = getattr(response, "content", "")
         logger.debug(f"LLM final response: {state['llm_response_raw'][:200]}")
 
     return state
@@ -470,6 +605,7 @@ def build_workflow() -> StateGraph:
 
     graph.add_node("receive_news", receive_news)
     graph.add_node("build_prompt", build_prompt)
+    graph.add_node("fetch_news_context", fetch_news_context)
     graph.add_node("agent_node", agent_node)
     graph.add_node("execute_tools", execute_tools)
     graph.add_node("parse_response", parse_response)
@@ -477,7 +613,8 @@ def build_workflow() -> StateGraph:
 
     graph.set_entry_point("receive_news")
     graph.add_edge("receive_news", "build_prompt")
-    graph.add_edge("build_prompt", "agent_node")
+    graph.add_edge("build_prompt", "fetch_news_context")
+    graph.add_edge("fetch_news_context", "agent_node")
 
     graph.add_conditional_edges(
         "agent_node",
@@ -522,6 +659,7 @@ def extract_conversation(state: AnalysisState) -> list[dict]:
             result.append({"role": "assistant", "label": "LLM Final Response", "content": response})
         return result
 
+    context_appended = False  # only insert news context once
     for msg in messages:
         role = msg.get("role", "")
 
@@ -538,6 +676,23 @@ def extract_conversation(state: AnalysisState) -> list[dict]:
                 "label": "User Message (News)",
                 "content": msg.get("content", ""),
             })
+            # Insert news context once, right after the first user message
+            if not context_appended:
+                context_appended = True
+                pos_ctx = state.get("positive_news_context", "")
+                neg_ctx = state.get("negative_news_context", "")
+                if pos_ctx and pos_ctx.strip() and pos_ctx.strip() != "[]":
+                    result.append({
+                        "role": "tool",
+                        "label": "Context LLM → Positive News (6 months)",
+                        "content": pos_ctx,
+                    })
+                if neg_ctx and neg_ctx.strip() and neg_ctx.strip() != "[]":
+                    result.append({
+                        "role": "tool",
+                        "label": "Context LLM → Negative News (6 months)",
+                        "content": neg_ctx,
+                    })
 
         elif role == "assistant":
             tool_calls = msg.get("tool_calls")
@@ -608,6 +763,11 @@ def run_analysis(news_item: dict) -> AnalysisState:
         "sentiment": "",
         "confidence_score": 0.0,
         "reasoning": "",
+        "context_llm_url": "",
+        "context_llm_key": "",
+        "context_llm_model": "",
+        "positive_news_context": "",
+        "negative_news_context": "",
         "trade_action": "",
     }
     result = workflow.invoke(initial_state)
