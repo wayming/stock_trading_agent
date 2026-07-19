@@ -13,6 +13,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy source
 COPY *.py .
+COPY strategy/ ./strategy/
+COPY domain/ ./domain/
+COPY broker/ ./broker/
+COPY grpc_stubs/ ./grpc_stubs/
 
 # Create data + log dirs
 RUN mkdir -p /app/data /app/logs

@@ -126,14 +126,17 @@ def receive_news(state: AnalysisState) -> AnalysisState:
     key = db.get_config("llm_api_key") or ""
     model = db.get_config("llm_model") or "gpt-4o"
 
-    if not llm_enabled:
-        logger.info("LLM is disabled — using keyword fallback")
-        url = ""
-
     mcp_url = db.get_config("mcp_server_url") or ""
     ctx_url = db.get_config("context_llm_url") or ""
     ctx_key = db.get_config("context_llm_key") or ""
     ctx_model = db.get_config("context_llm_model") or ""
+
+    if not llm_enabled:
+        logger.info("LLM is disabled — using keyword fallback for ALL LLM calls")
+        url = ""
+        key = ""
+        ctx_url = ""
+        ctx_key = ""
     logger.info(
         f"Loaded config: llm_url={url}, model={model}, "
         f"llm_enabled={llm_enabled}, mcp_url={mcp_url}, "

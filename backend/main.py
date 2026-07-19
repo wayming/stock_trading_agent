@@ -10,7 +10,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from dispatcher import Dispatcher
 import rabbitmq_consumer
 from sse_manager import SSEManager
-from trading_engine import MockTradingEngine
+from trading_engine import TradingEngine
+from default_strategy import default_strategy
 import services
 import api_routes
 import queue
@@ -44,7 +45,7 @@ async def lifespan(app: FastAPI):
     """Startup and shutdown lifecycle."""
     db = Database()
     db.create_schema()
-    trading_engine = MockTradingEngine(db)
+    trading_engine = TradingEngine(db, default_strategy)
     mq_consumer = rabbitmq_consumer.MQConsumer(in_message_queue)
     service_context = services.ServiceContext.create()
     service_provider = services.ServiceProvider(service_context)

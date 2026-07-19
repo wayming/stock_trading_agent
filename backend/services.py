@@ -8,7 +8,8 @@ from datetime import datetime, timezone
 
 import database
 import langgraph_workflow
-from trading_engine import MockTradingEngine
+from trading_engine import TradingEngine
+from default_strategy import default_strategy
 from sse_manager import SSEManager
 from dataclasses import dataclass
 
@@ -16,7 +17,7 @@ logger = logging.getLogger(f"backend.{__name__}")
 
 # Shared instances (set by main.py on startup)
 sse_manager: SSEManager = None  # type: ignore
-trading_engine: MockTradingEngine = None  # type: ignore
+trading_engine: TradingEngine = None  # type: ignore
 _main_loop: asyncio.AbstractEventLoop = None  # type: ignore
 
 
@@ -28,14 +29,14 @@ def set_main_loop(loop: asyncio.AbstractEventLoop):
 @dataclass
 class ServiceContext:
     database: database.Database
-    trading_engine: MockTradingEngine
-    
+    trading_engine: TradingEngine
+
     @classmethod
     def create(cls):
         db = database.Database()
         return cls(
             database=db,
-            trading_engine=MockTradingEngine(db),
+            trading_engine=TradingEngine(db, default_strategy),
         )
 
     @classmethod
@@ -100,9 +101,10 @@ class ServiceProvider:
         }
         self.context.database.insert_sentiment_result(sentiment_result)
 
-        # Step 4: Evaluate trade
+        # Step 4: Evaluate trade via strategy
         trade = self.context.trading_engine.evaluate_signal(
             sentiment=state["sentiment"],
+            confidence_score=state["confidence_score"],
             symbol=news_dict.get("symbol", ""),
             news_id=news_id,
             sentiment_result_id=result_id,

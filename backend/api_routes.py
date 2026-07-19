@@ -17,7 +17,7 @@ from models import (
 )
 from database import Database
 from rabbitmq_consumer import MQConsumer
-from trading_engine import MockTradingEngine
+from trading_engine import TradingEngine
 from sse_manager import SSEManager
 import services
 
@@ -27,10 +27,10 @@ router = APIRouter(prefix="/api")
 
 # These are injected by main.py on startup
 sse_manager: SSEManager
-trading_engine: MockTradingEngine
+trading_engine: TradingEngine
 mq_consumer: MQConsumer
 db: Database
-def init(sse: SSEManager, trader: MockTradingEngine, mq: MQConsumer, db_instance: Database):
+def init(sse: SSEManager, trader: TradingEngine, mq: MQConsumer, db_instance: Database):
     global sse_manager, trading_engine, mq_consumer, db
     sse_manager = sse
     trading_engine = trader
