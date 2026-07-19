@@ -16,17 +16,46 @@ logger = logging.getLogger(__name__)
 class MQConsumer:
     def __init__(self, message_queue: queue.Queue):
         self._running = False
+        self._listening_enabled = False  # Default: NOT listening — user must click Start
         self._connection = None
+        self._channel = None
         self._message_queue = message_queue
         self._consumer_thread: threading.Thread | None = None
 
-    def stop(self):
-        """Stop the consumer gracefully."""
-        self._running = False
-        self._connection.close()
-        if self._consumer_thread:
-            self._consumer_thread.join()
+    def start(self):
+        """Enable message consumption from RabbitMQ."""
+        self._listening_enabled = True
+        logger.info("MQ consumption STARTED by user")
+        # Interrupt active consuming so the loop re-checks the flag
+        if self._connection and self._connection.is_open and self._channel:
+            try:
+                self._connection.add_callback_threadsafe(self._channel.stop_consuming)
+            except Exception:
+                pass
 
+    def stop(self):
+        """Disable message consumption (pause without disconnect)."""
+        self._listening_enabled = False
+        logger.info("MQ consumption STOPPED by user")
+        if self._connection and self._connection.is_open and self._channel:
+            try:
+                self._connection.add_callback_threadsafe(self._channel.stop_consuming)
+            except Exception:
+                pass
+
+    def is_listening(self) -> bool:
+        """Check whether consumer is actively listening for messages."""
+        return self._listening_enabled
+
+    def shutdown(self):
+        """Fully stop the consumer and close connection (used on app shutdown)."""
+        self._running = False
+        self._listening_enabled = False
+        try:
+            if self._connection and self._connection.is_open:
+                self._connection.close()
+        except Exception:
+            pass
 
     def is_connected(self) -> bool:
         """Check if the RabbitMQ connection is alive."""
@@ -36,19 +65,33 @@ class MQConsumer:
             return False
 
     def run(self):
-        """Main loop for the consumer thread — connects, declares queue, and starts consuming."""
-        
-        logger.info(f"RabbitMQ consumer started on queue '{RABBITMQ_QUEUE}'")
+        """Main loop for the consumer thread — connects, declares queue,
+        and starts consuming only when listening is enabled by the user."""
+
+        logger.info(f"RabbitMQ consumer started on queue '{RABBITMQ_QUEUE}' (listening: OFF)")
         self._running = True
         while self._running:
             try:
                 self._connection = self._connect()
-                channel = self._connection.channel()
-                channel.queue_declare(queue=RABBITMQ_QUEUE, durable=True)
-                channel.basic_qos(prefetch_count=1)
-                channel.basic_consume(queue=RABBITMQ_QUEUE, on_message_callback=self._on_message)
+                self._channel = self._connection.channel()
+                self._channel.queue_declare(queue=RABBITMQ_QUEUE, durable=True)
+                self._channel.basic_qos(prefetch_count=1)
 
-                channel.start_consuming()
+                if self._listening_enabled:
+                    logger.info("Starting consumption (listening=ON)")
+                    self._channel.basic_consume(queue=RABBITMQ_QUEUE, on_message_callback=self._on_message)
+                    self._channel.start_consuming()
+                else:
+                    # Poll loop: wait for start() signal while keeping connection alive
+                    while self._running and not self._listening_enabled:
+                        try:
+                            self._connection.sleep(1.0)
+                        except Exception:
+                            break  # connection died, exit inner loop to reconnect
+
+                    if self._running and self._listening_enabled:
+                        self._channel.basic_consume(queue=RABBITMQ_QUEUE, on_message_callback=self._on_message)
+                        self._channel.start_consuming()
 
             except (AMQPConnectionError, AMQPChannelError, ConnectionError) as e:
                 if self._running:
@@ -64,6 +107,7 @@ class MQConsumer:
                         self._connection.close()
                 except Exception:
                     pass
+                self._channel = None
         logger.info("RabbitMQ consumer stopped")
 
     def _on_message(self, ch, method, _properties, body):

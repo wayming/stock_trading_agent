@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import {
   fetchHealth, fetchSignals, fetchNews, fetchPositions, fetchConfig,
+  startMq, stopMq,
   type Signal, type NewsItem, type AnalysisResult, type Config,
 } from './api';
 import Header from './components/Header';
@@ -20,11 +21,11 @@ export default function App() {
   const [config, setConfig] = useState<Config | null>(null);
   const [positionsOpen, setPositionsOpen] = useState(0);
   const [totalPnl, setTotalPnl] = useState(0);
-  const [health, setHealth] = useState({ rabbitmq: false, llm_configured: false, llm_enabled: true });
+  const [health, setHealth] = useState({ rabbitmq: false, llm_configured: false, llm_enabled: true, mq_listening: false });
 
   // Initial data load
   useEffect(() => {
-    fetchHealth().then(h => setHealth({ rabbitmq: h.rabbitmq, llm_configured: h.llm_configured, llm_enabled: h.llm_enabled }));
+    fetchHealth().then(h => setHealth({ rabbitmq: h.rabbitmq, llm_configured: h.llm_configured, llm_enabled: h.llm_enabled, mq_listening: h.mq_listening }));
     fetchConfig().then(c => { setConfig(c); setHealth(prev => ({ ...prev, llm_enabled: c.llm_enabled })); });
     fetchSignals(100).then(s => setSignals(s.slice(0, MAX_ITEMS)));
     fetchNews(100, 0).then(n => setNews(n.slice(0, MAX_ITEMS)));
@@ -64,7 +65,7 @@ export default function App() {
       setTimeout(() => {
         // EventSource will auto-reconnect, but we help by polling health
         fetchHealth().then(h =>
-          setHealth({ rabbitmq: h.rabbitmq, llm_configured: h.llm_configured, llm_enabled: h.llm_enabled })
+          setHealth({ rabbitmq: h.rabbitmq, llm_configured: h.llm_configured, llm_enabled: h.llm_enabled, mq_listening: h.mq_listening })
         );
       }, 3000);
     };
@@ -76,7 +77,7 @@ export default function App() {
   useEffect(() => {
     const t = setInterval(() => {
       fetchHealth().then(h =>
-        setHealth({ rabbitmq: h.rabbitmq, llm_configured: h.llm_configured, llm_enabled: h.llm_enabled })
+        setHealth({ rabbitmq: h.rabbitmq, llm_configured: h.llm_configured, llm_enabled: h.llm_enabled, mq_listening: h.mq_listening })
       );
       fetchPositions().then(p => {
         setPositionsOpen(p.pnl.open_positions);
@@ -93,6 +94,20 @@ export default function App() {
   const handleConfigSaved = useCallback((cfg: Config) => {
     setConfig(cfg);
     setHealth(prev => ({ ...prev, llm_configured: true, llm_enabled: cfg.llm_enabled }));
+  }, []);
+
+  const handleStartMq = useCallback(async () => {
+    try {
+      const res = await startMq();
+      setHealth(prev => ({ ...prev, mq_listening: res.listening }));
+    } catch (e) { console.error('Failed to start MQ:', e); }
+  }, []);
+
+  const handleStopMq = useCallback(async () => {
+    try {
+      const res = await stopMq();
+      setHealth(prev => ({ ...prev, mq_listening: res.listening }));
+    } catch (e) { console.error('Failed to stop MQ:', e); }
   }, []);
 
   // Derive highlighted news ID and selected analysis from selectedSignalId
@@ -124,6 +139,9 @@ export default function App() {
           onSelect={handleSelectSignal}
           positionsOpen={positionsOpen}
           totalPnl={totalPnl}
+          mqListening={health.mq_listening}
+          onStartMq={handleStartMq}
+          onStopMq={handleStopMq}
         />
 
         {/* Column 2: News Feed */}

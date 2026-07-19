@@ -77,7 +77,7 @@ async def lifespan(app: FastAPI):
 
     # Shutdown
     logger.info("Shutting down...")
-    mq_consumer.stop()
+    mq_consumer.shutdown()
     dispatcher.stop()
 
     await mq_consumer_thread

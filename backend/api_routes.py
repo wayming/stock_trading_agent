@@ -60,13 +60,33 @@ def get_health() -> HealthStatus:
         mcp_ok = mcp_client.get_mcp_client() is not None
     except Exception:
         pass
+    mq_listening = mq_consumer.is_listening()
     return HealthStatus(
         rabbitmq=rmq,
         database=db_ok,
         llm_configured=llm_configured,
         llm_enabled=llm_enabled,
         mcp_connected=mcp_ok,
+        mq_listening=mq_listening,
     )
+
+
+#
+# MQ Control — start/stop RabbitMQ consumption
+#
+
+@router.post("/mq/start")
+def mq_start() -> dict:
+    """Enable RabbitMQ message consumption."""
+    mq_consumer.start()
+    return {"listening": True}
+
+
+@router.post("/mq/stop")
+def mq_stop() -> dict:
+    """Disable RabbitMQ message consumption (pause without disconnect)."""
+    mq_consumer.stop()
+    return {"listening": False}
 
 
 #

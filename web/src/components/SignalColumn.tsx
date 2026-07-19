@@ -34,14 +34,43 @@ interface Props {
   onSelect: (id: string) => void;
   positionsOpen: number;
   totalPnl: number;
+  mqListening: boolean;
+  onStartMq: () => void;
+  onStopMq: () => void;
 }
 
-export default function SignalColumn({ signals, selectedId, onSelect, positionsOpen, totalPnl }: Props) {
+export default function SignalColumn({ signals, selectedId, onSelect, positionsOpen, totalPnl, mqListening, onStartMq, onStopMq }: Props) {
   return (
     <div className="col">
       <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
           <h3 style={{ margin: 0 }}>Trading Signals ({signals.length})</h3>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span
+              className={`dot ${mqListening ? 'ok' : 'err'}`}
+              title={mqListening ? 'MQ Listening' : 'MQ Stopped'}
+            />
+            <span style={{ fontSize: 11, color: 'var(--text-muted)', marginRight: 4 }}>
+              {mqListening ? 'Listening' : 'Stopped'}
+            </span>
+            {mqListening ? (
+              <button
+                className="header-btn"
+                onClick={onStopMq}
+                style={{ background: 'var(--danger)', color: '#fff', border: 'none', borderRadius: 4, padding: '3px 10px', fontSize: 11, cursor: 'pointer', fontWeight: 600 }}
+              >
+                Stop
+              </button>
+            ) : (
+              <button
+                className="header-btn"
+                onClick={onStartMq}
+                style={{ background: 'var(--success)', color: '#fff', border: 'none', borderRadius: 4, padding: '3px 10px', fontSize: 11, cursor: 'pointer', fontWeight: 600 }}
+              >
+                Start
+              </button>
+            )}
+          </div>
         </div>
 
         {/* P&L mini summary */}

@@ -7,6 +7,7 @@ export interface HealthStatus {
   database: boolean;
   llm_configured: boolean;
   llm_enabled: boolean;
+  mq_listening: boolean;
 }
 
 export interface NewsItem {
@@ -145,5 +146,15 @@ export async function updateConfig(cfg: ConfigUpdate): Promise<Config> {
 
 export async function toggleLlm(): Promise<{ llm_enabled: boolean }> {
   const res = await fetch(`${BASE}/config/toggle-llm`, { method: 'POST' });
+  return res.json();
+}
+
+export async function startMq(): Promise<{ listening: boolean }> {
+  const res = await fetch(`${BASE}/mq/start`, { method: 'POST' });
+  return res.json();
+}
+
+export async function stopMq(): Promise<{ listening: boolean }> {
+  const res = await fetch(`${BASE}/mq/stop`, { method: 'POST' });
   return res.json();
 }

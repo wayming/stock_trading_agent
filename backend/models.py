@@ -89,3 +89,4 @@ class HealthStatus(BaseModel):
     llm_configured: bool
     llm_enabled: bool
     mcp_connected: bool
+    mq_listening: bool = False
