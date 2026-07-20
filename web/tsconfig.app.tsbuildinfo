@@ -1,1 +1,1 @@
-{"root":["./src/App.tsx","./src/api.ts","./src/main.tsx","./src/components/AnalysisColumn.tsx","./src/components/ConfigPanel.tsx","./src/components/Header.tsx","./src/components/NewsColumn.tsx","./src/components/SignalColumn.tsx"],"errors":true,"version":"6.0.3"}
+{"root":["./src/App.tsx","./src/api.ts","./src/main.tsx","./src/components/AnalysisColumn.tsx","./src/components/ConfigPanel.tsx","./src/components/Header.tsx","./src/components/NewsColumn.tsx","./src/components/SignalColumn.tsx","./src/components/TestPanel.tsx"],"errors":true,"version":"6.0.3"}

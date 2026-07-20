@@ -38,6 +38,7 @@ class AnalysisState(TypedDict):
     news_content: str
     news_source: str
     news_symbol: str
+    news_exchange: str
     news_timestamp: str
     # Config (loaded at runtime)
     llm_api_url: str
@@ -54,6 +55,7 @@ class AnalysisState(TypedDict):
     sentiment: str
     confidence_score: float
     reasoning: str
+    selected_symbol: str   # auto-selected stock in Case B
     # Context LLM config (for news searching)
     context_llm_url: str
     context_llm_key: str
@@ -65,16 +67,33 @@ class AnalysisState(TypedDict):
     trade_action: str
 
 
-SYSTEM_PROMPT = """You are a professional stock market analyst. Analyze the sentiment of the given news for stock trading.
+SYSTEM_PROMPT = """You are a professional stock market analyst for a LONG-ONLY stock trading system.
 
-You have access to financial data tools. Use them to get real financial data for the stock mentioned in the news — this will help you make a more informed analysis:
-- Use list_metrics first if you're unsure which metrics are available.
-- Use get_data_period to check how much historical data is available.
-- Use get_financials to fetch revenue, profit, EPS, PE, PB, margins, etc.
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
 
 ## Exchange detection rules
 
-When calling tools, you MUST supply the correct exchange code. Determine it from the news symbol:
+When calling tools, supply the correct exchange code:
 
 | Symbol pattern | Exchange | Examples |
 |---|---|---|
@@ -86,24 +105,195 @@ When calling tools, you MUST supply the correct exchange code. Determine it from
 | 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
 | 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
 
-If the news symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
 
-IMPORTANT: Always try the exchange you think is most likely first. If the MCP tool returns "no data found", try another exchange before giving up.
+If a tool returns "no data found", try another exchange before giving up.
 
-Output MUST be a valid JSON object with these exact fields:
-- "sentiment": one of ["超级利好", "普通利好", "neutral", "普通利空", "超级利空"]
-- "confidence_score": a float between 0.0 and 1.0 indicating confidence
-- "reasoning": a brief explanation (2-4 sentences) of why this sentiment was assigned in Chinese. Reference the financial data you retrieved if applicable.
-- "translate": Chinese translation of the given news
+---
 
-Rules:
-- 超级利好 (super bullish): News strongly suggests significant stock price increase (major earnings beat, breakthrough product, huge contract win, favorable macro policy changes)
-- 普通利好 (bullish): News moderately positive (steady growth, minor contract wins, positive outlook)
-- neutral: News has no clear directional impact or mixed signals
-- 普通利空 (bearish): News moderately negative (minor earnings misses, regulatory headwinds)
-- 超级利空 (super bearish): News strongly suggests significant price drop (major fraud, bankruptcy risk, catastrophic events)
+# Analysis Rules
 
-Output ONLY the JSON object, no other text.
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+## Case A
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+---
+
+## Case B
+Stock Symbol is empty but Exchange is provided.
+
+This is a LONG-ONLY trading strategy.
+
+Your objective is to identify the BEST BUY opportunity.
+
+Follow these steps strictly:
+
+1. Identify industries expected to BENEFIT from the news.
+
+2. Ignore industries whose primary impact is negative.
+
+3. Among all beneficiary industries, choose the company that satisfies:
+
+   - Most direct first-order earnings benefit
+   - Largest market capitalization
+   - Highest trading liquidity
+
+4. MUST call get_financials for the selected company.
+
+5. Use both the news and financial metrics to determine the sentiment.
+
+6. Return the selected company.
+
+If NO listed company on the specified exchange is expected to receive a meaningful positive impact:
+
+Return
+
+selected_symbol = ""
+
+and
+
+sentiment = "neutral"
+
+Do NOT force a stock recommendation.
+
+---
+
+## Case C
+
+Neither Stock Symbol nor Exchange is provided.
+
+Return
+
+sentiment = "neutral"
+
+selected_symbol = ""
+
+with low confidence.
+
+---
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
 """
 
 db: Database = None
@@ -155,8 +345,12 @@ def receive_news(state: AnalysisState) -> AnalysisState:
 
 def build_prompt(state: AnalysisState) -> AnalysisState:
     """Construct the initial prompt and initialise the conversation messages."""
-    user_msg = f"News Source: {state.get('news_source', 'unknown')}\n"
-    user_msg += f"Stock Symbol: {state.get('news_symbol', 'N/A')}\n\n"
+    exchange = state.get("news_exchange", "")
+    symbol = state.get("news_symbol", "")
+
+    user_msg = f"Exchange: {exchange or 'N/A'}\n"
+    user_msg += f"Stock Symbol: {symbol or 'N/A'}\n"
+    user_msg += f"News Source: {state.get('news_source', 'unknown')}\n\n"
     user_msg += f"Content:\n{state.get('news_content', '')}"
 
     state["prompt"] = user_msg
@@ -165,7 +359,10 @@ def build_prompt(state: AnalysisState) -> AnalysisState:
         {"role": "user", "content": user_msg},
     ]
     state["round_count"] = 0
-    logger.debug(f"Built prompt: {user_msg}")
+    logger.debug(
+        "Built prompt:\n=== SYSTEM ===\n%s\n=== USER ===\n%s\n=== END PROMPT ===",
+        SYSTEM_PROMPT, user_msg,
+    )
     return state
 
 
@@ -311,8 +508,15 @@ def agent_node(state: AnalysisState) -> AnalysisState:
 
     tools = _get_tool_definitions()
 
-    # Log what we are sending (summary)
+    # Log the full system prompt + user message on first round
     msg_count = len(state["messages"])
+    if state.get("round_count", 0) == 0:
+        for m in state["messages"]:
+            logger.debug(
+                "LLM message [%s]:\n%s\n=== END %s ===",
+                m.get("role", "?").upper(), m.get("content", ""), m.get("role", "?").upper(),
+            )
+
     tool_results = [m for m in state["messages"] if m.get("role") == "tool"]
     if tool_results:
         logger.info(
@@ -538,6 +742,7 @@ def _keyword_fallback(state: AnalysisState) -> str:
         "sentiment": sentiment,
         "confidence_score": round(confidence, 2),
         "reasoning": reasoning,
+        "selected_symbol": "",
     }, ensure_ascii=False)
 
 
@@ -576,6 +781,7 @@ def parse_response(state: AnalysisState) -> AnalysisState:
     state["sentiment"] = sentiment
     state["confidence_score"] = float(parsed.get("confidence_score", 0.5))
     state["reasoning"] = str(parsed.get("reasoning", ""))
+    state["selected_symbol"] = str(parsed.get("selected_symbol", ""))
     return state
 
 
@@ -755,6 +961,7 @@ def run_analysis(news_item: dict) -> AnalysisState:
         "news_content": news_item.get("content", ""),
         "news_source": news_item.get("source", ""),
         "news_symbol": news_item.get("symbol", ""),
+        "news_exchange": news_item.get("exchange", ""),
         "news_timestamp": news_item.get("timestamp", ""),
         "llm_api_url": "",
         "llm_api_key": "",
@@ -766,6 +973,7 @@ def run_analysis(news_item: dict) -> AnalysisState:
         "sentiment": "",
         "confidence_score": 0.0,
         "reasoning": "",
+        "selected_symbol": "",
         "context_llm_url": "",
         "context_llm_key": "",
         "context_llm_model": "",

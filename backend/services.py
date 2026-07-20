@@ -102,10 +102,12 @@ class ServiceProvider:
         self.context.database.insert_sentiment_result(sentiment_result)
 
         # Step 4: Evaluate trade via strategy
+        # Use user-provided symbol, or LLM-selected stock (Case B in prompt)
+        effective_symbol = news_dict.get("symbol") or state.get("selected_symbol", "")
         trade = self.context.trading_engine.evaluate_signal(
             sentiment=state["sentiment"],
             confidence_score=state["confidence_score"],
-            symbol=news_dict.get("symbol", ""),
+            symbol=effective_symbol or "",
             news_id=news_id,
             sentiment_result_id=result_id,
         )

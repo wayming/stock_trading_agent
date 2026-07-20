@@ -6,7 +6,7 @@ interface Props {
   onToggleConfig: () => void;
 }
 
-export default function Header({ rabbitmqOk, llmConfigured, llmEnabled, configOpen, onToggleConfig }: Props) {
+export default function Header({ rabbitmqOk: _rabbitmqOk, llmConfigured, llmEnabled, configOpen, onToggleConfig }: Props) {
   const llmLabel = llmConfigured
     ? (llmEnabled ? 'LLM On' : 'LLM Off')
     : 'LLM Not set';

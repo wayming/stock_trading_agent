@@ -6,9 +6,12 @@ from typing import Optional
 
 from fastapi import APIRouter, HTTPException, Query, Request
 from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
 
 import json
 import threading
+import uuid
+from datetime import datetime, timezone
 
 from models import (
     ConfigUpdate,
@@ -20,6 +23,7 @@ from rabbitmq_consumer import MQConsumer
 from trading_engine import TradingEngine
 from sse_manager import SSEManager
 import services
+import langgraph_workflow
 
 logger = logging.getLogger(__name__)
 
@@ -266,4 +270,81 @@ async def stream_events(request: Request):
             "Connection": "keep-alive",
             "X-Accel-Buffering": "no",
         },
+    )
+
+
+#
+# Test — bypass RabbitMQ, run analysis directly
+#
+
+class TestNewsRequest(BaseModel):
+    exchange: str = ""
+    symbol: str = ""
+    content: str
+    source: str = "manual-test"
+
+
+class TestResultResponse(BaseModel):
+    news_id: str
+    symbol: str
+    selected_symbol: str = ""
+    sentiment: str
+    confidence_score: float
+    reasoning: str
+    trade_action: str
+    trade_id: str | None = None
+    llm_response: str = ""
+    conversation: list[dict] = []
+    timestamp: str = ""
+    mode: str = "keyword"  # "llm" | "keyword"
+
+
+@router.post("/test")
+def test_analyze(body: TestNewsRequest):
+    """Bypass RabbitMQ — run sentiment analysis + trade evaluation directly."""
+    news_id = str(uuid.uuid4())
+    news_dict = {
+        "id": news_id,
+        "content": body.content,
+        "source": body.source or "manual-test",
+        "symbol": (body.symbol or "").upper(),
+        "exchange": (body.exchange or "").upper(),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+
+    # Run LangGraph pipeline
+    state = langgraph_workflow.run_analysis(news_dict)
+    conversation = langgraph_workflow.extract_conversation(state)
+
+    # Determine effective symbol: use user-provided one, or LLM-selected one
+    effective_symbol = body.symbol or state.get("selected_symbol", "")
+
+    # Run trade evaluation
+    trade = trading_engine.evaluate_signal(
+        sentiment=state["sentiment"],
+        confidence_score=state["confidence_score"],
+        symbol=effective_symbol or "",
+        news_id=news_id,
+        sentiment_result_id="",
+    )
+
+    # Detect analysis mode
+    llm_enabled = db.get_config("llm_enabled")
+    is_llm = llm_enabled is None or llm_enabled != "false"
+    url = db.get_config("llm_api_url") or ""
+    mode = "llm" if (is_llm and url) else "keyword"
+
+    return TestResultResponse(
+        news_id=news_id,
+        symbol=(body.symbol or effective_symbol or "").upper(),
+        selected_symbol=state.get("selected_symbol", ""),
+        sentiment=state["sentiment"],
+        confidence_score=state["confidence_score"],
+        reasoning=state["reasoning"],
+        trade_action=state["trade_action"],
+        trade_id=trade["id"] if trade else None,
+        llm_response=state["llm_response_raw"],
+        conversation=conversation,
+        timestamp=datetime.now(timezone.utc).isoformat(),
+        mode=mode,
     )

@@ -158,3 +158,40 @@ export async function stopMq(): Promise<{ listening: boolean }> {
   const res = await fetch(`${BASE}/mq/stop`, { method: 'POST' });
   return res.json();
 }
+
+// ── Test API ───────────────────────────────────────────
+
+export interface TestNewsRequest {
+  exchange: string;
+  symbol: string;
+  content: string;
+  source?: string;
+}
+
+export interface TestResult {
+  news_id: string;
+  symbol: string;
+  selected_symbol: string;
+  sentiment: string;
+  confidence_score: number;
+  reasoning: string;
+  trade_action: string;
+  trade_id: string | null;
+  llm_response: string;
+  conversation: ConversationMessage[];
+  timestamp: string;
+  mode: string;  // "llm" | "keyword"
+}
+
+export async function runTestAnalysis(req: TestNewsRequest): Promise<TestResult> {
+  const res = await fetch(`${BASE}/test`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(req),
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.detail || 'Test analysis failed');
+  }
+  return res.json();
+}

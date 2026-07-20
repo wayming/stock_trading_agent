@@ -9,10 +9,13 @@ import SignalColumn from './components/SignalColumn';
 import NewsColumn from './components/NewsColumn';
 import AnalysisColumn from './components/AnalysisColumn';
 import ConfigPanel from './components/ConfigPanel';
+import TestPanel from './components/TestPanel';
 
 const MAX_ITEMS = 200;
+type Tab = 'live' | 'test';
 
 export default function App() {
+  const [activeTab, setActiveTab] = useState<Tab>('live');
   const [signals, setSignals] = useState<Signal[]>([]);
   const [news, setNews] = useState<NewsItem[]>([]);
   const [analyses, setAnalyses] = useState<AnalysisResult[]>([]);
@@ -131,33 +134,50 @@ export default function App() {
         onToggleConfig={() => setConfigOpen(prev => !prev)}
       />
 
-      <div className={`layout${!showAnalysis ? ' two-col' : ''}`}>
-        {/* Column 1: Trading Signals */}
-        <SignalColumn
-          signals={signals}
-          selectedId={selectedSignalId}
-          onSelect={handleSelectSignal}
-          positionsOpen={positionsOpen}
-          totalPnl={totalPnl}
-          mqListening={health.mq_listening}
-          onStartMq={handleStartMq}
-          onStopMq={handleStopMq}
-        />
-
-        {/* Column 2: News Feed */}
-        <NewsColumn
-          news={news}
-          highlightedNewsId={highlightedNewsId}
-        />
-
-        {/* Column 3: Analysis Results — only rendered when a signal is selected */}
-        {showAnalysis && (
-          <AnalysisColumn
-            analysis={selectedAnalysis}
-            newsItem={selectedNews}
-          />
-        )}
+      {/* Tab bar */}
+      <div className="tab-bar">
+        <button
+          className={`tab${activeTab === 'live' ? ' active' : ''}`}
+          onClick={() => setActiveTab('live')}
+        >
+          Live
+        </button>
+        <button
+          className={`tab${activeTab === 'test' ? ' active' : ''}`}
+          onClick={() => setActiveTab('test')}
+        >
+          Test
+        </button>
       </div>
+
+      {activeTab === 'live' ? (
+        <div className={`layout${!showAnalysis ? ' two-col' : ''}`}>
+          <SignalColumn
+            signals={signals}
+            selectedId={selectedSignalId}
+            onSelect={handleSelectSignal}
+            positionsOpen={positionsOpen}
+            totalPnl={totalPnl}
+            mqListening={health.mq_listening}
+            onStartMq={handleStartMq}
+            onStopMq={handleStopMq}
+          />
+          <NewsColumn
+            news={news}
+            highlightedNewsId={highlightedNewsId}
+          />
+          {showAnalysis && (
+            <AnalysisColumn
+              analysis={selectedAnalysis}
+              newsItem={selectedNews}
+            />
+          )}
+        </div>
+      ) : (
+        <div style={{ height: 'calc(100vh - 48px - 45px)' }}>
+          <TestPanel />
+        </div>
+      )}
 
       <ConfigPanel
         config={config}

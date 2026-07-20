@@ -877,3 +877,1977 @@ AMZN 新产品线获得用户好评，预购订单超出预期30%
 2026-07-19 13:07:06,952 [DEBUG] backend.dispatcher: Dispatching result payload: signal
 2026-07-19 13:07:06,952 [DEBUG] backend.dispatcher: Dispatching result payload: news
 2026-07-19 13:07:06,952 [DEBUG] backend.dispatcher: Dispatching result payload: analysis
+2026-07-19 13:07:16,899 [INFO] backend.services: [News 8c135b8a-4d08-4420-b2ff-a55d3563ba63] Stored: JPM expands market share with steady 12% revenue growth, beats consensus...
+2026-07-19 13:07:16,900 [INFO] backend.langgraph_workflow: LLM is disabled — using keyword fallback for ALL LLM calls
+2026-07-19 13:07:16,901 [INFO] backend.langgraph_workflow: Loaded config: llm_url=, model=deepseek-v4-flash, llm_enabled=False, mcp_url=http://192.168.1.14:8081, ctx_llm=not set
+2026-07-19 13:07:16,901 [DEBUG] backend.langgraph_workflow: Built prompt: News Source: 雪球
+Stock Symbol: JPM
+
+Content:
+JPM expands market share with steady 12% revenue growth, beats consensus
+2026-07-19 13:07:16,901 [INFO] backend.langgraph_workflow: No context LLM configured — skipping news context fetch
+2026-07-19 13:07:16,902 [INFO] backend.services: [News 8c135b8a-4d08-4420-b2ff-a55d3563ba63] Analysis complete: sentiment=普通利好, confidence=0.7, trade=NONE
+2026-07-19 13:07:16,915 [INFO] backend.trading_engine: evaluate_signal: symbol=JPM sentiment=普通利好 score=0.70 holding=True price=100.00
+2026-07-19 13:07:16,915 [DEBUG] backend.strategy.strategy: Exit triggered by: ['EndOfDayExitRule']
+2026-07-19 13:07:16,921 [INFO] backend.trading_engine: SELL JPM @ 100.00 (strategy exit)
+2026-07-19 13:07:16,921 [INFO] backend.services: [News 8c135b8a-4d08-4420-b2ff-a55d3563ba63] Analysis complete
+2026-07-19 13:07:16,921 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-19 13:07:16,921 [DEBUG] backend.dispatcher: Dispatching result payload: news
+2026-07-19 13:07:16,921 [DEBUG] backend.dispatcher: Dispatching result payload: analysis
+2026-07-19 13:07:26,893 [INFO] backend.services: [News 9988c82b-2b7f-460b-afa1-c142a6181b53] Stored: META faces EU antitrust probe, European expansion at risk...
+2026-07-19 13:07:26,895 [INFO] backend.langgraph_workflow: LLM is disabled — using keyword fallback for ALL LLM calls
+2026-07-19 13:07:26,896 [INFO] backend.langgraph_workflow: Loaded config: llm_url=, model=deepseek-v4-flash, llm_enabled=False, mcp_url=http://192.168.1.14:8081, ctx_llm=not set
+2026-07-19 13:07:26,896 [DEBUG] backend.langgraph_workflow: Built prompt: News Source: Financial Times
+Stock Symbol: META
+
+Content:
+META faces EU antitrust probe, European expansion at risk
+2026-07-19 13:07:26,897 [INFO] backend.langgraph_workflow: No context LLM configured — skipping news context fetch
+2026-07-19 13:07:26,901 [INFO] backend.services: [News 9988c82b-2b7f-460b-afa1-c142a6181b53] Analysis complete: sentiment=neutral, confidence=0.4, trade=NONE
+2026-07-19 13:07:26,921 [INFO] backend.trading_engine: evaluate_signal: symbol=META sentiment=neutral score=0.40 holding=True price=100.00
+2026-07-19 13:07:26,921 [DEBUG] backend.strategy.strategy: Exit triggered by: ['EndOfDayExitRule']
+2026-07-19 13:07:26,927 [INFO] backend.trading_engine: SELL META @ 100.00 (strategy exit)
+2026-07-19 13:07:26,927 [INFO] backend.services: [News 9988c82b-2b7f-460b-afa1-c142a6181b53] Analysis complete
+2026-07-19 13:07:26,927 [DEBUG] backend.dispatcher: Dispatching result payload: signal
+2026-07-19 13:07:26,927 [DEBUG] backend.dispatcher: Dispatching result payload: news
+2026-07-19 13:07:26,927 [DEBUG] backend.dispatcher: Dispatching result payload: analysis
+2026-07-19 13:07:30,247 [INFO] backend.main: Shutting down...
+2026-07-19 23:26:59,155 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-19 23:26:59,168 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-19 23:26:59,186 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-19 23:26:59,186 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-19 23:26:59,186 [INFO] backend.main: Backend ready.
+2026-07-19 23:26:59,187 [INFO] backend.dispatcher: dispatcher started
+2026-07-20 05:34:13,699 [INFO] backend.main: Shutting down...
+2026-07-20 10:52:22,361 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-20 10:52:22,381 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-20 10:52:22,398 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-20 10:52:22,398 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-20 10:52:22,398 [INFO] backend.main: Backend ready.
+2026-07-20 10:52:22,399 [INFO] backend.dispatcher: dispatcher started
+2026-07-20 11:30:11,727 [INFO] backend.main: Shutting down...
+2026-07-20 11:30:27,750 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-20 11:30:27,751 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-20 11:30:27,763 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-20 11:30:27,763 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-20 11:30:27,763 [INFO] backend.main: Backend ready.
+2026-07-20 11:30:27,764 [INFO] backend.dispatcher: dispatcher started
+2026-07-20 11:31:09,454 [INFO] backend.langgraph_workflow: LLM is disabled — using keyword fallback for ALL LLM calls
+2026-07-20 11:31:09,454 [INFO] backend.langgraph_workflow: Loaded config: llm_url=, model=deepseek-v4-flash, llm_enabled=False, mcp_url=http://192.168.1.14:8081, ctx_llm=not set
+2026-07-20 11:31:09,454 [DEBUG] backend.langgraph_workflow: Built prompt: News Source: manual-test
+Stock Symbol: 
+
+Content:
+2026年7月20日：美军持续空袭，伊朗称两艘油轮在霍尔木兹海峡发生爆炸  关键动态摘要  油轮爆炸事件： 伊朗伊斯兰革命卫队（IRGC）于周一（7月20日）发布声明称，两艘油轮在试图通过霍尔木兹海峡南部一条被其定义为“不安全”的航线时发生爆炸，并已失去动力瘫痪在海面上。伊朗方面声称，这些船只是在美国军队的“唆使和胁迫”下违规航行的。  路透社核实： 截至目前，路透社表示尚无法独立核实该爆炸事件的具体细节（包括船只国籍、受损程度或具体的起因）。  军事对抗升级： 此事件发生之际，美军已连续第九天对伊朗境内的军事目标实施空袭，空袭范围已扩大至包括某核电站所在城市在内的多处地点。此前由于伊朗再度封锁海峡，美伊双方签署的临时停火协议彻底破裂。  航道现状与全球市场冲击  路透社通过航运数据分析指出，这条全球最重要的石油与天然气咽喉要道目前几乎陷于瘫痪：  通航量暴跌： 稍早前路透社汇总的航运数据显示，海峡封锁导致通行量降至历史冰点，例如在7月16日当天，仅有3艘货轮成功通过霍尔木兹海峡。  能源外交博弈： 美国国务卿安东尼·布林肯表示，伊朗正在将霍尔木兹海峡作为地缘政治冲突的杠杆，国际社会需要加大对德黑兰的压力以保护自由航行；而伊朗军方则重申海峡是其不容侵犯的“红线”，只有美军履行此前签署的备忘录，海峡才可能重新开放。  目前，全球由于担心海峡长期封锁引发新一轮通胀与能源断供，国际油价和天然气市场正处于高度紧绷状态。
+2026-07-20 11:31:09,455 [INFO] backend.langgraph_workflow: No stock symbol — skipping news context fetch
+2026-07-20 11:31:09,462 [INFO] backend.trading_engine: evaluate_signal: symbol= sentiment=超级利空 score=0.80 holding=True price=100.00
+2026-07-20 11:31:09,462 [DEBUG] backend.strategy.strategy: Exit triggered by: ['EndOfDayExitRule']
+2026-07-20 11:31:09,481 [INFO] backend.trading_engine: SELL  @ 100.00 (strategy exit)
+2026-07-20 11:56:08,450 [INFO] backend.main: Shutting down...
+2026-07-20 11:56:22,637 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-20 11:56:22,639 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-20 11:56:22,652 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-20 11:56:22,652 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-20 11:56:22,652 [INFO] backend.main: Backend ready.
+2026-07-20 11:56:22,653 [INFO] backend.dispatcher: dispatcher started
+2026-07-20 11:57:28,890 [INFO] backend.langgraph_workflow: LLM is disabled — using keyword fallback for ALL LLM calls
+2026-07-20 11:57:28,890 [INFO] backend.langgraph_workflow: Loaded config: llm_url=, model=deepseek-v4-flash, llm_enabled=False, mcp_url=http://192.168.1.14:8081, ctx_llm=not set
+2026-07-20 11:57:28,891 [DEBUG] backend.langgraph_workflow: Built prompt:
+=== SYSTEM ===
+You are a professional stock market analyst. Analyze the sentiment of the given news for stock trading.
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+## Decision flow (CRITICAL — follow this order)
+
+### Case A: Stock Symbol is provided
+Analyze the impact on that stock ONLY. Use financial data tools to retrieve the company's latest financial metrics before making your judgement.
+
+### Case B: Stock Symbol is empty but Exchange is provided
+1. Determine which **industry is most directly affected** by the news.
+2. Identify the **most representative and liquid listed company** in that industry on the specified exchange.
+3. Retrieve its financial data using the tools.
+4. Base the sentiment analysis on that representative company.
+5. Include the selected stock code and company name in the output.
+
+IMPORTANT: Macro news often has asymmetric impacts across industries. Always identify the **industry with the strongest first-order impact** before selecting a representative stock.
+
+Examples of industry → representative stock mapping:
+| News | Exchange | Industry | Representative |
+|---|---|---|---|
+| Oil price surges, Strait of Hormuz closed | HKG | Oil & Gas | 00883 CNOOC |
+| Oil supply disruption | ASX | Oil & Gas | WDS Woodside (larger market cap than STO Santos) |
+| Rising interest rates | — | Banks | (largest bank on that exchange) |
+| Falling interest rates | — | REITs | (largest REIT on that exchange) |
+| AI breakthrough | — | AI chip companies | (most relevant chip stock on that exchange) |
+| Airline fuel price increase | — | Airlines | (largest airline on that exchange) |
+| Steel tariffs | — | Steel producers | (largest steel producer on that exchange) |
+
+When choosing between candidates on the same exchange, **prefer the one with larger market capitalization**.
+
+### Case C: Neither Stock Symbol nor Exchange is provided
+Output sentiment = "neutral" with low confidence.
+
+---
+
+## Output format
+
+Output MUST be a valid JSON object with these exact fields:
+- "sentiment": one of ["超级利好", "普通利好", "neutral", "普通利空", "超级利空"]
+- "confidence_score": a float between 0.0 and 1.0
+- "reasoning": 2-4 sentences in Chinese explaining the sentiment. Reference financial data if retrieved.
+- "translate": Chinese translation of the given news
+- "selected_symbol": the stock code auto-selected in Case B (e.g. "00883 CNOOC"), or empty string if not applicable
+
+## Sentiment guidelines
+- 超级利好 (super bullish): major earnings beat, breakthrough product, huge contract win, favorable macro policy
+- 普通利好 (bullish): steady growth, minor contract wins, positive outlook
+- neutral: no clear directional impact or mixed signals
+- 普通利空 (bearish): minor earnings misses, regulatory headwinds
+- 超级利空 (super bearish): major fraud, bankruptcy risk, catastrophic events
+
+Output ONLY the JSON object, no other text.
+
+=== USER ===
+Exchange: AU
+Stock Symbol: N/A
+News Source: manual-test
+
+Content:
+美伊签署谅解备忘录，霍尔木兹海峡迎来全面开放窗口路透社迪拜/华盛顿联合报道国际调停人于 正式宣布，美国与伊朗已签署了一份包含多项条款的谅解备忘录（MoU）。该备忘录旨在通过一个为期60天的“执行缓冲期”来正式结束双方的武装冲突，并为外交谈判留出空间。核心开放与停火条款：全面恢复通航： 根据协议，伊朗承诺撤回对霍尔木兹海峡的封锁与限制措施，允许国际商业能源轮船自由、安全地通过该国际水道，以恢复此前遭到严重掐断的全球约五分之一的石油与液化天然气（LNG）供应。  暂停敌对军事行动： 美军及其盟友承诺暂停对伊朗本土及军事目标的空袭行动；作为交换，伊朗也同意停止其武装力量对海峡内外国商船的登船拦截与无人机袭击。市场即时反应： 随着海峡重新开放的利好消息传出，路透社数据显示，此前因战火暴涨至历史高位的国际原油价格和航运保险费率在当日均出现明显回落。
+=== END PROMPT ===
+2026-07-20 11:57:28,891 [INFO] backend.langgraph_workflow: No stock symbol — skipping news context fetch
+2026-07-20 11:57:28,900 [INFO] backend.trading_engine: evaluate_signal: symbol= sentiment=超级利好 score=0.80 holding=True price=100.00
+2026-07-20 11:57:28,900 [DEBUG] backend.strategy.strategy: Exit triggered by: ['EndOfDayExitRule']
+2026-07-20 11:57:28,915 [INFO] backend.trading_engine: SELL  @ 100.00 (strategy exit)
+2026-07-20 12:05:14,184 [INFO] backend.main: Shutting down...
+2026-07-20 12:05:28,657 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-20 12:05:28,658 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-20 12:05:28,670 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-20 12:05:28,671 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-20 12:05:28,671 [INFO] backend.main: Backend ready.
+2026-07-20 12:05:28,672 [INFO] backend.dispatcher: dispatcher started
+2026-07-20 12:05:42,285 [INFO] backend.langgraph_workflow: LLM is disabled — using keyword fallback for ALL LLM calls
+2026-07-20 12:05:42,285 [INFO] backend.langgraph_workflow: Loaded config: llm_url=, model=deepseek-v4-flash, llm_enabled=False, mcp_url=http://192.168.1.14:8081, ctx_llm=not set
+2026-07-20 12:05:42,287 [DEBUG] backend.langgraph_workflow: Built prompt:
+=== SYSTEM ===
+You are a professional stock market analyst. Analyze the sentiment of the given news for stock trading.
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+## Decision flow (CRITICAL — follow this order)
+
+### Case A: Stock Symbol is provided
+Analyze the impact on that stock ONLY. Use financial data tools to retrieve the company's latest financial metrics before making your judgement.
+
+### Case B: Stock Symbol is empty but Exchange is provided
+1. Determine which **industry is most directly affected** by the news.
+2. Identify the **most representative and liquid listed company** in that industry on the specified exchange.
+3. Retrieve its financial data using the tools.
+4. Base the sentiment analysis on that representative company.
+5. Include the selected stock code and company name in the output.
+
+IMPORTANT: Macro news often has asymmetric impacts across industries. Always identify the **industry with the strongest first-order impact** before selecting a representative stock.
+
+Examples of industry → representative stock mapping:
+| News | Exchange | Industry | Representative |
+|---|---|---|---|
+| Oil price surges, Strait of Hormuz closed | HKG | Oil & Gas | 00883 CNOOC |
+| Oil supply disruption | ASX | Oil & Gas | WDS Woodside (larger market cap than STO Santos) |
+| Rising interest rates | — | Banks | (largest bank on that exchange) |
+| Falling interest rates | — | REITs | (largest REIT on that exchange) |
+| AI breakthrough | — | AI chip companies | (most relevant chip stock on that exchange) |
+| Airline fuel price increase | — | Airlines | (largest airline on that exchange) |
+| Steel tariffs | — | Steel producers | (largest steel producer on that exchange) |
+
+When choosing between candidates on the same exchange, **prefer the one with larger market capitalization**.
+
+### Case C: Neither Stock Symbol nor Exchange is provided
+Output sentiment = "neutral" with low confidence.
+
+---
+
+## Output format
+
+Output MUST be a valid JSON object with these exact fields:
+- "sentiment": one of ["超级利好", "普通利好", "neutral", "普通利空", "超级利空"]
+- "confidence_score": a float between 0.0 and 1.0
+- "reasoning": 2-4 sentences in Chinese explaining the sentiment. Reference financial data if retrieved.
+- "translate": Chinese translation of the given news
+- "selected_symbol": the stock code auto-selected in Case B (e.g. "00883 CNOOC"), or empty string if not applicable
+
+## Sentiment guidelines
+- 超级利好 (super bullish): major earnings beat, breakthrough product, huge contract win, favorable macro policy
+- 普通利好 (bullish): steady growth, minor contract wins, positive outlook
+- neutral: no clear directional impact or mixed signals
+- 普通利空 (bearish): minor earnings misses, regulatory headwinds
+- 超级利空 (super bearish): major fraud, bankruptcy risk, catastrophic events
+
+Output ONLY the JSON object, no other text.
+
+=== USER ===
+Exchange: N/A
+Stock Symbol: N/A
+News Source: manual-test
+
+Content:
+美伊签署谅解备忘录，霍尔木兹海峡迎来全面开放窗口路透社迪拜/华盛顿联合报道国际调停人于 正式宣布，美国与伊朗已签署了一份包含多项条款的谅解备忘录（MoU）。该备忘录旨在通过一个为期60天的“执行缓冲期”来正式结束双方的武装冲突，并为外交谈判留出空间。核心开放与停火条款：全面恢复通航： 根据协议，伊朗承诺撤回对霍尔木兹海峡的封锁与限制措施，允许国际商业能源轮船自由、安全地通过该国际水道，以恢复此前遭到严重掐断的全球约五分之一的石油与液化天然气（LNG）供应。  暂停敌对军事行动： 美军及其盟友承诺暂停对伊朗本土及军事目标的空袭行动；作为交换，伊朗也同意停止其武装力量对海峡内外国商船的登船拦截与无人机袭击。市场即时反应： 随着海峡重新开放的利好消息传出，路透社数据显示，此前因战火暴涨至历史高位的国际原油价格和航运保险费率在当日均出现明显回落。
+=== END PROMPT ===
+2026-07-20 12:05:42,288 [INFO] backend.langgraph_workflow: No stock symbol — skipping news context fetch
+2026-07-20 12:05:42,300 [INFO] backend.trading_engine: evaluate_signal: symbol= sentiment=超级利好 score=0.80 holding=True price=100.00
+2026-07-20 12:05:42,300 [DEBUG] backend.strategy.strategy: Exit triggered by: ['EndOfDayExitRule']
+2026-07-20 12:05:42,316 [INFO] backend.trading_engine: SELL  @ 100.00 (strategy exit)
+2026-07-20 12:05:42,482 [INFO] backend.langgraph_workflow: LLM is disabled — using keyword fallback for ALL LLM calls
+2026-07-20 12:05:42,482 [INFO] backend.langgraph_workflow: Loaded config: llm_url=, model=deepseek-v4-flash, llm_enabled=False, mcp_url=http://192.168.1.14:8081, ctx_llm=not set
+2026-07-20 12:05:42,482 [DEBUG] backend.langgraph_workflow: Built prompt:
+=== SYSTEM ===
+You are a professional stock market analyst. Analyze the sentiment of the given news for stock trading.
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+## Decision flow (CRITICAL — follow this order)
+
+### Case A: Stock Symbol is provided
+Analyze the impact on that stock ONLY. Use financial data tools to retrieve the company's latest financial metrics before making your judgement.
+
+### Case B: Stock Symbol is empty but Exchange is provided
+1. Determine which **industry is most directly affected** by the news.
+2. Identify the **most representative and liquid listed company** in that industry on the specified exchange.
+3. Retrieve its financial data using the tools.
+4. Base the sentiment analysis on that representative company.
+5. Include the selected stock code and company name in the output.
+
+IMPORTANT: Macro news often has asymmetric impacts across industries. Always identify the **industry with the strongest first-order impact** before selecting a representative stock.
+
+Examples of industry → representative stock mapping:
+| News | Exchange | Industry | Representative |
+|---|---|---|---|
+| Oil price surges, Strait of Hormuz closed | HKG | Oil & Gas | 00883 CNOOC |
+| Oil supply disruption | ASX | Oil & Gas | WDS Woodside (larger market cap than STO Santos) |
+| Rising interest rates | — | Banks | (largest bank on that exchange) |
+| Falling interest rates | — | REITs | (largest REIT on that exchange) |
+| AI breakthrough | — | AI chip companies | (most relevant chip stock on that exchange) |
+| Airline fuel price increase | — | Airlines | (largest airline on that exchange) |
+| Steel tariffs | — | Steel producers | (largest steel producer on that exchange) |
+
+When choosing between candidates on the same exchange, **prefer the one with larger market capitalization**.
+
+### Case C: Neither Stock Symbol nor Exchange is provided
+Output sentiment = "neutral" with low confidence.
+
+---
+
+## Output format
+
+Output MUST be a valid JSON object with these exact fields:
+- "sentiment": one of ["超级利好", "普通利好", "neutral", "普通利空", "超级利空"]
+- "confidence_score": a float between 0.0 and 1.0
+- "reasoning": 2-4 sentences in Chinese explaining the sentiment. Reference financial data if retrieved.
+- "translate": Chinese translation of the given news
+- "selected_symbol": the stock code auto-selected in Case B (e.g. "00883 CNOOC"), or empty string if not applicable
+
+## Sentiment guidelines
+- 超级利好 (super bullish): major earnings beat, breakthrough product, huge contract win, favorable macro policy
+- 普通利好 (bullish): steady growth, minor contract wins, positive outlook
+- neutral: no clear directional impact or mixed signals
+- 普通利空 (bearish): minor earnings misses, regulatory headwinds
+- 超级利空 (super bearish): major fraud, bankruptcy risk, catastrophic events
+
+Output ONLY the JSON object, no other text.
+
+=== USER ===
+Exchange: N/A
+Stock Symbol: N/A
+News Source: manual-test
+
+Content:
+美伊签署谅解备忘录，霍尔木兹海峡迎来全面开放窗口路透社迪拜/华盛顿联合报道国际调停人于 正式宣布，美国与伊朗已签署了一份包含多项条款的谅解备忘录（MoU）。该备忘录旨在通过一个为期60天的“执行缓冲期”来正式结束双方的武装冲突，并为外交谈判留出空间。核心开放与停火条款：全面恢复通航： 根据协议，伊朗承诺撤回对霍尔木兹海峡的封锁与限制措施，允许国际商业能源轮船自由、安全地通过该国际水道，以恢复此前遭到严重掐断的全球约五分之一的石油与液化天然气（LNG）供应。  暂停敌对军事行动： 美军及其盟友承诺暂停对伊朗本土及军事目标的空袭行动；作为交换，伊朗也同意停止其武装力量对海峡内外国商船的登船拦截与无人机袭击。市场即时反应： 随着海峡重新开放的利好消息传出，路透社数据显示，此前因战火暴涨至历史高位的国际原油价格和航运保险费率在当日均出现明显回落。
+=== END PROMPT ===
+2026-07-20 12:05:42,483 [INFO] backend.langgraph_workflow: No stock symbol — skipping news context fetch
+2026-07-20 12:05:42,495 [INFO] backend.trading_engine: evaluate_signal: symbol= sentiment=超级利好 score=0.80 holding=True price=100.00
+2026-07-20 12:05:42,495 [DEBUG] backend.strategy.strategy: Exit triggered by: ['EndOfDayExitRule']
+2026-07-20 12:05:42,511 [INFO] backend.trading_engine: SELL  @ 100.00 (strategy exit)
+2026-07-20 12:06:59,121 [INFO] backend.mcp_client: MCP connected: sacollector-mcp v1.0.0, session=EVKDP7K3DYUS...
+2026-07-20 12:07:12,925 [INFO] backend.mcp_client: MCP connected: sacollector-mcp v1.0.0, session=BPDFDBZIQCLV...
+2026-07-20 12:07:14,924 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-20 12:07:14,925 [DEBUG] backend.langgraph_workflow: Built prompt:
+=== SYSTEM ===
+You are a professional stock market analyst. Analyze the sentiment of the given news for stock trading.
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+## Decision flow (CRITICAL — follow this order)
+
+### Case A: Stock Symbol is provided
+Analyze the impact on that stock ONLY. Use financial data tools to retrieve the company's latest financial metrics before making your judgement.
+
+### Case B: Stock Symbol is empty but Exchange is provided
+1. Determine which **industry is most directly affected** by the news.
+2. Identify the **most representative and liquid listed company** in that industry on the specified exchange.
+3. Retrieve its financial data using the tools.
+4. Base the sentiment analysis on that representative company.
+5. Include the selected stock code and company name in the output.
+
+IMPORTANT: Macro news often has asymmetric impacts across industries. Always identify the **industry with the strongest first-order impact** before selecting a representative stock.
+
+Examples of industry → representative stock mapping:
+| News | Exchange | Industry | Representative |
+|---|---|---|---|
+| Oil price surges, Strait of Hormuz closed | HKG | Oil & Gas | 00883 CNOOC |
+| Oil supply disruption | ASX | Oil & Gas | WDS Woodside (larger market cap than STO Santos) |
+| Rising interest rates | — | Banks | (largest bank on that exchange) |
+| Falling interest rates | — | REITs | (largest REIT on that exchange) |
+| AI breakthrough | — | AI chip companies | (most relevant chip stock on that exchange) |
+| Airline fuel price increase | — | Airlines | (largest airline on that exchange) |
+| Steel tariffs | — | Steel producers | (largest steel producer on that exchange) |
+
+When choosing between candidates on the same exchange, **prefer the one with larger market capitalization**.
+
+### Case C: Neither Stock Symbol nor Exchange is provided
+Output sentiment = "neutral" with low confidence.
+
+---
+
+## Output format
+
+Output MUST be a valid JSON object with these exact fields:
+- "sentiment": one of ["超级利好", "普通利好", "neutral", "普通利空", "超级利空"]
+- "confidence_score": a float between 0.0 and 1.0
+- "reasoning": 2-4 sentences in Chinese explaining the sentiment. Reference financial data if retrieved.
+- "translate": Chinese translation of the given news
+- "selected_symbol": the stock code auto-selected in Case B (e.g. "00883 CNOOC"), or empty string if not applicable
+
+## Sentiment guidelines
+- 超级利好 (super bullish): major earnings beat, breakthrough product, huge contract win, favorable macro policy
+- 普通利好 (bullish): steady growth, minor contract wins, positive outlook
+- neutral: no clear directional impact or mixed signals
+- 普通利空 (bearish): minor earnings misses, regulatory headwinds
+- 超级利空 (super bearish): major fraud, bankruptcy risk, catastrophic events
+
+Output ONLY the JSON object, no other text.
+
+=== USER ===
+Exchange: N/A
+Stock Symbol: N/A
+News Source: manual-test
+
+Content:
+美伊签署谅解备忘录，霍尔木兹海峡迎来全面开放窗口路透社迪拜/华盛顿联合报道国际调停人于 正式宣布，美国与伊朗已签署了一份包含多项条款的谅解备忘录（MoU）。该备忘录旨在通过一个为期60天的“执行缓冲期”来正式结束双方的武装冲突，并为外交谈判留出空间。核心开放与停火条款：全面恢复通航： 根据协议，伊朗承诺撤回对霍尔木兹海峡的封锁与限制措施，允许国际商业能源轮船自由、安全地通过该国际水道，以恢复此前遭到严重掐断的全球约五分之一的石油与液化天然气（LNG）供应。  暂停敌对军事行动： 美军及其盟友承诺暂停对伊朗本土及军事目标的空袭行动；作为交换，伊朗也同意停止其武装力量对海峡内外国商船的登船拦截与无人机袭击。市场即时反应： 随着海峡重新开放的利好消息传出，路透社数据显示，此前因战火暴涨至历史高位的国际原油价格和航运保险费率在当日均出现明显回落。
+=== END PROMPT ===
+2026-07-20 12:07:14,926 [INFO] backend.langgraph_workflow: No stock symbol — skipping news context fetch
+2026-07-20 12:07:14,927 [DEBUG] backend.langgraph_workflow: LLM message [SYSTEM]:
+You are a professional stock market analyst. Analyze the sentiment of the given news for stock trading.
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+## Decision flow (CRITICAL — follow this order)
+
+### Case A: Stock Symbol is provided
+Analyze the impact on that stock ONLY. Use financial data tools to retrieve the company's latest financial metrics before making your judgement.
+
+### Case B: Stock Symbol is empty but Exchange is provided
+1. Determine which **industry is most directly affected** by the news.
+2. Identify the **most representative and liquid listed company** in that industry on the specified exchange.
+3. Retrieve its financial data using the tools.
+4. Base the sentiment analysis on that representative company.
+5. Include the selected stock code and company name in the output.
+
+IMPORTANT: Macro news often has asymmetric impacts across industries. Always identify the **industry with the strongest first-order impact** before selecting a representative stock.
+
+Examples of industry → representative stock mapping:
+| News | Exchange | Industry | Representative |
+|---|---|---|---|
+| Oil price surges, Strait of Hormuz closed | HKG | Oil & Gas | 00883 CNOOC |
+| Oil supply disruption | ASX | Oil & Gas | WDS Woodside (larger market cap than STO Santos) |
+| Rising interest rates | — | Banks | (largest bank on that exchange) |
+| Falling interest rates | — | REITs | (largest REIT on that exchange) |
+| AI breakthrough | — | AI chip companies | (most relevant chip stock on that exchange) |
+| Airline fuel price increase | — | Airlines | (largest airline on that exchange) |
+| Steel tariffs | — | Steel producers | (largest steel producer on that exchange) |
+
+When choosing between candidates on the same exchange, **prefer the one with larger market capitalization**.
+
+### Case C: Neither Stock Symbol nor Exchange is provided
+Output sentiment = "neutral" with low confidence.
+
+---
+
+## Output format
+
+Output MUST be a valid JSON object with these exact fields:
+- "sentiment": one of ["超级利好", "普通利好", "neutral", "普通利空", "超级利空"]
+- "confidence_score": a float between 0.0 and 1.0
+- "reasoning": 2-4 sentences in Chinese explaining the sentiment. Reference financial data if retrieved.
+- "translate": Chinese translation of the given news
+- "selected_symbol": the stock code auto-selected in Case B (e.g. "00883 CNOOC"), or empty string if not applicable
+
+## Sentiment guidelines
+- 超级利好 (super bullish): major earnings beat, breakthrough product, huge contract win, favorable macro policy
+- 普通利好 (bullish): steady growth, minor contract wins, positive outlook
+- neutral: no clear directional impact or mixed signals
+- 普通利空 (bearish): minor earnings misses, regulatory headwinds
+- 超级利空 (super bearish): major fraud, bankruptcy risk, catastrophic events
+
+Output ONLY the JSON object, no other text.
+
+=== END SYSTEM ===
+2026-07-20 12:07:14,927 [DEBUG] backend.langgraph_workflow: LLM message [USER]:
+Exchange: N/A
+Stock Symbol: N/A
+News Source: manual-test
+
+Content:
+美伊签署谅解备忘录，霍尔木兹海峡迎来全面开放窗口路透社迪拜/华盛顿联合报道国际调停人于 正式宣布，美国与伊朗已签署了一份包含多项条款的谅解备忘录（MoU）。该备忘录旨在通过一个为期60天的“执行缓冲期”来正式结束双方的武装冲突，并为外交谈判留出空间。核心开放与停火条款：全面恢复通航： 根据协议，伊朗承诺撤回对霍尔木兹海峡的封锁与限制措施，允许国际商业能源轮船自由、安全地通过该国际水道，以恢复此前遭到严重掐断的全球约五分之一的石油与液化天然气（LNG）供应。  暂停敌对军事行动： 美军及其盟友承诺暂停对伊朗本土及军事目标的空袭行动；作为交换，伊朗也同意停止其武装力量对海峡内外国商船的登船拦截与无人机袭击。市场即时反应： 随着海峡重新开放的利好消息传出，路透社数据显示，此前因战火暴涨至历史高位的国际原油价格和航运保险费率在当日均出现明显回落。
+=== END USER ===
+2026-07-20 12:07:26,167 [DEBUG] backend.langgraph_workflow: LLM final response: ```json
+{
+  "sentiment": "neutral",
+  "confidence_score": 0.1,
+  "reasoning": "该新闻涉及重大地缘政治事件（美伊谅解备忘录及霍尔木兹海峡重新开放），对全球原油及LNG市场具有显著影响，但未提供具体的交易所或股票代码，无法确定受影响最直接的代表性个股。按照分析规则，在既无股票代码也无交易所的情况下，输出中性判断。若指定交易
+2026-07-20 12:07:26,180 [INFO] backend.trading_engine: evaluate_signal: symbol= sentiment=neutral score=0.10 holding=True price=100.00
+2026-07-20 12:07:26,180 [DEBUG] backend.strategy.strategy: Exit triggered by: ['EndOfDayExitRule']
+2026-07-20 12:07:26,187 [INFO] backend.trading_engine: SELL  @ 100.00 (strategy exit)
+2026-07-20 12:07:37,814 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-20 12:07:37,815 [DEBUG] backend.langgraph_workflow: Built prompt:
+=== SYSTEM ===
+You are a professional stock market analyst. Analyze the sentiment of the given news for stock trading.
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+## Decision flow (CRITICAL — follow this order)
+
+### Case A: Stock Symbol is provided
+Analyze the impact on that stock ONLY. Use financial data tools to retrieve the company's latest financial metrics before making your judgement.
+
+### Case B: Stock Symbol is empty but Exchange is provided
+1. Determine which **industry is most directly affected** by the news.
+2. Identify the **most representative and liquid listed company** in that industry on the specified exchange.
+3. Retrieve its financial data using the tools.
+4. Base the sentiment analysis on that representative company.
+5. Include the selected stock code and company name in the output.
+
+IMPORTANT: Macro news often has asymmetric impacts across industries. Always identify the **industry with the strongest first-order impact** before selecting a representative stock.
+
+Examples of industry → representative stock mapping:
+| News | Exchange | Industry | Representative |
+|---|---|---|---|
+| Oil price surges, Strait of Hormuz closed | HKG | Oil & Gas | 00883 CNOOC |
+| Oil supply disruption | ASX | Oil & Gas | WDS Woodside (larger market cap than STO Santos) |
+| Rising interest rates | — | Banks | (largest bank on that exchange) |
+| Falling interest rates | — | REITs | (largest REIT on that exchange) |
+| AI breakthrough | — | AI chip companies | (most relevant chip stock on that exchange) |
+| Airline fuel price increase | — | Airlines | (largest airline on that exchange) |
+| Steel tariffs | — | Steel producers | (largest steel producer on that exchange) |
+
+When choosing between candidates on the same exchange, **prefer the one with larger market capitalization**.
+
+### Case C: Neither Stock Symbol nor Exchange is provided
+Output sentiment = "neutral" with low confidence.
+
+---
+
+## Output format
+
+Output MUST be a valid JSON object with these exact fields:
+- "sentiment": one of ["超级利好", "普通利好", "neutral", "普通利空", "超级利空"]
+- "confidence_score": a float between 0.0 and 1.0
+- "reasoning": 2-4 sentences in Chinese explaining the sentiment. Reference financial data if retrieved.
+- "translate": Chinese translation of the given news
+- "selected_symbol": the stock code auto-selected in Case B (e.g. "00883 CNOOC"), or empty string if not applicable
+
+## Sentiment guidelines
+- 超级利好 (super bullish): major earnings beat, breakthrough product, huge contract win, favorable macro policy
+- 普通利好 (bullish): steady growth, minor contract wins, positive outlook
+- neutral: no clear directional impact or mixed signals
+- 普通利空 (bearish): minor earnings misses, regulatory headwinds
+- 超级利空 (super bearish): major fraud, bankruptcy risk, catastrophic events
+
+Output ONLY the JSON object, no other text.
+
+=== USER ===
+Exchange: AU
+Stock Symbol: N/A
+News Source: manual-test
+
+Content:
+美伊签署谅解备忘录，霍尔木兹海峡迎来全面开放窗口路透社迪拜/华盛顿联合报道国际调停人于 正式宣布，美国与伊朗已签署了一份包含多项条款的谅解备忘录（MoU）。该备忘录旨在通过一个为期60天的“执行缓冲期”来正式结束双方的武装冲突，并为外交谈判留出空间。核心开放与停火条款：全面恢复通航： 根据协议，伊朗承诺撤回对霍尔木兹海峡的封锁与限制措施，允许国际商业能源轮船自由、安全地通过该国际水道，以恢复此前遭到严重掐断的全球约五分之一的石油与液化天然气（LNG）供应。  暂停敌对军事行动： 美军及其盟友承诺暂停对伊朗本土及军事目标的空袭行动；作为交换，伊朗也同意停止其武装力量对海峡内外国商船的登船拦截与无人机袭击。市场即时反应： 随着海峡重新开放的利好消息传出，路透社数据显示，此前因战火暴涨至历史高位的国际原油价格和航运保险费率在当日均出现明显回落。
+=== END PROMPT ===
+2026-07-20 12:07:37,815 [INFO] backend.langgraph_workflow: No stock symbol — skipping news context fetch
+2026-07-20 12:07:37,816 [DEBUG] backend.langgraph_workflow: LLM message [SYSTEM]:
+You are a professional stock market analyst. Analyze the sentiment of the given news for stock trading.
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+## Decision flow (CRITICAL — follow this order)
+
+### Case A: Stock Symbol is provided
+Analyze the impact on that stock ONLY. Use financial data tools to retrieve the company's latest financial metrics before making your judgement.
+
+### Case B: Stock Symbol is empty but Exchange is provided
+1. Determine which **industry is most directly affected** by the news.
+2. Identify the **most representative and liquid listed company** in that industry on the specified exchange.
+3. Retrieve its financial data using the tools.
+4. Base the sentiment analysis on that representative company.
+5. Include the selected stock code and company name in the output.
+
+IMPORTANT: Macro news often has asymmetric impacts across industries. Always identify the **industry with the strongest first-order impact** before selecting a representative stock.
+
+Examples of industry → representative stock mapping:
+| News | Exchange | Industry | Representative |
+|---|---|---|---|
+| Oil price surges, Strait of Hormuz closed | HKG | Oil & Gas | 00883 CNOOC |
+| Oil supply disruption | ASX | Oil & Gas | WDS Woodside (larger market cap than STO Santos) |
+| Rising interest rates | — | Banks | (largest bank on that exchange) |
+| Falling interest rates | — | REITs | (largest REIT on that exchange) |
+| AI breakthrough | — | AI chip companies | (most relevant chip stock on that exchange) |
+| Airline fuel price increase | — | Airlines | (largest airline on that exchange) |
+| Steel tariffs | — | Steel producers | (largest steel producer on that exchange) |
+
+When choosing between candidates on the same exchange, **prefer the one with larger market capitalization**.
+
+### Case C: Neither Stock Symbol nor Exchange is provided
+Output sentiment = "neutral" with low confidence.
+
+---
+
+## Output format
+
+Output MUST be a valid JSON object with these exact fields:
+- "sentiment": one of ["超级利好", "普通利好", "neutral", "普通利空", "超级利空"]
+- "confidence_score": a float between 0.0 and 1.0
+- "reasoning": 2-4 sentences in Chinese explaining the sentiment. Reference financial data if retrieved.
+- "translate": Chinese translation of the given news
+- "selected_symbol": the stock code auto-selected in Case B (e.g. "00883 CNOOC"), or empty string if not applicable
+
+## Sentiment guidelines
+- 超级利好 (super bullish): major earnings beat, breakthrough product, huge contract win, favorable macro policy
+- 普通利好 (bullish): steady growth, minor contract wins, positive outlook
+- neutral: no clear directional impact or mixed signals
+- 普通利空 (bearish): minor earnings misses, regulatory headwinds
+- 超级利空 (super bearish): major fraud, bankruptcy risk, catastrophic events
+
+Output ONLY the JSON object, no other text.
+
+=== END SYSTEM ===
+2026-07-20 12:07:37,816 [DEBUG] backend.langgraph_workflow: LLM message [USER]:
+Exchange: AU
+Stock Symbol: N/A
+News Source: manual-test
+
+Content:
+美伊签署谅解备忘录，霍尔木兹海峡迎来全面开放窗口路透社迪拜/华盛顿联合报道国际调停人于 正式宣布，美国与伊朗已签署了一份包含多项条款的谅解备忘录（MoU）。该备忘录旨在通过一个为期60天的“执行缓冲期”来正式结束双方的武装冲突，并为外交谈判留出空间。核心开放与停火条款：全面恢复通航： 根据协议，伊朗承诺撤回对霍尔木兹海峡的封锁与限制措施，允许国际商业能源轮船自由、安全地通过该国际水道，以恢复此前遭到严重掐断的全球约五分之一的石油与液化天然气（LNG）供应。  暂停敌对军事行动： 美军及其盟友承诺暂停对伊朗本土及军事目标的空袭行动；作为交换，伊朗也同意停止其武装力量对海峡内外国商船的登船拦截与无人机袭击。市场即时反应： 随着海峡重新开放的利好消息传出，路透社数据显示，此前因战火暴涨至历史高位的国际原油价格和航运保险费率在当日均出现明显回落。
+=== END USER ===
+2026-07-20 12:07:43,651 [INFO] backend.langgraph_workflow: Agent round 1: LLM requested 2 tool call(s)
+2026-07-20 12:07:43,653 [INFO] backend.langgraph_workflow:   → get_data_period({"exchange": "ASX", "code": "WDS"})
+2026-07-20 12:07:43,670 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'WDS', 'earliest_date': '2016-06-30', 'exchange': 'asx', 'latest_date': '2025-12-31', 'statement_types_available': ['balance-sheet', 'cash-flow-statement', 'income-statement', 'ratios']}
+2026-07-20 12:07:43,671 [INFO] backend.langgraph_workflow:   → list_metrics({"exchange": "ASX", "code": "WDS"})
+2026-07-20 12:07:43,673 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'WDS', 'exchange': 'asx', 'metrics': {'balance-sheet': ['accountsPayable', 'accountsReceivable', 'accruedExpenses', 'assets', 'assetsc', 'bvps', 'capitalLeases', 'cashGrowth', 'cashneq', 'commonStock', 'constructionInProgress', 'currentCapLeases', 'currentIncomeTaxesPayable', 'currentLiabilities', 'currentPortDebt', 'debt', 'debtnc', 'defferedTaxAssets', 'equity', 'goodwill', 'inventory', 'investmentsc', 'investmentsnc', 'land', 'liabilities', 'liabilitiesequity', 'longTermAccountsReceivable', 'longTermDeferredTaxLiabilities', 'machinery', 'minorityInterestBS', 'netPPE', 'netcash', 'netcashpershare', 'otherCurrentLiabilities', 'otherEquity', 'otherIntangibles', 'otherReceivables', 'othercurrent', 'otherliabilitiesnoncurrent', 'othernoncurrent', 'pensionRetirementBenefits', 'receivables', 'retearn', 'sharesOutFilingDate', 'sharesOutTotalCommon', 'tangibleBookValue', 'tangibleBookValuePerShare', 'totalCommonEquity', 'totalcash', 'tradingAssetSecurities', 'workingcapital'], 'cash-flow-statement': ['assetWritedownCF', 'capex', 'cashAcquisition', 'cashInterestPaid', 'cashTaxesPaid', 'changeAP', 'changeAR', 'changeInventory', 'changeOtherNetOperAssets', 'changeWorkingCapital', 'commonDividendCF', 'commonIssued', 'commonRepurchased', 'debtIssuedLongTerm', 'debtIssuedTotal', 'debtRepaidLongTerm', 'debtRepaidTotal', 'exchangeRateAdjustments', 'fcf', 'fcfGrowth', 'fcfMargin', 'fcfps', 'gainAssetsCF', 'gainInvestmentsCF', 'investInSecurities', 'leveredFCF', 'miscCashFlowAdjustments', 'ncf', 'ncff', 'ncfi', 'ncfo', 'netDebtIssued', 'netIncomeCF', 'ocfGrowth', 'otherAmortization', 'otherfinancing', 'otherinvesting', 'otheroperating', 'saleOfPropertyPlantAndEquipment', 'totalDepAmorCF', 'unleveredFCF'], 'income-statement': ['assetWritedown', 'cor', 'currencyGains', 'depAmorEbitda', 'dividendGrowth', 'dps', 'earningContinuing', 'ebit', 'ebitda', 'ebtExcl', 'epsBasic', 'epsGrowth', 'epsdil', 'fcf', 'fcfMargin', 'fcfps', 'gainAssets', 'gainInvestments', 'goodwillIntangibleAmortization', 'gp', 'impairmentGoodwill', 'interestExpense', 'interestIncome', 'minorityInterest', 'netIncomeGrowth', 'netinc', 'netinccmn', 'operatingMargin', 'opex', 'opinc', 'otherNonOperating', 'otherUnusualItems', 'otheropex', 'pretax', 'profitMargin', 'revenue', 'revenueGrowth', 'sgna', 'sharesBasic', 'sharesDiluted', 'sharesYoY', 'taxexp'], 'ratios': ['buybackyield', 'debtequity', 'debtfcf', 'dividendyield', 'earningsyield', 'ev', 'evebit', 'evebitda', 'evfcf', 'evrevenue', 'fcfyield', 'lastCloseRatios', 'marketCapGrowth', 'marketcap', 'netdebtebitda', 'netdebtequity', 'netdebtfcf', 'pb', 'pe', 'peForward', 'pegRatio', 'pfcf', 'pocf', 'ps', 'ptbvRatio', 'roce', 'totalreturn']}}
+2026-07-20 12:07:43,674 [INFO] backend.langgraph_workflow: Agent round 2: sending 5 messages (2 tool results) to LLM
+2026-07-20 12:07:47,033 [INFO] backend.langgraph_workflow: Agent round 2: LLM requested 1 tool call(s)
+2026-07-20 12:07:47,035 [INFO] backend.langgraph_workflow:   → get_financials({"exchange": "ASX", "code": "WDS", "metrics": ["revenue", "netinc", "epsBasic", "pe", "pb", "profitMargin", "operatingMargin", "revenueGrowth", "marketcap", "dividendyield"], "period": "2y"})
+2026-07-20 12:07:47,038 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'WDS', 'data': {'2023-12-31': {'income-statement': {'epsBasic': -0.042185, 'netinc': -80000000, 'operatingMargin': 0.10631, 'profitMargin': -0.01213, 'revenue': 6594000000, 'revenueGrowth': -0.40093}, 'ratios': {'dividendyield': 0.07785, 'marketcap': 58975167887, 'pb': 1.143, 'pe': None}}, '2024-06-30': {'income-statement': {'epsBasic': 1.021601, 'netinc': 1937000000, 'operatingMargin': 0.31764, 'profitMargin': 0.32348, 'revenue': 5988000000, 'revenueGrowth': -0.19081}, 'ratios': {'dividendyield': 0.07827, 'marketcap': 53563731040, 'pb': 0.997, 'pe': 19.245}}, '2024-12-31': {'income-statement': {'epsBasic': 0.863157, 'netinc': 1636000000, 'operatingMargin': 0.23571, 'profitMargin': 0.22751, 'revenue': 7191000000, 'revenueGrowth': 0.09054}, 'ratios': {'dividendyield': 0.08804, 'marketcap': 46709244367, 'pb': 0.8, 'pe': 8.09}}, '2025-06-30': {'income-statement': {'epsBasic': 0.694399, 'netinc': 1316000000, 'operatingMargin': 0.21745, 'profitMargin': 0.1997, 'revenue': 6590000000, 'revenueGrowth': 0.10053}, 'ratios': {'dividendyield': 0.07252, 'marketcap': 44867457089, 'pb': 0.764, 'pe': 9.965}}, '2025-12-31': {'income-statement': {'epsBasic': 0.739563, 'netinc': 1402000000, 'operatingMargin': 0.1908, 'profitMargin': 0.21927, 'revenue': 6394000000, 'revenueGrowth': -0.11083}, 'ratios': {'dividendyield': 0.07317, 'marketcap': 44846952373, 'pb': 0.751, 'pe': 11.006}}}, 'exchange': 'asx', 'metric_sources': {'dividendyield': 'ratios', 'epsBasic': 'income-statement', 'marketcap': 'ratios', 'netinc': 'income-statement', 'operatingMargin': 'income-statement', 'pb': 'ratios', 'pe': 'ratios', 'profitMargin': 'income-statement', 'revenue': 'income-statement', 'revenueGrowth': 'income-statement'}, 'period': '2y'}
+2026-07-20 12:07:47,039 [INFO] backend.langgraph_workflow: Agent round 3: sending 7 messages (3 tool results) to LLM
+2026-07-20 12:07:59,624 [DEBUG] backend.langgraph_workflow: LLM final response: ```json
+{
+  "sentiment": "普通利空",
+  "confidence_score": 0.78,
+  "reasoning": "霍尔木兹海峡恢复通航意味着全球约五分之一的石油与LNG供应将重新涌入市场，国际油价已出现明显回落，这对上游油气生产商构成直接利润压力。以澳洲最大油气公司Woodside Energy（WDS）为例，其最新财年营收约64亿美元、净利润率约22%，P
+2026-07-20 12:07:59,639 [INFO] backend.trading_engine: evaluate_signal: symbol=WDS Woodside Energy sentiment=普通利空 score=0.78 holding=False price=100.00
+2026-07-20 12:07:59,639 [INFO] backend.trading_engine: evaluate_signal: NO TRADE — strategy rejected  symbol=WDS Woodside Energy  should_buy=False  should_short=False  entry_rules=['SentimentEntryRule']
+2026-07-20 12:11:08,265 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-20 12:11:08,265 [DEBUG] backend.langgraph_workflow: Built prompt:
+=== SYSTEM ===
+You are a professional stock market analyst. Analyze the sentiment of the given news for stock trading.
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+## Decision flow (CRITICAL — follow this order)
+
+### Case A: Stock Symbol is provided
+Analyze the impact on that stock ONLY. Use financial data tools to retrieve the company's latest financial metrics before making your judgement.
+
+### Case B: Stock Symbol is empty but Exchange is provided
+1. Determine which **industry is most directly affected** by the news.
+2. Identify the **most representative and liquid listed company** in that industry on the specified exchange.
+3. Retrieve its financial data using the tools.
+4. Base the sentiment analysis on that representative company.
+5. Include the selected stock code and company name in the output.
+
+IMPORTANT: Macro news often has asymmetric impacts across industries. Always identify the **industry with the strongest first-order impact** before selecting a representative stock.
+
+Examples of industry → representative stock mapping:
+| News | Exchange | Industry | Representative |
+|---|---|---|---|
+| Oil price surges, Strait of Hormuz closed | HKG | Oil & Gas | 00883 CNOOC |
+| Oil supply disruption | ASX | Oil & Gas | WDS Woodside (larger market cap than STO Santos) |
+| Rising interest rates | — | Banks | (largest bank on that exchange) |
+| Falling interest rates | — | REITs | (largest REIT on that exchange) |
+| AI breakthrough | — | AI chip companies | (most relevant chip stock on that exchange) |
+| Airline fuel price increase | — | Airlines | (largest airline on that exchange) |
+| Steel tariffs | — | Steel producers | (largest steel producer on that exchange) |
+
+When choosing between candidates on the same exchange, **prefer the one with larger market capitalization**.
+
+### Case C: Neither Stock Symbol nor Exchange is provided
+Output sentiment = "neutral" with low confidence.
+
+---
+
+## Output format
+
+Output MUST be a valid JSON object with these exact fields:
+- "sentiment": one of ["超级利好", "普通利好", "neutral", "普通利空", "超级利空"]
+- "confidence_score": a float between 0.0 and 1.0
+- "reasoning": 2-4 sentences in Chinese explaining the sentiment. Reference financial data if retrieved.
+- "translate": Chinese translation of the given news
+- "selected_symbol": the stock code auto-selected in Case B (e.g. "00883 CNOOC"), or empty string if not applicable
+
+## Sentiment guidelines
+- 超级利好 (super bullish): major earnings beat, breakthrough product, huge contract win, favorable macro policy
+- 普通利好 (bullish): steady growth, minor contract wins, positive outlook
+- neutral: no clear directional impact or mixed signals
+- 普通利空 (bearish): minor earnings misses, regulatory headwinds
+- 超级利空 (super bearish): major fraud, bankruptcy risk, catastrophic events
+
+Output ONLY the JSON object, no other text.
+
+=== USER ===
+Exchange: AU
+Stock Symbol: N/A
+News Source: manual-test
+
+Content:
+美伊签署谅解备忘录，霍尔木兹海峡迎来全面开放窗口路透社迪拜/华盛顿联合报道国际调停人于 正式宣布，美国与伊朗已签署了一份包含多项条款的谅解备忘录（MoU）。该备忘录旨在通过一个为期60天的“执行缓冲期”来正式结束双方的武装冲突，并为外交谈判留出空间。核心开放与停火条款：全面恢复通航： 根据协议，伊朗承诺撤回对霍尔木兹海峡的封锁与限制措施，允许国际商业能源轮船自由、安全地通过该国际水道，以恢复此前遭到严重掐断的全球约五分之一的石油与液化天然气（LNG）供应。  暂停敌对军事行动： 美军及其盟友承诺暂停对伊朗本土及军事目标的空袭行动；作为交换，伊朗也同意停止其武装力量对海峡内外国商船的登船拦截与无人机袭击。市场即时反应： 随着海峡重新开放的利好消息传出，路透社数据显示，此前因战火暴涨至历史高位的国际原油价格和航运保险费率在当日均出现明显回落。
+=== END PROMPT ===
+2026-07-20 12:11:08,266 [INFO] backend.langgraph_workflow: No stock symbol — skipping news context fetch
+2026-07-20 12:11:08,266 [DEBUG] backend.langgraph_workflow: LLM message [SYSTEM]:
+You are a professional stock market analyst. Analyze the sentiment of the given news for stock trading.
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+## Decision flow (CRITICAL — follow this order)
+
+### Case A: Stock Symbol is provided
+Analyze the impact on that stock ONLY. Use financial data tools to retrieve the company's latest financial metrics before making your judgement.
+
+### Case B: Stock Symbol is empty but Exchange is provided
+1. Determine which **industry is most directly affected** by the news.
+2. Identify the **most representative and liquid listed company** in that industry on the specified exchange.
+3. Retrieve its financial data using the tools.
+4. Base the sentiment analysis on that representative company.
+5. Include the selected stock code and company name in the output.
+
+IMPORTANT: Macro news often has asymmetric impacts across industries. Always identify the **industry with the strongest first-order impact** before selecting a representative stock.
+
+Examples of industry → representative stock mapping:
+| News | Exchange | Industry | Representative |
+|---|---|---|---|
+| Oil price surges, Strait of Hormuz closed | HKG | Oil & Gas | 00883 CNOOC |
+| Oil supply disruption | ASX | Oil & Gas | WDS Woodside (larger market cap than STO Santos) |
+| Rising interest rates | — | Banks | (largest bank on that exchange) |
+| Falling interest rates | — | REITs | (largest REIT on that exchange) |
+| AI breakthrough | — | AI chip companies | (most relevant chip stock on that exchange) |
+| Airline fuel price increase | — | Airlines | (largest airline on that exchange) |
+| Steel tariffs | — | Steel producers | (largest steel producer on that exchange) |
+
+When choosing between candidates on the same exchange, **prefer the one with larger market capitalization**.
+
+### Case C: Neither Stock Symbol nor Exchange is provided
+Output sentiment = "neutral" with low confidence.
+
+---
+
+## Output format
+
+Output MUST be a valid JSON object with these exact fields:
+- "sentiment": one of ["超级利好", "普通利好", "neutral", "普通利空", "超级利空"]
+- "confidence_score": a float between 0.0 and 1.0
+- "reasoning": 2-4 sentences in Chinese explaining the sentiment. Reference financial data if retrieved.
+- "translate": Chinese translation of the given news
+- "selected_symbol": the stock code auto-selected in Case B (e.g. "00883 CNOOC"), or empty string if not applicable
+
+## Sentiment guidelines
+- 超级利好 (super bullish): major earnings beat, breakthrough product, huge contract win, favorable macro policy
+- 普通利好 (bullish): steady growth, minor contract wins, positive outlook
+- neutral: no clear directional impact or mixed signals
+- 普通利空 (bearish): minor earnings misses, regulatory headwinds
+- 超级利空 (super bearish): major fraud, bankruptcy risk, catastrophic events
+
+Output ONLY the JSON object, no other text.
+
+=== END SYSTEM ===
+2026-07-20 12:11:08,266 [DEBUG] backend.langgraph_workflow: LLM message [USER]:
+Exchange: AU
+Stock Symbol: N/A
+News Source: manual-test
+
+Content:
+美伊签署谅解备忘录，霍尔木兹海峡迎来全面开放窗口路透社迪拜/华盛顿联合报道国际调停人于 正式宣布，美国与伊朗已签署了一份包含多项条款的谅解备忘录（MoU）。该备忘录旨在通过一个为期60天的“执行缓冲期”来正式结束双方的武装冲突，并为外交谈判留出空间。核心开放与停火条款：全面恢复通航： 根据协议，伊朗承诺撤回对霍尔木兹海峡的封锁与限制措施，允许国际商业能源轮船自由、安全地通过该国际水道，以恢复此前遭到严重掐断的全球约五分之一的石油与液化天然气（LNG）供应。  暂停敌对军事行动： 美军及其盟友承诺暂停对伊朗本土及军事目标的空袭行动；作为交换，伊朗也同意停止其武装力量对海峡内外国商船的登船拦截与无人机袭击。市场即时反应： 随着海峡重新开放的利好消息传出，路透社数据显示，此前因战火暴涨至历史高位的国际原油价格和航运保险费率在当日均出现明显回落。
+=== END USER ===
+2026-07-20 12:11:15,563 [INFO] backend.langgraph_workflow: Agent round 1: LLM requested 1 tool call(s)
+2026-07-20 12:11:15,565 [INFO] backend.langgraph_workflow:   → get_financials({"exchange": "ASX", "code": "WDS", "metrics": ["revenue", "netinc", "epsBasic", "pe", "pb", "operatingMargin", "profitMargin"], "period": "2y"})
+2026-07-20 12:11:15,570 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'WDS', 'data': {'2023-12-31': {'income-statement': {'epsBasic': -0.042185, 'netinc': -80000000, 'operatingMargin': 0.10631, 'profitMargin': -0.01213, 'revenue': 6594000000}, 'ratios': {'pb': 1.143, 'pe': None}}, '2024-06-30': {'income-statement': {'epsBasic': 1.021601, 'netinc': 1937000000, 'operatingMargin': 0.31764, 'profitMargin': 0.32348, 'revenue': 5988000000}, 'ratios': {'pb': 0.997, 'pe': 19.245}}, '2024-12-31': {'income-statement': {'epsBasic': 0.863157, 'netinc': 1636000000, 'operatingMargin': 0.23571, 'profitMargin': 0.22751, 'revenue': 7191000000}, 'ratios': {'pb': 0.8, 'pe': 8.09}}, '2025-06-30': {'income-statement': {'epsBasic': 0.694399, 'netinc': 1316000000, 'operatingMargin': 0.21745, 'profitMargin': 0.1997, 'revenue': 6590000000}, 'ratios': {'pb': 0.764, 'pe': 9.965}}, '2025-12-31': {'income-statement': {'epsBasic': 0.739563, 'netinc': 1402000000, 'operatingMargin': 0.1908, 'profitMargin': 0.21927, 'revenue': 6394000000}, 'ratios': {'pb': 0.751, 'pe': 11.006}}}, 'exchange': 'asx', 'metric_sources': {'epsBasic': 'income-statement', 'netinc': 'income-statement', 'operatingMargin': 'income-statement', 'pb': 'ratios', 'pe': 'ratios', 'profitMargin': 'income-statement', 'revenue': 'income-statement'}, 'period': '2y'}
+2026-07-20 12:11:15,571 [INFO] backend.langgraph_workflow: Agent round 2: sending 4 messages (1 tool results) to LLM
+2026-07-20 12:11:31,287 [DEBUG] backend.langgraph_workflow: LLM final response: ```json
+{
+  "sentiment": "普通利空",
+  "confidence_score": 0.75,
+  "reasoning": "霍尔木兹海峡全面恢复通航意味着全球约五分之一的石油与LNG供应将重回市场，此前因地缘冲突推高的国际油价将明显回落。Woodside Energy（WDS）作为澳洲最大油气生产商，其盈利能力与油价高度相关——公司近几期利润率已从32.3%下滑至约2
+2026-07-20 12:11:31,298 [INFO] backend.trading_engine: evaluate_signal: symbol=WDS Woodside Energy Group sentiment=普通利空 score=0.75 holding=False price=100.00
+2026-07-20 12:11:31,298 [INFO] backend.trading_engine: evaluate_signal: NO TRADE — strategy rejected  symbol=WDS Woodside Energy Group  should_buy=False  should_short=False  entry_rules=['SentimentEntryRule']
+2026-07-20 12:18:14,007 [INFO] backend.main: Shutting down...
+2026-07-20 12:18:28,325 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-20 12:18:28,326 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-20 12:18:28,338 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-20 12:18:28,339 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-20 12:18:28,339 [INFO] backend.main: Backend ready.
+2026-07-20 12:18:28,340 [INFO] backend.dispatcher: dispatcher started
+2026-07-20 12:26:13,496 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-20 12:26:13,496 [DEBUG] backend.langgraph_workflow: Built prompt:
+=== SYSTEM ===
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+## Case A
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+---
+
+## Case B
+Stock Symbol is empty but Exchange is provided.
+
+This is a LONG-ONLY trading strategy.
+
+Your objective is to identify the BEST BUY opportunity.
+
+Follow these steps strictly:
+
+1. Identify industries expected to BENEFIT from the news.
+
+2. Ignore industries whose primary impact is negative.
+
+3. Among all beneficiary industries, choose the company that satisfies:
+
+   - Most direct first-order earnings benefit
+   - Largest market capitalization
+   - Highest trading liquidity
+
+4. MUST call get_financials for the selected company.
+
+5. Use both the news and financial metrics to determine the sentiment.
+
+6. Return the selected company.
+
+If NO listed company on the specified exchange is expected to receive a meaningful positive impact:
+
+Return
+
+selected_symbol = ""
+
+and
+
+sentiment = "neutral"
+
+Do NOT force a stock recommendation.
+
+---
+
+## Case C
+
+Neither Stock Symbol nor Exchange is provided.
+
+Return
+
+sentiment = "neutral"
+
+selected_symbol = ""
+
+with low confidence.
+
+---
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== USER ===
+Exchange: AU
+Stock Symbol: N/A
+News Source: manual-test
+
+Content:
+国际调停人宣布，美国与伊朗正式签署停战谅解备忘录（MoU），双方同意停止近期军事行动，并恢复围绕地区安全问题的外交谈判。作为协议的重要组成部分，伊朗同意恢复霍尔木兹海峡国际商业航运，保障所有国家商船自由通行。
+
+霍尔木兹海峡承担全球约20%的海运原油运输，此前因冲突升级导致大量油轮绕行、运费飙升及国际油价剧烈波动。随着航道恢复开放，航运风险溢价预计将下降，全球能源供应链有望恢复正常。
+=== END PROMPT ===
+2026-07-20 12:26:13,497 [INFO] backend.langgraph_workflow: No stock symbol — skipping news context fetch
+2026-07-20 12:26:13,497 [DEBUG] backend.langgraph_workflow: LLM message [SYSTEM]:
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+## Case A
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+---
+
+## Case B
+Stock Symbol is empty but Exchange is provided.
+
+This is a LONG-ONLY trading strategy.
+
+Your objective is to identify the BEST BUY opportunity.
+
+Follow these steps strictly:
+
+1. Identify industries expected to BENEFIT from the news.
+
+2. Ignore industries whose primary impact is negative.
+
+3. Among all beneficiary industries, choose the company that satisfies:
+
+   - Most direct first-order earnings benefit
+   - Largest market capitalization
+   - Highest trading liquidity
+
+4. MUST call get_financials for the selected company.
+
+5. Use both the news and financial metrics to determine the sentiment.
+
+6. Return the selected company.
+
+If NO listed company on the specified exchange is expected to receive a meaningful positive impact:
+
+Return
+
+selected_symbol = ""
+
+and
+
+sentiment = "neutral"
+
+Do NOT force a stock recommendation.
+
+---
+
+## Case C
+
+Neither Stock Symbol nor Exchange is provided.
+
+Return
+
+sentiment = "neutral"
+
+selected_symbol = ""
+
+with low confidence.
+
+---
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== END SYSTEM ===
+2026-07-20 12:26:13,497 [DEBUG] backend.langgraph_workflow: LLM message [USER]:
+Exchange: AU
+Stock Symbol: N/A
+News Source: manual-test
+
+Content:
+国际调停人宣布，美国与伊朗正式签署停战谅解备忘录（MoU），双方同意停止近期军事行动，并恢复围绕地区安全问题的外交谈判。作为协议的重要组成部分，伊朗同意恢复霍尔木兹海峡国际商业航运，保障所有国家商船自由通行。
+
+霍尔木兹海峡承担全球约20%的海运原油运输，此前因冲突升级导致大量油轮绕行、运费飙升及国际油价剧烈波动。随着航道恢复开放，航运风险溢价预计将下降，全球能源供应链有望恢复正常。
+=== END USER ===
+2026-07-20 12:26:29,436 [INFO] backend.langgraph_workflow: Agent round 1: LLM requested 1 tool call(s)
+2026-07-20 12:26:29,437 [INFO] backend.langgraph_workflow:   → get_financials({"exchange": "ASX", "code": "QAN", "metrics": ["revenue", "netinc", "epsBasic", "pe", "pb", "operatingMargin", "profitMargin", "roe"], "period": "2y"})
+2026-07-20 12:26:29,438 [INFO] backend.langgraph_workflow: Attempting lazy MCP connect to http://192.168.1.14:8081
+2026-07-20 12:26:29,444 [INFO] backend.mcp_client: MCP connected: sacollector-mcp v1.0.0, session=JSOPXMPW7WUX...
+2026-07-20 12:26:29,450 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'QAN', 'data': {'2023-12-31': {'income-statement': {'epsBasic': 0.517793, 'netinc': 873000000, 'operatingMargin': 0.11989, 'profitMargin': 0.07846, 'revenue': 11127000000}, 'ratios': {'pb': 76.618, 'pe': 5.547}}, '2024-06-30': {'income-statement': {'epsBasic': 0.235802, 'netinc': 382000000, 'operatingMargin': 0.07991, 'profitMargin': 0.03533, 'revenue': 10812000000}, 'ratios': {'pb': 30.675, 'pe': 7.186}}, '2024-12-31': {'income-statement': {'epsBasic': 0.597024, 'netinc': 923000000, 'operatingMargin': 0.11559, 'profitMargin': 0.0761, 'revenue': 12129000000}, 'ratios': {'pb': 17.892, 'pe': 10.187}}, '2025-06-30': {'income-statement': {'epsBasic': 0.451655, 'netinc': 682000000, 'operatingMargin': 0.09005, 'profitMargin': 0.05832, 'revenue': 11694000000}, 'ratios': {'pb': 20.328, 'pe': 9.917}}, '2025-12-31': {'income-statement': {'epsBasic': 0.611368, 'netinc': 925000000, 'operatingMargin': 0.11399, 'profitMargin': 0.07173, 'revenue': 12896000000}, 'ratios': {'pb': 11.403, 'pe': 9.573}}}, 'errors': ['metric "roe" not found in any statement'], 'exchange': 'asx', 'metric_sources': {'epsBasic': 'income-statement', 'netinc': 'income-statement', 'operatingMargin': 'income-statement', 'pb': 'ratios', 'pe': 'ratios', 'profitMargin': 'income-statement', 'revenue': 'income-statement'}, 'period': '2y'}
+2026-07-20 12:26:29,451 [INFO] backend.langgraph_workflow: Agent round 2: sending 4 messages (1 tool results) to LLM
+2026-07-20 12:26:39,299 [INFO] backend.langgraph_workflow: Agent round 2: LLM requested 1 tool call(s)
+2026-07-20 12:26:39,300 [INFO] backend.langgraph_workflow:   → get_financials({"code": "QAN", "exchange": "ASX", "metrics": ["revenue", "netinc", "epsBasic", "pe", "operatingMargin", "profitMargin"], "period": "1y"})
+2026-07-20 12:26:39,304 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'QAN', 'data': {'2024-12-31': {'income-statement': {'epsBasic': 0.597024, 'netinc': 923000000, 'operatingMargin': 0.11559, 'profitMargin': 0.0761, 'revenue': 12129000000}, 'ratios': {'pe': 10.187}}, '2025-06-30': {'income-statement': {'epsBasic': 0.451655, 'netinc': 682000000, 'operatingMargin': 0.09005, 'profitMargin': 0.05832, 'revenue': 11694000000}, 'ratios': {'pe': 9.917}}, '2025-12-31': {'income-statement': {'epsBasic': 0.611368, 'netinc': 925000000, 'operatingMargin': 0.11399, 'profitMargin': 0.07173, 'revenue': 12896000000}, 'ratios': {'pe': 9.573}}}, 'exchange': 'asx', 'metric_sources': {'epsBasic': 'income-statement', 'netinc': 'income-statement', 'operatingMargin': 'income-statement', 'pe': 'ratios', 'profitMargin': 'income-statement', 'revenue': 'income-statement'}, 'period': '1y'}
+2026-07-20 12:26:39,305 [INFO] backend.langgraph_workflow: Agent round 3: sending 6 messages (2 tool results) to LLM
+2026-07-20 12:26:48,003 [DEBUG] backend.langgraph_workflow: LLM final response: ```json
+{
+  "sentiment": "普通利好",
+  "confidence_score": 0.72,
+  "reasoning": "美伊停战及霍尔木兹海峡航运恢复将降低全球原油风险溢价，油价回落直接利好航空业。Qantas作为澳洲最大航空公司，燃油是其最大运营成本项，油价下行将显著改善利润率。公司最新财务表现稳健，营收128.96亿澳元、净利润9.25亿澳元、运营利润率11.
+2026-07-20 12:26:48,018 [INFO] backend.trading_engine: evaluate_signal: symbol=QAN (Qantas Airways Limited) sentiment=普通利好 score=0.72 holding=False price=100.00
+2026-07-20 12:26:48,018 [INFO] backend.trading_engine: evaluate_signal: NO TRADE — strategy rejected  symbol=QAN (Qantas Airways Limited)  should_buy=False  should_short=False  entry_rules=['SentimentEntryRule']
+2026-07-20 12:32:10,930 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-20 12:32:10,931 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-20 12:32:10,943 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-20 12:32:10,943 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-20 12:32:10,944 [INFO] backend.main: Backend ready.
+2026-07-20 12:32:10,944 [INFO] backend.dispatcher: dispatcher started
+2026-07-20 12:33:07,158 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-20 12:33:07,159 [DEBUG] backend.langgraph_workflow: Built prompt:
+=== SYSTEM ===
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+## Case A
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+---
+
+## Case B
+Stock Symbol is empty but Exchange is provided.
+
+This is a LONG-ONLY trading strategy.
+
+Your objective is to identify the BEST BUY opportunity.
+
+Follow these steps strictly:
+
+1. Identify industries expected to BENEFIT from the news.
+
+2. Ignore industries whose primary impact is negative.
+
+3. Among all beneficiary industries, choose the company that satisfies:
+
+   - Most direct first-order earnings benefit
+   - Largest market capitalization
+   - Highest trading liquidity
+
+4. MUST call get_financials for the selected company.
+
+5. Use both the news and financial metrics to determine the sentiment.
+
+6. Return the selected company.
+
+If NO listed company on the specified exchange is expected to receive a meaningful positive impact:
+
+Return
+
+selected_symbol = ""
+
+and
+
+sentiment = "neutral"
+
+Do NOT force a stock recommendation.
+
+---
+
+## Case C
+
+Neither Stock Symbol nor Exchange is provided.
+
+Return
+
+sentiment = "neutral"
+
+selected_symbol = ""
+
+with low confidence.
+
+---
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== USER ===
+Exchange: AU
+Stock Symbol: N/A
+News Source: manual-test
+
+Content:
+澳大利亚储备银行（RBA）周二宣布，将官方现金利率（Cash Rate）下调25个基点至3.85%，这是今年以来的第二次降息。央行表示，近期通胀持续回落，就业市场逐步降温，为进一步放松货币政策提供了空间。
+
+RBA在声明中指出，最新数据显示核心通胀已进一步接近2%至3%的目标区间，消费者支出依然疲弱，企业投资增长放缓，因此适度降低利率有助于支持经济增长和就业，同时确保通胀能够持续稳定地回归目标水平。
+
+市场对本次降息已有较高预期，但投资者关注央行措辞是否暗示未来将继续宽松。RBA表示，未来政策路径将取决于通胀、就业及全球经济数据，不会预先承诺进一步降息。
+=== END PROMPT ===
+2026-07-20 12:33:07,160 [INFO] backend.langgraph_workflow: No stock symbol — skipping news context fetch
+2026-07-20 12:33:07,160 [DEBUG] backend.langgraph_workflow: LLM message [SYSTEM]:
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+## Case A
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+---
+
+## Case B
+Stock Symbol is empty but Exchange is provided.
+
+This is a LONG-ONLY trading strategy.
+
+Your objective is to identify the BEST BUY opportunity.
+
+Follow these steps strictly:
+
+1. Identify industries expected to BENEFIT from the news.
+
+2. Ignore industries whose primary impact is negative.
+
+3. Among all beneficiary industries, choose the company that satisfies:
+
+   - Most direct first-order earnings benefit
+   - Largest market capitalization
+   - Highest trading liquidity
+
+4. MUST call get_financials for the selected company.
+
+5. Use both the news and financial metrics to determine the sentiment.
+
+6. Return the selected company.
+
+If NO listed company on the specified exchange is expected to receive a meaningful positive impact:
+
+Return
+
+selected_symbol = ""
+
+and
+
+sentiment = "neutral"
+
+Do NOT force a stock recommendation.
+
+---
+
+## Case C
+
+Neither Stock Symbol nor Exchange is provided.
+
+Return
+
+sentiment = "neutral"
+
+selected_symbol = ""
+
+with low confidence.
+
+---
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== END SYSTEM ===
+2026-07-20 12:33:07,160 [DEBUG] backend.langgraph_workflow: LLM message [USER]:
+Exchange: AU
+Stock Symbol: N/A
+News Source: manual-test
+
+Content:
+澳大利亚储备银行（RBA）周二宣布，将官方现金利率（Cash Rate）下调25个基点至3.85%，这是今年以来的第二次降息。央行表示，近期通胀持续回落，就业市场逐步降温，为进一步放松货币政策提供了空间。
+
+RBA在声明中指出，最新数据显示核心通胀已进一步接近2%至3%的目标区间，消费者支出依然疲弱，企业投资增长放缓，因此适度降低利率有助于支持经济增长和就业，同时确保通胀能够持续稳定地回归目标水平。
+
+市场对本次降息已有较高预期，但投资者关注央行措辞是否暗示未来将继续宽松。RBA表示，未来政策路径将取决于通胀、就业及全球经济数据，不会预先承诺进一步降息。
+=== END USER ===
+2026-07-20 12:33:19,193 [INFO] backend.langgraph_workflow: Agent round 1: LLM requested 2 tool call(s)
+2026-07-20 12:33:19,194 [INFO] backend.langgraph_workflow:   → get_financials({"exchange": "ASX", "code": "GMG", "metrics": ["revenue", "netinc", "epsBasic", "pe", "pb", "operatingMargin", "profitMargin", "roe"], "period": "2y"})
+2026-07-20 12:33:19,194 [INFO] backend.langgraph_workflow: Attempting lazy MCP connect to http://192.168.1.14:8081
+2026-07-20 12:33:19,202 [INFO] backend.mcp_client: MCP connected: sacollector-mcp v1.0.0, session=J3I2O3XJW5XC...
+2026-07-20 12:33:19,207 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'GMG', 'data': {'2023-12-31': {'income-statement': {'epsBasic': -0.116196, 'netinc': -220100000, 'operatingMargin': -1.54288, 'profitMargin': -0.92987}, 'ratios': {'pb': 2.737, 'pe': None}}, '2024-06-30': {'income-statement': {'epsBasic': 0.063817, 'netinc': 121200000, 'operatingMargin': 0.11758, 'profitMargin': 0.12758}, 'ratios': {'pb': 3.763, 'pe': -667.306}}, '2024-12-31': {'income-statement': {'epsBasic': 0.419252, 'netinc': 799800000, 'operatingMargin': 0.50838, 'profitMargin': 0.40992}, 'ratios': {'pb': 3.602, 'pe': 73.973}}, '2025-06-30': {'income-statement': {'epsBasic': 0.434584, 'netinc': 866600000, 'operatingMargin': 0.597, 'profitMargin': 0.59405}, 'ratios': {'pb': 2.984, 'pe': 41.735}}, '2025-12-31': {'income-statement': {'epsBasic': 0.404193, 'netinc': 824700000, 'operatingMargin': 0.55902, 'profitMargin': 0.50231}, 'ratios': {'pb': 2.667, 'pe': 37.455}}}, 'errors': ['metric "revenue" not found in any statement', 'metric "roe" not found in any statement'], 'exchange': 'asx', 'metric_sources': {'epsBasic': 'income-statement', 'netinc': 'income-statement', 'operatingMargin': 'income-statement', 'pb': 'ratios', 'pe': 'ratios', 'profitMargin': 'income-statement'}, 'period': '2y'}
+2026-07-20 12:33:19,207 [INFO] backend.langgraph_workflow:   → get_data_period({"exchange": "ASX", "code": "GMG"})
+2026-07-20 12:33:19,209 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'GMG', 'earliest_date': '2016-06-30', 'exchange': 'asx', 'latest_date': '2025-12-31', 'statement_types_available': ['balance-sheet', 'cash-flow-statement', 'income-statement', 'ratios']}
+2026-07-20 12:33:19,209 [INFO] backend.langgraph_workflow: Agent round 2: sending 5 messages (2 tool results) to LLM
+2026-07-20 12:33:33,931 [DEBUG] backend.langgraph_workflow: LLM final response: ```json
+{
+  "sentiment": "普通利好",
+  "confidence_score": 0.78,
+  "reasoning": "RBA降息25个基点直接利好澳洲房地产行业，降低融资成本并提升物业估值。Goodman Group（GMG）作为ASX最大工业地产REIT，市值超650亿澳元、流动性极佳，对利率最为敏感。最新财报显示净利润从FY2023亏损2.2亿澳元强劲恢复至
+2026-07-20 12:33:33,941 [INFO] backend.trading_engine: evaluate_signal: symbol=GMG (Goodman Group) sentiment=普通利好 score=0.78 holding=False price=100.00
+2026-07-20 12:33:33,941 [INFO] backend.trading_engine: evaluate_signal: NO TRADE — strategy rejected  symbol=GMG (Goodman Group)  should_buy=False  should_short=False  entry_rules=['SentimentEntryRule']
