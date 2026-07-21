@@ -161,9 +161,11 @@ export default function TestPanel() {
                 wordBreak: 'break-word',
                 maxHeight: 200,
                 overflow: 'auto',
-                background: 'var(--bg)',
-                padding: 8,
+                background: '#f8f9fa',
+                color: '#1a1a2e',
+                padding: 10,
                 borderRadius: 4,
+                border: '1px solid var(--border)',
               }}>
                 {result.llm_response || '(empty)'}
               </pre>

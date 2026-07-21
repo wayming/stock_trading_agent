@@ -2851,3 +2851,2238 @@ RBA在声明中指出，最新数据显示核心通胀已进一步接近2%至3%�
   "reasoning": "RBA降息25个基点直接利好澳洲房地产行业，降低融资成本并提升物业估值。Goodman Group（GMG）作为ASX最大工业地产REIT，市值超650亿澳元、流动性极佳，对利率最为敏感。最新财报显示净利润从FY2023亏损2.2亿澳元强劲恢复至
 2026-07-20 12:33:33,941 [INFO] backend.trading_engine: evaluate_signal: symbol=GMG (Goodman Group) sentiment=普通利好 score=0.78 holding=False price=100.00
 2026-07-20 12:33:33,941 [INFO] backend.trading_engine: evaluate_signal: NO TRADE — strategy rejected  symbol=GMG (Goodman Group)  should_buy=False  should_short=False  entry_rules=['SentimentEntryRule']
+2026-07-20 12:54:02,993 [INFO] backend.main: Shutting down...
+2026-07-21 10:49:52,390 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-21 10:49:52,392 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-21 10:49:52,412 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-21 10:49:52,412 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-21 10:49:52,412 [INFO] backend.main: Backend ready.
+2026-07-21 10:49:52,413 [INFO] backend.dispatcher: dispatcher started
+2026-07-21 12:15:35,793 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-21 12:15:35,794 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-21 12:15:35,808 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-21 12:15:35,808 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-21 12:15:35,809 [INFO] backend.main: Backend ready.
+2026-07-21 12:15:35,810 [INFO] backend.dispatcher: dispatcher started
+2026-07-21 12:19:33,438 [INFO] backend.mcp_client: MCP connected: sacollector-mcp v1.0.0, session=WHLLFFIWHV6C...
+2026-07-21 12:20:24,253 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, flash_model=deepseek-v4-flash, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-21 12:20:26,953 [DEBUG] backend.langgraph_workflow: News filter response: {
+  "is_price_movement": false,
+  "reason": "新闻主要关于IMF上调通胀预期和能源风险警告，是宏观经济预测，未涉及任何股票或指数价格变动。"
+}
+2026-07-21 12:20:26,954 [INFO] backend.langgraph_workflow: Identifying stock for exchange=AU
+2026-07-21 12:20:40,154 [INFO] backend.langgraph_workflow: Stock identification response: {
+  "symbol": "WDS",
+  "company_name": "Woodside Energy Group Ltd",
+  "exchange": "ASX",
+  "reasoning": "IMF上调通胀预期并警告能源风险，利好上游油气生产商；Woodside是ASX最大的纯上游能源公司，直接受益于油价上涨，市值较大且流动性高。"
+}
+2026-07-21 12:20:40,155 [INFO] backend.langgraph_workflow: Identified stock: WDS (Woodside Energy Group Ltd) — IMF上调通胀预期并警告能源风险，利好上游油气生产商；Woodside是ASX最大的纯上游能源公司，直接受益于油价上涨，市值较大且流动性高。
+2026-07-21 12:20:40,156 [DEBUG] backend.langgraph_workflow: Built prompt:
+=== SYSTEM ===
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== USER ===
+Exchange: AU
+Stock Symbol: WDS
+News Source: manual-test
+
+Content:
+IMF上调全球通胀预期，警告能源风险仍是最大不确定性
+
+国际货币基金组织（IMF）7月发布最新《世界经济展望》更新指出：
+
+全球经济仍保持增长，但复苏较脆弱。
+2026年全球通胀预计为4.7%，高于2025年的4.1%。
+中东局势导致能源价格波动，是未来几个月最大的风险之一。
+如果能源供应恢复正常，全球增长和通胀都有望改善；反之，可能再次出现滞胀压力。
+=== END PROMPT ===
+2026-07-21 12:20:43,958 [WARNING] backend.langgraph_workflow: Context LLM positive news call failed: Error code: 429 - [{'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}]
+2026-07-21 12:20:43,958 [INFO] backend.langgraph_workflow: Positive news context for WDS: 2 chars
+2026-07-21 12:20:46,810 [WARNING] backend.langgraph_workflow: Context LLM negative news call failed: Error code: 429 - [{'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}]
+2026-07-21 12:20:46,810 [INFO] backend.langgraph_workflow: Negative news context for WDS: 2 chars
+2026-07-21 12:20:46,810 [INFO] backend.langgraph_workflow: Appended news context (46 chars) to user message
+2026-07-21 12:20:46,811 [DEBUG] backend.langgraph_workflow: LLM message [SYSTEM]:
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== END SYSTEM ===
+2026-07-21 12:20:46,811 [DEBUG] backend.langgraph_workflow: LLM message [USER]:
+Exchange: AU
+Stock Symbol: WDS
+News Source: manual-test
+
+Content:
+IMF上调全球通胀预期，警告能源风险仍是最大不确定性
+
+国际货币基金组织（IMF）7月发布最新《世界经济展望》更新指出：
+
+全球经济仍保持增长，但复苏较脆弱。
+2026年全球通胀预计为4.7%，高于2025年的4.1%。
+中东局势导致能源价格波动，是未来几个月最大的风险之一。
+如果能源供应恢复正常，全球增长和通胀都有望改善；反之，可能再次出现滞胀压力。
+
+[Recent News Context for WDS — last 6 months]
+
+=== END USER ===
+2026-07-21 12:20:51,887 [INFO] backend.langgraph_workflow: Agent round 1: LLM requested 2 tool call(s)
+2026-07-21 12:20:51,888 [INFO] backend.langgraph_workflow:   → get_financials({"exchange": "ASX", "code": "WDS", "metrics": ["revenue", "netinc", "epsBasic", "pe", "pb", "operatingMargin", "profitMargin", "roe", "debtToEquity", "freeCashFlow"], "period": "2y"})
+2026-07-21 12:20:51,903 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'WDS', 'data': {'2023-12-31': {'income-statement': {'epsBasic': -0.042185, 'netinc': -80000000, 'operatingMargin': 0.10631, 'profitMargin': -0.01213, 'revenue': 6594000000}, 'ratios': {'pb': 1.143, 'pe': None}}, '2024-06-30': {'income-statement': {'epsBasic': 1.021601, 'netinc': 1937000000, 'operatingMargin': 0.31764, 'profitMargin': 0.32348, 'revenue': 5988000000}, 'ratios': {'pb': 0.997, 'pe': 19.245}}, '2024-12-31': {'income-statement': {'epsBasic': 0.863157, 'netinc': 1636000000, 'operatingMargin': 0.23571, 'profitMargin': 0.22751, 'revenue': 7191000000}, 'ratios': {'pb': 0.8, 'pe': 8.09}}, '2025-06-30': {'income-statement': {'epsBasic': 0.694399, 'netinc': 1316000000, 'operatingMargin': 0.21745, 'profitMargin': 0.1997, 'revenue': 6590000000}, 'ratios': {'pb': 0.764, 'pe': 9.965}}, '2025-12-31': {'income-statement': {'epsBasic': 0.739563, 'netinc': 1402000000, 'operatingMargin': 0.1908, 'profitMargin': 0.21927, 'revenue': 6394000000}, 'ratios': {'pb': 0.751, 'pe': 11.006}}}, 'errors': ['metric "roe" not found in any statement', 'metric "debtToEquity" not found in any statement', 'metric "freeCashFlow" not found in any statement'], 'exchange': 'asx', 'metric_sources': {'epsBasic': 'income-statement', 'netinc': 'income-statement', 'operatingMargin': 'income-statement', 'pb': 'ratios', 'pe': 'ratios', 'profitMargin': 'income-statement', 'revenue': 'income-statement'}, 'period': '2y'}
+2026-07-21 12:20:51,904 [INFO] backend.langgraph_workflow:   → get_data_period({"exchange": "ASX", "code": "WDS"})
+2026-07-21 12:20:51,906 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'WDS', 'earliest_date': '2016-06-30', 'exchange': 'asx', 'latest_date': '2025-12-31', 'statement_types_available': ['balance-sheet', 'cash-flow-statement', 'income-statement', 'ratios']}
+2026-07-21 12:20:51,907 [INFO] backend.langgraph_workflow: Agent round 2: sending 5 messages (2 tool results) to LLM
+2026-07-21 12:21:09,851 [DEBUG] backend.langgraph_workflow: LLM final response: ```json
+{
+  "sentiment": "普通利好",
+  "confidence_score": 0.68,
+  "reasoning": "IMF上调通胀预期并警告能源风险是最大不确定性，中东局势可能导致能源价格持续波动甚至走高。Woodside作为澳大利亚主要油气生产商，能源价格高企直接利好其收入与利润，当前PE约11倍、PB仅0.75，估值偏低。但此为宏观层面消息，非公司直接催化
+2026-07-21 12:21:09,873 [INFO] backend.trading_engine: evaluate_signal: symbol=WDS Woodside Energy Group sentiment=普通利好 score=0.68 holding=False price=100.00
+2026-07-21 12:21:09,874 [INFO] backend.trading_engine: evaluate_signal: NO TRADE — strategy rejected  symbol=WDS Woodside Energy Group  should_buy=False  should_short=False  entry_rules=['SentimentEntryRule']
+2026-07-21 12:29:28,781 [INFO] backend.main: Shutting down...
+2026-07-21 12:29:47,733 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-21 12:29:47,735 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-21 12:29:47,749 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-21 12:29:47,749 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-21 12:29:47,749 [INFO] backend.main: Backend ready.
+2026-07-21 12:29:47,750 [INFO] backend.dispatcher: dispatcher started
+2026-07-21 12:29:56,334 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, flash_model=deepseek-v4-flash, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-21 12:29:59,068 [DEBUG] backend.langgraph_workflow: News filter response: {
+  "is_price_movement": false,
+  "reason": "新闻主要讨论IMF上调全球通胀预期和能源风险，属于宏观经济分析，不涉及具体股票价格变动。"
+}
+2026-07-21 12:29:59,069 [INFO] backend.langgraph_workflow: Identifying stock for exchange=AU
+2026-07-21 12:30:05,715 [INFO] backend.langgraph_workflow: Stock identification response: {
+  "symbol": "BHP",
+  "company_name": "BHP Group Limited",
+  "exchange": "AU",
+  "reasoning": "IMF上调全球通胀预期并警告能源风险，预计油气价格将上涨，作为澳大利亚市值最大的综合性能源及资源公司，BHP将直接受益于能源价格上涨，且流动性极高。"
+}
+2026-07-21 12:30:05,715 [INFO] backend.langgraph_workflow: Identified stock: BHP (BHP Group Limited) — IMF上调全球通胀预期并警告能源风险，预计油气价格将上涨，作为澳大利亚市值最大的综合性能源及资源公司，BHP将直接受益于能源价格上涨，且流动性极高。
+2026-07-21 12:30:05,717 [DEBUG] backend.langgraph_workflow: Built prompt:
+=== SYSTEM ===
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== USER ===
+Exchange: AU
+Stock Symbol: BHP
+News Source: manual-test
+
+Content:
+IMF上调全球通胀预期，警告能源风险仍是最大不确定性
+
+国际货币基金组织（IMF）7月发布最新《世界经济展望》更新指出：
+
+全球经济仍保持增长，但复苏较脆弱。
+2026年全球通胀预计为4.7%，高于2025年的4.1%。
+中东局势导致能源价格波动，是未来几个月最大的风险之一。
+如果能源供应恢复正常，全球增长和通胀都有望改善；反之，可能再次出现滞胀压力。
+=== END PROMPT ===
+2026-07-21 12:30:09,089 [WARNING] backend.langgraph_workflow: Context LLM positive news call failed: Error code: 429 - [{'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}]
+2026-07-21 12:30:09,090 [INFO] backend.langgraph_workflow: Positive news context for BHP: 2 chars
+2026-07-21 12:30:12,063 [WARNING] backend.langgraph_workflow: Context LLM negative news call failed: Error code: 429 - [{'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}]
+2026-07-21 12:30:12,064 [INFO] backend.langgraph_workflow: Negative news context for BHP: 2 chars
+2026-07-21 12:30:12,064 [INFO] backend.langgraph_workflow: Appended news context (46 chars) to user message
+2026-07-21 12:30:12,065 [DEBUG] backend.langgraph_workflow: LLM message [SYSTEM]:
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== END SYSTEM ===
+2026-07-21 12:30:12,065 [DEBUG] backend.langgraph_workflow: LLM message [USER]:
+Exchange: AU
+Stock Symbol: BHP
+News Source: manual-test
+
+Content:
+IMF上调全球通胀预期，警告能源风险仍是最大不确定性
+
+国际货币基金组织（IMF）7月发布最新《世界经济展望》更新指出：
+
+全球经济仍保持增长，但复苏较脆弱。
+2026年全球通胀预计为4.7%，高于2025年的4.1%。
+中东局势导致能源价格波动，是未来几个月最大的风险之一。
+如果能源供应恢复正常，全球增长和通胀都有望改善；反之，可能再次出现滞胀压力。
+
+[Recent News Context for BHP — last 6 months]
+
+=== END USER ===
+2026-07-21 12:30:18,030 [INFO] backend.langgraph_workflow: Agent round 1: LLM requested 1 tool call(s)
+2026-07-21 12:30:18,032 [INFO] backend.langgraph_workflow:   → get_financials({"exchange": "ASX", "code": "BHP", "metrics": ["revenue", "netinc", "epsBasic", "pe", "pb", "operatingMargin", "profitMargin", "roe", "debtToEquity", "freeCashFlow"], "period": "2y"})
+2026-07-21 12:30:18,032 [INFO] backend.langgraph_workflow: Attempting lazy MCP connect to http://192.168.1.14:8081
+2026-07-21 12:30:18,045 [INFO] backend.mcp_client: MCP connected: sacollector-mcp v1.0.0, session=MHGQGQN5IX6R...
+2026-07-21 12:30:18,066 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'BHP', 'data': {'2023-12-31': {'income-statement': {'epsBasic': 0.182948, 'netinc': 927000000, 'operatingMargin': 0.37915, 'profitMargin': 0.03404, 'revenue': 27232000000}, 'ratios': {'pb': 3.819, 'pe': 23.558}}, '2024-06-30': {'income-statement': {'epsBasic': 1.375024, 'netinc': 6970000000, 'operatingMargin': 0.41997, 'profitMargin': 0.2452, 'revenue': 28426000000}, 'ratios': {'pb': 2.939, 'pe': 18.281}}, '2024-12-31': {'income-statement': {'epsBasic': 0.870662, 'netinc': 4416000000, 'operatingMargin': 0.34898, 'profitMargin': 0.17541, 'revenue': 25176000000}, 'ratios': {'pb': 2.503, 'pe': 10.904}}, '2025-06-30': {'income-statement': {'epsBasic': 0.907173, 'netinc': 4603000000, 'operatingMargin': 0.37695, 'profitMargin': 0.17645, 'revenue': 26086000000}, 'ratios': {'pb': 2.342, 'pe': 13.56}}, '2025-12-31': {'income-statement': {'epsBasic': 1.110892, 'netinc': 5640000000, 'operatingMargin': 0.40728, 'profitMargin': 0.20214, 'revenue': 27902000000}, 'ratios': {'pb': 2.778, 'pe': 15.043}}}, 'errors': ['metric "roe" not found in any statement', 'metric "debtToEquity" not found in any statement', 'metric "freeCashFlow" not found in any statement'], 'exchange': 'asx', 'metric_sources': {'epsBasic': 'income-statement', 'netinc': 'income-statement', 'operatingMargin': 'income-statement', 'pb': 'ratios', 'pe': 'ratios', 'profitMargin': 'income-statement', 'revenue': 'income-statement'}, 'period': '2y'}
+2026-07-21 12:30:18,067 [INFO] backend.langgraph_workflow: Agent round 2: sending 4 messages (1 tool results) to LLM
+2026-07-21 12:30:38,704 [DEBUG] backend.langgraph_workflow: LLM final response: ```json
+{
+  "sentiment": "neutral",
+  "confidence_score": 0.55,
+  "reasoning": "IMF上调全球通胀预期并警示能源风险，属于宏观层面信息，对BHP集团无直接公司层面催化。通胀预期上升理论上对大宗商品价格形成支撑，有利于矿业公司收入；但滞胀风险警告意味着若能源供应持续紧张，全球需求可能受抑，反而拖累BHP的铁矿石、铜等工业
+2026-07-21 12:30:38,736 [INFO] backend.trading_engine: evaluate_signal: symbol=BHP (BHP Group Limited) sentiment=neutral score=0.55 holding=False price=100.00
+2026-07-21 12:30:38,737 [INFO] backend.trading_engine: evaluate_signal: NO TRADE — strategy rejected  symbol=BHP (BHP Group Limited)  should_buy=False  should_short=False  entry_rules=['SentimentEntryRule']
+2026-07-21 12:50:33,012 [INFO] backend.main: Shutting down...
+2026-07-21 12:50:51,537 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-21 12:50:51,538 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-21 12:50:51,551 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-21 12:50:51,551 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-21 12:50:51,551 [INFO] backend.main: Backend ready.
+2026-07-21 12:50:51,552 [INFO] backend.dispatcher: dispatcher started
+2026-07-21 12:51:02,442 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, flash_model=deepseek-v4-flash, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-21 12:51:05,081 [DEBUG] backend.langgraph_workflow: News classification response: {
+  "category": "Macro",
+  "reason": "新闻内容涉及IMF对全球通胀和经济增长的宏观预测，以及能源风险的警告，没有具体提及公司或行业，属于宏观经济类信息。"
+}
+2026-07-21 12:51:05,082 [INFO] backend.langgraph_workflow: News skipped (Macro): 新闻内容涉及IMF对全球通胀和经济增长的宏观预测，以及能源风险的警告，没有具体提及公司或行业，属于宏观经济类信息。 — IMF上调全球通胀预期，警告能源风险仍是最大不确定性
+
+国际货币基金组织（IMF）7月发布最新《世界经济展望》更新指出：
+
+全球经济仍保持增长，但复苏较脆弱。
+...
+2026-07-21 12:51:05,083 [INFO] backend.langgraph_workflow: No symbol or exchange — returning neutral (fast path)
+2026-07-21 12:51:05,096 [INFO] backend.trading_engine: evaluate_signal: symbol= sentiment=neutral score=0.30 holding=True price=100.00
+2026-07-21 12:51:05,096 [DEBUG] backend.strategy.strategy: Exit triggered by: ['EndOfDayExitRule']
+2026-07-21 12:51:05,112 [INFO] backend.trading_engine: SELL  @ 100.00 (strategy exit)
+2026-07-21 12:51:15,593 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, flash_model=deepseek-v4-flash, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-21 12:51:17,767 [DEBUG] backend.langgraph_workflow: News classification response: {
+  "category": "Macro",
+  "reason": "新闻涉及IMF对全球通胀和能源风险的宏观预测，没有特定公司或行业影响。"
+}
+2026-07-21 12:51:17,767 [INFO] backend.langgraph_workflow: News skipped (Macro): 新闻涉及IMF对全球通胀和能源风险的宏观预测，没有特定公司或行业影响。 — IMF上调全球通胀预期，警告能源风险仍是最大不确定性
+
+国际货币基金组织（IMF）7月发布最新《世界经济展望》更新指出：
+
+全球经济仍保持增长，但复苏较脆弱。
+...
+2026-07-21 12:51:17,770 [INFO] backend.langgraph_workflow: No symbol or exchange — returning neutral (fast path)
+2026-07-21 12:51:17,783 [INFO] backend.trading_engine: evaluate_signal: symbol= sentiment=neutral score=0.30 holding=True price=100.00
+2026-07-21 12:51:17,783 [DEBUG] backend.strategy.strategy: Exit triggered by: ['EndOfDayExitRule']
+2026-07-21 12:51:17,800 [INFO] backend.trading_engine: SELL  @ 100.00 (strategy exit)
+2026-07-21 12:54:25,733 [INFO] backend.main: Shutting down...
+2026-07-21 12:54:43,647 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-21 12:54:43,649 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-21 12:54:43,661 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-21 12:54:43,661 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-21 12:54:43,661 [INFO] backend.main: Backend ready.
+2026-07-21 12:54:43,662 [INFO] backend.dispatcher: dispatcher started
+2026-07-21 12:54:54,460 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, flash_model=deepseek-v4-flash, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-21 12:54:57,331 [DEBUG] backend.langgraph_workflow: News classification response: {
+  "category": "Macro",
+  "reason": "IMF上调全球通胀预期，警告能源风险，属于宏观经济和地缘政治新闻，没有直接针对具体公司或行业的第一性盈利影响。"
+}
+2026-07-21 12:54:57,332 [INFO] backend.langgraph_workflow: News skipped (Macro): IMF上调全球通胀预期，警告能源风险，属于宏观经济和地缘政治新闻，没有直接针对具体公司或行业的第一性盈利影响。 — IMF上调全球通胀预期，警告能源风险仍是最大不确定性
+
+国际货币基金组织（IMF）7月发布最新《世界经济展望》更新指出：
+
+全球经济仍保持增长，但复苏较脆弱。
+...
+2026-07-21 12:54:57,333 [INFO] backend.langgraph_workflow: Skipping to end: [Macro] IMF上调全球通胀预期，警告能源风险，属于宏观经济和地缘政治新闻，没有直接针对具体公司或行业的第一性盈利影响。
+2026-07-21 12:54:57,342 [INFO] backend.trading_engine: evaluate_signal: symbol= sentiment=neutral score=0.30 holding=True price=100.00
+2026-07-21 12:54:57,342 [DEBUG] backend.strategy.strategy: Exit triggered by: ['EndOfDayExitRule']
+2026-07-21 12:54:57,358 [INFO] backend.trading_engine: SELL  @ 100.00 (strategy exit)
+2026-07-21 12:56:26,818 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, flash_model=deepseek-v4-flash, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-21 12:56:29,478 [DEBUG] backend.langgraph_workflow: News classification response: {
+  "category": "Industry",
+  "reason": "该政策扩大高品位铁矿石进口配额，旨在降低钢铁企业采购成本、优化供应结构，对整个钢铁行业构成利好。"
+}
+2026-07-21 12:56:29,479 [INFO] backend.langgraph_workflow: News accepted (Industry): 该政策扩大高品位铁矿石进口配额，旨在降低钢铁企业采购成本、优化供应结构，对整个钢铁行业构成利好。
+2026-07-21 12:56:29,481 [INFO] backend.langgraph_workflow: Identifying stock for exchange=AU
+2026-07-21 12:56:33,677 [INFO] backend.langgraph_workflow: Stock identification response: {
+  "symbol": "BHP",
+  "company_name": "BHP Group Limited",
+  "exchange": "ASX",
+  "reasoning": "中国扩大高品位铁矿石进口配额将直接增加对澳洲铁矿石的需求，BHP作为全球最大的矿业公司及澳大利亚最大铁矿石生产商，将最直接受益于销量增长和价格支撑。"
+}
+2026-07-21 12:56:33,677 [INFO] backend.langgraph_workflow: Identified stock: BHP (BHP Group Limited) — 中国扩大高品位铁矿石进口配额将直接增加对澳洲铁矿石的需求，BHP作为全球最大的矿业公司及澳大利亚最大铁矿石生产商，将最直接受益于销量增长和价格支撑。
+2026-07-21 12:56:33,679 [DEBUG] backend.langgraph_workflow: Built prompt:
+=== SYSTEM ===
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== USER ===
+Exchange: AU
+Stock Symbol: BHP
+News Source: manual-test
+
+Content:
+中国国家发展和改革委员会（NDRC）联合海关总署今日发布通知，为保障国内钢铁行业原材料供应稳定，支持重大基础设施建设和制造业发展，决定自2026年8月起适度扩大高品位铁矿石进口配额。
+
+根据通知，符合条件的重点钢铁企业可申请新增进口配额，重点支持高品位铁矿石资源。相关部门表示，此举旨在优化铁矿石供应结构、降低钢铁企业采购成本，并提高炼钢效率和节能减排水平。
+=== END PROMPT ===
+2026-07-21 12:56:37,280 [WARNING] backend.langgraph_workflow: Context LLM positive news call failed: Error code: 429 - [{'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}]
+2026-07-21 12:56:37,281 [INFO] backend.langgraph_workflow: Positive news context for BHP: 2 chars
+2026-07-21 12:56:40,436 [WARNING] backend.langgraph_workflow: Context LLM negative news call failed: Error code: 429 - [{'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}]
+2026-07-21 12:56:40,436 [INFO] backend.langgraph_workflow: Negative news context for BHP: 2 chars
+2026-07-21 12:56:40,436 [INFO] backend.langgraph_workflow: Appended news context (46 chars) to user message
+2026-07-21 12:56:40,438 [DEBUG] backend.langgraph_workflow: LLM message [SYSTEM]:
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== END SYSTEM ===
+2026-07-21 12:56:40,438 [DEBUG] backend.langgraph_workflow: LLM message [USER]:
+Exchange: AU
+Stock Symbol: BHP
+News Source: manual-test
+
+Content:
+中国国家发展和改革委员会（NDRC）联合海关总署今日发布通知，为保障国内钢铁行业原材料供应稳定，支持重大基础设施建设和制造业发展，决定自2026年8月起适度扩大高品位铁矿石进口配额。
+
+根据通知，符合条件的重点钢铁企业可申请新增进口配额，重点支持高品位铁矿石资源。相关部门表示，此举旨在优化铁矿石供应结构、降低钢铁企业采购成本，并提高炼钢效率和节能减排水平。
+
+[Recent News Context for BHP — last 6 months]
+
+=== END USER ===
+2026-07-21 12:56:45,457 [INFO] backend.langgraph_workflow: Agent round 1: LLM requested 1 tool call(s)
+2026-07-21 12:56:45,459 [INFO] backend.langgraph_workflow:   → get_financials({"exchange": "ASX", "code": "BHP", "metrics": ["revenue", "netinc", "epsBasic", "pe", "pb", "operatingMargin", "profitMargin", "roe", "debtToEquity", "freeCashFlow"], "period": "2y"})
+2026-07-21 12:56:45,459 [INFO] backend.langgraph_workflow: Attempting lazy MCP connect to http://192.168.1.14:8081
+2026-07-21 12:56:45,471 [INFO] backend.mcp_client: MCP connected: sacollector-mcp v1.0.0, session=UXVUXFDMRIU7...
+2026-07-21 12:56:45,473 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'BHP', 'data': {'2023-12-31': {'income-statement': {'epsBasic': 0.182948, 'netinc': 927000000, 'operatingMargin': 0.37915, 'profitMargin': 0.03404, 'revenue': 27232000000}, 'ratios': {'pb': 3.819, 'pe': 23.558}}, '2024-06-30': {'income-statement': {'epsBasic': 1.375024, 'netinc': 6970000000, 'operatingMargin': 0.41997, 'profitMargin': 0.2452, 'revenue': 28426000000}, 'ratios': {'pb': 2.939, 'pe': 18.281}}, '2024-12-31': {'income-statement': {'epsBasic': 0.870662, 'netinc': 4416000000, 'operatingMargin': 0.34898, 'profitMargin': 0.17541, 'revenue': 25176000000}, 'ratios': {'pb': 2.503, 'pe': 10.904}}, '2025-06-30': {'income-statement': {'epsBasic': 0.907173, 'netinc': 4603000000, 'operatingMargin': 0.37695, 'profitMargin': 0.17645, 'revenue': 26086000000}, 'ratios': {'pb': 2.342, 'pe': 13.56}}, '2025-12-31': {'income-statement': {'epsBasic': 1.110892, 'netinc': 5640000000, 'operatingMargin': 0.40728, 'profitMargin': 0.20214, 'revenue': 27902000000}, 'ratios': {'pb': 2.778, 'pe': 15.043}}}, 'errors': ['metric "roe" not found in any statement', 'metric "debtToEquity" not found in any statement', 'metric "freeCashFlow" not found in any statement'], 'exchange': 'asx', 'metric_sources': {'epsBasic': 'income-statement', 'netinc': 'income-statement', 'operatingMargin': 'income-statement', 'pb': 'ratios', 'pe': 'ratios', 'profitMargin': 'income-statement', 'revenue': 'income-statement'}, 'period': '2y'}
+2026-07-21 12:56:45,474 [INFO] backend.langgraph_workflow: Agent round 2: sending 4 messages (1 tool results) to LLM
+2026-07-21 12:57:00,405 [DEBUG] backend.langgraph_workflow: LLM final response: ```json
+{
+  "sentiment": "普通利好",
+  "confidence_score": 0.82,
+  "reasoning": "中国扩大高品位铁矿石进口配额将直接提振BHP的核心业务。BHP作为全球最大高品位铁矿石生产商之一，中国是其最大出口市场，配额放宽意味着销量和定价空间均有望提升。最新财报显示营收已恢复至279亿美元，运营利润率高达40.7%，盈利能力稳健，财务基本
+2026-07-21 12:57:00,417 [INFO] backend.trading_engine: evaluate_signal: symbol=ASX:BHP (BHP Group Limited) sentiment=普通利好 score=0.82 holding=False price=100.00
+2026-07-21 12:57:00,424 [INFO] backend.trading_engine: BUY ASX:BHP (BHP Group Limited) @ 100.00 size=10000 (strategy: TradingStrategy)
+2026-07-21 12:59:32,409 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, flash_model=deepseek-v4-flash, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-21 12:59:34,828 [DEBUG] backend.langgraph_workflow: News classification response: {
+  "category": "Macro",
+  "reason": "新闻涉及俄罗斯与乌克兰签署停战协定，属于重大地缘政治事件，可能改善全球贸易和能源供应，但影响广泛，不直接针对特定公司或行业，属于宏观经济类别。"
+}
+2026-07-21 12:59:34,828 [INFO] backend.langgraph_workflow: News skipped (Macro): 新闻涉及俄罗斯与乌克兰签署停战协定，属于重大地缘政治事件，可能改善全球贸易和能源供应，但影响广泛，不直接针对特定公司或行业，属于宏观经济类别。 — 在联合国、土耳其及欧盟的共同斡旋下，俄罗斯与乌克兰今日正式签署停战协定，双方同意自北京时间午夜起全面停止军事行动，并启动长期和平谈判。
+
+根据协议，双方将立即实...
+2026-07-21 12:59:34,830 [INFO] backend.langgraph_workflow: Skipping to end: [Macro] 新闻涉及俄罗斯与乌克兰签署停战协定，属于重大地缘政治事件，可能改善全球贸易和能源供应，但影响广泛，不直接针对特定公司或行业，属于宏观经济类别。
+2026-07-21 12:59:34,849 [INFO] backend.trading_engine: evaluate_signal: symbol= sentiment=neutral score=0.30 holding=True price=100.00
+2026-07-21 12:59:34,849 [DEBUG] backend.strategy.strategy: Exit triggered by: ['EndOfDayExitRule']
+2026-07-21 12:59:34,865 [INFO] backend.trading_engine: SELL  @ 100.00 (strategy exit)
+2026-07-21 13:00:42,759 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, flash_model=deepseek-v4-flash, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-21 13:00:45,790 [DEBUG] backend.langgraph_workflow: News classification response: {
+  "category": "Industry",
+  "reason": "该新闻宣布基因编辑技术取得重大突破，有望加速全球基因治疗产业发展，使多个基因编辑、生物制药、CRO/CDMO等企业受益，属于行业层面的利好。"
+}
+2026-07-21 13:00:45,790 [INFO] backend.langgraph_workflow: News accepted (Industry): 该新闻宣布基因编辑技术取得重大突破，有望加速全球基因治疗产业发展，使多个基因编辑、生物制药、CRO/CDMO等企业受益，属于行业层面的利好。
+2026-07-21 13:00:45,792 [INFO] backend.langgraph_workflow: Identifying stock for exchange=AU
+2026-07-21 13:01:00,128 [INFO] backend.langgraph_workflow: Stock identification response: {
+  "symbol": "CSL",
+  "company_name": "CSL Limited",
+  "exchange": "ASX",
+  "reasoning": "CSL is Australia's largest biopharmaceutical company with significant R&D capabilities and gene therapy initi
+2026-07-21 13:01:00,128 [INFO] backend.langgraph_workflow: Identified stock: CSL (CSL Limited) — CSL is Australia's largest biopharmaceutical company with significant R&D capabilities and gene therapy initiatives, making it the primary beneficiary of the gene editing breakthrough that accelerates the genetic medicine sector.
+2026-07-21 13:01:00,130 [DEBUG] backend.langgraph_workflow: Built prompt:
+=== SYSTEM ===
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== USER ===
+Exchange: AU
+Stock Symbol: CSL
+News Source: manual-test
+
+Content:
+由美国、英国和新加坡多家科研机构组成的国际研究团队今日宣布，一项新一代基因编辑技术在临床前研究中取得重大突破，可在保持高编辑精度的同时，大幅降低脱靶效应，并显著提高遗传性疾病治疗成功率。
+
+研究结果已发表于国际顶级医学期刊，并获得多家监管机构积极评价。研究团队表示，该技术未来有望应用于镰刀型贫血、囊性纤维化、杜氏肌营养不良等多种遗传疾病，为基因疗法商业化带来新的发展机遇。
+
+市场分析人士认为，此次突破有望加速全球基因治疗产业的发展，相关基因编辑平台、RNA疗法、生物制药研发及生命科学工具企业预计将受益。同时，生物医药研发外包（CRO/CDMO）和高端科研设备供应商也可能迎来新增需求。
+=== END PROMPT ===
+2026-07-21 13:01:02,688 [INFO] backend.langgraph_workflow: Positive news context for CSL: 1302 chars
+2026-07-21 13:01:04,532 [INFO] backend.langgraph_workflow: Negative news context for CSL: 1168 chars
+2026-07-21 13:01:04,532 [INFO] backend.langgraph_workflow: Appended news context (2554 chars) to user message
+2026-07-21 13:01:04,534 [DEBUG] backend.langgraph_workflow: LLM message [SYSTEM]:
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== END SYSTEM ===
+2026-07-21 13:01:04,534 [DEBUG] backend.langgraph_workflow: LLM message [USER]:
+Exchange: AU
+Stock Symbol: CSL
+News Source: manual-test
+
+Content:
+由美国、英国和新加坡多家科研机构组成的国际研究团队今日宣布，一项新一代基因编辑技术在临床前研究中取得重大突破，可在保持高编辑精度的同时，大幅降低脱靶效应，并显著提高遗传性疾病治疗成功率。
+
+研究结果已发表于国际顶级医学期刊，并获得多家监管机构积极评价。研究团队表示，该技术未来有望应用于镰刀型贫血、囊性纤维化、杜氏肌营养不良等多种遗传疾病，为基因疗法商业化带来新的发展机遇。
+
+市场分析人士认为，此次突破有望加速全球基因治疗产业的发展，相关基因编辑平台、RNA疗法、生物制药研发及生命科学工具企业预计将受益。同时，生物医药研发外包（CRO/CDMO）和高端科研设备供应商也可能迎来新增需求。
+
+[Recent News Context for CSL — last 6 months]
+
+Positive events:
+[
+  {
+    "date": "2026-02-13",
+    "event": "CSL reported strong half-year results for FY26, featuring a 15% increase in net profit after tax (NPAT) to $2.3 billion.",
+    "impact": "The robust earnings growth and reaffirmed full-year guidance drove positive investor sentiment and a notable uptick in share price."
+  },
+  {
+    "date": "2026-03-05",
+    "event": "The FDA granted approval for an expanded indication for CSL’s flagship therapy, Hizentra, to include additional patient demographics.",
+    "impact": "This regulatory milestone expands the addressable market for CSL’s high-margin immunoglobulin portfolio."
+  },
+  {
+    "date": "2026-04-10",
+    "event": "Multiple major investment banks, including Goldman Sachs and Morgan Stanley, upgraded their price targets for CSL following strong plasma collection data.",
+    "impact": "Increased analyst confidence bolstered institutional buying and reinforced the stock's momentum in the healthcare sector."
+  },
+  {
+    "date": "2026-05-20",
+    "event": "CSL announced a strategic partnership to accelerate the development of its next-generation mRNA-based influenza vaccine platform.",
+    "impact": "The collaboration signals long-term innovation potential and strengthens CSL's competitive positioning in the global vaccine market."
+  }
+]
+
+Negative events:
+[
+  {
+    "date": "2026-02-18",
+    "event": "CSL reported half-year results that missed analyst expectations for net profit after tax.",
+    "impact": "The stock experienced a sharp decline as investors reacted to margin pressures and higher-than-expected operational costs."
+  },
+  {
+    "date": "2026-03-05",
+    "event": "Several major investment banks downgraded CSL shares following concerns over slowing growth in the CSL Behring division.",
+    "impact": "The downgrades contributed to sustained downward pressure on the share price throughout early March."
+  },
+  {
+    "date": "2026-04-12",
+    "event": "Reports emerged regarding increased competition in the immunoglobulin market, threatening CSL's dominant market share.",
+    "impact": "Market sentiment weakened as analysts questioned the long-term sustainability of CSL's premium pricing power."
+  },
+  {
+    "date": "2026-05-20",
+    "event": "CSL faced negative publicity and investor scrutiny regarding rising plasma collection costs and supply chain inefficiencies.",
+    "impact": "The news led to a contraction in valuation multiples as analysts adjusted their earnings forecasts downward."
+  }
+]
+
+=== END USER ===
+2026-07-21 13:01:11,391 [INFO] backend.langgraph_workflow: Agent round 1: LLM requested 2 tool call(s)
+2026-07-21 13:01:11,394 [INFO] backend.langgraph_workflow:   → get_financials({"exchange": "ASX", "code": "CSL", "metrics": ["revenue", "netinc", "epsBasic", "pe", "pb", "operatingMargin", "profitMargin", "roe", "debtToEquity"], "period": "2y"})
+2026-07-21 13:01:11,417 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'CSL', 'data': {'2023-12-31': {'income-statement': {'epsBasic': 3.937205, 'netinc': 1901000000, 'operatingMargin': 0.33068, 'profitMargin': 0.23606, 'revenue': 8053000000}, 'ratios': {'pb': 4.926, 'pe': 38.186}}, '2024-06-30': {'income-statement': {'epsBasic': 1.533552, 'netinc': 741000000, 'operatingMargin': 0.18275, 'profitMargin': 0.10983, 'revenue': 6747000000}, 'ratios': {'pb': 4.906, 'pe': 36.027}}, '2024-12-31': {'income-statement': {'epsBasic': 4.147723, 'netinc': 2007000000, 'operatingMargin': 0.32099, 'profitMargin': 0.23659, 'revenue': 8483000000}, 'ratios': {'pb': 4.107, 'pe': 30.704}}, '2025-06-30': {'income-statement': {'epsBasic': 2.054926, 'netinc': 995000000, 'operatingMargin': 0.19519, 'profitMargin': 0.14064, 'revenue': 7075000000}, 'ratios': {'pb': 3.551, 'pe': 25.324}}, '2025-12-31': {'income-statement': {'epsBasic': 0.82924, 'netinc': 401000000, 'operatingMargin': 0.31649, 'profitMargin': 0.04813, 'revenue': 8332000000}, 'ratios': {'pb': 2.714, 'pe': 39.773}}}, 'errors': ['metric "roe" not found in any statement', 'metric "debtToEquity" not found in any statement'], 'exchange': 'asx', 'metric_sources': {'epsBasic': 'income-statement', 'netinc': 'income-statement', 'operatingMargin': 'income-statement', 'pb': 'ratios', 'pe': 'ratios', 'profitMargin': 'income-statement', 'revenue': 'income-statement'}, 'period': '2y'}
+2026-07-21 13:01:11,417 [INFO] backend.langgraph_workflow:   → get_data_period({"exchange": "ASX", "code": "CSL"})
+2026-07-21 13:01:11,420 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'CSL', 'earliest_date': '2016-06-30', 'exchange': 'asx', 'latest_date': '2025-12-31', 'statement_types_available': ['balance-sheet', 'cash-flow-statement', 'income-statement', 'ratios']}
+2026-07-21 13:01:11,421 [INFO] backend.langgraph_workflow: Agent round 2: sending 5 messages (2 tool results) to LLM
+2026-07-21 13:01:37,500 [DEBUG] backend.langgraph_workflow: LLM final response: Now let me analyze the situation:
+
+**News Analysis:**
+- The breakthrough is in gene editing (CRISPR-like precision editing), which is a different technology from CSL's AAV-based gene therapy (Hemgenix
+2026-07-21 13:01:37,512 [INFO] backend.trading_engine: evaluate_signal: symbol=ASX:CSL (CSL Limited) sentiment=neutral score=0.52 holding=False price=100.00
+2026-07-21 13:01:37,512 [INFO] backend.trading_engine: evaluate_signal: NO TRADE — strategy rejected  symbol=ASX:CSL (CSL Limited)  should_buy=False  should_short=False  entry_rules=['SentimentEntryRule']
+2026-07-21 13:02:48,705 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, flash_model=deepseek-v4-flash, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-21 13:02:53,792 [DEBUG] backend.langgraph_workflow: News classification response: {
+  "category": "Macro",
+  "reason": "埃博拉疫情扩散是宏观公共卫生危机事件，没有明确指向具体上市公司或行业获得第一级盈利收益。"
+}
+2026-07-21 13:02:53,792 [INFO] backend.langgraph_workflow: News skipped (Macro): 埃博拉疫情扩散是宏观公共卫生危机事件，没有明确指向具体上市公司或行业获得第一级盈利收益。 — 世界卫生组织（WHO）今日宣布，西非多个国家近期报告的埃博拉病毒疫情持续扩大，累计确诊病例和疑似病例快速增加。鉴于疫情存在跨境传播风险，WHO已启动最高级别公共...
+2026-07-21 13:02:53,794 [INFO] backend.langgraph_workflow: Skipping to end: [Macro] 埃博拉疫情扩散是宏观公共卫生危机事件，没有明确指向具体上市公司或行业获得第一级盈利收益。
+2026-07-21 13:02:53,802 [INFO] backend.trading_engine: evaluate_signal: symbol= sentiment=neutral score=0.30 holding=True price=100.00
+2026-07-21 13:02:53,802 [DEBUG] backend.strategy.strategy: Exit triggered by: ['EndOfDayExitRule']
+2026-07-21 13:02:53,818 [INFO] backend.trading_engine: SELL  @ 100.00 (strategy exit)
+2026-07-21 13:04:45,174 [INFO] backend.langgraph_workflow: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, flash_model=deepseek-v4-flash, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-21 13:04:47,982 [DEBUG] backend.langgraph_workflow: News classification response: {
+  "category": "Industry",
+  "reason": "新闻描述了全球血浆制品行业供应紧张和需求旺盛的整体状况，属于行业层面的新闻，而非针对具体公司。"
+}
+2026-07-21 13:04:47,983 [INFO] backend.langgraph_workflow: News accepted (Industry): 新闻描述了全球血浆制品行业供应紧张和需求旺盛的整体状况，属于行业层面的新闻，而非针对具体公司。
+2026-07-21 13:04:47,984 [INFO] backend.langgraph_workflow: Identifying stock for exchange=AU
+2026-07-21 13:04:50,122 [INFO] backend.langgraph_workflow: Stock identification response: {
+  "symbol": "CSL",
+  "company_name": "CSL Limited",
+  "exchange": "ASX",
+  "reasoning": "全球血浆供应紧张且需求旺盛，CSL是全球最大的血浆制品生产商之一，直接受益于供不应求的市场格局，且市值大、流动性高。"
+}
+2026-07-21 13:04:50,122 [INFO] backend.langgraph_workflow: Identified stock: CSL (CSL Limited) — 全球血浆供应紧张且需求旺盛，CSL是全球最大的血浆制品生产商之一，直接受益于供不应求的市场格局，且市值大、流动性高。
+2026-07-21 13:04:50,123 [DEBUG] backend.langgraph_workflow: Built prompt:
+=== SYSTEM ===
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== USER ===
+Exchange: AU
+Stock Symbol: CSL
+News Source: manual-test
+
+Content:
+全球多家医疗机构和血液服务组织今日表示，受流感季捐献人数下降、择期手术恢复以及免疫疾病治疗需求持续增长等因素影响，全球用于生产血浆制品的原料血浆供应持续紧张，部分地区库存已降至近年来最低水平。近期多家血液机构已发起紧急献浆倡议，以缓解供应压力。
+
+行业分析人士指出，由于血浆采集和生产周期较长，供应短缺可能持续数个季度。医院对免疫球蛋白（IVIG）、白蛋白及凝血因子等血浆衍生产品的需求依然旺盛，预计全球血浆制品市场将维持供不应求的局面
+=== END PROMPT ===
+2026-07-21 13:04:52,677 [INFO] backend.langgraph_workflow: Positive news context for CSL: 1544 chars
+2026-07-21 13:04:54,729 [INFO] backend.langgraph_workflow: Negative news context for CSL: 1289 chars
+2026-07-21 13:04:54,729 [INFO] backend.langgraph_workflow: Appended news context (2917 chars) to user message
+2026-07-21 13:04:54,731 [DEBUG] backend.langgraph_workflow: LLM message [SYSTEM]:
+You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to analyze the expected impact of a news article and identify the best stock to BUY.
+
+Assume the news is true. Do NOT verify whether the event actually happened. Analyze only the expected market impact.
+
+## Input
+
+Exchange: {{exchange}}
+Stock Symbol: {{symbol}}
+News Source: {{source}}
+
+Content:
+{{content}}
+
+## Available tools
+
+You have access to financial data tools:
+- list_metrics: list available financial metrics
+- get_data_period: check date range of available data
+- get_financials: fetch revenue, profit, EPS, PE, PB, margins, etc.
+
+---
+
+## Exchange detection rules
+
+When calling tools, supply the correct exchange code:
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+
+If the symbol contains an exchange prefix like "NASDAQ:WYNN" or "ASX:TCL", parse out the exchange and code separately.
+
+If a tool returns "no data found", try another exchange before giving up.
+
+---
+
+# Analysis Rules
+
+Sentiment represents the expected stock price impact over the next **1–5 trading days**, NOT long-term intrinsic value.
+
+Always analyze the impact on company earnings first, then infer the likely stock price reaction.
+
+Financial fundamentals should strengthen or weaken your confidence, rather than replace the news analysis.
+
+---
+# Decision Flow
+
+Stock Symbol is provided.
+
+1. MUST call get_financials.
+2. Analyze ONLY this company.
+3. Combine:
+   - News impact
+   - Business exposure
+   - Latest financial data
+4. Generate the final sentiment.
+
+## Financial Analysis
+
+When financial data is available, consider:
+
+- Revenue growth
+- Net profit growth
+- EPS trend
+- PE valuation
+- PB valuation
+- Profit margins
+- ROE
+- Debt
+- Cash flow
+
+Do NOT simply list these metrics.
+
+Explain whether they strengthen or weaken the expected news impact.
+
+If financial data cannot be retrieved, continue using only the news and state that financial data was unavailable.
+
+---
+
+## Confidence Guidelines
+
+0.90–1.00
+
+- Direct company-specific news
+- Financial data supports the conclusion
+
+0.75–0.90
+
+- Clear first-order industry impact
+- Financials available
+
+0.50–0.75
+
+- Macro or indirect impact
+
+Below 0.50
+
+- Insufficient information
+- Mixed signals
+- Weak linkage
+
+---
+
+## Sentiment Scale
+
+超级利好
+
+Major positive catalyst likely to produce a strong upward stock move.
+
+Examples:
+
+- Major policy support
+- Large contract
+- Breakthrough product
+- Significant earnings improvement
+
+普通利好
+
+Moderately positive news expected to improve earnings or sentiment.
+
+neutral
+
+No meaningful BUY opportunity.
+
+普通利空
+
+Moderately negative.
+
+超级利空
+
+Severely negative.
+
+---
+
+## Translation
+
+Translate the news into fluent Chinese.
+
+The translation must faithfully preserve the original meaning.
+
+Do NOT summarize.
+
+---
+
+## Output
+
+Return ONLY a valid JSON object.
+
+Do NOT output Markdown.
+
+Do NOT output explanations.
+
+Do NOT output comments.
+
+The JSON schema is:
+
+{
+  "sentiment": "超级利好 | 普通利好 | neutral | 普通利空 | 超级利空",
+  "confidence_score": 0.00,
+  "reasoning": "2-4 Chinese sentences explaining the judgement. Mention financial data if available.",
+  "translate": "Chinese translation of the news.",
+  "selected_symbol": "Stock code and company name, or empty string."
+}
+
+=== END SYSTEM ===
+2026-07-21 13:04:54,731 [DEBUG] backend.langgraph_workflow: LLM message [USER]:
+Exchange: AU
+Stock Symbol: CSL
+News Source: manual-test
+
+Content:
+全球多家医疗机构和血液服务组织今日表示，受流感季捐献人数下降、择期手术恢复以及免疫疾病治疗需求持续增长等因素影响，全球用于生产血浆制品的原料血浆供应持续紧张，部分地区库存已降至近年来最低水平。近期多家血液机构已发起紧急献浆倡议，以缓解供应压力。
+
+行业分析人士指出，由于血浆采集和生产周期较长，供应短缺可能持续数个季度。医院对免疫球蛋白（IVIG）、白蛋白及凝血因子等血浆衍生产品的需求依然旺盛，预计全球血浆制品市场将维持供不应求的局面
+
+[Recent News Context for CSL — last 6 months]
+
+Positive events:
+[
+  {
+    "date": "2026-02-13",
+    "event": "CSL reported a 15% increase in net profit after tax for the first half of fiscal year 2026.",
+    "impact": "The strong earnings performance exceeded analyst expectations, driving positive investor sentiment and share price appreciation."
+  },
+  {
+    "date": "2026-03-05",
+    "event": "The FDA approved CSL’s new subcutaneous immunoglobulin therapy for an expanded range of primary immunodeficiency indications.",
+    "impact": "The approval strengthens CSL's market-leading position in the immunology segment and provides a new long-term revenue stream."
+  },
+  {
+    "date": "2026-04-22",
+    "event": "Major investment banks upgraded CSL to 'Buy' following a successful rollout of their latest plasma collection technology.",
+    "impact": "The upgrades increased institutional buying interest and reinforced confidence in the company's operational efficiency improvements."
+  },
+  {
+    "date": "2026-05-10",
+    "event": "CSL announced a strategic partnership to accelerate the development of a novel gene therapy candidate for hemophilia.",
+    "impact": "The collaboration reduces R&D risk and positions the company to capture significant market share in the high-growth gene therapy sector."
+  },
+  {
+    "date": "2026-06-02",
+    "event": "CSL announced a share buyback program of up to $750 million, citing strong cash flow generation.",
+    "impact": "The announcement signaled management's confidence in the company's financial health and provided a boost to shareholder value."
+  }
+]
+
+Negative events:
+[
+  {
+    "date": "2026-02-18",
+    "event": "CSL reported a net profit after tax (NPAT) of $2.02 billion for the first half of fiscal 2026, which fell short of analyst consensus expectations.",
+    "impact": "The stock experienced a sharp decline as investors reacted to the earnings miss and concerns over margin pressure."
+  },
+  {
+    "date": "2026-03-05",
+    "event": "Several major investment banks downgraded CSL shares following the release of the half-year results, citing concerns over rising plasma collection costs.",
+    "impact": "The downgrades contributed to sustained downward pressure on the share price throughout early March."
+  },
+  {
+    "date": "2026-04-12",
+    "event": "CSL faced increased competitive pressure in the hemophilia market as rival firms reported positive clinical trial data for competing therapies.",
+    "impact": "Market sentiment weakened due to fears of potential long-term erosion of CSL's market share in its core hematology segment."
+  },
+  {
+    "date": "2026-05-20",
+    "event": "The company announced a delay in the regulatory approval timeline for a key pipeline product in the European market.",
+    "impact": "The delay led to a modest sell-off as analysts adjusted their revenue growth forecasts for the upcoming fiscal year."
+  }
+]
+
+=== END USER ===
+2026-07-21 13:04:58,517 [INFO] backend.langgraph_workflow: Agent round 1: LLM requested 2 tool call(s)
+2026-07-21 13:04:58,518 [INFO] backend.langgraph_workflow:   → get_financials({"exchange": "ASX", "code": "CSL", "metrics": ["revenue", "netinc", "epsBasic", "pe", "pb", "operatingMargin", "profitMargin", "roe", "debtToEquity", "freeCashFlow"], "period": "2y"})
+2026-07-21 13:04:58,522 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'CSL', 'data': {'2023-12-31': {'income-statement': {'epsBasic': 3.937205, 'netinc': 1901000000, 'operatingMargin': 0.33068, 'profitMargin': 0.23606, 'revenue': 8053000000}, 'ratios': {'pb': 4.926, 'pe': 38.186}}, '2024-06-30': {'income-statement': {'epsBasic': 1.533552, 'netinc': 741000000, 'operatingMargin': 0.18275, 'profitMargin': 0.10983, 'revenue': 6747000000}, 'ratios': {'pb': 4.906, 'pe': 36.027}}, '2024-12-31': {'income-statement': {'epsBasic': 4.147723, 'netinc': 2007000000, 'operatingMargin': 0.32099, 'profitMargin': 0.23659, 'revenue': 8483000000}, 'ratios': {'pb': 4.107, 'pe': 30.704}}, '2025-06-30': {'income-statement': {'epsBasic': 2.054926, 'netinc': 995000000, 'operatingMargin': 0.19519, 'profitMargin': 0.14064, 'revenue': 7075000000}, 'ratios': {'pb': 3.551, 'pe': 25.324}}, '2025-12-31': {'income-statement': {'epsBasic': 0.82924, 'netinc': 401000000, 'operatingMargin': 0.31649, 'profitMargin': 0.04813, 'revenue': 8332000000}, 'ratios': {'pb': 2.714, 'pe': 39.773}}}, 'errors': ['metric "roe" not found in any statement', 'metric "debtToEquity" not found in any statement', 'metric "freeCashFlow" not found in any statement'], 'exchange': 'asx', 'metric_sources': {'epsBasic': 'income-statement', 'netinc': 'income-statement', 'operatingMargin': 'income-statement', 'pb': 'ratios', 'pe': 'ratios', 'profitMargin': 'income-statement', 'revenue': 'income-statement'}, 'period': '2y'}
+2026-07-21 13:04:58,522 [INFO] backend.langgraph_workflow:   → get_data_period({"exchange": "ASX", "code": "CSL"})
+2026-07-21 13:04:58,525 [DEBUG] backend.langgraph_workflow: Tool result: {'code': 'CSL', 'earliest_date': '2016-06-30', 'exchange': 'asx', 'latest_date': '2025-12-31', 'statement_types_available': ['balance-sheet', 'cash-flow-statement', 'income-statement', 'ratios']}
+2026-07-21 13:04:58,526 [INFO] backend.langgraph_workflow: Agent round 2: sending 5 messages (2 tool results) to LLM
+2026-07-21 13:05:31,886 [DEBUG] backend.langgraph_workflow: LLM final response: Now, let me analyze the financials and the news together.
+
+**Financial Summary for CSL (ASX):**
+
+- Revenue has been growing: H1 FY25: $8.48B → H1 FY26: $8.33B
+- H1 FY26 net profit dropped significantl
+2026-07-21 13:05:31,901 [INFO] backend.trading_engine: evaluate_signal: symbol=ASX:CSL (CSL Limited) sentiment=普通利好 score=0.78 holding=False price=100.00
+2026-07-21 13:05:31,901 [INFO] backend.trading_engine: evaluate_signal: NO TRADE — strategy rejected  symbol=ASX:CSL (CSL Limited)  should_buy=False  should_short=False  entry_rules=['SentimentEntryRule']

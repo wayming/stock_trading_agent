@@ -20,6 +20,7 @@ from langgraph.graph import StateGraph, END
 
 from models import SentimentLevel, TradeAction
 from database import Database
+import keyword_fallback
 import logging
 
 #
@@ -44,6 +45,7 @@ class AnalysisState(TypedDict):
     llm_api_url: str
     llm_api_key: str
     llm_model: str
+    llm_flash_model: str
     # Prompt
     prompt: str
     # Agent loop state (persists across agent ↔ tool transitions)
@@ -65,6 +67,11 @@ class AnalysisState(TypedDict):
     negative_news_context: str
     # Trade
     trade_action: str
+    # News filter
+    _filtered: bool
+    _filter_reason: str
+    # Pre-analysis LLM call log (filter_news, identify_stock, fetch_news_context)
+    _pre_analysis_log: list[dict]
 
 
 SYSTEM_PROMPT = """You are a professional stock market analyst for a LONG-ONLY stock trading system.
@@ -122,7 +129,6 @@ Financial fundamentals should strengthen or weaken your confidence, rather than 
 ---
 # Decision Flow
 
-## Case A
 Stock Symbol is provided.
 
 1. MUST call get_financials.
@@ -132,61 +138,6 @@ Stock Symbol is provided.
    - Business exposure
    - Latest financial data
 4. Generate the final sentiment.
-
----
-
-## Case B
-Stock Symbol is empty but Exchange is provided.
-
-This is a LONG-ONLY trading strategy.
-
-Your objective is to identify the BEST BUY opportunity.
-
-Follow these steps strictly:
-
-1. Identify industries expected to BENEFIT from the news.
-
-2. Ignore industries whose primary impact is negative.
-
-3. Among all beneficiary industries, choose the company that satisfies:
-
-   - Most direct first-order earnings benefit
-   - Largest market capitalization
-   - Highest trading liquidity
-
-4. MUST call get_financials for the selected company.
-
-5. Use both the news and financial metrics to determine the sentiment.
-
-6. Return the selected company.
-
-If NO listed company on the specified exchange is expected to receive a meaningful positive impact:
-
-Return
-
-selected_symbol = ""
-
-and
-
-sentiment = "neutral"
-
-Do NOT force a stock recommendation.
-
----
-
-## Case C
-
-Neither Stock Symbol nor Exchange is provided.
-
-Return
-
-sentiment = "neutral"
-
-selected_symbol = ""
-
-with low confidence.
-
----
 
 ## Financial Analysis
 
@@ -296,6 +247,50 @@ The JSON schema is:
 }
 """
 
+IDENTIFY_STOCK_SYSTEM_PROMPT = """You are a professional stock market analyst for a LONG-ONLY stock trading system.
+
+Your task is to identify the SINGLE BEST stock to BUY on the given exchange, based on the news provided.
+
+## Rules
+
+1. Identify industries expected to BENEFIT from the news.
+
+2. Ignore industries whose primary impact is negative.
+
+3. Among all beneficiary industries, choose the company that satisfies:
+
+   - Most direct first-order earnings benefit
+   - Largest market capitalization
+   - Highest trading liquidity
+
+4. Return ONLY a valid JSON object.
+
+Do NOT output Markdown. Do NOT output explanations. Do NOT output comments.
+
+If NO listed company on the specified exchange is expected to receive a meaningful positive impact, return empty strings.
+
+## Output JSON schema
+
+{
+  "symbol": "Stock ticker code only (e.g., 0700, AAPL, TCL)",
+  "company_name": "Full company name",
+  "exchange": "Exchange code (HKG, SHA, SHE, ASX, NASDAQ, NYSE)",
+  "reasoning": "1-2 sentences explaining why this stock was selected"
+}
+
+## Exchange codes
+
+| Symbol pattern | Exchange | Examples |
+|---|---|---|
+| Pure digits, ≤5 chars | HKG | 0700, 6800, 0001 |
+| Pure digits, 6 chars starting with 6 | SHA | 600519 |
+| Pure digits, 6 chars starting with 0/3 | SHE | 302132 |
+| Pure digits, 6 chars starting with 9 | SHA | 900948 |
+| 3 uppercase letters | ASX | TCL, BHP, MGX |
+| 1-5 uppercase letters (US) | NASDAQ | VSA, AAPL, TSLA |
+| 1-5 uppercase letters (US) | NYSE | ZWS, GE, F |
+"""
+
 db: Database = None
 logger = logging.getLogger(f"backend.{__name__}")
 
@@ -315,6 +310,7 @@ def receive_news(state: AnalysisState) -> AnalysisState:
     url = db.get_config("llm_api_url") or ""
     key = db.get_config("llm_api_key") or ""
     model = db.get_config("llm_model") or "gpt-4o"
+    flash_model = db.get_config("llm_flash_model") or ""
 
     mcp_url = db.get_config("mcp_server_url") or ""
     ctx_url = db.get_config("context_llm_url") or ""
@@ -325,21 +321,292 @@ def receive_news(state: AnalysisState) -> AnalysisState:
         logger.info("LLM is disabled — using keyword fallback for ALL LLM calls")
         url = ""
         key = ""
+        flash_model = ""
         ctx_url = ""
         ctx_key = ""
     logger.info(
         f"Loaded config: llm_url={url}, model={model}, "
-        f"llm_enabled={llm_enabled}, mcp_url={mcp_url}, "
+        f"flash_model={flash_model}, llm_enabled={llm_enabled}, mcp_url={mcp_url}, "
         f"ctx_llm={'configured' if ctx_url else 'not set'}"
     )
     state["llm_api_url"] = url
     state["llm_api_key"] = key
     state["llm_model"] = model
+    state["llm_flash_model"] = flash_model
     state["context_llm_url"] = ctx_url
     state["context_llm_key"] = ctx_key
     state["context_llm_model"] = ctx_model
     state["positive_news_context"] = ""
     state["negative_news_context"] = ""
+    state["_filtered"] = False
+    state["_filter_reason"] = ""
+    state["_pre_analysis_log"] = []
+    return state
+
+
+#
+# News classification — use flash model to categorize news before analysis
+#
+
+NEWS_CLASSIFY_SYSTEM_PROMPT = """You are a financial news classifier. Categorize the news into one of four types.
+
+## Categories
+
+### Noise
+Stock price movements, market recaps, trading summaries.
+- "X stock surged/dropped X% today"
+- "Market rallied on optimism"
+- Price milestones (all-time highs/lows)
+→ IGNORE — no further analysis needed.
+
+### Company
+Company-specific news with direct earnings impact for a SPECIFIC company.
+- Earnings reports, contract wins, product launches, M&A, management changes
+- Regulatory actions targeting a specific company
+→ CONTINUE analysis for this company.
+
+### Industry
+Industry-wide or sector-wide news that benefits/harms an entire sector.
+- "Government announces solar subsidy program"
+- "New regulations for the banking sector"
+- "Chip export restrictions"
+→ CONTINUE — identify the best stock in the affected industry.
+
+### Macro
+Macroeconomic, monetary policy, geopolitical, or broad market sentiment news.
+- Interest rate decisions, GDP data, employment reports
+- Geopolitical events (trade wars, conflicts)
+- Monetary policy changes, inflation data
+- Broad market sentiment without specific company/industry impact
+→ IGNORE — no listed company receives a clear first-order earnings benefit.
+
+## Key rule
+
+Only select a stock if the news creates a clear first-order earnings benefit for one or more listed companies on the specified exchange. If the news is primarily macroeconomic, monetary policy, geopolitical, or broad market sentiment, and no listed company receives a clear first-order earnings benefit, return empty strings.
+
+## Output
+
+Return ONLY a valid JSON object:
+
+{
+  "category": "Noise | Company | Industry | Macro",
+  "reason": "One short sentence in Chinese or English explaining the classification"
+}
+"""
+
+
+def classify_news(state: AnalysisState) -> AnalysisState:
+    """Use flash model to classify news before entering the main analysis pipeline.
+
+    Categories:
+      - Noise  → skip (price movement / market recap)
+      - Macro  → skip (no clear first-order earnings benefit)
+      - Company → continue (company-specific impact)
+      - Industry → continue (sector-wide impact, stock identification needed)
+
+    Falls back gracefully: if the LLM is unavailable, the news passes through.
+    """
+    content = state.get("news_content", "")
+    if not content or not content.strip():
+        state["_filtered"] = False
+        state["_filter_reason"] = ""
+        return state
+
+    url = state.get("llm_api_url", "")
+    key = state.get("llm_api_key", "")
+    model = state.get("llm_flash_model", "") or state.get("llm_model", "gpt-4o")
+
+    if not url:
+        logger.info("No LLM configured — skipping news classification")
+        state["_filtered"] = False
+        state["_filter_reason"] = ""
+        return state
+
+    user_prompt = f"Classify this news:\n\n{content}"
+    try:
+        from llm import invoke_llm_simple
+        raw = invoke_llm_simple(
+            api_url=url, api_key=key, model=model,
+            system_prompt=NEWS_CLASSIFY_SYSTEM_PROMPT,
+            user_prompt=user_prompt,
+            temperature=0.0, max_tokens=150, timeout=15.0,
+        )
+    except Exception as e:
+        logger.error(f"News classification LLM call failed: {e}")
+        state["_filtered"] = False
+        state["_filter_reason"] = ""
+        return state
+
+    logger.debug(f"News classification response: {raw[:200]}")
+
+    # Log this LLM call for the conversation view
+    state.setdefault("_pre_analysis_log", []).append({
+        "step": "News Classification",
+        "label": f"News Classification ({model})",
+        "system_prompt": NEWS_CLASSIFY_SYSTEM_PROMPT,
+        "user_prompt": user_prompt,
+        "response": raw,
+    })
+
+    # Parse JSON from response
+    json_match = re.search(r'\{[^{}]*\}', raw, re.DOTALL)
+    if json_match:
+        try:
+            parsed = json.loads(json_match.group(0))
+            category = parsed.get("category", "").strip()
+            reason = parsed.get("reason", "")
+
+            if category in ("Noise", "Macro"):
+                state["_filtered"] = True
+                state["_filter_reason"] = f"[{category}] {reason}"
+                logger.info(f"News skipped ({category}): {reason} — {content[:80]}...")
+                return state
+            elif category in ("Company", "Industry"):
+                state["_filtered"] = False
+                state["_filter_reason"] = f"[{category}] {reason}"
+                logger.info(f"News accepted ({category}): {reason}")
+                return state
+        except json.JSONDecodeError:
+            logger.warning("Failed to parse news classification JSON response")
+
+    # Fallback: if parsing fails, let the news through
+    state["_filtered"] = False
+    state["_filter_reason"] = ""
+    return state
+
+
+#
+# Routing — decide next step after classification
+#
+
+def route_after_classify(state: AnalysisState) -> Literal["build_prompt", "identify_stock", "skip_to_end"]:
+    """Route after classification: skip Noise/Macro, continue Company/Industry."""
+    if state.get("_filtered"):
+        return "skip_to_end"
+    if state.get("news_symbol", "").strip():
+        return "build_prompt"
+    if state.get("news_exchange", "").strip():
+        return "identify_stock"
+    return "skip_to_end"
+
+
+#
+# Stock identification node — identify best stock when only exchange is given
+#
+
+def identify_stock(state: AnalysisState) -> AnalysisState:
+    """Call LLM (no MCP tools) to identify the best BUY stock on the given exchange.
+
+    Sets state["news_symbol"] and state["selected_symbol"] so the downstream
+    build_prompt → agent_node path sees a concrete symbol to analyse.
+    """
+    exchange = state.get("news_exchange", "")
+    content = state.get("news_content", "")
+    url = state.get("llm_api_url", "")
+    key = state.get("llm_api_key", "")
+    model = state.get("llm_flash_model", "") or state.get("llm_model", "gpt-4o")
+
+    logger.info(f"Identifying stock for exchange={exchange}")
+
+    if not url:
+        logger.warning("No LLM configured — cannot identify stock, falling through to neutral")
+        return state
+
+    user_msg = f"Exchange: {exchange}\n\nContent:\n{content}"
+
+    try:
+        from llm import invoke_llm_simple
+        raw = invoke_llm_simple(
+            api_url=url, api_key=key, model=model,
+            system_prompt=IDENTIFY_STOCK_SYSTEM_PROMPT,
+            user_prompt=user_msg,
+            temperature=0.3, max_tokens=400, timeout=30.0,
+        )
+    except Exception as e:
+        logger.error(f"Stock identification LLM call failed: {e}")
+        return state
+
+    logger.info(f"Stock identification response: {raw[:200]}")
+
+    # Log this LLM call for the conversation view
+    state.setdefault("_pre_analysis_log", []).append({
+        "step": "Identify Stock",
+        "label": f"Identify Stock ({model})",
+        "system_prompt": IDENTIFY_STOCK_SYSTEM_PROMPT,
+        "user_prompt": user_msg,
+        "response": raw,
+    })
+
+    # Parse JSON from response
+    import re as _re
+    json_match = _re.search(r'\{[^{}]*\}', raw, _re.DOTALL)
+    if json_match:
+        try:
+            parsed = json.loads(json_match.group(0))
+        except json.JSONDecodeError:
+            logger.warning("Failed to parse stock identification JSON")
+            return state
+    else:
+        logger.warning("No JSON found in stock identification response")
+        return state
+
+    symbol = parsed.get("symbol", "").strip()
+    company = parsed.get("company_name", "").strip()
+    reasoning = parsed.get("reasoning", "")
+
+    if symbol:
+        state["news_symbol"] = symbol
+        state["selected_symbol"] = f"{symbol} ({company})" if company else symbol
+        state["_filtered"] = False
+        logger.info(f"Identified stock: {symbol} ({company}) — {reasoning}")
+    else:
+        exchange = state.get("news_exchange", "")
+        state["_filtered"] = True
+        state["_filter_reason"] = f"No suitable BUY candidate found on exchange {exchange} for this news."
+        logger.info(f"No suitable stock identified on exchange {exchange}")
+
+    return state
+
+
+def route_after_identify(state: AnalysisState) -> Literal["build_prompt", "skip_to_end"]:
+    """After stock identification: continue if stock found, skip otherwise."""
+    if state.get("_filtered"):
+        return "skip_to_end"
+    return "build_prompt"
+
+
+#
+# Fast path — neither symbol nor exchange provided
+#
+
+def skip_to_end(state: AnalysisState) -> AnalysisState:
+    """Return neutral immediately — no LLM calls.
+
+    Uses _filter_reason to produce a context-appropriate message.
+    """
+    reason = state.get("_filter_reason", "")
+    exchange = state.get("news_exchange", "")
+
+    if reason:
+        # Classification or identification already provided the reason
+        display_reason = reason
+    elif not exchange:
+        display_reason = "No stock symbol or exchange provided — insufficient information."
+    else:
+        display_reason = f"No actionable BUY opportunity identified on exchange {exchange}."
+
+    logger.info(f"Skipping to end: {display_reason}")
+    state["llm_response_raw"] = json.dumps({
+        "sentiment": "neutral",
+        "confidence_score": 0.3,
+        "reasoning": display_reason,
+        "selected_symbol": "",
+    }, ensure_ascii=False)
+    state["sentiment"] = "neutral"
+    state["confidence_score"] = 0.3
+    state["reasoning"] = display_reason
+    state["selected_symbol"] = ""
+    state["trade_action"] = "NONE"
     return state
 
 
@@ -436,6 +703,13 @@ def fetch_news_context(state: AnalysisState) -> AnalysisState:
         pos_raw = "[]"
     state["positive_news_context"] = pos_raw
     logger.info(f"Positive news context for {symbol}: {len(pos_raw)} chars")
+    state.setdefault("_pre_analysis_log", []).append({
+        "step": "News Context (Positive)",
+        "label": f"Context LLM → Positive News ({ctx_model})",
+        "system_prompt": pos_prompt,
+        "user_prompt": f"Search recent news for {symbol}",
+        "response": pos_raw,
+    })
 
     # Fetch negative news
     neg_prompt = CONTEXT_PROMPT_NEGATIVE.format(symbol=symbol, six_months_ago=six_months_ago)
@@ -451,6 +725,13 @@ def fetch_news_context(state: AnalysisState) -> AnalysisState:
         neg_raw = "[]"
     state["negative_news_context"] = neg_raw
     logger.info(f"Negative news context for {symbol}: {len(neg_raw)} chars")
+    state.setdefault("_pre_analysis_log", []).append({
+        "step": "News Context (Negative)",
+        "label": f"Context LLM → Negative News ({ctx_model})",
+        "system_prompt": neg_prompt,
+        "user_prompt": f"Search recent news for {symbol}",
+        "response": neg_raw,
+    })
 
     # Append news context to the user message in the conversation
     _append_news_context_to_messages(state, symbol)
@@ -503,7 +784,7 @@ def agent_node(state: AnalysisState) -> AnalysisState:
 
     # No LLM configured → keyword fallback (skip tool loop entirely)
     if not url:
-        state["llm_response_raw"] = _keyword_fallback(state)
+        state["llm_response_raw"] = keyword_fallback.classify(state.get("news_content", ""))
         return state
 
     tools = _get_tool_definitions()
@@ -674,79 +955,6 @@ def _execute_mcp_tool(name: str, arguments: dict) -> dict | str:
 
 
 #
-# Keyword-based fallback (when no real LLM API configured)
-#
-
-SUPER_BULLISH_KEYWORDS = [
-    "暴涨", "涨停", "翻倍", "重大利好", "远超预期", "超级利好",
-    "历史新高", "获得重大合同", "突破性进展", "重磅",
-    "soar", "skyrocket", "breakthrough", "record high",
-]
-
-BULLISH_KEYWORDS = [
-    "上涨", "增长", "利好", "盈利", "扩大", "上升", "向好",
-    "超出预期", "回购", "增持", "分红", "扩产",
-    "growth", "profit", "beat", "exceed", "upgrade",
-]
-
-BEARISH_KEYWORDS = [
-    "下跌", "下滑", "下降", "利空", "亏损", "减少", "萎缩",
-    "低于预期", "减持", "裁员", "抛售",
-    "decline", "loss", "miss", "downgrade", "drop",
-]
-
-SUPER_BEARISH_KEYWORDS = [
-    "暴跌", "跌停", "崩盘", "破产", "退市", "暴雷", "造假",
-    "重大利空", "腰斩", "严重亏损", "危机", "调查", "处罚",
-    "crash", "bankruptcy", "fraud", "scandal", "collapse",
-]
-
-
-def _keyword_fallback(state: AnalysisState) -> str:
-    """Simple keyword-based sentiment classification when no LLM is configured."""
-    content = state.get("news_content", "")
-    content_lower = content.lower()
-
-    super_bullish = sum(1 for kw in SUPER_BULLISH_KEYWORDS if kw in content or kw.lower() in content_lower)
-    bullish = sum(1 for kw in BULLISH_KEYWORDS if kw in content or kw.lower() in content_lower)
-    bearish = sum(1 for kw in BEARISH_KEYWORDS if kw in content or kw.lower() in content_lower)
-    super_bearish = sum(1 for kw in SUPER_BEARISH_KEYWORDS if kw in content or kw.lower() in content_lower)
-
-    scores = {
-        SentimentLevel.SUPER_BULLISH.value: super_bullish * 3,
-        SentimentLevel.BULLISH.value: bullish,
-        SentimentLevel.BEARISH.value: bearish,
-        SentimentLevel.SUPER_BEARISH.value: super_bearish * 3,
-    }
-    max_sentiment = max(scores, key=scores.get)
-    max_score = scores[max_sentiment]
-
-    if max_score == 0:
-        sentiment = SentimentLevel.NEUTRAL.value
-        confidence = 0.4
-        reasoning = "No clear sentiment keywords detected in the news content."
-    else:
-        sentiment = max_sentiment
-        confidence = min(0.9, 0.5 + max_score * 0.1)
-        keywords_found = [kw for kw in (
-            SUPER_BULLISH_KEYWORDS + BULLISH_KEYWORDS +
-            BEARISH_KEYWORDS + SUPER_BEARISH_KEYWORDS
-        ) if kw in content or kw.lower() in content_lower]
-        reasoning = (
-            f"Keyword-based analysis (LLM not configured). "
-            f"Matched keywords: {', '.join(keywords_found[:10])}. "
-            f"Sentiment: {sentiment}."
-        )
-
-    return json.dumps({
-        "sentiment": sentiment,
-        "confidence_score": round(confidence, 2),
-        "reasoning": reasoning,
-        "selected_symbol": "",
-    }, ensure_ascii=False)
-
-
-#
 # Parse & evaluate
 #
 
@@ -805,7 +1013,15 @@ def build_workflow() -> StateGraph:
     """Construct and compile the LangGraph StateGraph.
 
     Edges:
-        receive_news → build_prompt → agent_node
+        receive_news → classify_news → route_after_classify ──→ build_prompt
+                                                             ├─→ identify_stock
+                                                             │     ↓
+                                                             │   build_prompt
+                                                             └─→ skip_to_end
+                                                                    ↓
+                                                              evaluate_trade → END
+
+        build_prompt → fetch_news_context → agent_node
         agent_node → should_continue ──→ execute_tools → agent_node  (loop)
                                     └─→ parse_response  (exit)
         parse_response → evaluate_trade → END
@@ -813,6 +1029,9 @@ def build_workflow() -> StateGraph:
     graph = StateGraph(AnalysisState)
 
     graph.add_node("receive_news", receive_news)
+    graph.add_node("classify_news", classify_news)
+    graph.add_node("identify_stock", identify_stock)
+    graph.add_node("skip_to_end", skip_to_end)
     graph.add_node("build_prompt", build_prompt)
     graph.add_node("fetch_news_context", fetch_news_context)
     graph.add_node("agent_node", agent_node)
@@ -821,10 +1040,31 @@ def build_workflow() -> StateGraph:
     graph.add_node("evaluate_trade", evaluate_trade)
 
     graph.set_entry_point("receive_news")
-    graph.add_edge("receive_news", "build_prompt")
+
+    # receive_news → classify_news → route
+    graph.add_edge("receive_news", "classify_news")
+    graph.add_conditional_edges(
+        "classify_news",
+        route_after_classify,
+        {
+            "build_prompt": "build_prompt",
+            "identify_stock": "identify_stock",
+            "skip_to_end": "skip_to_end",
+        },
+    )
+
+    # identify_stock → main pipeline, or skip if no stock found
+    graph.add_conditional_edges(
+        "identify_stock",
+        route_after_identify,
+        {"build_prompt": "build_prompt", "skip_to_end": "skip_to_end"},
+    )
+
+    # Main analysis pipeline
     graph.add_edge("build_prompt", "fetch_news_context")
     graph.add_edge("fetch_news_context", "agent_node")
 
+    # Agent tool-calling loop
     graph.add_conditional_edges(
         "agent_node",
         should_continue,
@@ -832,8 +1072,12 @@ def build_workflow() -> StateGraph:
     )
     graph.add_edge("execute_tools", "agent_node")
 
+    # Final evaluation
     graph.add_edge("parse_response", "evaluate_trade")
     graph.add_edge("evaluate_trade", END)
+
+    # Fast path (skip_to_end also goes through evaluate_trade for consistent trade_action)
+    graph.add_edge("skip_to_end", "evaluate_trade")
 
     return graph.compile()
 
@@ -852,14 +1096,38 @@ def get_workflow():
 def extract_conversation(state: AnalysisState) -> list[dict]:
     """Extract ALL LLM conversation messages as a flat chat log.
 
+    Includes pre-analysis LLM calls (news filter, stock identification,
+    context news search) followed by the main agent/tool conversation.
+
     Returns a list of messages, each with role, label and content.
     No grouping — every message is shown individually.
     """
     messages = state.get("messages", [])
     result: list[dict] = []
 
+    # ── Pre-analysis LLM calls (filter_news, identify_stock, fetch_news_context) ──
+    pre_log = state.get("_pre_analysis_log", []) or []
+    for entry in pre_log:
+        step = entry.get("step", "Pre-analysis")
+        label = entry.get("label", step)
+        result.append({
+            "role": "system",
+            "label": f"[{step}] System Prompt",
+            "content": entry.get("system_prompt", ""),
+        })
+        result.append({
+            "role": "user",
+            "label": f"[{step}] Request",
+            "content": entry.get("user_prompt", ""),
+        })
+        result.append({
+            "role": "assistant",
+            "label": f"[{step}] Response",
+            "content": entry.get("response", ""),
+        })
+
     if not messages:
-        # Fallback: single prompt/response pair
+        # Fallback: single prompt/response pair (keyword mode or skip_to_end)
         prompt = state.get("prompt", "")
         response = state.get("llm_response_raw", "")
         if prompt:
@@ -966,6 +1234,7 @@ def run_analysis(news_item: dict) -> AnalysisState:
         "llm_api_url": "",
         "llm_api_key": "",
         "llm_model": "gpt-4o",
+        "llm_flash_model": "",
         "prompt": "",
         "messages": [],
         "round_count": 0,
@@ -980,6 +1249,9 @@ def run_analysis(news_item: dict) -> AnalysisState:
         "positive_news_context": "",
         "negative_news_context": "",
         "trade_action": "",
+        "_filtered": False,
+        "_filter_reason": "",
+        "_pre_analysis_log": [],
     }
     result = workflow.invoke(initial_state)
     return result

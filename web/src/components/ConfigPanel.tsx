@@ -13,6 +13,7 @@ export default function ConfigPanel({ config, open, onClose, onSaved }: Props) {
   const [url, setUrl] = useState(config?.llm_api_url || '');
   const [key, setKey] = useState('');
   const [model, setModel] = useState(config?.llm_model || 'gpt-4o');
+  const [flashModel, setFlashModel] = useState(config?.llm_flash_model || '');
   const [llmEnabled, setLlmEnabled] = useState(config?.llm_enabled ?? true);
   const [mcpUrl, setMcpUrl] = useState(config?.mcp_server_url || '');
   const [ctxUrl, setCtxUrl] = useState(config?.context_llm_url || '');
@@ -26,6 +27,7 @@ export default function ConfigPanel({ config, open, onClose, onSaved }: Props) {
     if (open && config) {
       setUrl(config.llm_api_url || '');
       setModel(config.llm_model || 'gpt-4o');
+      setFlashModel(config.llm_flash_model || '');
       setLlmEnabled(config.llm_enabled ?? true);
       setMcpUrl(config.mcp_server_url || '');
       setCtxUrl(config.context_llm_url || '');
@@ -60,6 +62,7 @@ export default function ConfigPanel({ config, open, onClose, onSaved }: Props) {
         llm_api_url: url,
         llm_api_key: key || '',
         llm_model: model,
+        llm_flash_model: flashModel,
         llm_enabled: llmEnabled,
         mcp_server_url: mcpUrl,
         context_llm_url: ctxUrl,
@@ -172,7 +175,7 @@ export default function ConfigPanel({ config, open, onClose, onSaved }: Props) {
         </div>
 
         <div className="form-group">
-          <label>Model</label>
+          <label>Model (Pro)</label>
           <input
             type="text"
             value={model}
@@ -180,6 +183,23 @@ export default function ConfigPanel({ config, open, onClose, onSaved }: Props) {
             placeholder="gpt-4o"
             style={{ width: '100%' }}
           />
+          <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
+            Used for main analysis and financial tool-calling
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label>Model (Flash)</label>
+          <input
+            type="text"
+            value={flashModel}
+            onChange={e => setFlashModel(e.target.value)}
+            placeholder="deepseek-chat (leave empty to use Pro model)"
+            style={{ width: '100%' }}
+          />
+          <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
+            Used for quick tasks: stock identification, news context search. Falls back to Pro model if empty.
+          </div>
         </div>
 
         <hr style={{ border: 'none', borderTop: '1px solid var(--border)', margin: '16px 0' }} />

@@ -65,6 +65,7 @@ class ConfigUpdate(BaseModel):
     llm_api_url: str
     llm_api_key: str
     llm_model: str = "gpt-4o"
+    llm_flash_model: str = ""
     llm_enabled: bool = True
     mcp_server_url: str = ""
     context_llm_url: str = ""
@@ -76,6 +77,7 @@ class ConfigResponse(BaseModel):
     llm_api_url: str
     llm_api_key_masked: str
     llm_model: str
+    llm_flash_model: str
     llm_enabled: bool
     mcp_server_url: str
     context_llm_url: str

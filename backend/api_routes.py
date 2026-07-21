@@ -106,6 +106,7 @@ def get_config() -> ConfigResponse:
     url = db.get_config("llm_api_url") or ""
     key = db.get_config("llm_api_key") or ""
     model = db.get_config("llm_model") or "gpt-4o"
+    flash_model = db.get_config("llm_flash_model") or ""
     enabled = db.get_config("llm_enabled")
     llm_enabled = enabled != "false" if enabled is not None else True
     mcp_url = db.get_config("mcp_server_url") or ""
@@ -116,6 +117,7 @@ def get_config() -> ConfigResponse:
         llm_api_url=url,
         llm_api_key_masked=_mask_key(key),
         llm_model=model,
+        llm_flash_model=flash_model,
         llm_enabled=llm_enabled,
         mcp_server_url=mcp_url,
         context_llm_url=ctx_url,
@@ -129,6 +131,7 @@ def update_config(body: ConfigUpdate) -> ConfigResponse:
     db.set_config("llm_api_url", body.llm_api_url)
     db.set_config("llm_api_key", body.llm_api_key)
     db.set_config("llm_model", body.llm_model)
+    db.set_config("llm_flash_model", body.llm_flash_model)
     db.set_config("llm_enabled", "true" if body.llm_enabled else "false")
     if body.mcp_server_url:
         db.set_config("mcp_server_url", body.mcp_server_url)
@@ -146,6 +149,7 @@ def update_config(body: ConfigUpdate) -> ConfigResponse:
         llm_api_url=body.llm_api_url,
         llm_api_key_masked=_mask_key(key),
         llm_model=body.llm_model,
+        llm_flash_model=body.llm_flash_model,
         llm_enabled=body.llm_enabled,
         mcp_server_url=body.mcp_server_url or (db.get_config("mcp_server_url") or ""),
         context_llm_url=body.context_llm_url or (db.get_config("context_llm_url") or ""),
