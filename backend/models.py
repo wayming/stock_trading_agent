@@ -24,6 +24,7 @@ class NewsItem(BaseModel):
     content: str
     source: str = ""
     symbol: str = ""
+    exchange: str = ""
     timestamp: str = ""
 
 

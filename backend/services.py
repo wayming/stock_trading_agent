@@ -7,7 +7,7 @@ import logging
 from datetime import datetime, timezone
 
 import database
-import langgraph_workflow
+import analysis_workflow
 from trading_engine import TradingEngine
 from default_strategy import default_strategy
 from sse_manager import SSEManager
@@ -50,7 +50,7 @@ class ServiceContext:
 class ServiceProvider:
     def __init__(self, context: ServiceContext):
         self.context = context
-        langgraph_workflow.db = self.context.database
+        analysis_workflow.runner.db = self.context.database
 
     def run(self, body: bytes):
         """
@@ -78,7 +78,7 @@ class ServiceProvider:
         logger.info(f"[News {news_id}] Stored: {news_dict.get('content', '')[:80]}...")
 
         # Step 2: Run LangGraph pipeline
-        state = langgraph_workflow.run_analysis(news_dict)
+        state = analysis_workflow.run_analysis(news_dict)
         logger.info(
             f"[News {news_id}] Analysis complete: sentiment={state['sentiment']}, "
             f"confidence={state['confidence_score']}, trade={state['trade_action']}"
@@ -86,7 +86,7 @@ class ServiceProvider:
 
         # Step 3: Store sentiment result
         result_id = str(uuid.uuid4())
-        conversation = langgraph_workflow.extract_conversation(state)
+        conversation = analysis_workflow.extract_conversation(state)
         sentiment_result = {
             "id": result_id,
             "news_id": news_id,

@@ -23,7 +23,7 @@ from rabbitmq_consumer import MQConsumer
 from trading_engine import TradingEngine
 from sse_manager import SSEManager
 import services
-import langgraph_workflow
+import analysis_workflow
 
 logger = logging.getLogger(__name__)
 
@@ -317,8 +317,8 @@ def test_analyze(body: TestNewsRequest):
     }
 
     # Run LangGraph pipeline
-    state = langgraph_workflow.run_analysis(news_dict)
-    conversation = langgraph_workflow.extract_conversation(state)
+    state = analysis_workflow.run_analysis(news_dict)
+    conversation = analysis_workflow.extract_conversation(state)
 
     # Determine effective symbol: use user-provided one, or LLM-selected one
     effective_symbol = body.symbol or state.get("selected_symbol", "")

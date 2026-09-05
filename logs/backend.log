@@ -5086,3 +5086,337 @@ Negative events:
 - H1 FY26 net profit dropped significantl
 2026-07-21 13:05:31,901 [INFO] backend.trading_engine: evaluate_signal: symbol=ASX:CSL (CSL Limited) sentiment=普通利好 score=0.78 holding=False price=100.00
 2026-07-21 13:05:31,901 [INFO] backend.trading_engine: evaluate_signal: NO TRADE — strategy rejected  symbol=ASX:CSL (CSL Limited)  should_buy=False  should_short=False  entry_rules=['SentimentEntryRule']
+2026-07-21 13:38:09,277 [INFO] backend.main: Shutting down...
+2026-07-22 00:21:05,320 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-22 00:21:05,322 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-22 00:21:05,355 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-22 00:21:05,355 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-22 00:21:05,355 [INFO] backend.main: Backend ready.
+2026-07-22 00:21:05,357 [INFO] backend.dispatcher: dispatcher started
+2026-07-22 12:28:48,726 [INFO] backend.main: Shutting down...
+2026-07-22 12:28:49,684 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-22 12:28:49,685 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-22 12:28:49,697 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-22 12:28:49,697 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-22 12:28:49,698 [INFO] backend.main: Backend ready.
+2026-07-22 12:28:49,698 [INFO] backend.dispatcher: dispatcher started
+2026-07-22 12:28:55,121 [INFO] backend.main: Shutting down...
+2026-07-22 12:28:56,321 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-22 12:29:00,863 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-22 12:29:00,864 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-22 12:29:00,877 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-22 12:29:00,877 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-22 12:29:00,877 [INFO] backend.main: Backend ready.
+2026-07-22 12:29:00,878 [INFO] backend.dispatcher: dispatcher started
+2026-07-22 12:29:01,481 [INFO] backend.main: Shutting down...
+2026-07-22 12:29:02,478 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-22 12:29:02,480 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-22 12:29:02,492 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-22 12:29:02,492 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-22 12:29:02,492 [INFO] backend.main: Backend ready.
+2026-07-22 12:29:02,493 [INFO] backend.dispatcher: dispatcher started
+2026-07-22 12:29:02,594 [INFO] backend.main: Shutting down...
+2026-07-22 12:29:04,060 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-22 12:29:04,061 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-22 12:29:04,073 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-22 12:29:04,073 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-22 12:29:04,073 [INFO] backend.main: Backend ready.
+2026-07-22 12:29:04,074 [INFO] backend.dispatcher: dispatcher started
+2026-07-22 12:29:09,295 [INFO] backend.main: Shutting down...
+2026-07-22 12:29:10,637 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-22 12:29:10,638 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-22 12:29:10,650 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-22 12:29:10,650 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-22 12:29:10,650 [INFO] backend.main: Backend ready.
+2026-07-22 12:29:10,651 [INFO] backend.dispatcher: dispatcher started
+2026-07-22 12:29:49,188 [INFO] backend.main: Shutting down...
+2026-07-22 12:29:50,237 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-22 12:29:50,239 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-22 12:29:50,251 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-22 12:29:50,251 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-22 12:29:50,251 [INFO] backend.main: Backend ready.
+2026-07-22 12:29:50,252 [INFO] backend.dispatcher: dispatcher started
+2026-07-22 12:29:53,163 [INFO] backend.main: Shutting down...
+2026-07-22 12:29:53,859 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-22 12:29:53,860 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-22 12:29:53,872 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-22 12:29:53,872 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-22 12:29:53,872 [INFO] backend.main: Backend ready.
+2026-07-22 12:29:53,874 [INFO] backend.dispatcher: dispatcher started
+2026-07-22 12:30:13,246 [INFO] backend.main: Shutting down...
+2026-07-22 12:30:14,459 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-22 12:30:14,460 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-22 12:30:14,472 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-22 12:30:14,472 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-22 12:30:14,472 [INFO] backend.main: Backend ready.
+2026-07-22 12:30:14,474 [INFO] backend.dispatcher: dispatcher started
+2026-07-22 12:53:34,439 [INFO] backend.main: Shutting down...
+2026-07-23 11:07:00,162 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-23 11:07:00,164 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-23 11:07:00,185 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-23 11:07:00,185 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-23 11:07:00,185 [INFO] backend.main: Backend ready.
+2026-07-23 11:07:00,186 [INFO] backend.dispatcher: dispatcher started
+2026-07-23 13:41:31,495 [INFO] backend.main: Shutting down...
+2026-07-24 00:01:19,317 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-24 00:01:19,319 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-24 00:01:19,337 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-24 00:01:19,337 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-24 00:01:19,337 [INFO] backend.main: Backend ready.
+2026-07-24 00:01:19,339 [INFO] backend.dispatcher: dispatcher started
+2026-07-24 06:19:41,087 [INFO] backend.main: Shutting down...
+2026-07-24 12:19:38,818 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-24 12:19:38,820 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-24 12:19:38,842 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-24 12:19:38,842 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-24 12:19:38,842 [INFO] backend.main: Backend ready.
+2026-07-24 12:19:38,843 [INFO] backend.dispatcher: dispatcher started
+2026-07-24 14:22:34,432 [INFO] backend.main: Shutting down...
+2026-07-25 01:00:10,057 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-25 01:00:10,059 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-25 01:00:10,076 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-25 01:00:10,076 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-25 01:00:10,076 [INFO] backend.main: Backend ready.
+2026-07-25 01:00:10,077 [INFO] backend.dispatcher: dispatcher started
+2026-07-25 15:18:43,189 [INFO] backend.main: Shutting down...
+2026-07-26 04:38:11,355 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-26 04:38:11,357 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-26 04:38:11,381 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-26 04:38:11,381 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-26 04:38:11,381 [INFO] backend.main: Backend ready.
+2026-07-26 04:38:11,382 [INFO] backend.dispatcher: dispatcher started
+2026-07-26 07:03:00,613 [INFO] backend.main: Shutting down...
+2026-07-26 07:04:20,249 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-26 07:04:20,251 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-26 07:04:20,269 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-26 07:04:20,269 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-26 07:04:20,269 [INFO] backend.main: Backend ready.
+2026-07-26 07:04:20,270 [INFO] backend.dispatcher: dispatcher started
+2026-07-26 07:06:52,689 [INFO] backend.main: Shutting down...
+2026-07-26 11:09:00,094 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-26 11:09:00,096 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-26 11:09:00,113 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-26 11:09:00,113 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-26 11:09:00,113 [INFO] backend.main: Backend ready.
+2026-07-26 11:09:00,114 [INFO] backend.dispatcher: dispatcher started
+2026-07-26 14:02:41,912 [INFO] backend.main: Shutting down...
+2026-07-26 22:19:05,375 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-26 22:19:05,376 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-26 22:19:05,393 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-26 22:19:05,394 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-26 22:19:05,394 [INFO] backend.main: Backend ready.
+2026-07-26 22:19:05,395 [INFO] backend.dispatcher: dispatcher started
+2026-07-27 13:00:30,572 [INFO] backend.main: Shutting down...
+2026-07-27 22:57:04,502 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-27 22:57:04,504 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-27 22:57:04,521 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-27 22:57:04,521 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-27 22:57:04,521 [INFO] backend.main: Backend ready.
+2026-07-27 22:57:04,522 [INFO] backend.dispatcher: dispatcher started
+2026-07-28 13:21:52,464 [INFO] backend.analysis_workflow.nodes.setup: Loaded config: llm_url=https://api.deepseek.com, model=deepseek-v4-pro, flash_model=deepseek-v4-flash, llm_enabled=True, mcp_url=http://192.168.1.14:8081, ctx_llm=configured
+2026-07-28 13:21:55,943 [DEBUG] backend.analysis_workflow.nodes.filtering: News classification response: {
+  "category": "Macro",
+  "reason": "This news reports a geopolitical development (US pausing airstrikes on Iran) and its potential impact on oil prices and diplomatic negotiations. It does not direc
+2026-07-28 13:21:55,943 [INFO] backend.analysis_workflow.nodes.filtering: News skipped (Macro): This news reports a geopolitical development (US pausing airstrikes on Iran) and its potential impact on oil prices and diplomatic negotiations. It does not directly benefit any specific listed company or industry with a clear first-order earnings impact. — 美国总统特朗普于 2026 年 7 月 24 日（周五）在收到军方提交的打击计划后未予批准，反而指令美军暂停当天及后续对伊朗的空袭行动。此举打破了此前美军连续 ...
+2026-07-28 13:21:55,954 [INFO] backend.analysis_workflow.nodes.skip: Skipping to end: [Macro] This news reports a geopolitical development (US pausing airstrikes on Iran) and its potential impact on oil prices and diplomatic negotiations. It does not directly benefit any specific listed company or industry with a clear first-order earnings impact.
+2026-07-28 13:21:55,966 [INFO] backend.trading_engine: evaluate_signal: symbol= sentiment=neutral score=0.30 holding=True price=100.00
+2026-07-28 13:21:55,966 [DEBUG] backend.strategy.strategy: Exit triggered by: ['EndOfDayExitRule']
+2026-07-28 13:21:55,979 [INFO] backend.trading_engine: SELL  @ 100.00 (strategy exit)
+2026-07-28 13:35:42,697 [INFO] backend.main: Shutting down...
+2026-07-28 22:07:31,188 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-28 22:07:31,190 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-28 22:07:31,209 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-28 22:07:31,209 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-28 22:07:31,209 [INFO] backend.main: Backend ready.
+2026-07-28 22:07:31,210 [INFO] backend.dispatcher: dispatcher started
+2026-07-29 13:01:01,019 [INFO] backend.main: Shutting down...
+2026-07-29 22:05:22,333 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-29 22:05:22,335 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-29 22:05:22,352 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-29 22:05:22,352 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-29 22:05:22,352 [INFO] backend.main: Backend ready.
+2026-07-29 22:05:22,353 [INFO] backend.dispatcher: dispatcher started
+2026-07-30 13:50:47,481 [INFO] backend.main: Shutting down...
+2026-07-31 12:00:40,828 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-31 12:00:40,830 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-31 12:00:40,847 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-31 12:00:40,847 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-31 12:00:40,847 [INFO] backend.main: Backend ready.
+2026-07-31 12:00:40,848 [INFO] backend.dispatcher: dispatcher started
+2026-07-31 13:03:12,159 [INFO] backend.main: Shutting down...
+2026-07-31 21:09:18,001 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-07-31 21:09:18,003 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-07-31 21:09:18,020 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-07-31 21:09:18,020 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-07-31 21:09:18,020 [INFO] backend.main: Backend ready.
+2026-07-31 21:09:18,021 [INFO] backend.dispatcher: dispatcher started
+2026-08-01 14:28:39,126 [INFO] backend.main: Shutting down...
+2026-08-01 21:27:49,354 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-01 21:27:49,357 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-01 21:27:49,378 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-01 21:27:49,378 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-01 21:27:49,378 [INFO] backend.main: Backend ready.
+2026-08-01 21:27:49,379 [INFO] backend.dispatcher: dispatcher started
+2026-08-02 14:30:19,977 [INFO] backend.main: Shutting down...
+2026-08-02 21:15:09,193 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-02 21:15:09,196 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-02 21:15:09,215 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-02 21:15:09,215 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-02 21:15:09,215 [INFO] backend.main: Backend ready.
+2026-08-02 21:15:09,216 [INFO] backend.dispatcher: dispatcher started
+2026-08-03 13:30:43,372 [INFO] backend.main: Shutting down...
+2026-08-04 00:53:00,310 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-04 00:53:00,312 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-04 00:53:00,328 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-04 00:53:00,328 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-04 00:53:00,328 [INFO] backend.main: Backend ready.
+2026-08-04 00:53:00,329 [INFO] backend.dispatcher: dispatcher started
+2026-08-04 14:27:18,245 [INFO] backend.main: Shutting down...
+2026-08-05 00:11:18,151 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-05 00:11:18,153 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-05 00:11:18,172 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-05 00:11:18,172 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-05 00:11:18,172 [INFO] backend.main: Backend ready.
+2026-08-05 00:11:18,173 [INFO] backend.dispatcher: dispatcher started
+2026-08-05 05:57:58,452 [INFO] backend.main: Shutting down...
+2026-08-05 10:52:11,371 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-05 10:52:11,373 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-05 10:52:11,390 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-05 10:52:11,390 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-05 10:52:11,390 [INFO] backend.main: Backend ready.
+2026-08-05 10:52:11,391 [INFO] backend.dispatcher: dispatcher started
+2026-08-05 13:26:39,871 [INFO] backend.main: Shutting down...
+2026-08-05 22:48:14,525 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-05 22:48:14,527 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-05 22:48:14,545 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-05 22:48:14,545 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-05 22:48:14,545 [INFO] backend.main: Backend ready.
+2026-08-05 22:48:14,546 [INFO] backend.dispatcher: dispatcher started
+2026-08-06 05:43:03,932 [INFO] backend.main: Shutting down...
+2026-08-06 10:59:50,385 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-06 10:59:50,387 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-06 10:59:50,404 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-06 10:59:50,404 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-06 10:59:50,404 [INFO] backend.main: Backend ready.
+2026-08-06 10:59:50,405 [INFO] backend.dispatcher: dispatcher started
+2026-08-06 13:55:55,505 [INFO] backend.main: Shutting down...
+2026-08-07 00:51:47,769 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-07 00:51:47,770 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-07 00:51:47,787 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-07 00:51:47,787 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-07 00:51:47,787 [INFO] backend.main: Backend ready.
+2026-08-07 00:51:47,788 [INFO] backend.dispatcher: dispatcher started
+2026-08-07 06:08:32,709 [INFO] backend.main: Shutting down...
+2026-08-07 11:13:27,285 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-07 11:13:27,287 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-07 11:13:27,310 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-07 11:13:27,310 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-07 11:13:27,310 [INFO] backend.main: Backend ready.
+2026-08-07 11:13:27,311 [INFO] backend.dispatcher: dispatcher started
+2026-08-07 11:22:18,230 [INFO] backend.mcp_client: MCP connected: sacollector-mcp v1.0.0, session=HDHSSDCOWMM4...
+2026-08-07 13:24:30,883 [INFO] backend.main: Shutting down...
+2026-08-08 00:17:50,546 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-08 00:17:50,548 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-08 00:17:50,565 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-08 00:17:50,565 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-08 00:17:50,566 [INFO] backend.main: Backend ready.
+2026-08-08 00:17:50,566 [INFO] backend.dispatcher: dispatcher started
+2026-08-08 03:40:45,395 [INFO] backend.main: Shutting down...
+2026-08-08 12:16:24,662 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-08 12:16:24,664 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-08 12:16:24,681 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-08 12:16:24,681 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-08 12:16:24,681 [INFO] backend.main: Backend ready.
+2026-08-08 12:16:24,682 [INFO] backend.dispatcher: dispatcher started
+2026-08-08 14:49:23,786 [INFO] backend.main: Shutting down...
+2026-08-08 23:49:53,269 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-08 23:49:53,271 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-08 23:49:53,287 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-08 23:49:53,287 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-08 23:49:53,287 [INFO] backend.main: Backend ready.
+2026-08-08 23:49:53,288 [INFO] backend.dispatcher: dispatcher started
+2026-08-09 13:52:55,959 [INFO] backend.main: Shutting down...
+2026-08-10 11:36:15,270 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-10 11:36:15,272 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-10 11:36:15,290 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-10 11:36:15,290 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-10 11:36:15,290 [INFO] backend.main: Backend ready.
+2026-08-10 11:36:15,291 [INFO] backend.dispatcher: dispatcher started
+2026-08-10 13:58:31,406 [INFO] backend.main: Shutting down...
+2026-08-11 12:33:44,295 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-11 12:33:44,298 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-11 12:33:44,314 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-11 12:33:44,314 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-11 12:33:44,314 [INFO] backend.main: Backend ready.
+2026-08-11 12:33:44,315 [INFO] backend.dispatcher: dispatcher started
+2026-08-11 14:03:39,428 [INFO] backend.main: Shutting down...
+2026-08-11 23:27:17,297 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-11 23:27:17,301 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-11 23:27:17,320 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-11 23:27:17,320 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-11 23:27:17,320 [INFO] backend.main: Backend ready.
+2026-08-11 23:27:17,322 [INFO] backend.dispatcher: dispatcher started
+2026-08-12 04:39:24,890 [INFO] backend.main: Shutting down...
+2026-08-12 11:26:11,044 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-12 11:26:11,047 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-12 11:26:11,074 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-12 11:26:11,074 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-12 11:26:11,074 [INFO] backend.main: Backend ready.
+2026-08-12 11:26:11,075 [INFO] backend.dispatcher: dispatcher started
+2026-08-12 14:26:12,983 [INFO] backend.main: Shutting down...
+2026-08-12 22:30:59,270 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-12 22:30:59,272 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-12 22:30:59,288 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-12 22:30:59,288 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-12 22:30:59,289 [INFO] backend.main: Backend ready.
+2026-08-12 22:30:59,290 [INFO] backend.dispatcher: dispatcher started
+2026-08-13 14:09:06,785 [INFO] backend.main: Shutting down...
+2026-08-14 01:19:05,720 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-14 01:19:05,722 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-14 01:19:05,740 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-14 01:19:05,740 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-14 01:19:05,740 [INFO] backend.main: Backend ready.
+2026-08-14 01:19:05,741 [INFO] backend.dispatcher: dispatcher started
+2026-08-14 13:42:58,583 [INFO] backend.main: Shutting down...
+2026-08-14 21:46:02,200 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-14 21:46:02,203 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-14 21:46:02,226 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-14 21:46:02,226 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-14 21:46:02,227 [INFO] backend.main: Backend ready.
+2026-08-14 21:46:02,228 [INFO] backend.dispatcher: dispatcher started
+2026-08-14 23:43:56,489 [INFO] backend.main: Shutting down...
+2026-08-15 12:00:28,342 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-15 12:00:28,345 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-15 12:00:28,370 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-15 12:00:28,371 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-15 12:00:28,371 [INFO] backend.main: Backend ready.
+2026-08-15 12:00:28,372 [INFO] backend.dispatcher: dispatcher started
+2026-08-15 15:49:15,843 [INFO] backend.main: Shutting down...
+2026-08-16 03:41:13,370 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-16 03:41:13,373 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-16 03:41:13,393 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-16 03:41:13,393 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-16 03:41:13,393 [INFO] backend.main: Backend ready.
+2026-08-16 03:41:13,394 [INFO] backend.dispatcher: dispatcher started
+2026-08-16 13:46:07,132 [INFO] backend.main: Shutting down...
+2026-08-16 22:24:31,581 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-16 22:24:31,584 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-16 22:24:31,616 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-16 22:24:31,616 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-16 22:24:31,616 [INFO] backend.main: Backend ready.
+2026-08-16 22:24:31,617 [INFO] backend.dispatcher: dispatcher started
+2026-08-17 14:23:21,168 [INFO] backend.main: Shutting down...
+2026-08-18 21:51:11,431 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-18 21:51:11,435 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-18 21:51:11,478 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-18 21:51:11,478 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-18 21:51:11,478 [INFO] backend.main: Backend ready.
+2026-08-18 21:51:11,479 [INFO] backend.dispatcher: dispatcher started
+2026-08-19 14:04:48,631 [INFO] backend.main: Shutting down...
+2026-08-20 01:05:37,608 [INFO] backend: Logging to /app/logs/backend.log  level=DEBUG
+2026-08-20 01:05:37,611 [INFO] backend.main: Starting Stock Trading Agent backend...
+2026-08-20 01:05:37,632 [ERROR] backend.mcp_client: MCP connect failed: [Errno 111] Connection refused
+2026-08-20 01:05:37,632 [INFO] backend.main: MCP client: unavailable (financial enrichment disabled)
+2026-08-20 01:05:37,632 [INFO] backend.main: Backend ready.
+2026-08-20 01:05:37,633 [INFO] backend.dispatcher: dispatcher started
+2026-08-20 10:46:45,707 [INFO] backend.main: Shutting down...
