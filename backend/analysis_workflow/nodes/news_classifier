@@ -1,0 +1,94 @@
+"""Node: news_classifier — categorize news before entering the deep analysis pipeline.
+Input:
+  - exchange: str
+  - source: str
+  - content: str
+
+Output:
+  - category: NewsCategory
+  - has_symbol: bool
+  - symbol: str (if has_symbol is True)
+  - reason: str
+
+Categories:
+  - Noise
+  - Macro
+  - Company
+  - Industry
+"""
+
+import json
+import re
+import logging
+
+from ..state import AnalysisState
+from ..prompts import CLASSIFY_NEWS_SYSTEM_PROMPT, NEWS_CLASSIFY_SYSTEM_PROMPT
+from ..logging_utils import log_llm_call
+from common import NewsCategory
+logger = logging.getLogger(f"backend.{__name__}")
+
+def classify_news(state: AnalysisState) -> dict[str, any]:
+    """Use flash model to classify news before entering the main analysis pipeline."""
+    output = {}
+    output["category"] = None
+    output["has_symbol"] = False
+    output["symbol"] = None
+    output["reason"] = ""
+    
+    content = state.get("content", "")
+    if not content or not content.strip():
+        return state
+
+    url = state.get("llm_api_url", "")
+    key = state.get("llm_api_key", "")
+    model = state.get("llm_flash_model", "") or state.get("llm_model", "gpt-4o")
+
+    if not url:
+        logger.info("No LLM configured — skipping news classification")
+        return result
+
+    user_prompt = f"Classify this news:\n\n{content}"
+    try:
+        from llm import invoke_llm_simple
+        raw = invoke_llm_simple(
+            api_url=url, api_key=key, model=model,
+            system_prompt=CLASSIFY_NEWS_SYSTEM_PROMPT,
+            user_prompt=user_prompt,
+            temperature=0.0, max_tokens=150, timeout=15.0,
+        )
+    except Exception as e:
+        logger.error(f"News classification LLM call failed: {e}")
+        return output
+
+    logger.debug(f"News classification response: {raw[:200]}")
+
+    # Log this LLM call for the conversation view
+    log_llm_call(state, "News Classification", model, CLASSIFY_NEWS_SYSTEM_PROMPT, user_prompt, raw)
+
+    # Parse JSON from response
+    json_match = re.search(r'\{[^{}]*\}', raw, re.DOTALL)
+    if json_match:
+        try:
+            parsed = json.loads(json_match.group(0))
+            output["category"] = parsed.get("category", "").strip()
+            output["has_symbol"] = parsed.get("has_symbol", False)
+            output["symbol"] = parsed.get("symbol", None)
+            output["reason"] = parsed.get("reason", "")
+
+            logger.info(f"News classified as {output['category']} ({output['has_symbol']}, {output['symbol']}): {output['reason']} — {content[:80]}...")
+            return output
+
+        except json.JSONDecodeError:
+            logger.warning("Failed to parse news classification JSON response")
+
+    # Fallback: if parsing fails, let the news through
+    return output
+
+
+def route_after_classify(state: AnalysisState):
+    """Route after classification: skip Noise/Macro, continue Company/Industry."""
+    if state.get("category") in [NewsCategory.NOISE]:
+        return "skip_to_end"
+    if state.get("category") in [NewsCategory.COMPANY, NewsCategory.INDUSTRY, NewsCategory.MACRO]:
+        return "identify_stock"
+    return "skip_to_end"

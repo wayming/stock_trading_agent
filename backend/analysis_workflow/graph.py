@@ -20,7 +20,7 @@ from langgraph.graph import StateGraph, END
 from .state import AnalysisState
 
 from .nodes.setup import receive_news
-from .nodes.filtering import classify_news, route_after_classify
+from .nodes.news_classifier import classify_news, route_after_classify
 from .nodes.stock_identification import identify_stock, route_after_identify
 from .nodes.skip import skip_to_end
 from .nodes.prompt_building import build_prompt
