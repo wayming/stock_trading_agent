@@ -1,0 +1,73 @@
+"""Node: bull_bear_classifier — classify news as bullish or bearish.
+Input:
+  - exchange: str
+  - source: str
+  - content: str
+
+Output:
+  - bullish: bool
+
+"""
+
+from quantsandbox.stock_trading_agent.backend.analysis_workflow.prompts import BULL_BEAR_CLASSIFIER_SYSTEM_PROMPT
+import json
+import re
+import logging
+
+from ..state import AnalysisState
+from ..prompts import CLASSIFY_NEWS_SYSTEM_PROMPT, NEWS_CLASSIFY_SYSTEM_PROMPT
+from ..logging_utils import log_llm_call
+from common import NewsCategory
+logger = logging.getLogger(f"backend.{__name__}")
+
+class NewsClassificationResult(BaseModel):
+    category: str = Field(description="新闻分类名称")
+    has_symbol: bool = Field(default=False, description="是否包含股票/代币代码")
+    symbol: Optional[str] = Field(default=None, description="具体的股票或代币代码，若没有则为 None")
+    reason: str = Field(default="", description="分类依据与原因")
+
+def bull_bear_classifier(state: AnalysisState) -> dict[str, any]:
+    """Use flash model to classify news before entering the main analysis pipeline."""
+    output = {}
+    output["bullish"] = False
+    
+    content = state.get("content", "")
+    if not content or not content.strip():
+        return state
+
+
+    user_prompt = f"Classify this news:\n\n{content}"
+    raw_output = call_llm_if_specified(BULL_BEAR_CLASSIFIER_SYSTEM_PROMPT, user_prompt, state)
+    if not raw_output:
+        return output
+
+    logger.debug(f"News classification response: {raw_output[:200]}")
+
+
+    # Parse JSON from response
+    json_match = re.search(r'\{[^{}]*\}', raw, re.DOTALL)
+    if json_match:
+        try:
+            parsed = json.loads(json_match.group(0))
+            output["category"] = parsed.get("category", "").strip()
+            output["has_symbol"] = parsed.get("has_symbol", False)
+            output["symbol"] = parsed.get("symbol", None)
+            output["reason"] = parsed.get("reason", "")
+
+            logger.info(f"News classified as {output['category']} ({output['has_symbol']}, {output['symbol']}): {output['reason']} — {content[:80]}...")
+            return output
+
+        except json.JSONDecodeError:
+            logger.warning("Failed to parse news classification JSON response")
+
+    # Fallback: if parsing fails, let the news through
+    return output
+
+
+def route_after_classify(state: AnalysisState):
+    """Route after classification: skip Noise/Macro, continue Company/Industry."""
+    if state.get("category") in [NewsCategory.NOISE]:
+        return "skip_to_end"
+    if state.get("category") in [NewsCategory.COMPANY, NewsCategory.INDUSTRY, NewsCategory.MACRO]:
+        return "identify_stock"
+    return "skip_to_end"

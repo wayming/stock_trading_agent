@@ -54,7 +54,7 @@ def build_workflow() -> StateGraph:
         {
             "build_prompt": "build_prompt",
             "identify_stock": "identify_stock",
-            "skip_to_end": "skip_to_end",
+            "END": "END",
         },
     )
 
